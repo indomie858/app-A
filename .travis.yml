@@ -32,4 +32,5 @@ before_install:
     - yes | sdkmanager "platforms;android-23"
 
 script:
+    - chmod +x gradlew
     - ./gradlew build connectedCheck
