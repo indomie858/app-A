@@ -1,5 +1,11 @@
 language: android
 dist: trusty
+
+addons:
+  apt:
+    packages:
+      - ant
+
 android:
   components:
     # Uncomment the lines below if you want to
