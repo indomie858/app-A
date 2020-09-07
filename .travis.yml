@@ -29,8 +29,13 @@ android:
     - sys-img-x86-android-23
     - sys-img-armeabi-v7a-android-17
 before_install:
+    # Accept licenses before building
+    - yes | sdkmanager --licenses
     - yes | sdkmanager "platforms;android-23"
 
 script:
+
+
+    # Set permission and run build + test
     - chmod +x gradlew
     - ./gradlew build connectedCheck
