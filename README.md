@@ -7,7 +7,7 @@ We want to create an app that will provide them guidance and information without
 
 ## Project Members
 ```
-Anne Xaymountry, Gaven Grantz, Frank Joseph Serdenia, Daniel Palencia, Allan Huidobro
+Anne Xaymountry, Gaven Grantz, Frank Joseph Serdenia, Daniel Palencia, Allan Huidobro, Ryunosuke Mori
 ```
 ## Tools
 ```
