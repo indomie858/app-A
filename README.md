@@ -13,4 +13,8 @@ Anne Xaymountry, Gaven Grantz, Frank Joseph Serdenia, Daniel Palencia, Allan Hui
 ```
 Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane
 ```
+## Languages
+```
+Java | C 
+```
 
