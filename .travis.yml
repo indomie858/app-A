@@ -29,6 +29,7 @@ android:
 
     # The system image we will test on 
     - sys-img-x86-android-26
+    - android-22
     - sys-img-armeabi-v7a-android-22
     - sys-img-armeabi-v7a-android-17
 
