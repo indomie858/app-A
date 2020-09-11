@@ -29,6 +29,8 @@ android:
 
     # The system image we will test on 
     - sys-img-x86-android-26
+    - sys-img-armeabi-v7a-android-22
+    - sys-img-armeabi-v7a-android-17
 
   licenses:
     - 'android-sdk-preview-license-.+'
@@ -41,7 +43,7 @@ before_script:
   - android list targets
 
   # Create, launch, unlock emulator
-  - echo no | android create avd --force -n test -t android-26 --abi x86 -c 100M
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a c 100M
   - emulator -avd test -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82
