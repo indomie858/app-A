@@ -1,5 +1,5 @@
 # Appa
-[![Build Status](https://travis-ci.com/frankmaayn/senior-design.svg?token=qcVUZ7MUhSkT9NeHUPzY&branch=master)](https://travis-ci.com/frankmaayn/senior-design)
+[![Build Status](https://travis-ci.com/frankmaayn/app-A.svg?token=qcVUZ7MUhSkT9NeHUPzY&branch=master)](https://travis-ci.com/frankmaayn/app-A)
 
 Appa is user-friendly application that will be used to help visually impaired students or individuals at California State University, Northridge. <br />
 The idea was brought up when we realized that the university does not provide a wide variety of options for those who are visually impaired. <br />
