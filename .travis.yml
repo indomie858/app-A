@@ -23,11 +23,11 @@ android:
     # if you need to run emulator(s) during your tests
 
     # The system image we will test on
-    - sys-img-x86-android-29
     - sys-img-x86-android-26
     - android-22
     - sys-img-armeabi-v7a-android-22
     - sys-img-armeabi-v7a-android-17
+    - sys-img-armeabi-v7a-android-29
 
   licenses:
     - '.+'
