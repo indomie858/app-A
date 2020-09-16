@@ -1,0 +1,9 @@
+# This is a comment
+
+# CODEOWNER FILE
+# 
+# This will add an extra layer of protection for the master/dev branch.
+# This will automatically create a required review request from the users below before merging a branch.
+
+
+*             @indomie858    @dpalencie   @frankmaayn  @darknessvolt   @anne-xay     @ryunosuke500
