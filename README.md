@@ -22,4 +22,3 @@ Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane
 ```
 Java | C 
 ```
-
