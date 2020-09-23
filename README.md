@@ -29,9 +29,9 @@ Java | C
 
 ## Devops Documentation (GitHub/GitKraken/Travis CI)
 ### Guidelines for git process
-1.	Always pull/fetch latest changes from “dev” branch whenever you begin a working session.
+1.	Always pull/fetch latest changes whenever you begin a working session.
 2.	Handle any conflicts in GitKraken or git CLI.
-3.	Commit changes to feature branches (example: dev-navigation)
+3.	Commit changes to feature branches (example: issue17-homescreen)
 4.	Push only to the feature branches, not directly to dev branch
 5.	Create pull request to merge changes from feature branches into dev branch.
 6.	At the end of the day (working session), make sure you commit or stash your changes.
