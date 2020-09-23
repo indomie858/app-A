@@ -1,5 +1,6 @@
 # Appa
 [![Build Status](https://travis-ci.com/frankmaayn/app-A.svg?token=qcVUZ7MUhSkT9NeHUPzY&branch=master)](https://travis-ci.com/frankmaayn/app-A)
+
 Appa is user-friendly application that will be used to help visually impaired students or individuals at California State University, Northridge. <br />
 The idea was brought up when we realized that the university does not provide a wide variety of options for those who are visually impaired. <br />
 We want to create an app that will provide them guidance and information without having the need of a second person. <br />
@@ -24,4 +25,16 @@ Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane
 ## Languages
 ```
 Java | C 
+```
+
+## Devops Documentation (GitHub/GitKraken/Travis CI)
+### Guidelines for git process
+1.	Always pull/fetch latest changes from “dev” branch whenever you begin a working session.
+2.	Handle any conflicts in GitKraken or git CLI.
+3.	Commit changes to feature branches (example: dev-navigation)
+4.	Push only to the feature branches, not directly to dev branch
+5.	Create pull request to merge changes from feature branches into dev branch.
+6.	At the end of the day (working session), make sure you commit or stash your changes.
+> Never push directly to “master” branch. This branch will be solely for releases.
+
 
