@@ -4,21 +4,21 @@
         android:id="@+id/home_button"
         android:enabled="true"
         android:icon="@drawable/ic_home_24px"
-        android:title="@string/home_button"
+        android:title="@string/home_nav"
         />
     <item
         android:id="@+id/settings_button"
         android:enabled="true"
         android:icon="@drawable/ic_settings_24px"
-        android:title="@string/settings_button"/>
+        android:title="@string/settings_nav"/>
     <item
         android:id="@+id/assistant_button"
         android:enabled="true"
         android:icon="@drawable/ic_keyboard_voice_24px"
-        android:title="@string/assistant_button"/>
+        android:title="@string/assistant_nav"/>
     <item
         android:id="@+id/tutorial_button"
         android:enabled="true"
         android:icon="@drawable/ic_web_asset_24px"
-        android:title="@string/tutorial_button"/>
+        android:title="@string/tutorial_nav"/>
 </menu>
