@@ -6,4 +6,8 @@
     <string name="settings_button">Settings</string>
     <string name="assistant_button">Assistant</string>
     <string name="tutorial_button">Tutorial</string>
+    <string name="connect_button">Connect app-A</string>
+    <string name="around_me_button">What\'s Around Me?</string>
+    <string name="navigation_button">Navigation</string>
+    <string name="save_location_button">Save Location</string>
 </resources>
