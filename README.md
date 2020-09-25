@@ -1,5 +1,9 @@
 # Appa
-[![Build Status](https://travis-ci.com/frankmaayn/app-A.svg?token=qBpYUby2oz9ijsiSQp7o&branch=testing-setup)](https://travis-ci.com/frankmaayn/app-A)
+[![Build Status](https://travis-ci.com/frankmaayn/app-A.svg?token=qBpYUby2oz9ijsiSQp7o&branch=dev)](https://travis-ci.com/frankmaayn/app-A)
+
+Appa is user-friendly application that will be used to help visually impaired students or individuals at California State University, Northridge. <br />
+The idea was brought up when we realized that the university does not provide a wide variety of options for those who are visually impaired. <br />
+We want to create an app that will provide them guidance and information without having the need of a second person. <br />
 
 ## Background
 California State University, Northridge has accessibility programs such as JAWS[1], Screen Magnification[2], VoiceOver[3] and Window-Eyes[4] for the visually impaired. However, the programs that are provided do not help in guiding students around campus. We want the university to be more inclusive and give students with disabilities a sense of independence when they are on campus so that they would not need to rely on a second person to guide them around campus. With that said, our application will help students navigate around campus as safely as possible through the use of our mobile application and its associated hardware, as well as know which building they are closest to with accompanying building information. <br> <br>
@@ -21,5 +25,15 @@ Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane
 ## Languages
 ```
 Java | C 
-```
+
+## Devops Documentation (GitHub/GitKraken/Travis CI)
+### Guidelines for git process
+1.	Always pull/fetch latest changes whenever you begin a working session.
+2.	Handle any conflicts in GitKraken or git CLI.
+3.	Commit changes to feature branches (example: issue17-homescreen)
+4.	Push only to the feature branches, not directly to dev branch
+5.	Create pull request to merge changes from feature branches into dev branch.
+6.	At the end of the day (working session), make sure you commit or stash your changes.
+> Never push directly to “master” branch. This branch will be solely for releases.
+
 
