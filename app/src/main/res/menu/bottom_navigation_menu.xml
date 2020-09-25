@@ -3,22 +3,22 @@
     <item
         android:id="@+id/home_button"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_home_24px"
         android:title="@string/home_button"
         />
     <item
         android:id="@+id/settings_button"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_settings_24px"
         android:title="@string/settings_button"/>
     <item
         android:id="@+id/assistant_button"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_keyboard_voice_24px"
         android:title="@string/assistant_button"/>
     <item
         android:id="@+id/tutorial_button"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_web_asset_24px"
         android:title="@string/tutorial_button"/>
 </menu>
