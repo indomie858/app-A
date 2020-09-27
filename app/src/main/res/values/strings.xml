@@ -2,4 +2,15 @@
     <string name="app_name">appa</string>
     <string name="action_settings">Settings</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiaW5kb21pZTg1OCIsImEiOiJja2ZlbW44dmMwMjdvMzBvNTk3ZXFwcDk2In0._VSFOGxW70jW308e9MxFWA</string>
+    <string name="location_list">List of locations</string>
+
+    // Buildings
+    <string name="jacaranda_hall">Jacaranda Hall</string>
+    <string name="student_recreational_center">Student Recreational Center</string>>
+
+    // Building Description
+    <string name="jd_hall_img_description">Jacaranda Hall Image</string>
+    <string name="jd_hall_list_description">Jacaranda Hall</string>
+    <string name="src_img_description">Student Recreational Center Image</string>
+    <string name="src_list_description">Student Recreational Center</string>
 </resources>
