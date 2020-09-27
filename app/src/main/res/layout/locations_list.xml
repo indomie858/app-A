@@ -37,9 +37,9 @@
             android:layout_width="293dp"
             android:layout_height="113dp"
             android:layout_weight="1"
-            android:backgroundTint="#FBFAFA"
+            android:backgroundTint="#FFFFFF"
             android:text="@string/jacaranda_hall"
-            android:textColor="#0B0B0B"
+            android:textColor="#000000"
             android:textSize="24sp"
             app:strokeColor="#000000" />
 
