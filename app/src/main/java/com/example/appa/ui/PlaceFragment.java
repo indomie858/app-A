@@ -18,11 +18,11 @@ public class PlaceFragment extends Fragment {
     public PlaceTileBinding binding;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceSTate) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = PlaceTileBinding.inflate(getLayoutInflater());
         return (View) binding.getPlace();
     }
-
+/*
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         // Establishing the link between our UI and our ViewModel
@@ -30,7 +30,7 @@ public class PlaceFragment extends Fragment {
         // the nav list view model.
         super.onViewCreated(view, savedInstanceState);
         final PlaceViewModel placeViewModel = new ViewModelProvider(this).get(PlaceViewModel.class);
-        binding.setPlaceViewModel(placeViewModel);
+        binding.setPlace(placeViewModel)
     }
-
+*/
 }
