@@ -6,9 +6,9 @@ import com.example.appa.model.Place;
 // This is where we should implement getters
 // and setters for our database items
 public class PlaceEntity implements Place {
-    private String name = "Jacaranda Hall";
+    private String name;
 
-    public void setName(String name) {
+    public PlaceEntity(String name) {
         this.name = name;
     }
 

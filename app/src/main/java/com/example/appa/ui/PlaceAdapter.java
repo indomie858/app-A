@@ -2,6 +2,7 @@ package com.example.appa.ui;
 
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -14,13 +15,17 @@ import com.example.appa.databinding.PlaceTileBinding;
 import com.example.appa.db.entity.PlaceEntity;
 import com.example.appa.model.Place;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
-    private Place[] places;
 
-    public void setPlaces(Place[] places) {
-        this.places = places;
+    public static final String TAG = "RecyclerviewAdapter";
+
+    private ArrayList<Place> mPlaces;
+
+    public void setPlaces(ArrayList<Place> places) {
+        this.mPlaces = places;
     }
 
     // Provide a reference to the views for each data item
@@ -40,7 +45,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         super();
     }
 
-    // Create new views (invoked by the layout manager)
+    // this method is responsible
+    // for inflating the layout for our views.
     @Override
     @NonNull
     public PlaceAdapter.PlaceViewHolder onCreateViewHolder(ViewGroup parent,
@@ -52,12 +58,14 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
     @Override
     public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
-        holder.binding.setPlace(places[position]);
+        // This method is called any time
+        // an item is added to the list.
+        holder.binding.setPlace(mPlaces.get(position));
         holder.binding.executePendingBindings();
     }
 
     @Override
     public int getItemCount() {
-       return 0;
+       return mPlaces.size();
     }
 }
