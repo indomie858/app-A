@@ -3,13 +3,11 @@ package com.example.appa.ui;
 import android.content.Intent;
 import android.os.Bundle;
 
-<<<<<<< HEAD:app/src/main/java/com/example/appa/MainActivity.java
+
 import android.view.View;
-=======
+
 import com.example.appa.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
->>>>>>> Issue23-Locations_SQLite_Database:app/src/main/java/com/example/appa/ui/MainActivity.java
+
 
 
 import androidx.appcompat.app.AppCompatActivity;
