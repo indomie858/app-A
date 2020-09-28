@@ -27,22 +27,15 @@
         android:textColorHighlight="#EFEBEB"
         android:textColorLink="#050505" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/button6"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="293dp"
-            android:layout_height="113dp"
-            android:layout_weight="1"
-            android:backgroundTint="#FFFFFF"
-            android:text="@string/jacaranda_hall"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:strokeColor="#000000" />
-
-    </LinearLayout>
+        android:layout_height="113dp"
+        android:layout_weight="1"
+        android:backgroundTint="#FFFFFF"
+        android:text="@string/jacaranda_hall"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:strokeColor="#000000" />
 
 </LinearLayout>
