@@ -41,7 +41,6 @@ public class MapActivity extends AppCompatActivity {
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
 
-            actionbar.setTitle(R.string.title_activity_map);
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
