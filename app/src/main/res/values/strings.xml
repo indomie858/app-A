@@ -17,4 +17,5 @@
     <!-- Settings -->
     <string name="default_value_preference_theme">light</string>
     <string name="default_value_preference_textSize">12</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>
