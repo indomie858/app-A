@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appa.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -47,6 +48,20 @@ public class MapActivity extends AppCompatActivity {
                     }
                 });
             }
+        });
+// The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener((item) ->{
+            switch (item.getItemId()){
+                case R.id.settings_button:
+                    Intent settingsActivity = new Intent(MapActivity.this, SettingsActivity.class);
+                    startActivity(settingsActivity);
+                    break;
+                case R.id.home_button:
+                    Intent mainActivity = new Intent(MapActivity.this,MainActivity.class);
+                    startActivity(mainActivity);
+            }
+            return false;
         });
     }
 
