@@ -2,8 +2,6 @@ package com.example.appa.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-
 import android.view.View;
 
 import com.example.appa.R;
@@ -12,6 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,10 +31,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Starts Map Activity using intent
     public void openMapActivity(View view) {
         Intent intent = new Intent(MainActivity.this, MapActivity.class);
         startActivity(intent);
     }
+
+    //Starts Navigation list activity using intent
     public void openNavigationListActivity(View view) {
         Intent intent = new Intent(MainActivity.this, NavigationListActivity.class);
         startActivity(intent);
