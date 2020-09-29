@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
     }
-
+    //Starts Settings Activity using intent
+    public void openSettingsActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+    }
     //Starts Map Activity using intent
     public void openMapActivity(View view) {
         Intent intent = new Intent(MainActivity.this, MapActivity.class);
