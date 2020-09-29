@@ -30,7 +30,6 @@ public class NavigationListActivity extends AppCompatActivity {
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
 
-            actionbar.setTitle(R.string.title_activity_navigation_list);
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
