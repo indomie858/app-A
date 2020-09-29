@@ -12,4 +12,6 @@
     <string name="navigation">Navigation</string>
     <string name="save_location">Save Location</string>
     <string name="home_title">Home</string>
+    <string name="map">Map</string>
+    <string name="content_description_map">show map</string>
 </resources>
