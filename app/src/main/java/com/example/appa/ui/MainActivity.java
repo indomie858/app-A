@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, MapActivity.class);
         startActivity(intent);
     }
-    public void openNavigationListAcitivity(View view) {
+    public void openNavigationListActivity(View view) {
         Intent intent = new Intent(MainActivity.this, NavigationListActivity.class);
         startActivity(intent);
     }

@@ -76,7 +76,7 @@
 
         <Button
             android:id="@+id/around_me_button"
-            android:onClick="openNavigationListAcitivity"
+            android:onClick="openNavigationListActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
