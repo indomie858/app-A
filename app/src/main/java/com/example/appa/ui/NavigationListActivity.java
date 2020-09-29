@@ -40,6 +40,7 @@ public class NavigationListActivity extends AppCompatActivity {
                 case R.id.home_button:
                     Intent mainActivity = new Intent(NavigationListActivity.this,MainActivity.class);
                     startActivity(mainActivity);
+                    break;
             }
             return false;
         });
