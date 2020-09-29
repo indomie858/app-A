@@ -2,14 +2,17 @@ package com.example.appa.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.viewmodel.NavigationListViewModel;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class NavigationListActivity extends AppCompatActivity {
@@ -21,6 +24,25 @@ public class NavigationListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_list_activity);
+
+        //This handles the back navigation button on top app bar
+        MaterialToolbar actionbar = (MaterialToolbar) findViewById(R.id.topAppBar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+
+            actionbar.setTitle(R.string.title_activity_navigation_list);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    NavUtils.navigateUpFromSameTask(NavigationListActivity.this);
+                }
+            });
+
+            // Inflate a menu to be displayed in the toolbar
+            //actionbar.inflateMenu(R.menu.settings);
+        }
+        //end of top app bar code
+
         viewModel = new ViewModelProvider(this).get(NavigationListViewModel.class);
         placeAdapter = new PlaceAdapter();
         // Adapter will load in places.
