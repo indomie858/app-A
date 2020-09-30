@@ -1,10 +1,7 @@
 package com.example.appa.ui;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -12,16 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
-import com.example.appa.db.entity.PlaceEntity;
 import com.example.appa.model.Place;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
-
+    // For debugging
     public static final String TAG = "RecyclerviewAdapter";
 
+    // Our list of places
     private ArrayList<Place> mPlaces;
 
     public void setPlaces(ArrayList<Place> places) {
@@ -35,8 +31,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         // each data item is just a string in this case
         final PlaceTileBinding binding;
         public PlaceViewHolder(PlaceTileBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
+                super(binding.getRoot());
+                this.binding = binding;
         }
     }
 

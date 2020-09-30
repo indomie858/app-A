@@ -2,11 +2,10 @@ package com.example.appa.viewmodel;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.SavedStateHandle;
 
-import com.example.appa.db.entity.PlaceEntity;
+import com.example.appa.db.PlaceEntity;
 import com.example.appa.model.Place;
 
 import java.util.ArrayList;
