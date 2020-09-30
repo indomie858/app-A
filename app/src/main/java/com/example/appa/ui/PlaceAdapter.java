@@ -31,8 +31,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         // each data item is just a string in this case
         final PlaceTileBinding binding;
         public PlaceViewHolder(PlaceTileBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
+                super(binding.getRoot());
+                this.binding = binding;
         }
     }
 
