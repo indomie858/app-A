@@ -66,6 +66,7 @@
             android:layout_marginTop="16dp"
             android:layout_weight=".33"
             android:backgroundTint="#FFFFFF"
+            android:onClick="openBluetoothConnectActivity"
             android:text="@string/connect_appa"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"

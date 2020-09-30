@@ -47,4 +47,10 @@ public class MainActivity extends AppCompatActivity {
         Intent navigationListActivity = new Intent(MainActivity.this, NavigationListActivity.class);
         startActivity(navigationListActivity);
     }
+
+    //Starts Bluetooth Connect activity using intent
+    public void openBluetoothConnectActivity(View view) {
+        Intent bluetoothConnectActivity = new Intent(MainActivity.this, BluetoothConnectAcitvity.class);
+        startActivity(bluetoothConnectActivity);
+    }
 }
