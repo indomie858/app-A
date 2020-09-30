@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="entries_preference_theme">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string-array name="entry_values_preference_theme">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string-array name="entries_preferences_textSize">
+        <item>10</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="entry_values_preference_textSize">
+        <item>10</item>
+        <item>12</item>
+    </string-array>
+</resources>

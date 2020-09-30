@@ -2,6 +2,7 @@
     <string name="app_name">appa</string>
     <string name="action_settings">Settings</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiaW5kb21pZTg1OCIsImEiOiJja2ZlbW44dmMwMjdvMzBvNTk3ZXFwcDk2In0._VSFOGxW70jW308e9MxFWA</string>
+    <string name="location_list">List of locations</string>
     <string name="home_nav">Home</string>
     <string name="settings_nav">Settings</string>
     <string name="assistant_nav">Assistant</string>
@@ -11,4 +12,12 @@
     <string name="navigation">Navigation</string>
     <string name="save_location">Save Location</string>
     <string name="home_title">Home</string>
+    <string name="map">Map</string>
+    <string name="content_description_map">show map</string>
+    <!-- Settings -->
+    <string name="default_value_preference_theme">light</string>
+    <string name="default_value_preference_textSize">12</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_map">Map</string>
+    <string name="title_activity_navigation_list">NavigationListActivity</string>
 </resources>

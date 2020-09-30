@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--This is the basic layout for the map activity.-->
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.MapActivity">
+    android:layout_height="match_parent">
 
-    <com.mapbox.mapboxsdk.maps.MapView
-        android:id="@+id/mapView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/place_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        mapbox:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        mapbox:layout_constraintEnd_toEndOf="parent"
-        mapbox:layout_constraintStart_toStartOf="parent"
-        mapbox:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        mapbox:mapbox_cameraTargetLat="34.239994"
-        mapbox:mapbox_cameraTargetLng="-118.526618"
-        mapbox:mapbox_cameraZoom="14" />
+        android:layout_margin="30dp"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -39,7 +34,7 @@
             android:background="@color/design_default_color_on_secondary"
 
             app:menu="@menu/top_app_bar"
-            app:title="@string/navigation" />
+            app:title="@string/around_me" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -58,5 +53,4 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation_menu" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
