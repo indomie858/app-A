@@ -22,4 +22,12 @@
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_navigation_list">NavigationListActivity</string>
+
+
+
+    <!-- Tutorial -->
+    <string name="app_manual">App Manual</string>
+    <string name="cane_setup">Cane Setup</string>
+    <string name="resource_links">Resource Links</string>
+
 </resources>

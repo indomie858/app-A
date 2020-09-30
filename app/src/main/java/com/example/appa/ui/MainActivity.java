@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
                     Intent settingsActivity = new Intent(MainActivity.this, SettingsActivity.class);
                     startActivity(settingsActivity);
                     break;
-
+                case R.id.tutorial_button:
+                    Intent tutorialActivity = new Intent(MainActivity.this, TutorialActivity.class);
+                    startActivity(tutorialActivity);
             }
             return false;
         });
