@@ -25,6 +25,7 @@ Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane
 ## Languages
 ```
 Java | C 
+```
 
 ## Devops Documentation (GitHub/GitKraken/Travis CI)
 ### Guidelines for git process
