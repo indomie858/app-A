@@ -39,10 +39,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".ui.TutorialActivity"
+            android:name=".ui.tutorial.TutorialActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:parentActivityName=".ui.TutorialActivity"
+            android:parentActivityName=".ui.tutorial.TutorialActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>

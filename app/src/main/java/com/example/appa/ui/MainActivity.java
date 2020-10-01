@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.appa.R;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.example.appa.ui.tutorial.TutorialActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
