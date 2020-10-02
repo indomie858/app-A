@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.appa.R;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.appa.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,5 +50,11 @@ public class MainActivity extends AppCompatActivity {
     public void openBluetoothConnectActivity(View view) {
         Intent bluetoothConnectActivity = new Intent(MainActivity.this, BluetoothConnectAcitvity.class);
         startActivity(bluetoothConnectActivity);
+    }
+
+    //Starts Navigation Activity using intent
+    public void openNavigationExampleActivity(View view) {
+        Intent navigationExampleActivity = new Intent(MainActivity.this, NavigationExampleActivity.class);
+        startActivity(navigationExampleActivity);
     }
 }

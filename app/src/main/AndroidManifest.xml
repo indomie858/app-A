@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.NavigationExampleActivity" />
+        <activity
             android:name=".ui.BluetoothConnectAcitvity"
             android:parentActivityName=".ui.MainActivity">
         </activity>
