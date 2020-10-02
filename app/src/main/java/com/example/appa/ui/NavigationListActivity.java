@@ -46,7 +46,7 @@ public class NavigationListActivity extends AppCompatActivity {
         placeAdapter = new PlaceAdapter();
         // Adapter will load in places.
         // For now it just gives a list of generic places.
-        placeAdapter.setPlaces(viewModel.getPlaces());
+        //placeAdapter.setPlaces(viewModel.getAllPlaces());
         RecyclerView recyclerView = findViewById(R.id.place_list);
         recyclerView.setAdapter(placeAdapter);
 

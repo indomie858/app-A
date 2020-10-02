@@ -3,33 +3,24 @@ package com.example.appa.viewmodel;
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.SavedStateHandle;
 
 import com.example.appa.db.PlaceEntity;
-import com.example.appa.model.Place;
+import com.example.appa.db.PlaceRepository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class NavigationListViewModel extends AndroidViewModel {
-
-    private ArrayList<Place> mPlaces;
-
-
+    private PlaceRepository repository;
+    private LiveData<List<PlaceEntity>> allPlaces;
     public NavigationListViewModel(Application application, SavedStateHandle savedStateHandle) {
         super(application);
-        mPlaces = new ArrayList<Place>();
-        mPlaces.add(new PlaceEntity("Jacaranda Hall"));
-        mPlaces.add(new PlaceEntity("Sequoia Hall"));
-        mPlaces.add(new PlaceEntity("Oviatt Library"));
-        mPlaces.add(new PlaceEntity("Cypress Hall"));
-        mPlaces.add(new PlaceEntity("Freudian Sip"));
-        mPlaces.add(new PlaceEntity("Lot B5"));
-        mPlaces.add(new PlaceEntity("Lot B4"));
-        mPlaces.add(new PlaceEntity("CSUN Campus Store"));
-        mPlaces.add(new PlaceEntity("Soraya Nazarian Center for the Performing Arts"));
-}
+        repository = new PlaceRepository(application);
+        allPlaces = repository.getAllPlaces();
+    }
 
-    public ArrayList<Place> getPlaces() {
-        return mPlaces;
+    public LiveData<List<PlaceEntity>> getAllPlaces() {
+        return allPlaces;
     }
 }

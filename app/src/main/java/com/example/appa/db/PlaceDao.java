@@ -8,6 +8,9 @@ import java.util.List;
 
 @Dao
 public interface PlaceDao {
+
+
+
     @Query("SELECT * FROM place_table")
     LiveData<List<PlaceEntity>> getAllPlaces();
 }
