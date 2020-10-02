@@ -65,19 +65,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-//        mapView.getMapAsync(new OnMapReadyCallback() {
-//            @Override
-//            public void onMapReady(@NonNull MapboxMap mapboxMap) {
-//                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
-//                    @Override
-//                    public void onStyleLoaded(@NonNull Style style) {
-//                           enableLocationComponent(style);
-//        // Map is set up and the style has loaded. Now you can add data or make other map adjustments.
-//
-//                    }
-//                });
-//            }
-//        });
+
         // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener((item) ->{

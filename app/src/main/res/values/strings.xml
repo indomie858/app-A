@@ -16,8 +16,7 @@
     <string name="home_title">Home</string>
     <string name="map">Map</string>
     <string name="content_description_map">show map</string>
-    <string name="user_location_permission_explanation">Location permission</string>
-    <string name="user_location_permission_not_granted">Permission not granted</string>
+
     <!-- Settings -->
     <string name="default_value_preference_theme">light</string>
     <string name="default_value_preference_textSize">12</string>
