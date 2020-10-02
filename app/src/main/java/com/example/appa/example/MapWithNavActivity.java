@@ -75,7 +75,7 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
-        mapboxMap.setStyle(getString(R.string.navigation_guidance_day), new Style.OnStyleLoaded() {
+        mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
 
             @Override
             public void onStyleLoaded(@NonNull Style style) {
