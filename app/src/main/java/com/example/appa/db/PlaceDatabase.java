@@ -21,10 +21,12 @@ public abstract class PlaceDatabase extends RoomDatabase {
     public abstract PlaceDao placeListDao();
 
     public static synchronized PlaceDatabase getInstance(Context context) {
+
+
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(), PlaceDatabase.class, "place_database")
                     .fallbackToDestructiveMigration()
-                    .createFromAsset("database/locations.db")
+                    .createFromAsset("locations.db")
                     .build();
         }
         return instance;

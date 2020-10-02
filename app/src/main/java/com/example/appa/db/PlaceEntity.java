@@ -8,7 +8,6 @@ import com.example.appa.model.Place;
 public class PlaceEntity implements Place {
     @PrimaryKey(autoGenerate = true)
     private int id;
-
     private String name;
     private String description = "";
     private Float latitude = 0.0f;

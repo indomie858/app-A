@@ -14,16 +14,18 @@ import com.example.appa.db.PlaceEntity;
 import com.example.appa.model.Place;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
     // For debugging
     public static final String TAG = "RecyclerviewAdapter";
 
     // Our list of places
-    private LiveData<PlaceEntity> mPlaces;
+    private List<PlaceEntity> mPlaces = new ArrayList<>();
 
-    public void setPlaces(LiveData<PlaceEntity> places) {
+    public void setPlaces(List<PlaceEntity> places) {
         this.mPlaces = places;
+        notifyDataSetChanged();
     }
 
     // Provide a reference to the views for each data item
@@ -58,15 +60,15 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
         // This method is called any time
         // an item is added to the list.
-        //holder.binding.setPlace(mPlaces.get(position));
+        holder.binding.setPlace(mPlaces.get(position));
         holder.binding.executePendingBindings();
     }
 
 
-    
+
     @Override
     public int getItemCount() {
-       return 0;
+       return mPlaces.size();
     }
 
 }
