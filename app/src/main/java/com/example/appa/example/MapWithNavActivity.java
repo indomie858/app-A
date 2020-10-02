@@ -1,5 +1,6 @@
 package com.example.appa.example;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -10,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.appa.R;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
@@ -20,8 +23,14 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
 import java.util.List;
+
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 
 public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyCallback, MapboxMap.OnMapClickListener, PermissionsListener {
     // variables for adding location layer
@@ -50,16 +59,19 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 enableLocationComponent(style);
+                addDestinationIconSymbolLayer(style);
+
+                mapboxMap.addOnMapClickListener(MapWithNavActivity.this);
             }
         });
     }
 
-    @SuppressWarnings( {"MissingPermission"})
+    @SuppressWarnings({"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
         // Check if permissions are enabled and if not request
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
 
-            // Create and customize the LocationComponent's options
+            // Create and customize the LocationComponent's options. This is optional
             LocationComponentOptions customLocationComponentOptions = LocationComponentOptions.builder(this)
                     .elevation(5)
                     .accuracyAlpha(.6f)
@@ -67,8 +79,7 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
                     .foregroundTintColor(Color.BLUE)
                     .build();
 
-            // Activate the MapboxMap LocationComponent to show user location
-            // Adding in LocationComponentOptions is also an optional parameter
+            // Get an instance of the component
             locationComponent = mapboxMap.getLocationComponent();
 
             LocationComponentActivationOptions locationComponentActivationOptions =
@@ -76,7 +87,9 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
                             .locationComponentOptions(customLocationComponentOptions)
                             .build();
 
+            // Activate with options the MapboxMap LocationComponent to show user location
             locationComponent.activateLocationComponent(locationComponentActivationOptions);
+            // Enable to make component visible
             locationComponent.setLocationComponentEnabled(true);
             // Set the component's camera mode
             locationComponent.setCameraMode(CameraMode.TRACKING);
@@ -84,6 +97,35 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
             permissionsManager = new PermissionsManager(this);
             permissionsManager.requestLocationPermissions(this);
         }
+    }
+
+    private void addDestinationIconSymbolLayer(@NonNull Style loadedMapStyle) {
+        loadedMapStyle.addImage("destination-icon-id",
+                BitmapFactory.decodeResource(this.getResources(), R.drawable.mapbox_marker_icon_default));
+        GeoJsonSource geoJsonSource = new GeoJsonSource("destination-source-id");
+        loadedMapStyle.addSource(geoJsonSource);
+        SymbolLayer destinationSymbolLayer = new SymbolLayer("destination-symbol-layer-id", "destination-source-id");
+        destinationSymbolLayer.withProperties(
+                iconImage("destination-icon-id"),
+                iconAllowOverlap(true),
+                iconIgnorePlacement(true)
+        );
+        loadedMapStyle.addLayer(destinationSymbolLayer);
+    }
+
+    @SuppressWarnings( {"MissingPermission"})
+    @Override
+    public boolean onMapClick(@NonNull LatLng point) {
+        //Retrieves longitude and latitude for destination from clicking on map
+        Point destinationPoint = Point.fromLngLat(point.getLongitude(), point.getLatitude());
+        Point originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                locationComponent.getLastKnownLocation().getLatitude());
+
+        GeoJsonSource source = mapboxMap.getStyle().getSourceAs("destination-source-id");
+        if (source != null) {
+            source.setGeoJson(Feature.fromGeometry(destinationPoint));
+        }
+        return true;
     }
 
     @Override
@@ -146,11 +188,5 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
-    }
-
-
-    @Override
-    public boolean onMapClick(@NonNull LatLng point) {
-        return false;
     }
 }
