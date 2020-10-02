@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/coordinatorLayout2">
+    android:id="@+id/coordinatorLayout2"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -29,22 +32,34 @@
             app:title="@string/bluetooth_title" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+    
+    <TextView
+        android:id="@+id/statusBT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+    />
 
-        app:itemIconTint="@drawable/nav_item_color_state"
-        app:itemRippleColor="@android:color/primary_text_dark"
-        app:itemTextColor="@drawable/nav_item_color_state"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+    <Button
+        android:id="@+id/enableBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:minWidth="200dp"
+        android:text="Enable Bluetooth"
+        android:textAlignment="center"
+        android:textColor="@color/white" />
 
+    <TextView
+        android:id="@+id/pairedBT"
+        android:minWidth="200dp"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
