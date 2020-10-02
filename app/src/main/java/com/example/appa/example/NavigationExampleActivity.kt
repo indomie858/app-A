@@ -1,4 +1,4 @@
-package com.example.appa.ui
+package com.example.appa.example
 
 //This is an example of Mapbox Drop-in Navigation UI. It simulates a navigation route
 

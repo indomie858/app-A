@@ -96,7 +96,7 @@
             android:layout_marginTop="12dp"
             android:layout_weight=".33"
             android:backgroundTint="#FFFFFF"
-            android:onClick="openNavigationExampleActivity"
+            android:onClick="openMapActivity"
             android:text="@string/navigation"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
