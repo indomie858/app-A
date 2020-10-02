@@ -5,23 +5,27 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
+import com.example.appa.db.PlaceEntity;
 import com.example.appa.model.Place;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
     // For debugging
     public static final String TAG = "RecyclerviewAdapter";
 
     // Our list of places
-    private ArrayList<Place> mPlaces;
+    private List<PlaceEntity> mPlaces = new ArrayList<>();
 
-    public void setPlaces(ArrayList<Place> places) {
+    public void setPlaces(List<PlaceEntity> places) {
         this.mPlaces = places;
+        notifyDataSetChanged();
     }
 
     // Provide a reference to the views for each data item
@@ -60,8 +64,11 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         holder.binding.executePendingBindings();
     }
 
+
+
     @Override
     public int getItemCount() {
        return mPlaces.size();
     }
+
 }
