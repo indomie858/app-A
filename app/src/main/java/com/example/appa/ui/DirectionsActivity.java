@@ -2,6 +2,8 @@ package com.example.appa.ui;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,11 +31,15 @@ public class DirectionsActivity extends AppCompatActivity {
     private DirectionsRoute currentRoute;
     private static final String TAG = "DirectionsActivity";
 
+    //UI element for testing and displaying JSON responses
+    private TextView geocodeResultTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_directions);
+        geocodeResultTextView = (TextView)findViewById(R.id.textView);
     }
 
     //how to create a route from origin to destination
@@ -68,9 +74,9 @@ public class DirectionsActivity extends AppCompatActivity {
     }
 
     //Converts location address string into geographic coordinates
-    private void getGeocodeForward(String address) {
+    private void geocodeForwardSearch(String address) {
         MapboxGeocoding mapboxGeocoding = MapboxGeocoding.builder()
-                .accessToken(String.valueOf(R.string.mapbox_access_token))
+                .accessToken(getString(R.string.mapbox_access_token))
                 .query(address)
                 .build();
 
@@ -79,8 +85,13 @@ public class DirectionsActivity extends AppCompatActivity {
             public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
                 List<CarmenFeature> results = response.body().features();
                 if (results.size() > 0) {
-                    // Log the first results Point.
+                    //feature contains full JSON response including address
+                    CarmenFeature feature = results.get(0);
+
+                    //firstResultPoint contains smaller JSON response
                     Point firstResultPoint = results.get(0).center();
+                    geocodeResultTextView.setText(firstResultPoint.toString()); //UI element...commment this out later
+                    // Log the first results Point.
                     Log.d(TAG, "onResponse: " + firstResultPoint.toString());
 
                 } else {
@@ -88,9 +99,6 @@ public class DirectionsActivity extends AppCompatActivity {
                     Log.d(TAG, "onResponse: No result found");
                 }
             }
-
-            //add code to do something with geocode here
-
             @Override
             public void onFailure(Call<GeocodingResponse> call, Throwable throwable) {
                 throwable.printStackTrace();
@@ -99,9 +107,9 @@ public class DirectionsActivity extends AppCompatActivity {
     }
 
     //Converts geographic coordinates into location address string
-    private void getGeocodeReverse(double longitude, double latitude) {
+    private void geocodeReverseSearch(double longitude, double latitude) {
         MapboxGeocoding reverseGeocode = MapboxGeocoding.builder()
-                .accessToken(String.valueOf(R.string.mapbox_access_token))
+                .accessToken(getString(R.string.mapbox_access_token))
                 .query(Point.fromLngLat(longitude, latitude))
                 .geocodingTypes(GeocodingCriteria.TYPE_ADDRESS)
                 .build();
@@ -109,25 +117,34 @@ public class DirectionsActivity extends AppCompatActivity {
         reverseGeocode.enqueueCall(new Callback<GeocodingResponse>() {
             @Override
             public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
-
                 List<CarmenFeature> results = response.body().features();
-
                 if (results.size() > 0) {
-                    // Log the first results Point.
-                    Point firstResultPoint = results.get(0).center();
-                    Log.d(TAG, "onResponse: " + firstResultPoint.toString());
+                    // Get the first Feature from the successful geocoding response
+                    CarmenFeature feature = results.get(0);
+                    geocodeResultTextView.setText(feature.toString()); //UI element...commment this out later
+                    Log.d(TAG, "onResponse: " + feature.toString());
                 } else {
                     // No result for your request were found.
                     Log.d(TAG, "onResponse: No result found");
                 }
             }
-
-            //add code to do something with address here.
-
             @Override
             public void onFailure(Call<GeocodingResponse> call, Throwable throwable) {
                 throwable.printStackTrace();
             }
         });
+    }
+
+    public void geoForwardButtonClick(View v)
+    {
+        String testAddress = "18111 Nordhoff St CA";
+        geocodeForwardSearch(testAddress);
+    }
+
+    public void geoReverseButtonClick(View v)
+    {
+        double testLongitude = -118.527642;
+        double testLatitude = 34.241099;
+        geocodeReverseSearch(testLongitude, testLatitude);
     }
 }
