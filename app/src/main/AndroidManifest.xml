@@ -16,9 +16,6 @@
             android:name=".example.MapWithNavActivity"
             android:exported="true" />
         <activity
-            android:name=".example.NavigationExampleActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.BluetoothConnectAcitvity"
             android:parentActivityName=".ui.MainActivity" />
         <activity
