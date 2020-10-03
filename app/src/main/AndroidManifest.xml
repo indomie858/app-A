@@ -11,15 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.DirectionsActivity"></activity>
         <activity
             android:name=".example.MapWithNavActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".example.NavigationExampleActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".ui.BluetoothConnectAcitvity"
-            android:parentActivityName=".ui.MainActivity"></activity>
+            android:parentActivityName=".ui.MainActivity" />
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings" />
