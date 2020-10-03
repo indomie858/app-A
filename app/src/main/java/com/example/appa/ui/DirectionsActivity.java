@@ -45,7 +45,7 @@ public class DirectionsActivity extends AppCompatActivity {
     //how to create a route from origin to destination
     private void getRoute(Point origin, Point destination) {
         NavigationRoute.builder(this)
-                .accessToken(Mapbox.getAccessToken())
+                .accessToken(getString(R.string.mapbox_access_token))
                 .origin(origin)
                 .destination(destination)
                 .profile(DirectionsCriteria.PROFILE_WALKING)    //selects walking navigation profiles
