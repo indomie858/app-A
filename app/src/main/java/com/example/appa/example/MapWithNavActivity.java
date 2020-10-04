@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.appa.R;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Feature;
@@ -170,6 +171,7 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
         NavigationRoute.builder(this)
                 .accessToken(Mapbox.getAccessToken())
                 .origin(origin)
+                .profile(DirectionsCriteria.PROFILE_WALKING)
                 .destination(destination)
                 .build()
                 .getRoute(new Callback<DirectionsResponse>() {
