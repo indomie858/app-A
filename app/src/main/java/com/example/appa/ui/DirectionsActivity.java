@@ -66,13 +66,15 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
     }
 
     @SuppressWarnings({"MissingPermission"})
-    private void enableLocationPermissions() {
+    private void enableLocation() {
         // Check if permissions are enabled and if not request
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
         } else {
             permissionsManager = new PermissionsManager(this);
             permissionsManager.requestLocationPermissions(this);
         }
+
+        initLocationEngine();
     }
 
     /**
@@ -185,15 +187,21 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
         });
     }
 
+    //for testing forward geocode
     public void geoForwardButtonClick(View v) {
         String testAddress = "18111 Nordhoff St CA";
         geocodeForwardSearch(testAddress);
     }
 
+    //for testing reverse geocode
     public void geoReverseButtonClick(View v) {
         double testLongitude = -118.527642;
         double testLatitude = 34.241099;
         geocodeReverseSearch(testLongitude, testLatitude);
+    }
+
+    public void enableLocationButton(View v) {
+        enableLocation();
     }
 
     @Override
@@ -220,6 +228,7 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
         }
     }
 
+
     private static class DirectionsActivityLocationCallback
             implements LocationEngineCallback<LocationEngineResult> {
 
@@ -239,6 +248,7 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
             DirectionsActivity activity = activityWeakReference.get();
 
             if (activity != null) {
+                //result.getLastLocation() gives you a Location object and that object has the latitude and longitude values
                 Location location = result.getLastLocation();
 
                 if (location == null) {

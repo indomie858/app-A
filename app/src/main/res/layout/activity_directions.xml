@@ -7,10 +7,23 @@
     tools:context=".ui.DirectionsActivity">
 
     <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="132dp"
+        android:onClick="enableLocationButton"
+        android:text="ENABLE LOCATION TEST"
+        android:textColor="@color/mapboxWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="72dp"
         android:onClick="geoForwardButtonClick"
         android:text="GEOCODE FORWARD TEST"
         android:textColor="@color/mapboxWhite"
@@ -23,7 +36,7 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="16dp"
         android:onClick="geoReverseButtonClick"
         android:text="GEOCODE REVERSE TEST"
         android:textColor="@color/mapboxWhite"
