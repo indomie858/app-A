@@ -11,6 +11,7 @@ import java.util.List;
 public class PlaceRepository {
     private PlaceDao placeDao;
     private LiveData<List<PlaceEntity>> allPlaces;
+    private LiveData<PlaceEntity> singlePlace;
     public PlaceRepository(Application application) {
         PlaceDatabase database = PlaceDatabase.getInstance(application);
         placeDao = database.placeListDao();
@@ -20,5 +21,6 @@ public class PlaceRepository {
     public LiveData<List<PlaceEntity>> getAllPlaces() {
         return allPlaces;
     }
+    public LiveData<PlaceEntity> getPlaceFromID(int id) { return placeDao.getPlaceFromID(id);}
 
 }

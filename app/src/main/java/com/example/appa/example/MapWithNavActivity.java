@@ -1,5 +1,6 @@
 package com.example.appa.example;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,8 +11,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appa.R;
+import com.example.appa.db.PlaceEntity;
+import com.example.appa.model.Place;
+import com.example.appa.viewmodel.MapWithNavViewModel;
+import com.example.appa.viewmodel.NavigationListViewModel;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
@@ -47,6 +55,15 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacem
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 
 public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyCallback, MapboxMap.OnMapClickListener, PermissionsListener {
+    // ViewModel: This will represent the user's currently selected location.
+    // Watch the viewModel for changes to the currently selected place,
+    // update the Place member variable accordingly.
+    // Place class gives us access to all place attributes.
+    private static MapWithNavViewModel viewModel;
+    public static Integer currentPlaceID;
+    private PlaceEntity currentPlace;
+
+
     // variables for adding location layer
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -63,6 +80,7 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
     // variables needed to initialize navigation
     private Button button;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +89,27 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+        currentPlaceID = 1;
+        viewModel = new ViewModelProvider(this).get(MapWithNavViewModel.class);
+        setObserver();
+
+        Toast.makeText(getApplicationContext(), currentPlace.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    public void setObserver() {
+        final Observer<PlaceEntity> placeEntityObserver = new Observer<PlaceEntity>() {
+            @Override
+            public void onChanged(PlaceEntity placeEntity) {
+                currentPlace = placeEntity;
+            }
+        };
+        viewModel.getPlaceFromID(currentPlaceID).observe(this, placeEntityObserver);
+    }
+
+    public void updateLocationFromID(Integer id) {
+        currentPlaceID = id;
+        setObserver();
     }
 
     @Override
@@ -235,6 +274,9 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
     protected void onResume() {
         super.onResume();
         mapView.onResume();
+        Intent intent = getIntent();
+        updateLocationFromID(intent.getIntExtra("NewPlace", 0));
+        Toast.makeText(getApplicationContext(), currentPlace.getName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

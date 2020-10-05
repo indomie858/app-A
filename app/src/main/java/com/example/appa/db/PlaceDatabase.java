@@ -12,8 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.appa.model.Place;
 
-@Database(entities = PlaceEntity.class, version = 1)
-
+@Database(entities = PlaceEntity.class, version = 1, exportSchema = false)
 public abstract class PlaceDatabase extends RoomDatabase {
     // This class is a singleton
     private static PlaceDatabase instance;

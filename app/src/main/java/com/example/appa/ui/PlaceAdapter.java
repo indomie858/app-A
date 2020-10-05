@@ -1,5 +1,7 @@
 package com.example.appa.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,19 +9,22 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
 import com.example.appa.db.PlaceEntity;
+import com.example.appa.example.MapWithNavActivity;
 import com.example.appa.model.Place;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
+public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>  {
     // For debugging
     public static final String TAG = "RecyclerviewAdapter";
 
@@ -52,8 +57,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     // for inflating the layout for our views.
     @Override
     @NonNull
-    public PlaceAdapter.PlaceViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+    public PlaceAdapter.PlaceViewHolder onCreateViewHolder(ViewGroup parent,  int viewType) {
         PlaceTileBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.place_tile, parent, false);
         return new PlaceViewHolder(binding);
     }
@@ -63,7 +67,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
         // This method is called any time
         // an item is added to the list.
-        holder.binding.setPlace(mPlaces.get(position));
+        PlaceEntity currentPlace = mPlaces.get(position);
+        holder.binding.setPlace(currentPlace);
 
         // Attach this listener to every button,
         // which will set the view model for the direction activity
@@ -71,11 +76,13 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         holder.binding.getRoot().findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), holder.binding.getPlace().getName(), Toast.LENGTH_SHORT).show();
+                Context viewContext = v.getContext();
+                Toast.makeText(viewContext, holder.binding.getPlace().getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(viewContext, MapWithNavActivity.class);
+                intent.putExtra("NewPlace", currentPlace.getId());
+                viewContext.startActivity(intent);
             }
         });
-
-
         holder.binding.executePendingBindings();
     }
 

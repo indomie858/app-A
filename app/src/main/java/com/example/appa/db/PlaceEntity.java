@@ -22,7 +22,8 @@ public class PlaceEntity implements Place {
     }
 
 
-    public PlaceEntity(String name, String description, Float latitude, Float longitude) {
+    public PlaceEntity(Integer id, String name, String description, Float latitude, Float longitude) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.latitude = latitude;

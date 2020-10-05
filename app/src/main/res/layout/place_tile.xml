@@ -6,7 +6,6 @@
 
     <data xmlns:android="http://schemas.android.com/apk/res/android">
         <variable name="place" type="com.example.appa.model.Place" />
-        <variable name="handlers" type="com.example.appa.ui.PlaceHandlers" />
     </data>
 
     <androidx.cardview.widget.CardView
