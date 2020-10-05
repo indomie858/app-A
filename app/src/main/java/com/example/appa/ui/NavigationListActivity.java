@@ -51,7 +51,6 @@ public class NavigationListActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(NavigationListViewModel.class);
 
         // Update the recycler view adapter with a list of place entities.
-
         viewModel.getAllPlaces().observe(this, new Observer<List<PlaceEntity>>() {
             @Override
             public void onChanged(List<PlaceEntity> placeEntities) {
@@ -62,7 +61,6 @@ public class NavigationListActivity extends AppCompatActivity {
 
         // Adapter will load in places.
         // For now it just gives a list of generic places.
-        //placeAdapter.setPlaces(viewModel.getAllPlaces());
         RecyclerView recyclerView = findViewById(R.id.place_list);
         recyclerView.setAdapter(placeAdapter);
 
