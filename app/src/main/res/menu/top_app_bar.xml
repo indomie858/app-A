@@ -8,6 +8,8 @@
         android:icon="@drawable/ic_baseline_map_24"
         android:title="@string/map"
         android:contentDescription="@string/content_description_map"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+
+        />
 
 </menu>

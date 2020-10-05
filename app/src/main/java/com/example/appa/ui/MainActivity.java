@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appa.R;
+import com.example.appa.ui.tutorial.TutorialActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
                     Intent settingsActivity = new Intent(MainActivity.this, SettingsActivity.class);
                     startActivity(settingsActivity);
                     break;
+                case R.id.tutorial_button:
+                    Intent tutorialActivity = new Intent(MainActivity.this, TutorialActivity.class);
+                    startActivity(tutorialActivity);
             }
             return false;
         });
