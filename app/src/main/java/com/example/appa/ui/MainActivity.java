@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-// The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
+        // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener((item) ->{
             switch (item.getItemId()){
@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent settingsActivity = new Intent(MainActivity.this, SettingsActivity.class);
                     startActivity(settingsActivity);
                     break;
-
             }
             return false;
         });
