@@ -59,8 +59,8 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
     // Watch the viewModel for changes to the currently selected place,
     // update the Place member variable accordingly.
     // Place class gives us access to all place attributes.
-    private static MapWithNavViewModel viewModel;
-    public static Integer currentPlaceID;
+    private MapWithNavViewModel viewModel;
+    private Integer currentPlaceID;
     private PlaceEntity currentPlace;
 
 
@@ -93,24 +93,18 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
         currentPlaceID = 1;
         viewModel = new ViewModelProvider(this).get(MapWithNavViewModel.class);
         setObserver();
-
-        Toast.makeText(getApplicationContext(), currentPlace.getName(), Toast.LENGTH_SHORT).show();
     }
 
     public void setObserver() {
         final Observer<PlaceEntity> placeEntityObserver = new Observer<PlaceEntity>() {
             @Override
             public void onChanged(PlaceEntity placeEntity) {
-                currentPlace = placeEntity;
+                    currentPlace = placeEntity;
             }
         };
         viewModel.getPlaceFromID(currentPlaceID).observe(this, placeEntityObserver);
     }
 
-    public void updateLocationFromID(Integer id) {
-        currentPlaceID = id;
-        setObserver();
-    }
 
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
@@ -275,8 +269,8 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
         super.onResume();
         mapView.onResume();
         Intent intent = getIntent();
-        updateLocationFromID(intent.getIntExtra("NewPlace", 0));
-        Toast.makeText(getApplicationContext(), currentPlace.getName(), Toast.LENGTH_SHORT).show();
+        currentPlaceID = intent.getIntExtra("NewPlace", 0);
+        setObserver();
     }
 
     @Override
