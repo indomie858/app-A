@@ -2,6 +2,7 @@ package com.example.appa.ui;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+
 import com.example.appa.R;
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,6 +26,7 @@ public class MainActivityTest {
     @Test
     public void bottomNavigationBarTest() {
         onView(withId(R.id.settings_button)).perform(click());
+
 //  ------- UNCOMMENT THE CODES BELOW WHEN AN ACTIVITY HAS BEEN IMPLEMENTED -------
 //        onView(withId(R.id.home_button)).perform(click());
 //        onView(withId(R.id.assistant_button)).perform(click());
@@ -33,7 +35,6 @@ public class MainActivityTest {
 
     @Test
     public void openMapActivityTest() {
-        //onView(withId(R.id.navigationMapView)).perform(click());
     }
 
     @Test
