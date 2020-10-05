@@ -1,7 +1,10 @@
 package com.example.appa.ui;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -61,9 +64,20 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         // This method is called any time
         // an item is added to the list.
         holder.binding.setPlace(mPlaces.get(position));
+
+        // Attach this listener to every button,
+        // which will set the view model for the direction activity
+        // then launch that activity.
+        holder.binding.getRoot().findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), holder.binding.getPlace().getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         holder.binding.executePendingBindings();
     }
-
 
 
     @Override
