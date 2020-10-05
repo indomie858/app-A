@@ -49,6 +49,7 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
 
     // Variables needed to listen to location updates
     private DirectionsActivityLocationCallback callback = new DirectionsActivityLocationCallback(this);
+    private static Location currentLocation;
 
     // variables for calculating a route
     private DirectionsRoute currentRoute;
@@ -202,6 +203,10 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
 
     public void enableLocationButton(View v) {
         enableLocation();
+
+        Toast.makeText(this, String.format(this.getString(R.string.new_location),
+                String.valueOf(currentLocation.getLatitude()), String.valueOf(currentLocation.getLongitude())),
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -250,15 +255,16 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
             if (activity != null) {
                 //result.getLastLocation() gives you a Location object and that object has the latitude and longitude values
                 Location location = result.getLastLocation();
+                currentLocation = location;
 
                 if (location == null) {
                     return;
                 }
 
                 // Create a Toast which displays the new location's coordinates
-                Toast.makeText(activity, String.format(activity.getString(R.string.new_location),
+                /*Toast.makeText(activity, String.format(activity.getString(R.string.new_location),
                         String.valueOf(result.getLastLocation().getLatitude()), String.valueOf(result.getLastLocation().getLongitude())),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
 
                 /*// Pass the new location to the Maps SDK's LocationComponent
                 if (activity.mapboxMap != null && result.getLastLocation() != null) {
