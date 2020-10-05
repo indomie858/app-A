@@ -2,7 +2,6 @@ package com.example.appa.ui;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-
 import com.example.appa.R;
 import org.junit.Rule;
 import org.junit.Test;
