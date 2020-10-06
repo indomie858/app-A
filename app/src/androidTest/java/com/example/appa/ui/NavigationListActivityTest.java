@@ -29,7 +29,6 @@ public class NavigationListActivityTest {
 
     @Test
     public void openMainActivityTest() {
-
         onView(withId(R.id.home_button)).perform(click());
     }
 

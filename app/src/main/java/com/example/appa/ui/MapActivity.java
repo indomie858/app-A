@@ -7,6 +7,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
+
+import com.example.appa.ui.tutorial.TutorialActivity;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.location.LocationComponent;
@@ -77,6 +79,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 case R.id.home_button:
                     Intent mainActivity = new Intent(MapActivity.this,MainActivity.class);
                     startActivity(mainActivity);
+                case R.id.tutorial_button:
+                    Intent tutorialActivity = new Intent(MapActivity.this, TutorialActivity.class);
+                    startActivity(tutorialActivity);
             }
             return false;
         });

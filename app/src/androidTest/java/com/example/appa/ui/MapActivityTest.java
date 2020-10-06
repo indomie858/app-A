@@ -29,7 +29,6 @@ public class MapActivityTest {
 
     @Test
     public void openMainActivityTest() {
-
         onView(withId(R.id.home_button)).perform(click());
     }
 
@@ -45,6 +44,7 @@ public class MapActivityTest {
 
     @Test
     public void openAssistantActivityTest() {
+
         onView(withId(R.id.assistant_button)).noActivity();
     }
 }
