@@ -1,29 +1,29 @@
 package com.example.appa.ui;
 
-import org.junit.Test;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+
 import com.example.appa.R;
+
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.Map;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-
-
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.*;
 
-public class NavigationListActivityTest {
-
+public class MapActivityTest {
     @Rule
-    public ActivityScenarioRule<NavigationListActivity> activityRule
-            = new ActivityScenarioRule<>(NavigationListActivity.class);
+    public ActivityScenarioRule<MapActivity> activityRule
+            = new ActivityScenarioRule<>(MapActivity.class);
 
     @Test
-    public void onCreateTest() {
-        try (ActivityScenario<NavigationListActivity> navigationListActivityScenario = ActivityScenario.launch(NavigationListActivity.class)) {
-            navigationListActivityScenario.recreate();
+    public void onCreate() {
+        try (ActivityScenario<MapActivity> mapActivityScenario = ActivityScenario.launch(MapActivity.class)) {
+            mapActivityScenario.recreate();
         }
     }
 
@@ -47,5 +47,4 @@ public class NavigationListActivityTest {
     public void openAssistantActivityTest() {
         onView(withId(R.id.assistant_button)).noActivity();
     }
-
 }

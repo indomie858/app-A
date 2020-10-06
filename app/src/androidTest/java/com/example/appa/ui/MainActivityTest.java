@@ -2,12 +2,9 @@ package com.example.appa.ui;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-
 import com.example.appa.R;
-
 import org.junit.Rule;
 import org.junit.Test;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -29,12 +26,15 @@ public class MainActivityTest {
         onView(withId(R.id.settings_button)).perform(click());
     }
 
-
     @Test
     public void openNavigationListActivityTest() {
         onView(withId(R.id.directory_button)).perform(click());
     }
 
+    @Test
+    public void openMapActivityTest(){
+        onView(withId(R.id.navigation_button)).perform(click());
+    }
     @Test
     public void openBluetoothConnectActivityTest() {
         onView(withId(R.id.connect_button)).perform(click());
