@@ -8,7 +8,6 @@
         />
     <item
         android:id="@+id/settings_button"
-
         android:enabled="true"
         android:icon="@drawable/ic_settings_24px"
         android:title="@string/settings_nav"/>
@@ -21,5 +20,6 @@
         android:id="@+id/tutorial_button"
         android:enabled="true"
         android:icon="@drawable/ic_web_asset_24px"
-        android:title="@string/tutorial_nav"/>
+
+        android:title="@string/tutorial_nav" />
 </menu>

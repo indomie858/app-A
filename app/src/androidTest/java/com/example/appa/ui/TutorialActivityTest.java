@@ -1,40 +1,39 @@
 package com.example.appa.ui;
 
+import androidx.test.core.app.ActivityScenario;
+
+import com.example.appa.ui.tutorial.TutorialActivity;
+
 import org.junit.Test;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import com.example.appa.R;
 import org.junit.Rule;
-import org.junit.Test;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.*;
 
-public class NavigationListActivityTest {
-
+public class TutorialActivityTest {
     @Rule
-    public ActivityScenarioRule<MainActivity> activityRule
-            = new ActivityScenarioRule<>(MainActivity.class);
+    public ActivityScenarioRule<TutorialActivity> activityRule
+            = new ActivityScenarioRule<>(TutorialActivity.class);
 
     @Test
-    public void onCreateTest() {
-        try (ActivityScenario<NavigationListActivity> navigationListActivityScenario = ActivityScenario.launch(NavigationListActivity.class)) {
-            navigationListActivityScenario.recreate();
+    public void onCreate() {
+        try (ActivityScenario<TutorialActivity> settingsActivityScenario = ActivityScenario.launch(TutorialActivity.class)){
+            settingsActivityScenario.recreate();
         }
     }
-
     @Test
     public void openMainActivityTest() {
-       onView(withId(R.id.home_button)).perform(click());
+        onView(withId(R.id.home_button)).perform(click());
     }
 
     @Test
     public void openTutorialsActivityTest() {
-        onView(withId(R.id.tutorial_button)).perform(click());
+        onView(withId(R.id.tutorial_button)).noActivity();
     }
 
     @Test

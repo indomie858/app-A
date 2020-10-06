@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
+import com.example.appa.ui.tutorial.TutorialActivity;
 import com.example.appa.viewmodel.NavigationListViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -76,6 +77,8 @@ public class NavigationListActivity extends AppCompatActivity {
                     Intent mainActivity = new Intent(NavigationListActivity.this,MainActivity.class);
                     startActivity(mainActivity);
                     break;
+                case R.id.tutorial_button:
+                    Intent tutorialActivity = new Intent(NavigationListActivity.this, TutorialActivity.class);
             }
             return false;
         });
