@@ -115,6 +115,7 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
                         }
                         //currentRoute contains JSON response with route details
                         currentRoute = response.body().routes().get(0);
+                        Log.d(TAG, "Route: " + currentRoute);   //logs JSON response in console
                     }
 
                     @Override
@@ -188,6 +189,7 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
         });
     }
 
+    /////////////////////////for testing - delete when you update layout activity_directions////////////////////////////////////
     //for testing forward geocode
     public void geoForwardButtonClick(View v) {
         String testAddress = "18111 Nordhoff St CA";
@@ -208,6 +210,14 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
                 String.valueOf(currentLocation.getLatitude()), String.valueOf(currentLocation.getLongitude())),
                 Toast.LENGTH_SHORT).show();
     }
+
+    public void routeButton(View v){
+        //Retrieves longitude and latitude for destination from clicking on map
+        Point destinationPoint = Point.fromLngLat(-118.536360,34.240441);
+        Point originPoint = Point.fromLngLat(-118.529279, 34.240113);
+        getRoute(originPoint, destinationPoint);
+    }
+    ///////////////////////////////////end button test methods - delete when you update layout////////////
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
