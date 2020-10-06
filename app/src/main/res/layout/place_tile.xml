@@ -30,7 +30,7 @@
             android:textSize="24sp"
             app:strokeColor="#000000"
             android:clickable="true"
-            />
+            android:focusable="true" />
 
     </androidx.cardview.widget.CardView>
 

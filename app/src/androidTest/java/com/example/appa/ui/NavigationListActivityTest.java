@@ -30,10 +30,9 @@ public class NavigationListActivityTest {
     public void bottomHomeNavigationbarTest() {
        onView(withId(R.id.home_button)).perform(click());
        onView(withId(R.id.settings_button)).perform(click());
-
+       onView(withId(R.id.tutorial_button)).perform(click());
 //   ----- UNCOMMENT WHEN AN ACTIVITY HAS BEEN IMPLEMENTED ------
 //        onView(withId(R.id.assistant_button)).perform(click());
-//        onView(withId(R.id.tutorial_button)).perform(click());
     }
 
 }
