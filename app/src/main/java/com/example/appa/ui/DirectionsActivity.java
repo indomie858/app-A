@@ -116,6 +116,9 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
                         //currentRoute contains JSON response with route details
                         currentRoute = response.body().routes().get(0);
                         Log.d(TAG, "Route: " + currentRoute);   //logs JSON response in console
+                        /***
+                         * Note: see DirectionsRoute documentation to access currentRoute methods
+                         */
                     }
 
                     @Override
@@ -174,8 +177,9 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
                 if (results.size() > 0) {
                     // Get the first Feature from the successful geocoding response
                     CarmenFeature feature = results.get(0);
-                    geocodeResultTextView.setText(feature.toString()); //UI element...commment this out later
+                    geocodeResultTextView.setText(feature.placeName()); //UI element...commment this out later/////////////////
                     Log.d(TAG, "onResponse: " + feature.toString());
+                    Log.d(TAG, "onResponse: " + feature.placeName());
                 } else {
                     // No result for your request were found.
                     Log.d(TAG, "onResponse: No result found");
@@ -189,36 +193,6 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
         });
     }
 
-    /////////////////////////for testing - delete when you update layout activity_directions////////////////////////////////////
-    //for testing forward geocode
-    public void geoForwardButtonClick(View v) {
-        String testAddress = "18111 Nordhoff St CA";
-        geocodeForwardSearch(testAddress);
-    }
-
-    //for testing reverse geocode
-    public void geoReverseButtonClick(View v) {
-        double testLongitude = -118.527642;
-        double testLatitude = 34.241099;
-        geocodeReverseSearch(testLongitude, testLatitude);
-    }
-
-    public void enableLocationButton(View v) {
-        enableLocation();
-
-        Toast.makeText(this, String.format(this.getString(R.string.new_location),
-                String.valueOf(currentLocation.getLatitude()), String.valueOf(currentLocation.getLongitude())),
-                Toast.LENGTH_SHORT).show();
-    }
-
-    public void routeButton(View v){
-        //Retrieves longitude and latitude for destination from clicking on map
-        Point destinationPoint = Point.fromLngLat(-118.536360,34.240441);
-        Point originPoint = Point.fromLngLat(-118.529279, 34.240113);
-        getRoute(originPoint, destinationPoint);
-    }
-    ///////////////////////////////////end button test methods - delete when you update layout////////////
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -229,7 +203,6 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
     public void onExplanationNeeded(List<String> permissionsToExplain) {
         Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show();
     }
-
 
     @Override
     public void onPermissionResult(boolean granted) {
@@ -242,7 +215,6 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
             finish();
         }
     }
-
 
     private static class DirectionsActivityLocationCallback
             implements LocationEngineCallback<LocationEngineResult> {
@@ -298,4 +270,35 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
             }
         }
     }
+
+
+    /////////////////////////for testing - delete when you update layout activity_directions////////////////////////////////////
+    //for testing forward geocode
+    public void geoForwardButtonClick(View v) {
+        String testAddress = "18111 Nordhoff St CA";
+        geocodeForwardSearch(testAddress);
+    }
+
+    //for testing reverse geocode
+    public void geoReverseButtonClick(View v) {
+        double testLongitude = -118.527642;
+        double testLatitude = 34.241099;
+        geocodeReverseSearch(testLongitude, testLatitude);
+    }
+
+    public void enableLocationButton(View v) {
+        enableLocation();
+
+        Toast.makeText(this, String.format(this.getString(R.string.new_location),
+                String.valueOf(currentLocation.getLatitude()), String.valueOf(currentLocation.getLongitude())),
+                Toast.LENGTH_SHORT).show();
+    }
+
+    public void routeButton(View v) {
+        //Retrieves longitude and latitude for destination from clicking on map
+        Point destinationPoint = Point.fromLngLat(-118.536360, 34.240441);
+        Point originPoint = Point.fromLngLat(-118.529279, 34.240113);
+        getRoute(originPoint, destinationPoint);
+    }
+    ///////////////////////////////////end button test methods - delete when you update layout////////////
 }
