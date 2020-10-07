@@ -8,12 +8,9 @@ import com.example.appa.R;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.Map;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.*;
 
 public class MapActivityTest {
     @Rule

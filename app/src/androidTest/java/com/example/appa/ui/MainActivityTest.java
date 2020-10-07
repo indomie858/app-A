@@ -31,10 +31,10 @@ public class MainActivityTest {
         onView(withId(R.id.directory_button)).perform(click());
     }
 
-    @Test
+    /*@Test
     public void openMapActivityTest(){
         onView(withId(R.id.navigation_button)).perform(click());
-    }
+    }*/
     @Test
     public void openBluetoothConnectActivityTest() {
         onView(withId(R.id.connect_button)).perform(click());

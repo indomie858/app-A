@@ -11,15 +11,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
-import com.example.appa.model.Place;
 import com.example.appa.viewmodel.MapWithNavViewModel;
-import com.example.appa.viewmodel.NavigationListViewModel;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
