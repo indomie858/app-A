@@ -6,6 +6,7 @@
 
     <data xmlns:android="http://schemas.android.com/apk/res/android">
         <variable name="place" type="com.example.appa.model.Place" />
+        <!--<variable name="handlers" type="com.example.appa.ui.PlaceHandlers" />-->
     </data>
 
     <androidx.cardview.widget.CardView
@@ -27,7 +28,9 @@
             android:text="@{place.name}"
             android:textColor="#000000"
             android:textSize="24sp"
-            app:strokeColor="#000000" />
+            app:strokeColor="#000000"
+            android:clickable="true"
+            android:focusable="true" />
 
     </androidx.cardview.widget.CardView>
 

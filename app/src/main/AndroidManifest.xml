@@ -12,6 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.DirectionsActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".example.MapWithNavActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.BluetoothConnectAcitvity"
             android:parentActivityName=".ui.MainActivity" />
         <activity
@@ -27,7 +38,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

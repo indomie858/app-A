@@ -9,19 +9,26 @@
     <string name="assistant_nav">Assistant</string>
     <string name="tutorial_nav">Tutorial</string>
     <string name="connect_appa">Connect app-A</string>
-    <string name="around_me">What\'s Around Me?</string>
+    <string name="directory">Directory</string>
     <string name="navigation">Navigation</string>
     <string name="save_location">Save Location</string>
     <string name="bluetooth_title">Bluetooth Connect</string>
     <string name="home_title">Home</string>
     <string name="map">Map</string>
     <string name="content_description_map">show map</string>
+
     <!-- Settings -->
     <string name="default_value_preference_theme">light</string>
     <string name="default_value_preference_textSize">12</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_navigation_list">NavigationListActivity</string>
+
+    <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+
+    <!-- Location change listening -->
+    <string name="new_location">New lat: %1$s New longitude: %2$s</string>
 
 
     <!-- Tutorial -->

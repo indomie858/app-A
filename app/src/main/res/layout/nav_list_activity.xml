@@ -34,7 +34,7 @@
             android:background="@color/design_default_color_on_secondary"
 
             app:menu="@menu/top_app_bar"
-            app:title="@string/around_me" />
+            app:title="@string/directory" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

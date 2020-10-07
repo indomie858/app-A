@@ -81,7 +81,7 @@
             android:layout_weight=".33"
             android:backgroundTint="#FFFFFF"
             android:onClick="openNavigationListActivity"
-            android:text="@string/around_me"
+            android:text="@string/directory"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
