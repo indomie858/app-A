@@ -28,7 +28,9 @@ import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
 import com.mapbox.mapboxsdk.location.LocationComponentOptions;
@@ -89,10 +91,8 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-
-        currentPlaceID = 1;
+        currentPlaceID = null;
         viewModel = new ViewModelProvider(this).get(MapWithNavViewModel.class);
-        setObserver();
     }
 
     public void setObserver() {
@@ -116,7 +116,27 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
                 enableLocationComponent(style);
                 addDestinationIconSymbolLayer(style);
 
+                if(currentPlace != null) {
+
+                    double originLongitude = locationComponent.getLastKnownLocation().getLongitude();
+                    double originLatitude = locationComponent.getLastKnownLocation().getLatitude();
+                    double destinationLongitude = currentPlace.getLongitude();
+                    double destinationLatitude = currentPlace.getLatitude();
+
+                    Point destinationPoint = Point.fromLngLat(destinationLongitude, destinationLatitude);
+                    Point originPoint = Point.fromLngLat(originLongitude, originLatitude);
+                    getRoute(originPoint, destinationPoint);
+
+                    LatLngBounds latLngBounds = new LatLngBounds.Builder()
+                            .include(new LatLng(originLatitude, originLongitude))
+                            .include(new LatLng(destinationLatitude, destinationLongitude))
+                            .build();
+
+                    mapboxMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 50));
+                }
+
                 mapboxMap.addOnMapClickListener(MapWithNavActivity.this);
+
                 button = findViewById(R.id.startButton);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -130,8 +150,11 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
                         NavigationLauncher.startNavigation(MapWithNavActivity.this, options);
                     }
                 });
+                button.setEnabled(true);
             }
         });
+
+
     }
 
     @SuppressWarnings({"MissingPermission"})
@@ -271,6 +294,8 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
         Intent intent = getIntent();
         currentPlaceID = intent.getIntExtra("NewPlace", 0);
         setObserver();
+
+
     }
 
     @Override

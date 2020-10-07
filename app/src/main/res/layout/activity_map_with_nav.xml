@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         mapbox:mapbox_cameraTargetLat="34.239994"
         mapbox:mapbox_cameraTargetLng="-118.526618"
-        mapbox:mapbox_cameraZoom="12" />
+        mapbox:mapbox_cameraZoom="18" />
 
     <Button
         android:id="@+id/startButton"
