@@ -51,7 +51,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="50dp"
+        android:layout_margin="30dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,6 @@
             android:layout_marginTop="16dp"
             android:layout_weight=".33"
             android:backgroundTint="#FFFFFF"
-            android:onClick="openBluetoothConnectActivity"
             android:text="@string/connect_appa"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +74,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/directory_button"
+            android:id="@+id/around_me_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"

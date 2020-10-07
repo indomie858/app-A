@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data xmlns:android="http://schemas.android.com/apk/res/android">
+        <variable name="place" type="com.example.appa.model.Place" />
+        <!--<variable name="handlers" type="com.example.appa.ui.PlaceHandlers" />-->
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <Button
+            android:id="@+id/app_manual_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="100dp"
+            android:text="@{place.name}"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:strokeColor="#000000"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

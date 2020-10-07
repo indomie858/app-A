@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--This is for the regular top app bar-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/map_toggle"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/map"
+        android:contentDescription="@string/content_description_map"
+        app:showAsAction="ifRoom"
+
+        />
+
+</menu>

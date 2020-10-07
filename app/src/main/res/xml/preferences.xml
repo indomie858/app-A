@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Settings"
+    android:key="preference_root">
+
+    <PreferenceScreen
+        android:title="Layout Settings"
+        android:key="preference_appearance">
+
+        <ListPreference
+            android:title="Theme"
+            android:key="preference_theme"
+            android:entries="@array/entries_preference_theme"
+            android:entryValues="@array/entry_values_preference_theme"
+            android:defaultValue="@string/default_value_preference_theme" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:title="Text Settings"
+        android:key="preference_text">
+
+        <ListPreference
+            android:title="Text Size"
+            android:key="preference_textSize"
+            android:entries="@array/entries_preferences_textSize"
+            android:entryValues="@array/entry_values_preference_textSize"
+            android:defaultValue="@string/default_value_preference_textSize" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:title="Other Settings"
+        android:key="preference_others">
+
+        <PreferenceScreen />
+
+    </PreferenceScreen>
+
+</PreferenceScreen>
