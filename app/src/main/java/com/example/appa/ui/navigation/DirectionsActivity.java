@@ -5,7 +5,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +23,11 @@ import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.services.android.navigation.ui.v5.NavigationView;
+import com.mapbox.services.android.navigation.ui.v5.OnNavigationReadyCallback;
+import com.mapbox.services.android.navigation.ui.v5.listeners.NavigationListener;
+import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
+import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigationOptions;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
 import java.lang.ref.WeakReference;
@@ -33,7 +37,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DirectionsActivity extends AppCompatActivity implements PermissionsListener {
+public class DirectionsActivity extends AppCompatActivity implements OnNavigationReadyCallback, NavigationListener, PermissionsListener {
+
+    //object to interact with a navigation session.
+    //used to request routes, register various Navigation SDK observers, and make other navigation-related decisions
+    private MapboxNavigation navigation;
 
     // Variables needed to handle location permissions
     private PermissionsManager permissionsManager;
@@ -51,42 +59,37 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
     private DirectionsRoute currentRoute;
     private static final String TAG = "DirectionsActivity";
 
-    //UI element for testing and displaying JSON responses
-    private TextView geocodeResultTextView;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_directions);
-        geocodeResultTextView = (TextView) findViewById(R.id.textView);
-    }
+        //navigationView.onCreate(savedInstanceState);
+        //navigationView.initialize((OnNavigationReadyCallback) this);
 
-    @SuppressWarnings({"MissingPermission"})
-    private void enableLocation() {
-        // Check if permissions are enabled and if not request
-        if (PermissionsManager.areLocationPermissionsGranted(this)) {
-        } else {
-            permissionsManager = new PermissionsManager(this);
-            permissionsManager.requestLocationPermissions(this);
-        }
-
+        enableLocation();
         initLocationEngine();
+        initMapboxNavObj();
+
     }
 
-    /**
-     * Set up the LocationEngine and the parameters for querying the device's location
-     */
-    @SuppressLint("MissingPermission")
-    private void initLocationEngine() {
-        locationEngine = LocationEngineProvider.getBestLocationEngine(this);
+    public void testSetupNav(View v) {
+        double originLongitude = currentLocation.getLongitude();
+        double originLatitude = currentLocation.getLatitude();
+        double destinationLongitude = -118.536360;
+        double destinationLatitude = 34.240450;
 
-        LocationEngineRequest request = new LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
-                .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
-                .setMaxWaitTime(DEFAULT_MAX_WAIT_TIME).build();
+        Point destinationPoint = Point.fromLngLat(destinationLongitude, destinationLatitude);
+        Point originPoint = Point.fromLngLat(originLongitude, originLatitude);
+        getRoute(originPoint, destinationPoint);
+    }
 
-        locationEngine.requestLocationUpdates(request, callback, getMainLooper());
-        locationEngine.getLastLocation(callback);
+    public void testStart(View v){
+        navigation.startNavigation(currentRoute);
+        Log.d(TAG, navigation.toString());
+        Log.d(TAG, "Navigation start success");
     }
 
     //how to create a route from origin to destination
@@ -124,27 +127,36 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
                 });
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    //Initialize MapboxNavigationObject
+    private void initMapboxNavObj() {
+        MapboxNavigationOptions options = MapboxNavigationOptions.builder()
+                .build();
+        navigation = new MapboxNavigation(this, getString(R.string.mapbox_access_token));
+        navigation.setLocationEngine(locationEngine);
     }
 
-    @Override
-    public void onExplanationNeeded(List<String> permissionsToExplain) {
-        Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onPermissionResult(boolean granted) {
-        if (granted) {
-            /*if (mapboxMap.getStyle() != null) {
-
-            }*/
+    //Enable location permissions
+    @SuppressWarnings({"MissingPermission"})
+    public void enableLocation() {
+        // Check if permissions are enabled and if not request
+        if (PermissionsManager.areLocationPermissionsGranted(this)) {
         } else {
-            Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
-            finish();
+            permissionsManager = new PermissionsManager(this);
+            permissionsManager.requestLocationPermissions(this);
         }
+    }
+
+    //Set up the LocationEngine and the parameters for querying the device's location
+    @SuppressLint("MissingPermission")
+    private void initLocationEngine() {
+        locationEngine = LocationEngineProvider.getBestLocationEngine(this);
+
+        LocationEngineRequest request = new LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
+                .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
+                .setMaxWaitTime(DEFAULT_MAX_WAIT_TIME).build();
+
+        locationEngine.requestLocationUpdates(request, callback, getMainLooper());
+        locationEngine.getLastLocation(callback);
     }
 
     private static class DirectionsActivityLocationCallback
@@ -196,21 +208,47 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
         }
     }
 
+    @Override
+    public void onNavigationReady(boolean isRunning) {
 
-    /////////////////////////for testing - delete when you update layout activity_directions////////////////////////////////////
-    public void enableLocationButton(View v) {
-        enableLocation();
-
-        Toast.makeText(this, String.format(this.getString(R.string.new_location),
-                String.valueOf(currentLocation.getLatitude()), String.valueOf(currentLocation.getLongitude())),
-                Toast.LENGTH_SHORT).show();
     }
 
-    public void routeButton(View v) {
-        //Retrieves longitude and latitude for destination from clicking on map
-        Point destinationPoint = Point.fromLngLat(-118.536360, 34.240441);
-        Point originPoint = Point.fromLngLat(-118.529279, 34.240113);
-        getRoute(originPoint, destinationPoint);
+    @Override
+    public void onCancelNavigation() {
+
     }
-    ///////////////////////////////////end button test methods - delete when you update layout////////////
+
+    @Override
+    public void onNavigationFinished() {
+
+    }
+
+    @Override
+    public void onNavigationRunning() {
+
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onExplanationNeeded(List<String> permissionsToExplain) {
+        Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onPermissionResult(boolean granted) {
+        if (granted) {
+            /*if (mapboxMap.getStyle() != null) {
+
+            }*/
+        } else {
+            Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
+            finish();
+        }
+    }
 }
