@@ -47,6 +47,7 @@ Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculu
 
 
     <!-- PLaceholders for the spinnerview -->
+    <!-- DELETE THIS IF YOU'RE IN DOUBT AND CLEANING STUFF UP! -->
     <string-array name="locations_categories_array">
         <item>Food &amp; Drink</item>
         <item>Classrooms</item>
