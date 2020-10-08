@@ -45,4 +45,16 @@ Etiam tempus, nibh sed fringilla ullamcorper, sem risus porta ligula, at bibendu
 \n \n
 Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce viverra enim eu leo imperdiet ullamcorper. Proin ullamcorper nibh sed maximus imperdiet. Pellentesque suscipit urna odio, ac tempus dolor pulvinar et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec metus eleifend, tincidunt diam at, laoreet justo. Nam pellentesque dolor quis rhoncus pretium. Cras ut turpis a orci cursus ultricies nec et nisi. Nullam placerat felis vel felis accumsan pretium. Etiam congue lacus vitae nulla hendrerit, non porttitor nisl tempus. </string>
 
+
+    <!-- PLaceholders for the spinnerview -->
+    <string-array name="locations_categories_array">
+        <item>Food &amp; Drink</item>
+        <item>Classrooms</item>
+        <item>Study Areas</item>
+        <item>Services</item>
+        <item>Sports &amp; Fitness</item>
+    </string-array>
+
+
 </resources>
+
