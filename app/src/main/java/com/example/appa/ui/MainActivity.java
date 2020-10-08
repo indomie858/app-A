@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.appa.R;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.appa.R;
+import com.example.appa.ui.tutorial.TutorialActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-// The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
+        // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener((item) ->{
             switch (item.getItemId()){
@@ -26,16 +25,18 @@ public class MainActivity extends AppCompatActivity {
                     Intent settingsActivity = new Intent(MainActivity.this, SettingsActivity.class);
                     startActivity(settingsActivity);
                     break;
+                case R.id.tutorial_button:
+                    Intent tutorialActivity = new Intent(MainActivity.this, TutorialActivity.class);
+                    startActivity(tutorialActivity);
+                    break;
+                case R.id.assistant_button:
 
             }
             return false;
         });
     }
-    //Starts Settings Activity using intent
-    public void openSettingsActivity(View view) {
-        Intent settingsActivity = new Intent(MainActivity.this, SettingsActivity.class);
-        startActivity(settingsActivity);
-    }
+
+
     //Starts Map Activity using intent
     public void openMapActivity(View view) {
         Intent mapActivity = new Intent(MainActivity.this, MapActivity.class);
