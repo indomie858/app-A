@@ -1,4 +1,4 @@
-package com.example.appa.example;
+package com.example.appa.ui.navigation;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;

@@ -1,4 +1,4 @@
-package com.example.appa.ui;
+package com.example.appa.ui.navigation;
 
 import android.annotation.SuppressLint;
 import android.location.Location;
@@ -22,10 +22,6 @@ import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
-import com.mapbox.api.geocoding.v5.GeocodingCriteria;
-import com.mapbox.api.geocoding.v5.MapboxGeocoding;
-import com.mapbox.api.geocoding.v5.models.CarmenFeature;
-import com.mapbox.api.geocoding.v5.models.GeocodingResponse;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
@@ -128,71 +124,6 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
                 });
     }
 
-    //Converts location address string into geographic coordinates
-    private void geocodeForwardSearch(String address) {
-        MapboxGeocoding mapboxGeocoding = MapboxGeocoding.builder()
-                .accessToken(getString(R.string.mapbox_access_token))
-                .query(address)
-                .build();
-
-        mapboxGeocoding.enqueueCall(new Callback<GeocodingResponse>() {
-            @Override
-            public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
-                List<CarmenFeature> results = response.body().features();
-                if (results.size() > 0) {
-                    //feature contains full JSON response including address
-                    CarmenFeature feature = results.get(0);
-
-                    //firstResultPoint contains smaller JSON response
-                    Point firstResultPoint = results.get(0).center();
-                    geocodeResultTextView.setText(firstResultPoint.toString()); //UI element...commment this out later
-                    // Log the first results Point.
-                    Log.d(TAG, "onResponse: " + firstResultPoint.toString());
-
-                } else {
-                    // No result for your request were found.
-                    Log.d(TAG, "onResponse: No result found");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GeocodingResponse> call, Throwable throwable) {
-                throwable.printStackTrace();
-            }
-        });
-    }
-
-    //Converts geographic coordinates into location address string
-    private void geocodeReverseSearch(double longitude, double latitude) {
-        MapboxGeocoding reverseGeocode = MapboxGeocoding.builder()
-                .accessToken(getString(R.string.mapbox_access_token))
-                .query(Point.fromLngLat(longitude, latitude))
-                .geocodingTypes(GeocodingCriteria.TYPE_ADDRESS)
-                .build();
-
-        reverseGeocode.enqueueCall(new Callback<GeocodingResponse>() {
-            @Override
-            public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
-                List<CarmenFeature> results = response.body().features();
-                if (results.size() > 0) {
-                    // Get the first Feature from the successful geocoding response
-                    CarmenFeature feature = results.get(0);
-                    geocodeResultTextView.setText(feature.placeName()); //UI element...commment this out later/////////////////
-                    Log.d(TAG, "onResponse: " + feature.toString());
-                    Log.d(TAG, "onResponse: " + feature.placeName());
-                } else {
-                    // No result for your request were found.
-                    Log.d(TAG, "onResponse: No result found");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GeocodingResponse> call, Throwable throwable) {
-                throwable.printStackTrace();
-            }
-        });
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -242,12 +173,6 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
                 if (location == null) {
                     return;
                 }
-
-                // Create a Toast which displays the new location's coordinates
-                /*Toast.makeText(activity, String.format(activity.getString(R.string.new_location),
-                        String.valueOf(result.getLastLocation().getLatitude()), String.valueOf(result.getLastLocation().getLongitude())),
-                        Toast.LENGTH_SHORT).show();*/
-
                 /*// Pass the new location to the Maps SDK's LocationComponent
                 if (activity.mapboxMap != null && result.getLastLocation() != null) {
                     activity.mapboxMap.getLocationComponent().forceLocationUpdate(result.getLastLocation());
@@ -273,19 +198,6 @@ public class DirectionsActivity extends AppCompatActivity implements Permissions
 
 
     /////////////////////////for testing - delete when you update layout activity_directions////////////////////////////////////
-    //for testing forward geocode
-    public void geoForwardButtonClick(View v) {
-        String testAddress = "18111 Nordhoff St CA";
-        geocodeForwardSearch(testAddress);
-    }
-
-    //for testing reverse geocode
-    public void geoReverseButtonClick(View v) {
-        double testLongitude = -118.527642;
-        double testLatitude = 34.241099;
-        geocodeReverseSearch(testLongitude, testLatitude);
-    }
-
     public void enableLocationButton(View v) {
         enableLocation();
 

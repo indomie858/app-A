@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
 import com.example.appa.db.PlaceEntity;
-import com.example.appa.example.MapWithNavActivity;
+import com.example.appa.ui.navigation.MapWithNavActivity;
 
 import java.util.ArrayList;
 import java.util.List;
