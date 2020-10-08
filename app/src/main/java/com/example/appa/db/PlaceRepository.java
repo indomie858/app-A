@@ -9,6 +9,9 @@ import com.example.appa.model.Place;
 import java.util.List;
 
 public class PlaceRepository {
+    // This repository serves
+    // as an abstraction layer
+    // between the ViewModel and the DAO.
     private PlaceDao placeDao;
     private LiveData<List<PlaceEntity>> allPlaces;
     private LiveData<PlaceEntity> singlePlace;
@@ -22,5 +25,5 @@ public class PlaceRepository {
         return allPlaces;
     }
     public LiveData<PlaceEntity> getPlaceFromID(int id) { return placeDao.getPlaceFromID(id);}
-
+    public LiveData<List<PlaceEntity>> getPlacesFromString(String searchName) { return placeDao.getPlacesFromString(searchName); }
 }
