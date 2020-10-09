@@ -68,7 +68,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
+        //The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener((item) ->{
             switch (item.getItemId()){
