@@ -22,6 +22,6 @@ public interface PlaceDao {
     // that start with a given string.
     // Useful for returning results
     // as a user fills in a field.
-    @Query("SELECT * FROM place_table WHERE name LIKE ':searchName%'")
-    LiveData<List<PlaceEntity>> getPlacesFromString(String searchName);
+    //@Query("SELECT * FROM place_table WHERE name LIKE ":searchName%")
+    //LiveData<List<PlaceEntity>> getPlacesFromString(String searchName);
 }
