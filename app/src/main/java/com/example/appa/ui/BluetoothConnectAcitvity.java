@@ -15,6 +15,10 @@ import com.example.appa.R;
 
 public class BluetoothConnectAcitvity extends AppCompatActivity {
 
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+    /*
     private static final int REQUEST_ENABLE_BT = 0;
 
     TextView mStatusBT, mPairedBT;
@@ -75,7 +79,5 @@ public class BluetoothConnectAcitvity extends AppCompatActivity {
                     mStatusBT.setText("Bluetooth is enabled");
                 }
             }
-        });
-
-    }
+        });*/
 }
