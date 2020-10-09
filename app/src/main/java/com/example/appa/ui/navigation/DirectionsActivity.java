@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,9 +22,10 @@ import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.services.android.navigation.ui.v5.NavigationView;
-import com.mapbox.services.android.navigation.ui.v5.OnNavigationReadyCallback;
-import com.mapbox.services.android.navigation.ui.v5.listeners.NavigationListener;
+import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
 import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigationOptions;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
@@ -37,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DirectionsActivity extends AppCompatActivity implements OnNavigationReadyCallback, NavigationListener, PermissionsListener {
+public class DirectionsActivity extends AppCompatActivity implements OnMapReadyCallback,  PermissionsListener {
 
     //object to interact with a navigation session.
     //used to request routes, register various Navigation SDK observers, and make other navigation-related decisions
@@ -59,37 +59,33 @@ public class DirectionsActivity extends AppCompatActivity implements OnNavigatio
     private DirectionsRoute currentRoute;
     private static final String TAG = "DirectionsActivity";
 
-    private NavigationView navigationView;
+    private MapView mapView;
+    private MapboxMap mapboxMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_directions);
-        //navigationView.onCreate(savedInstanceState);
-        //navigationView.initialize((OnNavigationReadyCallback) this);
+        mapView = findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
         enableLocation();
         initLocationEngine();
         initMapboxNavObj();
-
     }
 
-    public void testSetupNav(View v) {
-        double originLongitude = currentLocation.getLongitude();
-        double originLatitude = currentLocation.getLatitude();
-        double destinationLongitude = -118.536360;
-        double destinationLatitude = 34.240450;
-
-        Point destinationPoint = Point.fromLngLat(destinationLongitude, destinationLatitude);
-        Point originPoint = Point.fromLngLat(originLongitude, originLatitude);
-        getRoute(originPoint, destinationPoint);
-    }
-
-    public void testStart(View v){
-        navigation.startNavigation(currentRoute);
-        Log.d(TAG, navigation.toString());
-        Log.d(TAG, "Navigation start success");
+    @Override
+    public void onMapReady(@NonNull MapboxMap mapboxMap) {
+        DirectionsActivity.this.mapboxMap = mapboxMap;
+        mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+            @Override
+            public void onStyleLoaded(@NonNull Style style) {
+                //enableLocationComponent(style);
+//        // Map is set up and the style has loaded. Now you can add data or make other map adjustments.
+            }
+        });
     }
 
     //how to create a route from origin to destination
@@ -207,27 +203,6 @@ public class DirectionsActivity extends AppCompatActivity implements OnNavigatio
             }
         }
     }
-
-    @Override
-    public void onNavigationReady(boolean isRunning) {
-
-    }
-
-    @Override
-    public void onCancelNavigation() {
-
-    }
-
-    @Override
-    public void onNavigationFinished() {
-
-    }
-
-    @Override
-    public void onNavigationRunning() {
-
-    }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
