@@ -1,6 +1,7 @@
 package com.example.appa.ui.navigation;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,8 +9,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appa.R;
+import com.example.appa.db.PlaceEntity;
+import com.example.appa.viewmodel.MapWithNavViewModel;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -38,6 +43,34 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DirectionsActivity extends AppCompatActivity implements OnMapReadyCallback,  PermissionsListener {
+    // ViewModel: This will represent the user's currently selected location.
+    // Watch the viewModel for changes to the currently selected place,
+    // update the Place member variable accordingly.
+    // Place class gives us access to all place attributes.
+    private MapWithNavViewModel viewModel;
+    private PlaceEntity currentPlace;
+    private Integer currentPlaceID;
+
+    public void setObserver() {
+        final Observer<PlaceEntity> placeEntityObserver = new Observer<PlaceEntity>() {
+            @Override
+            public void onChanged(PlaceEntity placeEntity) {
+                currentPlace = placeEntity;
+            }
+        };
+        viewModel.getPlaceFromID(currentPlaceID).observe(this, placeEntityObserver);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Get the intent, apply it to the current place ID,
+        Intent intent = getIntent();
+        currentPlaceID = intent.getIntExtra("NewPlace", 1);
+        setObserver();
+        if (currentPlace != null)
+            Toast.makeText(this, currentPlace.getName(), Toast.LENGTH_SHORT).show();
+    }
 
     //object to interact with a navigation session.
     //used to request routes, register various Navigation SDK observers, and make other navigation-related decisions
@@ -74,6 +107,10 @@ public class DirectionsActivity extends AppCompatActivity implements OnMapReadyC
         enableLocation();
         initLocationEngine();
         initMapboxNavObj();
+
+        viewModel = new ViewModelProvider(this).get(MapWithNavViewModel.class);
+        currentPlaceID = 1;
+        setObserver();
     }
 
     @Override

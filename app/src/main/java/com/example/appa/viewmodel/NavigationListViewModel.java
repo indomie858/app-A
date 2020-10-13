@@ -23,4 +23,5 @@ public class NavigationListViewModel extends AndroidViewModel {
     public LiveData<List<PlaceEntity>> getAllPlaces() {
         return allPlaces;
     }
+    public LiveData<List<PlaceEntity>> getPlacesFromString(String query) { return repository.getPlacesFromString(query); }
 }

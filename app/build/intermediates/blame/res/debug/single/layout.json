@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_bluetooth_connect_acitvity.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_bluetooth_connect_acitvity.xml"
+    },
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\place_tile.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\place_tile.xml"
+    },
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_map.xml"
+    },
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\nav_list_activity.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\nav_list_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_tutorial.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_tutorial.xml"
+    },
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\settings_activity.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\settings_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_directions.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_directions.xml"
+    },
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map_with_nav.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_map_with_nav.xml"
+    },
+    {
+        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_tutorial_text.xml",
+        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\fragment_tutorial_text.xml"
+    }
+]

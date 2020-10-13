@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appa.R;
+import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.tutorial.TutorialActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

@@ -10,7 +10,6 @@ import android.view.View;
 
 import com.example.appa.R;
 import com.example.appa.ui.MainActivity;
-import com.example.appa.ui.NavigationListActivity;
 import com.example.appa.ui.SettingsActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
