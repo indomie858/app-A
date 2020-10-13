@@ -65,14 +65,14 @@
 35-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:13:9-40
 36        <activity
 36-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:14:9-16:48
-37            android:name="com.example.appa.ui.DirectionsActivity"
-37-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:15:13-50
+37            android:name="com.example.appa.ui.navigation.DirectionsActivity"
+37-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:15:13-61
 38            android:exported="true" />
 38-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:16:13-36
 39        <activity
 39-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:17:9-24:20
-40            android:name="com.example.appa.example.MapWithNavActivity"
-40-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:18:13-55
+40            android:name="com.example.appa.ui.navigation.MapWithNavActivity"
+40-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:18:13-61
 41            android:exported="true" >
 41-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:19:13-36
 42            <intent-filter>

@@ -2098,10 +2098,6 @@ id blocking
 id bottom
 id bottom_navigation
 id bounce
-id button2
-id button3
-id button4
-id button5
 id buttonPanel
 id cancelBtn
 id cancel_action

@@ -34,10 +34,10 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.appa.ui.DirectionsActivity"
+            android:name="com.example.appa.ui.navigation.DirectionsActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.appa.example.MapWithNavActivity"
+            android:name="com.example.appa.ui.navigation.MapWithNavActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_VIEW" />

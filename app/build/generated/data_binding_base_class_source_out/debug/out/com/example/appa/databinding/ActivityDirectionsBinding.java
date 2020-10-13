@@ -4,13 +4,15 @@ package com.example.appa.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import com.example.appa.R;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mapbox.mapboxsdk.maps.MapView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -20,29 +22,25 @@ public final class ActivityDirectionsBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final Button button2;
+  public final AppBarLayout appBarLayout;
 
   @NonNull
-  public final Button button3;
+  public final BottomNavigationView bottomNavigation;
 
   @NonNull
-  public final Button button4;
+  public final MapView mapView;
 
   @NonNull
-  public final Button button5;
+  public final MaterialToolbar topAppBar;
 
-  @NonNull
-  public final TextView textView;
-
-  private ActivityDirectionsBinding(@NonNull ConstraintLayout rootView, @NonNull Button button2,
-      @NonNull Button button3, @NonNull Button button4, @NonNull Button button5,
-      @NonNull TextView textView) {
+  private ActivityDirectionsBinding(@NonNull ConstraintLayout rootView,
+      @NonNull AppBarLayout appBarLayout, @NonNull BottomNavigationView bottomNavigation,
+      @NonNull MapView mapView, @NonNull MaterialToolbar topAppBar) {
     this.rootView = rootView;
-    this.button2 = button2;
-    this.button3 = button3;
-    this.button4 = button4;
-    this.button5 = button5;
-    this.textView = textView;
+    this.appBarLayout = appBarLayout;
+    this.bottomNavigation = bottomNavigation;
+    this.mapView = mapView;
+    this.topAppBar = topAppBar;
   }
 
   @Override
@@ -72,38 +70,32 @@ public final class ActivityDirectionsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.button2;
-      Button button2 = rootView.findViewById(id);
-      if (button2 == null) {
+      id = R.id.appBarLayout;
+      AppBarLayout appBarLayout = rootView.findViewById(id);
+      if (appBarLayout == null) {
         break missingId;
       }
 
-      id = R.id.button3;
-      Button button3 = rootView.findViewById(id);
-      if (button3 == null) {
+      id = R.id.bottom_navigation;
+      BottomNavigationView bottomNavigation = rootView.findViewById(id);
+      if (bottomNavigation == null) {
         break missingId;
       }
 
-      id = R.id.button4;
-      Button button4 = rootView.findViewById(id);
-      if (button4 == null) {
+      id = R.id.mapView;
+      MapView mapView = rootView.findViewById(id);
+      if (mapView == null) {
         break missingId;
       }
 
-      id = R.id.button5;
-      Button button5 = rootView.findViewById(id);
-      if (button5 == null) {
+      id = R.id.topAppBar;
+      MaterialToolbar topAppBar = rootView.findViewById(id);
+      if (topAppBar == null) {
         break missingId;
       }
 
-      id = R.id.textView;
-      TextView textView = rootView.findViewById(id);
-      if (textView == null) {
-        break missingId;
-      }
-
-      return new ActivityDirectionsBinding((ConstraintLayout) rootView, button2, button3, button4,
-          button5, textView);
+      return new ActivityDirectionsBinding((ConstraintLayout) rootView, appBarLayout,
+          bottomNavigation, mapView, topAppBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

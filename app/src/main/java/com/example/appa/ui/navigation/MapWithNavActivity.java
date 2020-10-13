@@ -22,6 +22,7 @@ import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
+import com.mapbox.api.directions.v5.models.RouteOptions;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -62,11 +63,9 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
     private Integer currentPlaceID;
     private PlaceEntity currentPlace;
 
-
     // variables for adding location layer
     private MapView mapView;
     private MapboxMap mapboxMap;
-
     // variables for adding location layer
     private PermissionsManager permissionsManager;
     private LocationComponent locationComponent;
@@ -78,7 +77,6 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
 
     // variables needed to initialize navigation
     private Button button;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,6 +217,7 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
         return true;
     }
 
+
     //how to create a route from origin to destination
     private void getRoute(Point origin, Point destination) {
         NavigationRoute.builder(this)
@@ -291,6 +290,7 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
         Intent intent = getIntent();
         currentPlaceID = intent.getIntExtra("NewPlace", 0);
         setObserver();
+
 
 
     }

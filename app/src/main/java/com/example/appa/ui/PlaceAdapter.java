@@ -2,6 +2,7 @@ package com.example.appa.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Path;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
 import com.example.appa.db.PlaceEntity;
+import com.example.appa.ui.navigation.DirectionsActivity;
 import com.example.appa.ui.navigation.MapWithNavActivity;
 
 import java.util.ArrayList;
@@ -73,7 +75,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             public void onClick(View v) {
                 Context viewContext = v.getContext();
                 Toast.makeText(viewContext, holder.binding.getPlace().getName(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(viewContext, MapWithNavActivity.class);
+                Intent intent = new Intent(viewContext, DirectionsActivity.class);
                 intent.putExtra("NewPlace", currentPlace.getId());
                 viewContext.startActivity(intent);
             }
