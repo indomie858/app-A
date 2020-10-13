@@ -25,5 +25,5 @@ public class PlaceRepository {
         return allPlaces;
     }
     public LiveData<PlaceEntity> getPlaceFromID(int id) { return placeDao.getPlaceFromID(id);}
-    //public LiveData<List<PlaceEntity>> getPlacesFromString(String searchName) { return placeDao.getPlacesFromString(searchName); }
+    public LiveData<List<PlaceEntity>> getPlacesFromString(String searchName) { return placeDao.getPlacesFromString(searchName); }
 }
