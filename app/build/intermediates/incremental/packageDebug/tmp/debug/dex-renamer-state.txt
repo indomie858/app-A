@@ -1,7 +1,10 @@
-#Tue Oct 13 15:21:58 PDT 2020
-base.0=C\:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+#Thu Oct 15 13:46:40 PDT 2020
+path.2=classes2.dex
 path.1=classes.dex
-renamed.1=classes2.dex
 path.0=classes.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
+base.2=C\:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 base.1=C\:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+base.0=C\:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex

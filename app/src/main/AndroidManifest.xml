@@ -25,6 +25,15 @@
         <activity
             android:name=".ui.BluetoothConnectAcitvity"
             android:parentActivityName=".ui.MainActivity" />
+
+        <activity android:name=".ui.navigation.CustomDirectionsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings" />

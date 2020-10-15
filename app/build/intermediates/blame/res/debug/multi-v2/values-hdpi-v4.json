@@ -4,16 +4,6 @@
             "outputFile": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\6bf690436500789ba7fc94b9d24a0028\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,110",
-                        "endColumns": "54,47",
-                        "endOffsets": "105,153"
-                    }
-                },
-                {
                     "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\284a2a218f7f6f43d29c2ab8e18ab1ed\\appcompat-1.2.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
@@ -26,10 +16,20 @@
                     "to": {
                         "startLines": "4",
                         "startColumns": "4",
-                        "startOffsets": "158",
+                        "startOffsets": "212",
                         "endLines": "8",
                         "endColumns": "13",
-                        "endOffsets": "430"
+                        "endOffsets": "484"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\ec0eb60097f4d9843c35188e136634c1\\jetified-ui-1.1.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,137",
+                        "endColumns": "81,74",
+                        "endOffsets": "132,207"
                     }
                 }
             ]

@@ -4,20 +4,20 @@
             "outputFile": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\6bf690436500789ba7fc94b9d24a0028\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\ec0eb60097f4d9843c35188e136634c1\\jetified-ui-1.1.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,112,173,238,296",
-                        "endColumns": "56,60,64,57,50",
-                        "endOffsets": "107,168,233,291,342"
+                        "startOffsets": "55,120,188,260,326",
+                        "endColumns": "64,67,71,65,57",
+                        "endOffsets": "115,183,255,321,379"
                     },
                     "to": {
                         "startLines": "3,4,5,6,7",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "111,168,229,294,352",
-                        "endColumns": "56,60,64,57,50",
-                        "endOffsets": "163,224,289,347,398"
+                        "startOffsets": "111,176,244,316,382",
+                        "endColumns": "64,67,71,65,57",
+                        "endOffsets": "171,239,311,377,435"
                     }
                 },
                 {
