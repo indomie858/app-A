@@ -10,8 +10,6 @@ import android.view.View;
 
 import com.example.appa.R;
 import com.example.appa.ui.MainActivity;
-import com.example.appa.ui.NavigationListActivity;
-import com.example.appa.ui.SettingsActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -47,8 +45,8 @@ public class TutorialActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener((item) ->{
             switch (item.getItemId()){
                 case R.id.settings_button:
-                    Intent settingsActivity = new Intent(TutorialActivity.this, SettingsActivity.class);
-                    startActivity(settingsActivity);
+                    //Intent settingsActivity = new Intent(TutorialActivity.this, SettingsActivity.class);
+                    //startActivity(settingsActivity);
                     break;
                 case R.id.home_button:
                     Intent mainActivity = new Intent(TutorialActivity.this, MainActivity.class);

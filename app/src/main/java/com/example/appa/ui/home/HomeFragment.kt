@@ -1,13 +1,15 @@
 package com.example.appa.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.appa.R
 
 
@@ -19,4 +21,12 @@ class HomeFragment : Fragment() {
 
         return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // you can add listener of elements here
+        /*Button mButton = (Button) view.findViewById(R.id.button);
+        mButton.setOnClickListener(this); */
+
+    }
+
 }

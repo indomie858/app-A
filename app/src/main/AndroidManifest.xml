@@ -26,7 +26,7 @@
             android:name=".ui.BluetoothConnectAcitvity"
             android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name=".ui.old_delete_later.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".ui.MapActivity"

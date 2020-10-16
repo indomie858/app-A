@@ -73,8 +73,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         bottomNavigationView.setOnNavigationItemSelectedListener((item) ->{
             switch (item.getItemId()){
                 case R.id.settings_button:
-                    Intent settingsActivity = new Intent(MapActivity.this, SettingsActivity.class);
-                    startActivity(settingsActivity);
+                    //Intent settingsActivity = new Intent(MapActivity.this, SettingsActivity.class);
+                    //startActivity(settingsActivity);
                     break;
                 case R.id.home_button:
                     Intent mainActivity = new Intent(MapActivity.this,MainActivity.class);
