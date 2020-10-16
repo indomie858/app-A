@@ -12,8 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appa.R
 import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.MapWithNavViewModel
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
+import com.google.android.material.snackbar.Snackbar
 import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.api.directions.v5.models.RouteOptions
+import com.mapbox.geojson.LineString
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
@@ -204,8 +207,24 @@ class CustomDirectionsActivity:
     private val routesReqCallback = object : RoutesRequestCallback {
 
         override fun onRoutesReady(routes: List<DirectionsRoute>) {
-            navigationMapRoute?.addRoute(routes[0])
-
+            if (routes.isNotEmpty()) {
+                Snackbar.make(
+                        mapView,
+                        String.format(
+                                routes[0].legs()?.get(0)?.steps()?.size.toString()
+                        ),
+                        LENGTH_SHORT
+                ).show()
+                navigationMapRoute?.addRoute(routes[0])
+                mapboxMap?.getStyle {
+                    val clickPointSource = it.getSourceAs<GeoJsonSource>("ROUTE_LINE_SOURCE_ID")
+                    val routeLineString = LineString.fromPolyline(
+                            routes[0].geometry()!!,
+                            6
+                    )
+                    clickPointSource?.setGeoJson(routeLineString)
+                }
+            }
         }
 
         override fun onRoutesRequestFailure(throwable: Throwable, routeOptions: RouteOptions) {
