@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.HomeFragment"
+    >
+
+
+    <Button
+        android:id="@+id/connect_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="25dp"
+        android:layout_weight=".33"
+        android:backgroundTint="#FFFFFF"
+        android:text="@string/connect_appa"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/directory_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:layout_weight="0.33"
+        android:backgroundTint="#FFFFFF"
+        android:text="@string/directory"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/navigation_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="0.33"
+        android:backgroundTint="#FFFFFF"
+        android:text="@string/navigation"
+        android:textSize="24sp" />
+
+</LinearLayout>
