@@ -63,181 +63,182 @@
 33-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:11:9-54
 34        android:supportsRtl="true"
 34-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:12:9-35
-35        android:theme="@style/AppTheme" >
-35-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:13:9-40
-36        <activity
-36-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:14:9-16:48
-37            android:name="com.example.appa.ui.navigation.DirectionsActivity"
-37-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:15:13-61
-38            android:exported="true" />
-38-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:16:13-36
-39        <activity
-39-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:17:9-24:20
-40            android:name="com.example.appa.ui.navigation.MapWithNavActivity"
-40-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:18:13-61
-41            android:exported="true" >
-41-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:19:13-36
-42            <intent-filter>
-42-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:20:13-23:29
-43                <action android:name="android.intent.action.ACTION_VIEW" />
-43-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:21:17-76
-43-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:21:25-73
-44
-45                <category android:name="android.intent.category.DEFAULT" />
-45-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:22:17-76
-45-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:22:27-73
-46            </intent-filter>
-47        </activity>
-48        <activity
-48-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:25:9-27:61
-49            android:name="com.example.appa.ui.BluetoothConnectAcitvity"
-49-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:26:13-56
-50            android:parentActivityName="com.example.appa.ui.MainActivity" />
-50-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:27:13-58
-51        <activity
-51-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:29:9-35:20
-52            android:name="com.example.appa.ui.navigation.CustomDirectionsActivity"
-52-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:29:19-73
-53            android:exported="true" >
-53-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:30:13-36
-54            <intent-filter>
-54-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:20:13-23:29
-55                <action android:name="android.intent.action.ACTION_VIEW" />
-55-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:21:17-76
-55-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:21:25-73
-56
-57                <category android:name="android.intent.category.DEFAULT" />
-57-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:22:17-76
-57-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:22:27-73
-58            </intent-filter>
-59        </activity>
-60        <activity
-60-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:37:9-39:63
-61            android:name="com.example.appa.ui.SettingsActivity"
-61-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:38:13-48
-62            android:label="@string/title_activity_settings" />
-62-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:39:13-60
-63        <activity
-63-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:40:9-43:61
-64            android:name="com.example.appa.ui.MapActivity"
-64-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:41:13-43
-65            android:exported="true"
-65-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:42:13-36
-66            android:parentActivityName="com.example.appa.ui.MainActivity" />
-66-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:43:13-58
-67        <activity
-67-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:44:9-52:20
-68            android:name="com.example.appa.ui.MainActivity"
-68-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:45:13-44
-69            android:label="@string/app_name"
-69-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:46:13-45
-70            android:theme="@style/AppTheme.NoActionBar" >
-70-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:47:13-56
-71            <intent-filter>
-71-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:48:13-51:29
-72                <action android:name="android.intent.action.MAIN" />
-72-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:49:17-69
-72-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:49:25-66
-73
-74                <category android:name="android.intent.category.LAUNCHER" />
-74-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:50:17-77
-74-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:50:27-74
-75            </intent-filter>
-76        </activity>
-77        <activity
-77-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:53:9-58:59
-78            android:name="com.example.appa.ui.navigationlist.NavigationListActivity"
-78-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:54:13-69
-79            android:exported="true"
-79-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:55:13-36
-80            android:label="@string/app_name"
-80-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:56:13-45
-81            android:parentActivityName="com.example.appa.ui.MainActivity"
-81-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:57:13-58
-82            android:theme="@style/AppTheme.NoActionBar" />
-82-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:58:13-56
-83        <activity
-83-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:60:9-65:59
-84            android:name="com.example.appa.ui.tutorial.TutorialActivity"
-84-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:61:13-57
-85            android:exported="true"
-85-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:62:13-36
-86            android:label="@string/app_name"
-86-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:63:13-45
-87            android:parentActivityName="com.example.appa.ui.tutorial.TutorialActivity"
-87-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:64:13-71
-88            android:theme="@style/AppTheme.NoActionBar" />
-88-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:65:13-56
-89
-90        <provider
-90-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:15:9-19:39
-91            android:name="com.mapbox.navigation.core.accounts.MapboxNavigationAccountsProvider"
-91-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:16:13-96
-92            android:authorities="com.example.appa.MapboxNavigationAccountsProvider"
-92-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:17:13-84
-93            android:exported="false"
-93-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:18:13-37
-94            android:initOrder="200" />
-94-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:19:13-36
-95
-96        <service
-96-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:21:9-23:56
-97            android:name="com.mapbox.navigation.core.trip.service.NavigationNotificationService"
-97-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:22:13-97
-98            android:foregroundServiceType="location" />
-98-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:23:13-53
-99
-100        <meta-data
-100-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:25:9-27:37
-101            android:name="com.mapbox.ManageSkuToken"
-101-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:26:13-53
-102            android:value="false" />
-102-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:27:13-34
-103
-104        <provider
-104-->[com.squareup.picasso:picasso:2.71828] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\73942f71f7971e52036b2558fea782d5\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
-105            android:name="com.squareup.picasso.PicassoProvider"
-105-->[com.squareup.picasso:picasso:2.71828] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\73942f71f7971e52036b2558fea782d5\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
-106            android:authorities="com.example.appa.com.squareup.picasso"
-106-->[com.squareup.picasso:picasso:2.71828] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\73942f71f7971e52036b2558fea782d5\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
-107            android:exported="false" />
-107-->[com.squareup.picasso:picasso:2.71828] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\73942f71f7971e52036b2558fea782d5\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
-108        <provider
-108-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:18:9-22:39
-109            android:name="com.mapbox.android.telemetry.provider.MapboxTelemetryInitProvider"
-109-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:19:13-93
-110            android:authorities="com.example.appa.mapboxtelemetryinitprovider"
-110-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:20:13-79
-111            android:exported="false"
-111-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:21:13-37
-112            android:initOrder="100" />
-112-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:22:13-36
-113
-114        <service
-114-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:24:9-26:72
-115            android:name="com.mapbox.android.telemetry.errors.ErrorReporterJobIntentService"
-115-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:25:13-93
-116            android:permission="android.permission.BIND_JOB_SERVICE" />
-116-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:26:13-69
-117        <service
-117-->[androidx.room:room-runtime:2.2.5] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\a265aa492309ded6293ec1251ddffea1\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
-118            android:name="androidx.room.MultiInstanceInvalidationService"
-118-->[androidx.room:room-runtime:2.2.5] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\a265aa492309ded6293ec1251ddffea1\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
-119            android:directBootAware="true"
-119-->[androidx.room:room-runtime:2.2.5] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\a265aa492309ded6293ec1251ddffea1\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
-120            android:exported="false" />
-120-->[androidx.room:room-runtime:2.2.5] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\a265aa492309ded6293ec1251ddffea1\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
-121
-122        <provider
-122-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
-123            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-123-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
-124            android:authorities="com.example.appa.lifecycle-process"
-124-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
-125            android:exported="false"
-125-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
-126            android:multiprocess="true" />
-126-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
-127    </application>
-128
-129</manifest>
+35        android:testOnly="true"
+36        android:theme="@style/AppTheme" >
+36-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:13:9-40
+37        <activity
+37-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:14:9-16:48
+38            android:name="com.example.appa.ui.navigation.DirectionsActivity"
+38-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:15:13-61
+39            android:exported="true" />
+39-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:16:13-36
+40        <activity
+40-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:17:9-24:20
+41            android:name="com.example.appa.ui.navigation.MapWithNavActivity"
+41-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:18:13-61
+42            android:exported="true" >
+42-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:19:13-36
+43            <intent-filter>
+43-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:20:13-23:29
+44                <action android:name="android.intent.action.ACTION_VIEW" />
+44-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:21:17-76
+44-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:21:25-73
+45
+46                <category android:name="android.intent.category.DEFAULT" />
+46-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:22:17-76
+46-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:22:27-73
+47            </intent-filter>
+48        </activity>
+49        <activity
+49-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:25:9-27:61
+50            android:name="com.example.appa.ui.BluetoothConnectAcitvity"
+50-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:26:13-56
+51            android:parentActivityName="com.example.appa.ui.MainActivity" />
+51-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:27:13-58
+52        <activity
+52-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:29:9-35:20
+53            android:name="com.example.appa.ui.navigation.CustomDirectionsActivity"
+53-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:29:19-73
+54            android:exported="true" >
+54-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:30:13-36
+55            <intent-filter>
+55-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:20:13-23:29
+56                <action android:name="android.intent.action.ACTION_VIEW" />
+56-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:21:17-76
+56-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:21:25-73
+57
+58                <category android:name="android.intent.category.DEFAULT" />
+58-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:22:17-76
+58-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:22:27-73
+59            </intent-filter>
+60        </activity>
+61        <activity
+61-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:37:9-39:63
+62            android:name="com.example.appa.ui.SettingsActivity"
+62-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:38:13-48
+63            android:label="@string/title_activity_settings" />
+63-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:39:13-60
+64        <activity
+64-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:40:9-43:61
+65            android:name="com.example.appa.ui.MapActivity"
+65-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:41:13-43
+66            android:exported="true"
+66-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:42:13-36
+67            android:parentActivityName="com.example.appa.ui.MainActivity" />
+67-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:43:13-58
+68        <activity
+68-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:44:9-52:20
+69            android:name="com.example.appa.ui.MainActivity"
+69-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:45:13-44
+70            android:label="@string/app_name"
+70-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:46:13-45
+71            android:theme="@style/AppTheme.NoActionBar" >
+71-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:47:13-56
+72            <intent-filter>
+72-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:48:13-51:29
+73                <action android:name="android.intent.action.MAIN" />
+73-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:49:17-69
+73-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:49:25-66
+74
+75                <category android:name="android.intent.category.LAUNCHER" />
+75-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:50:17-77
+75-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:50:27-74
+76            </intent-filter>
+77        </activity>
+78        <activity
+78-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:53:9-58:59
+79            android:name="com.example.appa.ui.navigationlist.NavigationListActivity"
+79-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:54:13-69
+80            android:exported="true"
+80-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:55:13-36
+81            android:label="@string/app_name"
+81-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:56:13-45
+82            android:parentActivityName="com.example.appa.ui.MainActivity"
+82-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:57:13-58
+83            android:theme="@style/AppTheme.NoActionBar" />
+83-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:58:13-56
+84        <activity
+84-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:60:9-65:59
+85            android:name="com.example.appa.ui.tutorial.TutorialActivity"
+85-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:61:13-57
+86            android:exported="true"
+86-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:62:13-36
+87            android:label="@string/app_name"
+87-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:63:13-45
+88            android:parentActivityName="com.example.appa.ui.tutorial.TutorialActivity"
+88-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:64:13-71
+89            android:theme="@style/AppTheme.NoActionBar" />
+89-->C:\Users\dpale\Desktop\Projects\senior-design\app\src\main\AndroidManifest.xml:65:13-56
+90
+91        <provider
+91-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:15:9-19:39
+92            android:name="com.mapbox.navigation.core.accounts.MapboxNavigationAccountsProvider"
+92-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:16:13-96
+93            android:authorities="com.example.appa.MapboxNavigationAccountsProvider"
+93-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:17:13-84
+94            android:exported="false"
+94-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:18:13-37
+95            android:initOrder="200" />
+95-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:19:13-36
+96
+97        <service
+97-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:21:9-23:56
+98            android:name="com.mapbox.navigation.core.trip.service.NavigationNotificationService"
+98-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:22:13-97
+99            android:foregroundServiceType="location" />
+99-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:23:13-53
+100
+101        <meta-data
+101-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:25:9-27:37
+102            android:name="com.mapbox.ManageSkuToken"
+102-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:26:13-53
+103            android:value="false" />
+103-->[com.mapbox.navigation:core:1.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\4f7e6322b978fa939bfd5ac1d3aaa68a\jetified-core-1.1.0\AndroidManifest.xml:27:13-34
+104
+105        <provider
+105-->[com.squareup.picasso:picasso:2.71828] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\73942f71f7971e52036b2558fea782d5\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+106            android:name="com.squareup.picasso.PicassoProvider"
+106-->[com.squareup.picasso:picasso:2.71828] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\73942f71f7971e52036b2558fea782d5\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+107            android:authorities="com.example.appa.com.squareup.picasso"
+107-->[com.squareup.picasso:picasso:2.71828] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\73942f71f7971e52036b2558fea782d5\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+108            android:exported="false" />
+108-->[com.squareup.picasso:picasso:2.71828] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\73942f71f7971e52036b2558fea782d5\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+109        <provider
+109-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:18:9-22:39
+110            android:name="com.mapbox.android.telemetry.provider.MapboxTelemetryInitProvider"
+110-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:19:13-93
+111            android:authorities="com.example.appa.mapboxtelemetryinitprovider"
+111-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:20:13-79
+112            android:exported="false"
+112-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:21:13-37
+113            android:initOrder="100" />
+113-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:22:13-36
+114
+115        <service
+115-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:24:9-26:72
+116            android:name="com.mapbox.android.telemetry.errors.ErrorReporterJobIntentService"
+116-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:25:13-93
+117            android:permission="android.permission.BIND_JOB_SERVICE" />
+117-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\7ba1af7048fc515fa63609aee4d30023\jetified-mapbox-android-telemetry-6.1.0\AndroidManifest.xml:26:13-69
+118        <service
+118-->[androidx.room:room-runtime:2.2.5] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\a265aa492309ded6293ec1251ddffea1\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
+119            android:name="androidx.room.MultiInstanceInvalidationService"
+119-->[androidx.room:room-runtime:2.2.5] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\a265aa492309ded6293ec1251ddffea1\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
+120            android:directBootAware="true"
+120-->[androidx.room:room-runtime:2.2.5] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\a265aa492309ded6293ec1251ddffea1\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
+121            android:exported="false" />
+121-->[androidx.room:room-runtime:2.2.5] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\a265aa492309ded6293ec1251ddffea1\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
+122
+123        <provider
+123-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+124            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+124-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+125            android:authorities="com.example.appa.lifecycle-process"
+125-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+126            android:exported="false"
+126-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+127            android:multiprocess="true" />
+127-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\dpale\.gradle\caches\transforms-2\files-2.1\b4dd2bf19774dff90e7155c082dcf970\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+128    </application>
+129
+130</manifest>

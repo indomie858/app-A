@@ -4,8 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Color.parseColor
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -14,9 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appa.R
 import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.MapWithNavViewModel
-import com.google.android.material.snackbar.Snackbar
+import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.api.directions.v5.models.RouteOptions
 import com.mapbox.geojson.Point
+import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
@@ -37,7 +36,8 @@ import com.mapbox.navigation.base.trip.model.RouteProgress
 import com.mapbox.navigation.core.MapboxNavigation
 import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
 import com.mapbox.navigation.core.trip.session.RouteProgressObserver
-import okhttp3.Route
+import com.mapbox.navigation.ui.route.NavigationMapRoute
+import kotlinx.android.synthetic.main.activity_directions.*
 
 
 class CustomDirectionsActivity:
@@ -47,28 +47,30 @@ class CustomDirectionsActivity:
         private var currentPlace: PlaceEntity? = null
         private var currentPlaceID: Int? = null
         private var mapboxNavigation: MapboxNavigation? = null
+        private var navigationMapRoute: NavigationMapRoute? = null
         private var originPoint: Point? = null
         private var destinationPoint: Point? = null
         private lateinit var MAPBOXTOKEN: String
         private var mapboxMap: MapboxMap? = null
         private lateinit var routeProgressObserver: RouteProgressObserver
-        override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-            super.onCreate(savedInstanceState, persistentState)
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+
             MAPBOXTOKEN = getString(R.string.mapbox_access_token)
+            Mapbox.getInstance(this, MAPBOXTOKEN)
+
+            setContentView(R.layout.activity_directions)
+
+            mapView.onCreate(savedInstanceState)
+            mapView.getMapAsync(this)
+
             val mapboxNavigationOptions = MapboxNavigation
                     .defaultNavigationOptionsBuilder(this, MAPBOXTOKEN)
                     .build()
             mapboxNavigation = MapboxNavigation(mapboxNavigationOptions)
             viewModel = ViewModelProvider(this)[MapWithNavViewModel::class.java]
-            setPlaceFromIntent()
-            mapboxNavigation?.requestRoutes(
-                    RouteOptions.builder()
-                            .applyDefaultParams()
-                            .accessToken(MAPBOXTOKEN)
-                            .coordinates(listOf(originPoint, destinationPoint))
-                            .build(),
-            )
 
+            setPlaceFromIntent()
             routeProgressObserver = object:  RouteProgressObserver {
                 override fun onRouteProgressChanged(routeProgress: RouteProgress) {
                     println(routeProgress)
@@ -114,29 +116,36 @@ class CustomDirectionsActivity:
         // Get the intent, apply it to the current place ID,
         val intent = intent
         currentPlaceID = intent.getIntExtra("NewPlace", 1)
-        val placeEntityObserver = Observer<PlaceEntity> { placeEntity -> currentPlace = placeEntity }
-        viewModel?.getPlaceFromID(currentPlaceID)?.observe(this, placeEntityObserver)
-        if (currentPlace != null) {
-            Toast.makeText(this, currentPlace!!.name, Toast.LENGTH_SHORT).show()
-            val destinationLong = currentPlace!!.longitude.toDouble()
-            val destinationLat = currentPlace!!.latitude.toDouble()
-            destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
+        val placeEntityObserver = Observer<PlaceEntity> {
+            fun onChanged(placeEntity: PlaceEntity) {
+                currentPlace = placeEntity;
+                val destinationLong = currentPlace!!.longitude.toDouble()
+                val destinationLat = currentPlace!!.latitude.toDouble()
+                destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
+
+                val originLong = mapboxMap!!.locationComponent.lastKnownLocation!!.longitude
+                val originLat = mapboxMap!!.locationComponent.lastKnownLocation!!.latitude
+                originPoint = Point.fromLngLat(originLong, originLat);
+
+                mapboxNavigation?.requestRoutes(
+                        RouteOptions.builder()
+                                .applyDefaultParams()
+                                .accessToken(MAPBOXTOKEN)
+                                .coordinates(listOf(originPoint, destinationPoint))
+                                .build(), routesReqCallback
+                )
+            }
         }
 
-        if(mapboxMap != null) {
-            val originLong = mapboxMap!!.locationComponent.lastKnownLocation!!.longitude
-            val originLat = mapboxMap!!.locationComponent.lastKnownLocation!!.latitude
-            originPoint = Point.fromLngLat(originLong, originLat);
-        }
+        viewModel?.getPlaceFromID(currentPlaceID)?.observe(this, placeEntityObserver)
+
     }
 
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
         mapboxMap.setStyle(Style.LIGHT) {
             this.mapboxMap = mapboxMap
-
             enableLocationComponent()
-
         // Add the click and route sources
             it.addSource(GeoJsonSource("CLICK_SOURCE"))
             it.addSource(
@@ -145,7 +154,6 @@ class CustomDirectionsActivity:
                             GeoJsonOptions().withLineMetrics(true)
                     )
             )
-
         // Add the destination marker image
             it.addImage(
                     "ICON_ID",
@@ -156,7 +164,6 @@ class CustomDirectionsActivity:
                             )
                     )!!
             )
-
         // Add the LineLayer below the LocationComponent's bottom layer, which is the
         // circular accuracy layer. The LineLayer will display the directions route.
             it.addLayerBelow(
@@ -176,7 +183,6 @@ class CustomDirectionsActivity:
                             ),
                     "mapbox-location-shadow-layer"
             )
-
             // Add the SymbolLayer to show the destination marker
             it.addLayerAbove(
                     SymbolLayer("CLICK_LAYER", "CLICK_SOURCE")
@@ -185,6 +191,30 @@ class CustomDirectionsActivity:
                             ),
                     "ROUTE_LAYER_ID"
             )
+
+
+            navigationMapRoute = NavigationMapRoute.Builder(mapView, mapboxMap, this)
+                    .withVanishRouteLineEnabled(true)
+                    .withMapboxNavigation(mapboxNavigation)
+                    .build()
+
         }
     }
+
+    private val routesReqCallback = object : RoutesRequestCallback {
+
+        override fun onRoutesReady(routes: List<DirectionsRoute>) {
+            navigationMapRoute?.addRoute(routes[0])
+
+        }
+
+        override fun onRoutesRequestFailure(throwable: Throwable, routeOptions: RouteOptions) {
+            println("Routes request failure")
+        }
+
+        override fun onRoutesRequestCanceled(routeOptions: RouteOptions) {
+            println("Route request cancelled")
+        }
+    }
+
 }
