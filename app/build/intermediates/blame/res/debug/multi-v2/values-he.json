@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-he\\values-he.xml",
+            "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-he\\values-he.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\cbbf122d18ecba54fa8db1d3a7bce76e\\jetified-mapbox-android-navigation-0.42.6\\res\\values-he\\values-he.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,109,163,199,242,280,319,355",
-                        "endColumns": "53,53,35,42,37,38,35,69",
-                        "endOffsets": "104,158,194,237,275,314,350,420"
-                    },
-                    "to": {
-                        "startLines": "2,6,13,14,28,29,30,32",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,310,748,784,2186,2224,2263,2342",
-                        "endColumns": "53,53,35,42,37,38,35,69",
-                        "endOffsets": "104,359,779,822,2219,2258,2294,2407"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\940beca8baf66016a150fff0a581dd04\\jetified-mapbox-android-sdk-8.5.1\\res\\values-he\\values-he.xml",
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\8841685b461319401495351be26ddf2a\\jetified-mapbox-android-sdk-8.5.1\\res\\values-he\\values-he.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\6bf690436500789ba7fc94b9d24a0028\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-he\\values-he.xml",
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\84cefc42239aa0bf117f2329f27606b6\\jetified-mapbox-android-navigation-0.42.6\\res\\values-he\\values-he.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,109,163,199,242,280,319,355",
+                        "endColumns": "53,53,35,42,37,38,35,69",
+                        "endOffsets": "104,158,194,237,275,314,350,420"
+                    },
+                    "to": {
+                        "startLines": "2,6,13,14,28,29,30,32",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,310,748,784,2186,2224,2263,2342",
+                        "endColumns": "53,53,35,42,37,38,35,69",
+                        "endOffsets": "104,359,779,822,2219,2258,2294,2407"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\1d5960e0c6b211f7a43f89d0ff8f599f\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-he\\values-he.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

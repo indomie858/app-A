@@ -49,7 +49,7 @@
             android:name="com.example.appa.ui.BluetoothConnectAcitvity"
             android:parentActivityName="com.example.appa.ui.MainActivity" />
         <activity
-            android:name="com.example.appa.ui.SettingsActivity"
+            android:name="com.example.appa.ui.old_delete_later.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
             android:name="com.example.appa.ui.MapActivity"

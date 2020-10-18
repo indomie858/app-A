@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.appa.R;
 import com.example.appa.ui.home.HomeFragment;
+import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
 import com.example.appa.ui.tutorial.TutorialActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

@@ -61,6 +61,8 @@ array entries_preferences_textSize
 array entry_values_preference_textSize
 array entry_values_preference_theme
 array locations_categories_array
+array reply_entries
+array reply_values
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -2099,6 +2101,7 @@ id bottom
 id bottom_navigation
 id bounce
 id buttonPanel
+id cache_measures
 id cancelBtn
 id cancel_action
 id cancel_button
@@ -2138,6 +2141,7 @@ id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
 id deltaRelative
+id dependency_ordering
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -2190,7 +2194,6 @@ id flip
 id floating
 id forever
 id frag1_body
-id fragment_container
 id fragment_container_view_tag
 id ghost_view
 id ghost_view_holder
@@ -2198,6 +2201,7 @@ id gone
 id graph
 id graph_wrap
 id group_divider
+id grouping
 id groups
 id guideline
 id hideable
@@ -2239,6 +2243,7 @@ id listMode
 id list_item
 id location_cat_spinner
 id logoView
+id main_container
 id maneuverImage
 id maneuverView
 id mapView
@@ -2548,6 +2553,7 @@ layout activity_navigation
 layout activity_tutorial
 layout alert_view_layout
 layout collapsed_navigation_notification_layout
+layout content_main
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2571,6 +2577,7 @@ layout expanded_navigation_notification_layout
 layout feedback_bottom_sheet_layout
 layout feedback_button_layout
 layout feedback_viewholder_layout
+layout fragment_home
 layout fragment_tutorial_text
 layout image_frame
 layout instruction_content_layout
@@ -2649,7 +2656,6 @@ layout recenter_btn_layout
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
-layout settings_activity
 layout sound_layout
 layout sub_instruction_layout
 layout summary_bottomsheet_layout
@@ -2713,6 +2719,9 @@ string app_manual
 string app_name
 string appbar_scrolling_view_behavior
 string assistant_nav
+string attachment_summary_off
+string attachment_summary_on
+string attachment_title
 string bluetooth_title
 string bottom_sheet_behavior
 string cane_setup
@@ -2781,6 +2790,7 @@ string mapbox_telemetryLink
 string mapbox_telemetrySettings
 string material_slider_range_end
 string material_slider_range_start
+string messages_header
 string meters
 string miles
 string min
@@ -2835,6 +2845,7 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string preference_copied
 string re_center
+string reply_title
 string report_feedback
 string report_problem
 string rerouting
@@ -2842,8 +2853,11 @@ string resource_links
 string save_location
 string search_menu_title
 string settings_nav
+string signature_title
 string status_bar_notification_info_overflow
 string summary_collapsed_preference_list
+string sync_header
+string sync_title
 string title_activity_map
 string title_activity_navigation_list
 string title_activity_settings
@@ -3740,7 +3754,7 @@ styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable mapbox_BubbleLayout mapbox_bl_arrowDirection mapbox_bl_arrowHeight mapbox_bl_arrowPosition mapbox_bl_arrowWidth mapbox_bl_bubbleColor mapbox_bl_cornersRadius mapbox_bl_strokeColor mapbox_bl_strokeWidth
 styleable mapbox_LocationComponent mapbox_accuracyAlpha mapbox_accuracyAnimationEnabled mapbox_accuracyColor mapbox_backgroundDrawable mapbox_backgroundDrawableStale mapbox_backgroundStaleTintColor mapbox_backgroundTintColor mapbox_bearingDrawable mapbox_bearingTintColor mapbox_compassAnimationEnabled mapbox_elevation mapbox_enableStaleState mapbox_foregroundDrawable mapbox_foregroundDrawableStale mapbox_foregroundStaleTintColor mapbox_foregroundTintColor mapbox_gpsDrawable mapbox_iconPaddingBottom mapbox_iconPaddingLeft mapbox_iconPaddingRight mapbox_iconPaddingTop mapbox_layer_above mapbox_layer_below mapbox_maxZoomIconScale mapbox_minZoomIconScale mapbox_staleStateTimeout mapbox_trackingAnimationDurationMultiplier mapbox_trackingGesturesManagement mapbox_trackingInitialMoveThreshold mapbox_trackingMultiFingerMoveThreshold
 styleable mapbox_MapView mapbox_apiBaseUri mapbox_apiBaseUrl mapbox_cameraBearing mapbox_cameraTargetLat mapbox_cameraTargetLng mapbox_cameraTilt mapbox_cameraZoom mapbox_cameraZoomMax mapbox_cameraZoomMin mapbox_cross_source_collisions mapbox_enableTilePrefetch mapbox_enableZMediaOverlay mapbox_foregroundLoadColor mapbox_localIdeographEnabled mapbox_localIdeographFontFamilies mapbox_localIdeographFontFamily mapbox_pixelRatio mapbox_prefetchZoomDelta mapbox_renderTextureMode mapbox_renderTextureTranslucentSurface mapbox_uiAttribution mapbox_uiAttributionGravity mapbox_uiAttributionMarginBottom mapbox_uiAttributionMarginLeft mapbox_uiAttributionMarginRight mapbox_uiAttributionMarginTop mapbox_uiAttributionTintColor mapbox_uiCompass mapbox_uiCompassDrawable mapbox_uiCompassFadeFacingNorth mapbox_uiCompassGravity mapbox_uiCompassMarginBottom mapbox_uiCompassMarginLeft mapbox_uiCompassMarginRight mapbox_uiCompassMarginTop mapbox_uiDoubleTapGestures mapbox_uiLogo mapbox_uiLogoGravity mapbox_uiLogoMarginBottom mapbox_uiLogoMarginLeft mapbox_uiLogoMarginRight mapbox_uiLogoMarginTop mapbox_uiQuickZoomGestures mapbox_uiRotateGestures mapbox_uiScrollGestures mapbox_uiTiltGestures mapbox_uiZoomGestures
-xml preferences
+xml root_preferences
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end
 xml standalone_badge_gravity_bottom_start

@@ -18,7 +18,6 @@ import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
 import com.example.appa.ui.MainActivity;
 import com.example.appa.ui.PlaceAdapter;
-import com.example.appa.ui.SettingsActivity;
 import com.example.appa.ui.tutorial.TutorialActivity;
 import com.example.appa.viewmodel.NavigationListViewModel;
 import com.google.android.material.appbar.MaterialToolbar;

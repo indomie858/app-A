@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appa.R
 import com.example.appa.ui.BluetoothConnectAcitvity
 import com.example.appa.ui.MapActivity
-import com.example.appa.ui.NavigationListActivity
+import com.example.appa.ui.navigationlist.NavigationListActivity
 
 
 class HomeFragment : Fragment(), View.OnClickListener {
