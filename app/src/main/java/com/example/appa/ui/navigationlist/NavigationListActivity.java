@@ -1,6 +1,5 @@
 package com.example.appa.ui.navigationlist;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,11 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
-import com.example.appa.ui.MainActivity;
 import com.example.appa.ui.PlaceAdapter;
 import com.example.appa.viewmodel.NavigationListViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -101,26 +98,5 @@ public class NavigationListActivity extends AppCompatActivity {
             }
         });
 
-        // TODO: Turn this into a fragment.
-        // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener((item) ->{
-            switch (item.getItemId()){
-                case R.id.settings_button:
-                    //Intent settingsActivity = new Intent(NavigationListActivity.this, SettingsActivity.class);
-                    //startActivity(settingsActivity);
-                    break;
-                case R.id.home_button:
-                    Intent mainActivity = new Intent(NavigationListActivity.this, MainActivity.class);
-                    startActivity(mainActivity);
-                    break;
-                case R.id.tutorial_button:
-                    /*Intent tutorialActivity = new Intent(NavigationListActivity.this, TutorialActivity.class);*/
-            }
-            return false;
-        });
-
     }
-
-
 }

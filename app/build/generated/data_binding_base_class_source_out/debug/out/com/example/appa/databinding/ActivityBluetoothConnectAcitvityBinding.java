@@ -11,7 +11,6 @@ import androidx.viewbinding.ViewBinding;
 import com.example.appa.R;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -24,20 +23,16 @@ public final class ActivityBluetoothConnectAcitvityBinding implements ViewBindin
   public final AppBarLayout appBarLayout;
 
   @NonNull
-  public final BottomNavigationView bottomNavigation;
-
-  @NonNull
   public final ConstraintLayout coordinatorLayout2;
 
   @NonNull
   public final MaterialToolbar topAppBar;
 
   private ActivityBluetoothConnectAcitvityBinding(@NonNull ConstraintLayout rootView,
-      @NonNull AppBarLayout appBarLayout, @NonNull BottomNavigationView bottomNavigation,
-      @NonNull ConstraintLayout coordinatorLayout2, @NonNull MaterialToolbar topAppBar) {
+      @NonNull AppBarLayout appBarLayout, @NonNull ConstraintLayout coordinatorLayout2,
+      @NonNull MaterialToolbar topAppBar) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
-    this.bottomNavigation = bottomNavigation;
     this.coordinatorLayout2 = coordinatorLayout2;
     this.topAppBar = topAppBar;
   }
@@ -75,12 +70,6 @@ public final class ActivityBluetoothConnectAcitvityBinding implements ViewBindin
         break missingId;
       }
 
-      id = R.id.bottom_navigation;
-      BottomNavigationView bottomNavigation = rootView.findViewById(id);
-      if (bottomNavigation == null) {
-        break missingId;
-      }
-
       ConstraintLayout coordinatorLayout2 = (ConstraintLayout) rootView;
 
       id = R.id.topAppBar;
@@ -90,7 +79,7 @@ public final class ActivityBluetoothConnectAcitvityBinding implements ViewBindin
       }
 
       return new ActivityBluetoothConnectAcitvityBinding((ConstraintLayout) rootView, appBarLayout,
-          bottomNavigation, coordinatorLayout2, topAppBar);
+          coordinatorLayout2, topAppBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
