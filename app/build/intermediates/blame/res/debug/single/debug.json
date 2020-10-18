@@ -104,6 +104,10 @@
         "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\drawable\\ic_baseline_map_24.xml"
     },
     {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_tutorial.xml.flat",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\fragment_tutorial.xml"
+    },
+    {
         "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\res\\merged\\debug\\xml_root_preferences.xml.flat",
         "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\xml\\root_preferences.xml"
     },

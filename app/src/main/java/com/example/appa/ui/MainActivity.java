@@ -13,10 +13,12 @@ import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
 import com.example.appa.ui.tutorial.TutorialActivity;
+import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    final Fragment tutorialFragment = new TutorialFragment();
     final Fragment settingsFragment = new SettingsFragment();
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fm.beginTransaction().add(R.id.main_container, tutorialFragment, "4").hide(tutorialFragment).commit();
         fm.beginTransaction().add(R.id.main_container, settingsFragment, "2").hide(settingsFragment).commit();
         fm.beginTransaction().add(R.id.main_container, homeFragment, "1").commit();
 
@@ -45,8 +48,10 @@ public class MainActivity extends AppCompatActivity {
                     active = settingsFragment;
                     break;
                 case R.id.tutorial_button:
-                    Intent tutorialActivity = new Intent(MainActivity.this, TutorialActivity.class);
-                    startActivity(tutorialActivity);
+                    /*Intent tutorialActivity = new Intent(MainActivity.this, TutorialActivity.class);
+                    startActivity(tutorialActivity);*/
+                    fm.beginTransaction().hide(active).show(tutorialFragment).commit();
+                    active = tutorialFragment;
                     break;
                 case R.id.assistant_button:
 

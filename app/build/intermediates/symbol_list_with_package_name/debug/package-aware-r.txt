@@ -2577,6 +2577,7 @@ layout feedback_bottom_sheet_layout
 layout feedback_button_layout
 layout feedback_viewholder_layout
 layout fragment_home
+layout fragment_tutorial
 layout fragment_tutorial_text
 layout image_frame
 layout instruction_content_layout
@@ -2754,6 +2755,7 @@ string feedback_not_allowed
 string feedback_road_closure
 string feedback_submitted
 string feet
+string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string home_nav
 string home_title
