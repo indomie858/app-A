@@ -25,25 +25,5 @@ public class NavigationListActivityTest {
             navigationListActivityScenario.recreate();
         }
     }
-
-    /*@Test
-    public void openMainActivityTest() {
-        onView(withId(R.id.home_button)).perform(click());
-    }*/
-
-    @Test
-    public void openTutorialsActivityTest() {
-        onView(withId(R.id.tutorial_button)).perform(click());
-    }
-
-    @Test
-    public void openSettingsActivityTest(){
-        onView(withId(R.id.settings_button)).perform(click());
-    }
-
-    /*@Test
-    public void openAssistantActivityTest() {
-        onView(withId(R.id.assistant_button)).noActivity();
-    }*/
-
+    
 }
