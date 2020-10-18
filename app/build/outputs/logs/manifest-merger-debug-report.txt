@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-60:12
+ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
 MERGED from [androidx.databinding:databinding-adapters:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6f6d2380b6a21f5e4b0ffdfcac687374\databinding-adapters-4.0.2\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.databinding:databinding-runtime:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\41aaaabbf446c1d6527b4b732f650b9e\databinding-runtime-4.0.2\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.databinding:viewbinding:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3a885d5fb0478f9d15beaa85949e5585\jetified-viewbinding-4.0.2\AndroidManifest.xml:17:1-22:12
@@ -69,20 +69,20 @@ MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\gafaa\.gra
 MERGED from [com.mapbox.navigator:mapbox-navigation-native:7.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\00c89e3c75e0038fb8a8cd2104eaa075\jetified-mapbox-navigation-native-7.0.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:2:1-13:12
 MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:2:1-13:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
 	package
 		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:3:5-31
 		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-60:12
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-60:12
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:11-69
@@ -93,7 +93,7 @@ MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gaf
 	android:name
 		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:5:22-76
 application
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:7:5-58:19
+ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:7:5-49:19
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:9:5-11:19
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:9:5-11:19
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
@@ -164,62 +164,44 @@ ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifes
 		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:27:13-58
 	android:name
 		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:26:13-56
-activity#com.example.appa.ui.old_delete_later.SettingsActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:28:9-30:63
-	android:label
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:30:13-60
-	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:29:13-65
 activity#com.example.appa.ui.MapActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:31:9-34:61
+ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:28:9-31:61
 	android:parentActivityName
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:34:13-58
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:31:13-58
 	android:exported
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:33:13-36
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:30:13-36
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:32:13-43
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:29:13-43
 activity#com.example.appa.ui.MainActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:35:9-43:20
+ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:32:9-40:20
 	android:label
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:37:13-45
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:34:13-45
 	android:theme
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:38:13-56
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:35:13-56
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:36:13-44
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:33:13-44
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:39:13-42:29
+ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:36:13-39:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:40:17-69
+ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:37:17-69
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:40:25-66
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:37:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:41:17-77
+ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:38:17-77
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:41:27-74
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:38:27-74
 activity#com.example.appa.ui.navigationlist.NavigationListActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:44:9-49:59
+ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:41:9-46:59
 	android:parentActivityName
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:48:13-58
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:45:13-58
 	android:label
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:47:13-45
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:44:13-45
 	android:exported
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:46:13-36
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:43:13-36
 	android:theme
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:49:13-56
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:46:13-56
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:45:13-69
-activity#com.example.appa.ui.tutorial.TutorialActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:51:9-56:59
-	android:parentActivityName
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:55:13-71
-	android:label
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:54:13-45
-	android:exported
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:53:13-36
-	android:theme
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:56:13-56
-	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:52:13-57
+		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:42:13-69
 uses-sdk
 INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml

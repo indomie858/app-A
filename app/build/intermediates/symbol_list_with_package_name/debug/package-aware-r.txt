@@ -2549,7 +2549,6 @@ layout activity_main
 layout activity_map
 layout activity_map_with_nav
 layout activity_navigation
-layout activity_tutorial
 layout alert_view_layout
 layout collapsed_navigation_notification_layout
 layout content_main

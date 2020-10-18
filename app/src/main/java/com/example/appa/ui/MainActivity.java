@@ -1,8 +1,6 @@
 package com.example.appa.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -10,9 +8,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.appa.R;
 import com.example.appa.ui.home.HomeFragment;
-import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
-import com.example.appa.ui.tutorial.TutorialActivity;
 import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
