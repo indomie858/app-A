@@ -42,14 +42,10 @@ public class MainActivity extends AppCompatActivity {
                     active = homeFragment;
                     break;
                 case R.id.settings_button:
-                    /*Intent settingsActivity = new Intent(MainActivity.this, SettingsActivity.class);
-                    startActivity(settingsActivity);*/
                     fm.beginTransaction().hide(active).show(settingsFragment).commit();
                     active = settingsFragment;
                     break;
                 case R.id.tutorial_button:
-                    /*Intent tutorialActivity = new Intent(MainActivity.this, TutorialActivity.class);
-                    startActivity(tutorialActivity);*/
                     fm.beginTransaction().hide(active).show(tutorialFragment).commit();
                     active = tutorialFragment;
                     break;
@@ -58,24 +54,5 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-    }
-
-
-    //Starts Map Activity using intent
-    public void openMapActivity(View view) {
-        Intent mapActivity = new Intent(MainActivity.this, MapActivity.class);
-        startActivity(mapActivity);
-    }
-
-    //Starts Navigation list activity using intent
-    public void openNavigationListActivity(View view) {
-        Intent navigationListActivity = new Intent(MainActivity.this, NavigationListActivity.class);
-        startActivity(navigationListActivity);
-    }
-
-    //Starts Bluetooth Connect activity using intent
-    public void openBluetoothConnectActivity(View view) {
-        Intent bluetoothConnectActivity = new Intent(MainActivity.this, BluetoothConnectAcitvity.class);
-        startActivity(bluetoothConnectActivity);
     }
 }
