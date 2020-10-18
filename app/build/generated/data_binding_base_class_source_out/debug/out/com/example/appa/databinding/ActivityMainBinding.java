@@ -4,8 +4,6 @@ package com.example.appa.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,88 +23,18 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final AppBarLayout appBarLayout;
 
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   */
-  @Nullable
-  public final Button aroundMeButton;
-
   @NonNull
   public final BottomNavigationView bottomNavigation;
-
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   */
-  @Nullable
-  public final Button connectButton;
-
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   */
-  @Nullable
-  public final LinearLayout linearLayout;
-
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   */
-  @Nullable
-  public final Button navigationButton;
 
   @NonNull
   public final MaterialToolbar topAppBar;
 
   private ActivityMainBinding(@NonNull ConstraintLayout rootView,
-      @NonNull AppBarLayout appBarLayout, @Nullable Button aroundMeButton,
-      @NonNull BottomNavigationView bottomNavigation, @Nullable Button connectButton,
-      @Nullable LinearLayout linearLayout, @Nullable Button navigationButton,
+      @NonNull AppBarLayout appBarLayout, @NonNull BottomNavigationView bottomNavigation,
       @NonNull MaterialToolbar topAppBar) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
-    this.aroundMeButton = aroundMeButton;
     this.bottomNavigation = bottomNavigation;
-    this.connectButton = connectButton;
-    this.linearLayout = linearLayout;
-    this.navigationButton = navigationButton;
     this.topAppBar = topAppBar;
   }
 
@@ -143,19 +71,11 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      Button aroundMeButton = rootView.findViewById(R.id.around_me_button);
-
       id = R.id.bottom_navigation;
       BottomNavigationView bottomNavigation = rootView.findViewById(id);
       if (bottomNavigation == null) {
         break missingId;
       }
-
-      Button connectButton = rootView.findViewById(R.id.connect_button);
-
-      LinearLayout linearLayout = rootView.findViewById(R.id.linearLayout);
-
-      Button navigationButton = rootView.findViewById(R.id.navigation_button);
 
       id = R.id.topAppBar;
       MaterialToolbar topAppBar = rootView.findViewById(id);
@@ -163,8 +83,8 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((ConstraintLayout) rootView, appBarLayout, aroundMeButton,
-          bottomNavigation, connectButton, linearLayout, navigationButton, topAppBar);
+      return new ActivityMainBinding((ConstraintLayout) rootView, appBarLayout, bottomNavigation,
+          topAppBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
