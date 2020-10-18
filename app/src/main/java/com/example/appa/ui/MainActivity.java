@@ -10,6 +10,7 @@ import com.example.appa.R;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.settings.SettingsFragment;
 import com.example.appa.ui.tutorial.TutorialFragment;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MaterialToolbar actionbar = (MaterialToolbar) findViewById(R.id.topAppBar);
+
         fm.beginTransaction().add(R.id.main_container, tutorialFragment, "4").hide(tutorialFragment).commit();
         fm.beginTransaction().add(R.id.main_container, settingsFragment, "2").hide(settingsFragment).commit();
         fm.beginTransaction().add(R.id.main_container, homeFragment, "1").commit();
@@ -35,14 +38,17 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.home_button:
                     fm.beginTransaction().hide(active).show(homeFragment).commit();
+                    actionbar.setTitle("Home");
                     active = homeFragment;
                     break;
                 case R.id.settings_button:
                     fm.beginTransaction().hide(active).show(settingsFragment).commit();
+                    actionbar.setTitle("Settings");
                     active = settingsFragment;
                     break;
                 case R.id.tutorial_button:
                     fm.beginTransaction().hide(active).show(tutorialFragment).commit();
+                    actionbar.setTitle("Tutorial");
                     active = tutorialFragment;
                     break;
                 case R.id.assistant_button:
