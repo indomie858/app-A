@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.test.ext:junit-ktx:1.1.2@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b0786c24ca6876d8a97a8c1a16389eff/jetified-junit-ktx-1.1.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b0786c24ca6876d8a97a8c1a16389eff/jetified-junit-ktx-1.1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b0786c24ca6876d8a97a8c1a16389eff/jetified-junit-ktx-1.1.2/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.test.ext/junit-ktx/1.1.2/44ccc8098448ed31a826f4f686d020614d65b6ac/junit-ktx-1.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.NavigationListActivity"
+            android:name=".ui.navigationlist.NavigationListActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:parentActivityName=".ui.MainActivity"
