@@ -1,42 +1,80 @@
 [
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_bluetooth_connect_acitvity.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_bluetooth_connect_acitvity.xml"
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_directions.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_directions.xml"
     },
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\place_tile.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\place_tile.xml"
+<<<<<<< HEAD
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map_with_nav.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_map_with_nav.xml"
     },
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_map.xml"
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\settings_activity.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\settings_activity.xml"
     },
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\nav_list_activity.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\nav_list_activity.xml"
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_navigation_map_route.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_navigation_map_route.xml"
+=======
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_tutorial.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\fragment_tutorial.xml"
     },
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map_with_nav.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_map_with_nav.xml"
     },
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_tutorial.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_tutorial.xml"
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\fragment_home.xml"
+>>>>>>> issue33-bottom_nav_frags
     },
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\settings_activity.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\settings_activity.xml"
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\nav_list_activity.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\nav_list_activity.xml"
     },
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_directions.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_directions.xml"
+<<<<<<< HEAD
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_tutorial_text.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\fragment_tutorial_text.xml"
     },
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map_with_nav.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\activity_map_with_nav.xml"
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_bluetooth_connect_acitvity.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_bluetooth_connect_acitvity.xml"
     },
     {
-        "merged": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_tutorial_text.xml",
-        "source": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\src\\main\\res\\layout\\fragment_tutorial_text.xml"
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\place_tile.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\place_tile.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_map.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_tutorial.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_tutorial.xml"
+=======
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\content_main.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\content_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_tutorial_text.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\fragment_tutorial_text.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_bluetooth_connect_acitvity.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_bluetooth_connect_acitvity.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\place_tile.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\place_tile.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_map.xml"
+>>>>>>> issue33-bottom_nav_frags
+    },
+    {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_main.xml"
     }
 ]

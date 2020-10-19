@@ -34,6 +34,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
+            android:name="com.example.appa.ui.navigation.NavigationMapRouteActivity"
+            android:exported="true" />
+        <activity
             android:name="com.example.appa.ui.navigation.DirectionsActivity"
             android:exported="true" />
         <activity
@@ -49,6 +52,7 @@
             android:name="com.example.appa.ui.BluetoothConnectAcitvity"
             android:parentActivityName="com.example.appa.ui.MainActivity" />
         <activity
+<<<<<<< HEAD
             android:name="com.example.appa.ui.navigation.CustomDirectionsActivity"
             android:exported="true" >
             <intent-filter>
@@ -61,6 +65,8 @@
             android:name="com.example.appa.ui.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
+=======
+>>>>>>> issue33-bottom_nav_frags
             android:name="com.example.appa.ui.MapActivity"
             android:exported="true"
             android:parentActivityName="com.example.appa.ui.MainActivity" />
@@ -80,12 +86,16 @@
             android:label="@string/app_name"
             android:parentActivityName="com.example.appa.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+<<<<<<< HEAD
         <activity
             android:name="com.example.appa.ui.tutorial.TutorialActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:parentActivityName="com.example.appa.ui.tutorial.TutorialActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+=======
+        <activity android:name="com.mapbox.services.android.navigation.ui.v5.MapboxNavigationActivity" />
+>>>>>>> issue33-bottom_nav_frags
 
         <provider
             android:name="com.mapbox.navigation.core.accounts.MapboxNavigationAccountsProvider"

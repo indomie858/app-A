@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Query;
 
-import com.example.appa.model.Place;
-
 import java.util.List;
 
 @Dao

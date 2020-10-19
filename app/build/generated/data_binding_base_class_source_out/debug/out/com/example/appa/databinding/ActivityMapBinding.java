@@ -11,7 +11,6 @@ import androidx.viewbinding.ViewBinding;
 import com.example.appa.R;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mapbox.mapboxsdk.maps.MapView;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -25,20 +24,15 @@ public final class ActivityMapBinding implements ViewBinding {
   public final AppBarLayout appBarLayout;
 
   @NonNull
-  public final BottomNavigationView bottomNavigation;
-
-  @NonNull
   public final MapView mapView;
 
   @NonNull
   public final MaterialToolbar topAppBar;
 
   private ActivityMapBinding(@NonNull ConstraintLayout rootView, @NonNull AppBarLayout appBarLayout,
-      @NonNull BottomNavigationView bottomNavigation, @NonNull MapView mapView,
-      @NonNull MaterialToolbar topAppBar) {
+      @NonNull MapView mapView, @NonNull MaterialToolbar topAppBar) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
-    this.bottomNavigation = bottomNavigation;
     this.mapView = mapView;
     this.topAppBar = topAppBar;
   }
@@ -76,12 +70,6 @@ public final class ActivityMapBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.bottom_navigation;
-      BottomNavigationView bottomNavigation = rootView.findViewById(id);
-      if (bottomNavigation == null) {
-        break missingId;
-      }
-
       id = R.id.mapView;
       MapView mapView = rootView.findViewById(id);
       if (mapView == null) {
@@ -94,8 +82,7 @@ public final class ActivityMapBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMapBinding((ConstraintLayout) rootView, appBarLayout, bottomNavigation,
-          mapView, topAppBar);
+      return new ActivityMapBinding((ConstraintLayout) rootView, appBarLayout, mapView, topAppBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

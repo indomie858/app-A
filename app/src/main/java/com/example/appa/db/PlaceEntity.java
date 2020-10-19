@@ -1,7 +1,9 @@
 package com.example.appa.db;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
 import com.example.appa.model.Place;
 
 @Entity(tableName = "place_table")
