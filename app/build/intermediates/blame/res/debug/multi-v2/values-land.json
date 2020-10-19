@@ -4,7 +4,21 @@
             "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\ec0eb60097f4d9843c35188e136634c1\\jetified-ui-1.1.0\\res\\values-land\\values-land.xml",
+=======
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\9f8c6bf6d6cfede505145b0a0a600913\\appcompat-1.2.0\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\1d5960e0c6b211f7a43f89d0ff8f599f\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-land\\values-land.xml",
+>>>>>>> issue33-bottom_nav_frags
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -21,7 +35,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\60f445900515fbd617cf4852baf93647\\material-1.2.1\\res\\values-land\\values-land.xml",
+=======
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\23c1a5e549ab20f32360b1e98ab5d332\\material-1.2.1\\res\\values-land\\values-land.xml",
+>>>>>>> issue33-bottom_nav_frags
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,30",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,6 +56,7 @@
                         "endColumns": "72,69,71,69,64,66,69,71,68,68,81,89,75,67,66,77,64,66,10,10,10",
                         "endOffsets": "881,951,1023,1093,1158,1225,1295,1367,1436,1505,1587,1677,1753,1821,1888,1966,2031,2098,2270,2665,2934"
                     }
+<<<<<<< HEAD
                 },
                 {
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\284a2a218f7f6f43d29c2ab8e18ab1ed\\appcompat-1.2.0\\res\\values-land\\values-land.xml",
@@ -48,6 +67,8 @@
                         "endColumns": "69,70,67",
                         "endOffsets": "120,191,259"
                     }
+=======
+>>>>>>> issue33-bottom_nav_frags
                 }
             ]
         }

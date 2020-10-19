@@ -4,8 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.appa.model.Place;
-
 import java.util.List;
 
 public class PlaceRepository {
