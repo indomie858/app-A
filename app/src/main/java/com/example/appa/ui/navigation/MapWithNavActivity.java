@@ -97,7 +97,7 @@ public class MapWithNavActivity extends AppCompatActivity implements OnMapReadyC
                     currentPlace = placeEntity;
             }
         };
-        viewModel.getPlaceFromID(currentPlaceID).observe(this, placeEntityObserver);
+        viewModel.getPlaceFromID(currentPlaceID).observeForever(this, placeEntityObserver);
     }
 
 
