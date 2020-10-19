@@ -1,24 +1,22 @@
 package com.example.appa.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
-import com.example.appa.ui.tutorial.TutorialActivity;
+import com.example.appa.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
 import com.mapbox.mapboxsdk.location.modes.RenderMode;
-import com.example.appa.R;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -68,23 +66,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        //The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener((item) ->{
-            switch (item.getItemId()){
-                case R.id.settings_button:
-                    Intent settingsActivity = new Intent(MapActivity.this, SettingsActivity.class);
-                    startActivity(settingsActivity);
-                    break;
-                case R.id.home_button:
-                    Intent mainActivity = new Intent(MapActivity.this,MainActivity.class);
-                    startActivity(mainActivity);
-                case R.id.tutorial_button:
-                    Intent tutorialActivity = new Intent(MapActivity.this, TutorialActivity.class);
-                    startActivity(tutorialActivity);
-            }
-            return false;
-        });
     }
 
     // Add the mapView lifecycle to the activity's lifecycle methods

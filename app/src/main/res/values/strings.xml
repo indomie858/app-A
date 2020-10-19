@@ -45,7 +45,6 @@ Etiam tempus, nibh sed fringilla ullamcorper, sem risus porta ligula, at bibendu
 \n \n
 Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce viverra enim eu leo imperdiet ullamcorper. Proin ullamcorper nibh sed maximus imperdiet. Pellentesque suscipit urna odio, ac tempus dolor pulvinar et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec metus eleifend, tincidunt diam at, laoreet justo. Nam pellentesque dolor quis rhoncus pretium. Cras ut turpis a orci cursus ultricies nec et nisi. Nullam placerat felis vel felis accumsan pretium. Etiam congue lacus vitae nulla hendrerit, non porttitor nisl tempus. </string>
 
-
     <!-- PLaceholders for the spinnerview -->
     <!-- DELETE THIS IF YOU'RE IN DOUBT AND CLEANING STUFF UP! -->
     <string-array name="locations_categories_array">
@@ -56,6 +55,23 @@ Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculu
         <item>Sports &amp; Fitness</item>
     </string-array>
 
+
+    <!-- Preference Titles --> <!--for settings activity - auto generated. Delete/modify when working on settingsfragment-->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences --><!--for settings activity - auto generated. Delete/modify when working on settingsfragment-->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences --><!--for settings activity - auto generated. Delete/modify when working on settingsfragment-->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
 
