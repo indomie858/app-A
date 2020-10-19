@@ -35,6 +35,9 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
+            android:name="com.example.appa.ui.navigation.NavigationMapRouteActivity"
+            android:exported="true" />
+        <activity
             android:name="com.example.appa.ui.navigation.DirectionsActivity"
             android:exported="true" />
         <activity
