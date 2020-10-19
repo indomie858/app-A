@@ -96,12 +96,12 @@
         "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\drawable\\ic_home_24px.xml"
     },
     {
-        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
-    },
-    {
         "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_navigation_map_route.xml.flat",
         "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_navigation_map_route.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
     {
         "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_arrow_back_24.xml.flat",
