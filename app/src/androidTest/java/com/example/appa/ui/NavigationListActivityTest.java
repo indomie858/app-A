@@ -7,6 +7,7 @@ import com.example.appa.R;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
 
 import org.junit.Rule;
+import org.junit.Test;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
