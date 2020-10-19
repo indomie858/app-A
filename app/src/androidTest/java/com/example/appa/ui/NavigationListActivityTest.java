@@ -4,7 +4,9 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.example.appa.R;
+
 import com.example.appa.ui.navigationlist.NavigationListActivity;
+
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,5 +27,5 @@ public class NavigationListActivityTest {
             navigationListActivityScenario.recreate();
         }
     }
-    
+
 }
