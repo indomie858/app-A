@@ -49,6 +49,8 @@ import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
 import com.mapbox.navigation.core.trip.session.RouteProgressObserver
 import com.mapbox.navigation.ui.route.NavigationMapRoute
 import kotlinx.android.synthetic.main.activity_directions.*
+import kotlinx.android.synthetic.main.activity_directions.mapView
+import kotlinx.android.synthetic.main.activity_navigation_map_route.*
 import java.lang.ref.WeakReference
 
 
@@ -323,4 +325,30 @@ class CustomDirectionsActivity:
         TODO("Not yet implemented")
     }
 
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapboxNavigation!!.stopTripSession()
+        mapboxNavigation!!.onDestroy()
+        mapView!!.onDestroy()
+    }
 }
