@@ -1,28 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-he\\values-he.xml",
+            "outputFile": "C:\\Users\\dpale\\Desktop\\Projects\\senior-design\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-he\\values-he.xml",
             "map": [
                 {
-<<<<<<< HEAD
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\ec0eb60097f4d9843c35188e136634c1\\jetified-ui-1.1.0\\res\\values-he\\values-he.xml",
+                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\47931dc4706474d8e63f12c93770daf3\\jetified-mapbox-android-sdk-9.5.0\\res\\values-he\\values-he.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,120,170,221,285,349",
-                        "endColumns": "64,49,50,63,63,51",
-                        "endOffsets": "115,165,216,280,344,396"
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,177,331,407,480,553,638,725,841,944,1094,1208,1345",
+                        "endColumns": "121,153,75,72,72,84,86,115,102,149,113,136,68",
+                        "endOffsets": "172,326,402,475,548,633,720,836,939,1089,1203,1340,1409"
                     },
                     "to": {
-                        "startLines": "12,14,17,18,19,26",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "1005,1220,1521,1572,1636,2021",
-                        "endColumns": "64,49,50,63,63,51",
-                        "endOffsets": "1065,1265,1567,1631,1695,2068"
+                        "startLines": "2,3,4,5,6,7,8,9,10,13,15,16,20",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,177,331,407,480,553,638,725,841,1070,1270,1384,1700",
+                        "endColumns": "121,153,75,72,72,84,86,115,102,149,113,136,68",
+                        "endOffsets": "172,326,402,475,548,633,720,836,939,1215,1379,1516,1764"
                     }
                 },
                 {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\275911ffaacd029026cbc3e6be7b6b44\\jetified-notification-1.1.0\\res\\values-he\\values-he.xml",
+                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\67c8c14afedf7b82a13b7782d71a7577\\jetified-notification-1.1.0\\res\\values-he\\values-he.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -39,7 +38,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\fe520876d766018c07e02905bb5469b6\\jetified-utils-1.1.0\\res\\values-he\\values-he.xml",
+                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\aa233ef5153e4079e62ee9306c787207\\jetified-ui-1.1.0\\res\\values-he\\values-he.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,120,170,221,285,349",
+                        "endColumns": "64,49,50,63,63,51",
+                        "endOffsets": "115,165,216,280,344,396"
+                    },
+                    "to": {
+                        "startLines": "12,14,17,18,19,26",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "1005,1220,1521,1572,1636,2021",
+                        "endColumns": "64,49,50,63,63,51",
+                        "endOffsets": "1065,1265,1567,1631,1695,2068"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dpale\\.gradle\\caches\\transforms-2\\files-2.1\\a2cd8e34b98f9c17e49f05a9daedb555\\jetified-utils-1.1.0\\res\\values-he\\values-he.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -53,64 +69,6 @@
                         "startOffsets": "1817,1872,1922",
                         "endColumns": "54,49,50",
                         "endOffsets": "1867,1917,1968"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\4166d0c53977619fc09555c84a81bc97\\jetified-mapbox-android-sdk-9.5.0\\res\\values-he\\values-he.xml",
-=======
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\8841685b461319401495351be26ddf2a\\jetified-mapbox-android-sdk-8.5.1\\res\\values-he\\values-he.xml",
->>>>>>> issue33-bottom_nav_frags
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,177,331,407,480,553,638,725,841,944,1094,1208,1345",
-                        "endColumns": "121,153,75,72,72,84,86,115,102,149,113,136,68",
-                        "endOffsets": "172,326,402,475,548,633,720,836,939,1089,1203,1340,1409"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,13,15,16,20",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,177,331,407,480,553,638,725,841,1070,1270,1384,1700",
-                        "endColumns": "121,153,75,72,72,84,86,115,102,149,113,136,68",
-<<<<<<< HEAD
-                        "endOffsets": "172,326,402,475,548,633,720,836,939,1215,1379,1516,1764"
-=======
-                        "endOffsets": "944,1098,1174,1247,1320,1405,1492,1608,1711,1861,1975,2112,2181"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\84cefc42239aa0bf117f2329f27606b6\\jetified-mapbox-android-navigation-0.42.6\\res\\values-he\\values-he.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,109,163,199,242,280,319,355",
-                        "endColumns": "53,53,35,42,37,38,35,69",
-                        "endOffsets": "104,158,194,237,275,314,350,420"
-                    },
-                    "to": {
-                        "startLines": "2,6,13,14,28,29,30,32",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,310,748,784,2186,2224,2263,2342",
-                        "endColumns": "53,53,35,42,37,38,35,69",
-                        "endOffsets": "104,359,779,822,2219,2258,2294,2407"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\1d5960e0c6b211f7a43f89d0ff8f599f\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-he\\values-he.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,118,180,256,332,398,462,521,582,640,683,727,784,841",
-                        "endColumns": "62,61,75,75,65,63,58,60,57,42,43,56,56,44",
-                        "endOffsets": "113,175,251,327,393,457,516,577,635,678,722,779,836,881"
-                    },
-                    "to": {
-                        "startLines": "3,4,5,7,8,9,10,11,12,31,33,34,35,36",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "109,172,234,364,440,506,570,629,690,2299,2412,2456,2513,2570",
-                        "endColumns": "62,61,75,75,65,63,58,60,57,42,43,56,56,44",
-                        "endOffsets": "167,229,305,435,501,565,624,685,743,2337,2451,2508,2565,2610"
->>>>>>> issue33-bottom_nav_frags
                     }
                 }
             ]

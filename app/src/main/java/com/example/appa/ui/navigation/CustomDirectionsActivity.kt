@@ -1,8 +1,14 @@
 package com.example.appa.ui.navigation
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.graphics.Color.parseColor
+import android.location.Location
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +17,7 @@ import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.MapWithNavViewModel
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
+import com.mapbox.android.core.location.*
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.api.directions.v5.models.DirectionsRoute
@@ -41,12 +48,17 @@ import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
 import com.mapbox.navigation.core.trip.session.RouteProgressObserver
 import com.mapbox.navigation.ui.route.NavigationMapRoute
 import kotlinx.android.synthetic.main.activity_directions.*
+import java.lang.ref.WeakReference
 
 
 class CustomDirectionsActivity:
         AppCompatActivity(),
         PermissionsListener,
         OnMapReadyCallback {
+        private var locationEngine: LocationEngine? = null
+        private val callback: CustomDirectionsActivityLocationCallback = CustomDirectionsActivityLocationCallback(this)
+        private val DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L
+        private val DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5
         private lateinit var viewModel: MapWithNavViewModel
         private var currentPlace: PlaceEntity? = null
         private var currentPlaceID: Int? = null
@@ -92,15 +104,79 @@ class CustomDirectionsActivity:
                     .build()
             val locationComponent: LocationComponent = mapboxMap.locationComponent
             locationComponent.activateLocationComponent(activationOptions)
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return
+            }
             locationComponent.setLocationComponentEnabled(true)
             locationComponent.setRenderMode(RenderMode.COMPASS)
             locationComponent.setCameraMode(CameraMode.TRACKING)
+            initLocationEngine()
         }
         else {
             val permissionsManager = PermissionsManager(this)
             permissionsManager.requestLocationPermissions(this)
         }
     }
+
+    /**
+     * Set up the LocationEngine and the parameters for querying the device's location
+     */
+    @SuppressLint("MissingPermission")
+    private fun initLocationEngine() {
+        locationEngine = LocationEngineProvider.getBestLocationEngine(this)
+        val request: LocationEngineRequest = LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
+                .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
+                .setMaxWaitTime(DEFAULT_MAX_WAIT_TIME).build()
+        locationEngine!!.requestLocationUpdates(request, callback, mainLooper)
+        locationEngine!!.getLastLocation(callback)
+    }
+
+
+    private class CustomDirectionsActivityLocationCallback internal constructor(activity: CustomDirectionsActivity?) : LocationEngineCallback<LocationEngineResult?> {
+        private val activityWeakReference: WeakReference<CustomDirectionsActivity?>?
+        /**
+         * The LocationEngineCallback interface's method which fires when the device's location has changed.
+         *
+         * @param result the LocationEngineResult object which has the last known location within it.
+         */
+        override fun onSuccess(result: LocationEngineResult?) {
+            val activity: CustomDirectionsActivity? = activityWeakReference!!.get()
+            if (activity != null) {
+                val location: Location = result!!.getLastLocation() ?: return
+
+                // Create a Toast which displays the new location's coordinates
+                Toast.makeText(activity, java.lang.String.format(activity.getString(R.string.new_location),
+                        java.lang.String.valueOf(result.getLastLocation()!!.getLatitude()), java.lang.String.valueOf(result!!.getLastLocation()!!.getLongitude())),
+                        Toast.LENGTH_SHORT).show()
+
+                // Pass the new location to the Maps SDK's LocationComponent
+                if (activity.mapboxMap != null && result.getLastLocation() != null) {
+                    activity.mapboxMap.getLocationComponent().forceLocationUpdate(result.getLastLocation())
+                }
+            }
+        }
+
+        /**
+         * The LocationEngineCallback interface's method which fires when the device's location can not be captured
+         *
+         * @param exception the exception message
+         */
+        override fun onFailure(exception: Exception) {
+            TODO("Not yet implemented")
+        }
+
+        init {
+            activityWeakReference = WeakReference(activity)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         setPlaceFromIntent()
@@ -116,6 +192,7 @@ class CustomDirectionsActivity:
         }
         viewModel.getPlaceFromID(currentPlaceID).observeForever(placeEntityObserver)
     }
+
 
 
     override fun onMapReady(mapboxMap: MapboxMap) {
