@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.BluetoothConnectAcitvity"
+            android:name=".bluetooth.BluetoothDialog"
             android:parentActivityName=".ui.MainActivity" />
         <activity
             android:name=".ui.SettingsActivity"

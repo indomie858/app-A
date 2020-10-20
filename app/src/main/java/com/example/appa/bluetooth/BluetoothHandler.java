@@ -1,59 +1,99 @@
 package com.example.appa.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
-import android.content.Intent;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.content.BroadcastReceiver;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appa.R;
+import com.example.appa.bluetooth.message.MessageHandler;
+import com.example.appa.bluetooth.threads.AttemptConnectionThread;
+import com.example.appa.bluetooth.threads.ConnectedDeviceThread;
+
+import java.util.Set;
 
 
 public class BluetoothHandler {
 
-    BluetoothAdapter btAdapter;
-    TextView mStatusBT;
-    ImageView btStatusIcon;
-    Button mEnabledBT;
-    BroadcastReceiver mReceiver;
+    private int status = 0; // 0 = no actions / 2 = connecting / 3 = connected
 
-    public BluetoothHandler()
-    {
+    private BluetoothAdapter btAdapter;
+    private MessageHandler messageHandler;
+    private String address;
+
+    ConnectedDeviceThread connectedDeviceThread;
+    AttemptConnectionThread attemptConnectionThread;
+
+
+    public BluetoothHandler(MessageHandler messageHandler, String address) {
         //Bluetooth setup
         btAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        // Check if Bluetooth is available on this device
-        // If available, perform all necessary setup actions
-        // Else, notify user that this device does not support BT
-        if (btAdapter == null) {
-            //mStatusBT.setText("Bluetooth is unavailable on this device");
-        }
-        else
-        {
-            //init();
-        }
-    }
-    public void init()
-    {
-        /*if(!btAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }*/
+        this.messageHandler = messageHandler;
+        this.address = address;
     }
 
-    public void btUpdateStatusIcon()
+    public synchronized  void connect() {
+        BluetoothDevice device = getBtAdapter().getRemoteDevice(address);
+        connect(device);
+    }
+
+    public synchronized void connect(BluetoothDevice btDevice)
     {
-        if(!btAdapter.isEnabled())
+        if(status == 2 && attemptConnectionThread != null)
         {
-            //btStatusIcon.setImageResource(R.drawable.ic_action_bluetooth_on);
+            attemptConnectionThread.cancel();
+            attemptConnectionThread = null;
         }
-        else
+
+        if(connectedDeviceThread != null) {
+            connectedDeviceThread.cancel();
+            connectedDeviceThread = null;
+        }
+
+        attemptConnectionThread = new AttemptConnectionThread(this, messageHandler, btDevice);
+        attemptConnectionThread.start();
+        setStatus(2);
+        messageHandler.sendConnectingTo(btDevice.getName());
+    }
+
+    public synchronized void connected(BluetoothDevice btDevice, BluetoothSocket btSocket)
+    {
+
+        if(attemptConnectionThread != null)
         {
-            //btStatusIcon.setImageResource(R.drawable.ic_action_bluetooth_off);
+            attemptConnectionThread.cancel();
+            attemptConnectionThread = null;
         }
+
+        if(connectedDeviceThread != null)
+        {
+            connectedDeviceThread.cancel();
+            connectedDeviceThread = null;
+        }
+
+        connectedDeviceThread = new ConnectedDeviceThread(this, messageHandler, btSocket);
+        connectedDeviceThread.start();
+
+        setStatus(3);
+        messageHandler.sendConnectedTo(btDevice.getName());
+    }
+
+    public synchronized void disconnect() {
+        if(attemptConnectionThread != null)
+        {
+            attemptConnectionThread.cancel();
+            attemptConnectionThread = null;
+        }
+
+        if(attemptConnectionThread != null)
+        {
+            connectedDeviceThread.shutdown();
+            connectedDeviceThread.cancel();
+            connectedDeviceThread = null;
+        }
+
+        messageHandler.sendNotConnected();
+        setStatus(0);
     }
 
     public boolean btAdapterAvailable()
@@ -70,21 +110,56 @@ public class BluetoothHandler {
 
     }
 
-    public boolean btDeviceConnected()
+    public Set<BluetoothDevice> getDevices()
     {
-    return false;
-        //return btAdapter.getBondedDevices().contains();
+        return btAdapter.getBondedDevices();
     }
+
+    public void startDiscover()
+    {
+        btAdapter.startDiscovery();
+    }
+
+    public void stopDiscover()
+    {
+        btAdapter.cancelDiscovery();
+    }
+
+    public boolean isDiscovering()
+    {
+        return btAdapter.isDiscovering();
+    }
+
     public BluetoothAdapter getBtAdapter() {
         return btAdapter;
     }
 
-    public void setBtAdapter(BluetoothAdapter btAdapter) {
-        this.btAdapter = btAdapter;
+    public void setStatus(int status)
+    {
+        this.status = status;
     }
 
-    public BroadcastReceiver getReceiver()
-    {
-        return mReceiver;
+    public ConnectedDeviceThread getConnectedDeviceThread() {
+        return connectedDeviceThread;
+    }
+
+    public void setConnectedDeviceThread(ConnectedDeviceThread connectedDeviceThread) {
+        this.connectedDeviceThread = connectedDeviceThread;
+    }
+
+    public AttemptConnectionThread getAttemptConnectionThread() {
+        return attemptConnectionThread;
+    }
+
+    public void setAttemptConnectionThread(AttemptConnectionThread attemptConnectionThread) {
+        this.attemptConnectionThread = attemptConnectionThread;
+    }
+
+    public void setMessageHandler(MessageHandler messageHandler) {
+        this.messageHandler = messageHandler;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
