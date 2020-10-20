@@ -42,15 +42,6 @@
             android:name="com.example.appa.ui.navigation.DirectionsActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.appa.ui.navigation.MapWithNavActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.ACTION_VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="com.example.appa.ui.BluetoothConnectAcitvity"
             android:parentActivityName="com.example.appa.ui.MainActivity" />
         <activity

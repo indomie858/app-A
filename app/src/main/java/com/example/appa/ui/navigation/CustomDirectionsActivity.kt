@@ -42,6 +42,7 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import com.mapbox.mapboxsdk.utils.BitmapUtils
 import com.mapbox.navigation.base.internal.extensions.applyDefaultParams
+import com.mapbox.navigation.base.internal.route.RouteUrl
 import com.mapbox.navigation.base.trip.model.RouteProgress
 import com.mapbox.navigation.core.MapboxNavigation
 import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
@@ -210,6 +211,7 @@ class CustomDirectionsActivity:
                 mapboxNavigation?.requestRoutes(
                         RouteOptions.builder()
                                 .applyDefaultParams()
+                                .profile(RouteUrl.PROFILE_WALKING)
                                 .accessToken(MAPBOXTOKEN)
                                 .coordinates(listOf(originPoint, destinationPoint))
                                 .build(), routesReqCallback

@@ -31,9 +31,8 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
-import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigationOptions;
-import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+import com.mapbox.navigation.core.MapboxNavigation;
+
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -106,7 +105,7 @@ public class DirectionsActivity extends AppCompatActivity implements OnMapReadyC
 
         enableLocation();
         initLocationEngine();
-        initMapboxNavObj();
+        //initMapboxNavObj();
 
         viewModel = new ViewModelProvider(this).get(MapWithNavViewModel.class);
         currentPlaceID = 1;
@@ -125,7 +124,7 @@ public class DirectionsActivity extends AppCompatActivity implements OnMapReadyC
         });
     }
 
-    //how to create a route from origin to destination
+    /*//how to create a route from origin to destination
     private void getRoute(Point origin, Point destination) {
         NavigationRoute.builder(this)
                 .accessToken(getString(R.string.mapbox_access_token))
@@ -148,9 +147,9 @@ public class DirectionsActivity extends AppCompatActivity implements OnMapReadyC
                         //currentRoute contains JSON response with route details
                         currentRoute = response.body().routes().get(0);
                         Log.d(TAG, "Route: " + currentRoute);   //logs JSON response in console
-                        /***
+                        *//***
                          * Note: see DirectionsRoute documentation to access currentRoute methods
-                         */
+                         *//*
                     }
 
                     @Override
@@ -166,7 +165,7 @@ public class DirectionsActivity extends AppCompatActivity implements OnMapReadyC
                 .build();
         navigation = new MapboxNavigation(this, getString(R.string.mapbox_access_token));
         navigation.setLocationEngine(locationEngine);
-    }
+    }*/
 
     //Enable location permissions
     @SuppressWarnings({"MissingPermission"})

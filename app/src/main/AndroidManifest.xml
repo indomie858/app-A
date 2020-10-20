@@ -18,15 +18,6 @@
             android:name=".ui.navigation.DirectionsActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.navigation.MapWithNavActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.ACTION_VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".ui.BluetoothConnectAcitvity"
             android:parentActivityName=".ui.MainActivity" />
         <activity

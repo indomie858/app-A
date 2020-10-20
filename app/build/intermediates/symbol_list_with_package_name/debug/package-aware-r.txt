@@ -2482,7 +2482,6 @@ id src_in
 id src_over
 id standard
 id start
-id startButton
 id startHorizontal
 id startNavigationButton
 id startVertical
@@ -2636,7 +2635,6 @@ layout activity_bluetooth_connect_acitvity
 layout activity_directions
 layout activity_main
 layout activity_map
-layout activity_map_with_nav
 layout activity_navigation_map_route
 layout content_main
 layout custom_dialog
