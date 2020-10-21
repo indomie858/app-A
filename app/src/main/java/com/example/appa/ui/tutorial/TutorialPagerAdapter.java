@@ -19,7 +19,7 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
 
     // Manages the views in the pager adapter
     // Updates the views when tabs are scrolled
-    public TutorialPagerAdapter(Context context, @NonNull FragmentManager fm) {
+    public TutorialPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }
