@@ -1,4 +1,4 @@
-package com.example.appa.bluetooth;
+package com.example.appa.ui;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -15,6 +15,7 @@ import android.widget.ListView;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.appa.R;
+import com.example.appa.bluetooth.BluetoothHandler;
 import com.example.appa.bluetooth.message.MessageHandler;
 
 import java.util.List;

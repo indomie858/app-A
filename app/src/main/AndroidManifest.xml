@@ -21,9 +21,6 @@
             android:name=".ui.navigation.DirectionsActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.BluetoothConnectAcitvity"
-            android:parentActivityName=".ui.MainActivity" />
-        <activity
             android:name=".ui.navigation.CustomDirectionsActivity"
             android:exported="true">
             <intent-filter>

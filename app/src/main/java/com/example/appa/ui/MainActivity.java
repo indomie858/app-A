@@ -3,6 +3,7 @@ package com.example.appa.ui;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
     final Fragment settingsFragment = new SettingsFragment();
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
+
     Fragment active = homeFragment;
 
     @Override
@@ -56,21 +58,15 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
             return false;
         });
     }
-    public void bluetoothSetupPopup() {
-        //DialogFragment bluetoothDialog = new BluetoothDialog();
-        //bluetoothDialog.show(getSupportFragmentManager(), "Bluetooth");
-        startActivity(btDialog);
-        Intent btDialog = new Intent(MainActivity.this, BluetoothDialog.class);
-    }
-    @Override
-
-    public void onDialogPositiveClick(DialogFragment dialog) {
-
-    }
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog)
     {
+
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
 
     }
 }

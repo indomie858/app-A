@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.appa.R
-import com.example.appa.ui.BluetoothConnectAcitvity
+import com.example.appa.ui.BluetoothDialog
 import com.example.appa.ui.MapActivity
 import com.example.appa.ui.navigationlist.NavigationListActivity
 
@@ -48,7 +48,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             }
 
             R.id.connect_button -> {
-                val intent = Intent (getActivity(), BluetoothConnectAcitvity::class.java)
+                val intent = Intent (getActivity(), BluetoothDialog::class.java)
                 getActivity()?.startActivity(intent)
             }
 
