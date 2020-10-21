@@ -17,22 +17,28 @@ public class BluetoothHandler {
 
     private int status = 0; // 0 = no actions / 2 = connecting / 3 = connected
 
+    //this is the bluetooth adapter
     private BluetoothAdapter btAdapter;
+    //this handles messages
     private MessageHandler messageHandler;
+    //this is the address to my house
     private String address;
 
+    //this contains the thread to the connected device
     ConnectedDeviceThread connectedDeviceThread;
+    //this attempts connection to a device in a thread
     AttemptConnectionThread attemptConnectionThread;
 
-
+    //this is a constructor
     public BluetoothHandler(MessageHandler messageHandler, String address) {
         //Bluetooth setup
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         this.messageHandler = messageHandler;
         this.address = address;
     }
-
+    //this is a method
     public synchronized  void connect() {
+        //these are a bunch of letters
         BluetoothDevice device = getBtAdapter().getRemoteDevice(address);
         connect(device);
     }

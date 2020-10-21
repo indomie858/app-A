@@ -63,6 +63,7 @@ public class BluetoothDialog extends Activity {
     BluetoothDialogListener listener;
     ArrayAdapter<BluetoothDevice> btArrayAdapter;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
