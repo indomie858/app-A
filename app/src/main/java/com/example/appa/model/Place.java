@@ -7,4 +7,5 @@ public interface Place {
     public String getDescription();
     public Float getLatitude();
     public Float getLongitude() ;
+    public String getCategories();
 }
