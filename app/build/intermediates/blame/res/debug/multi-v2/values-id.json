@@ -4,30 +4,30 @@
             "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-id\\values-id.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\1d5960e0c6b211f7a43f89d0ff8f599f\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-id\\values-id.xml",
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\aa233ef5153e4079e62ee9306c787207\\jetified-ui-1.1.0\\res\\values-id\\values-id.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
-                        "startOffsets": "55,105,157",
-                        "endColumns": "49,51,52",
-                        "endOffsets": "100,152,205"
+                        "startOffsets": "55,112,171",
+                        "endColumns": "56,58,59",
+                        "endOffsets": "107,166,226"
                     },
                     "to": {
                         "startLines": "3,4,5",
                         "startColumns": "4,4,4",
-                        "startOffsets": "113,163,215",
-                        "endColumns": "49,51,52",
-                        "endOffsets": "158,210,263"
+                        "startOffsets": "120,177,236",
+                        "endColumns": "56,58,59",
+                        "endOffsets": "172,231,291"
                     }
                 },
                 {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\84cefc42239aa0bf117f2329f27606b6\\jetified-mapbox-android-navigation-0.42.6\\res\\values-id\\values-id.xml",
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\67c8c14afedf7b82a13b7782d71a7577\\jetified-notification-1.1.0\\res\\values-id\\values-id.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "57",
-                        "endOffsets": "108"
+                        "endColumns": "64",
+                        "endOffsets": "115"
                     }
                 }
             ]

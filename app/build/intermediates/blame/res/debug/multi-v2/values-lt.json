@@ -4,23 +4,6 @@
             "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lt\\values-lt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\8841685b461319401495351be26ddf2a\\jetified-mapbox-android-sdk-8.5.1\\res\\values-lt\\values-lt.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,236,310,394,466,569,647,779,914,1099,1225",
-                        "endColumns": "180,73,83,71,102,77,131,134,184,125,132",
-                        "endOffsets": "231,305,389,461,564,642,774,909,1094,1220,1353"
-                    },
-                    "to": {
-                        "startLines": "31,32,33,34,35,36,37,38,39,40,41",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3036,3217,3291,3375,3447,3550,3628,3760,3895,4080,4206",
-                        "endColumns": "180,73,83,71,102,77,131,134,184,125,132",
-                        "endOffsets": "3212,3286,3370,3442,3545,3623,3755,3890,4075,4201,4334"
-                    }
-                },
-                {
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\9f8c6bf6d6cfede505145b0a0a600913\\appcompat-1.2.0\\res\\values-lt\\values-lt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
@@ -52,6 +35,23 @@
                         "startOffsets": "2874,2947,4339,4416,4747,4916,5001",
                         "endColumns": "72,88,76,145,168,84,80",
                         "endOffsets": "2942,3031,4411,4557,4911,4996,5077"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\47931dc4706474d8e63f12c93770daf3\\jetified-mapbox-android-sdk-9.5.0\\res\\values-lt\\values-lt.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,236,310,394,466,569,647,779,914,1099,1225",
+                        "endColumns": "180,73,83,71,102,77,131,134,184,125,132",
+                        "endOffsets": "231,305,389,461,564,642,774,909,1094,1220,1353"
+                    },
+                    "to": {
+                        "startLines": "31,32,33,34,35,36,37,38,39,40,41",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3036,3217,3291,3375,3447,3550,3628,3760,3895,4080,4206",
+                        "endColumns": "180,73,83,71,102,77,131,134,184,125,132",
+                        "endOffsets": "3212,3286,3370,3442,3545,3623,3755,3890,4075,4201,4334"
                     }
                 },
                 {

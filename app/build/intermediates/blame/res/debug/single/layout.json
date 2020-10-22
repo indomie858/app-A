@@ -8,12 +8,12 @@
         "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\fragment_tutorial.xml"
     },
     {
-        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map_with_nav.xml",
-        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_map_with_nav.xml"
-    },
-    {
         "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_home.xml",
         "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_navigation_map_route.xml",
+        "source": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\src\\main\\res\\layout\\activity_navigation_map_route.xml"
     },
     {
         "merged": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\nav_list_activity.xml",

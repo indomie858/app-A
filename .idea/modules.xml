@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="appa/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/appa.iml" filepath="$PROJECT_DIR$/.idea/modules/appa.iml" group="appa" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/appa-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/appa-app.iml" group="appa/app" />
     </modules>
   </component>
 </project>

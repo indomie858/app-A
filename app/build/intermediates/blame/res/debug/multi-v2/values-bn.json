@@ -4,40 +4,6 @@
             "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\1d5960e0c6b211f7a43f89d0ff8f599f\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-bn\\values-bn.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,123,193,281,361,427,492,552,614,660,717,772",
-                        "endColumns": "67,69,87,79,65,64,59,61,45,56,54,41",
-                        "endOffsets": "118,188,276,356,422,487,547,609,655,712,767,809"
-                    },
-                    "to": {
-                        "startLines": "31,32,33,36,37,38,39,40,41,45,46,50",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2969,3037,3107,3337,3417,3483,3548,3608,3670,4016,4073,4485",
-                        "endColumns": "67,69,87,79,65,64,59,61,45,56,54,41",
-                        "endOffsets": "3032,3102,3190,3412,3478,3543,3603,3665,3711,4068,4123,4522"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\84cefc42239aa0bf117f2329f27606b6\\jetified-mapbox-android-navigation-0.42.6\\res\\values-bn\\values-bn.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,117,175",
-                        "endColumns": "61,57,71",
-                        "endOffsets": "112,170,242"
-                    },
-                    "to": {
-                        "startLines": "29,34,43",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "2835,3195,3795",
-                        "endColumns": "61,57,71",
-                        "endOffsets": "2892,3248,3862"
-                    }
-                },
-                {
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\b4f0042a3a61da58666340ef7b57ac58\\preference-1.1.1\\res\\values-bn\\values-bn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
@@ -47,11 +13,11 @@
                         "endOffsets": "172,256,335,484,653,734,812"
                     },
                     "to": {
-                        "startLines": "30,35,42,44,49,51,52",
+                        "startLines": "29,30,36,37,40,41,42",
                         "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "2897,3253,3716,3867,4316,4527,4608",
+                        "startOffsets": "2835,2907,3284,3363,3700,3869,3950",
                         "endColumns": "71,83,78,148,168,80,77",
-                        "endOffsets": "2964,3332,3790,4011,4480,4603,4681"
+                        "endOffsets": "2902,2986,3358,3507,3864,3945,4023"
                     }
                 },
                 {
@@ -64,11 +30,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "48",
+                        "startLines": "39",
                         "startColumns": "4",
-                        "startOffsets": "4215",
+                        "startOffsets": "3599",
                         "endColumns": "100",
-                        "endOffsets": "4311"
+                        "endOffsets": "3695"
                     }
                 },
                 {
@@ -81,11 +47,45 @@
                         "endOffsets": "208,314,420,509,614,735,818,900,991,1084,1178,1272,1372,1465,1560,1654,1745,1836,1922,2032,2136,2239,2347,2455,2560,2725,2830,2917"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,47",
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,38",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,213,319,425,514,619,740,823,905,996,1089,1183,1277,1377,1470,1565,1659,1750,1841,1927,2037,2141,2244,2352,2460,2565,2730,4128",
+                        "startOffsets": "105,213,319,425,514,619,740,823,905,996,1089,1183,1277,1377,1470,1565,1659,1750,1841,1927,2037,2141,2244,2352,2460,2565,2730,3512",
                         "endColumns": "107,105,105,88,104,120,82,81,90,92,93,93,99,92,94,93,90,90,85,109,103,102,107,107,104,164,104,86",
-                        "endOffsets": "208,314,420,509,614,735,818,900,991,1084,1178,1272,1372,1465,1560,1654,1745,1836,1922,2032,2136,2239,2347,2455,2560,2725,2830,4210"
+                        "endOffsets": "208,314,420,509,614,735,818,900,991,1084,1178,1272,1372,1465,1560,1654,1745,1836,1922,2032,2136,2239,2347,2455,2560,2725,2830,3594"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\67c8c14afedf7b82a13b7782d71a7577\\jetified-notification-1.1.0\\res\\values-bn\\values-bn.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "64",
+                        "endOffsets": "115"
+                    },
+                    "to": {
+                        "startLines": "31",
+                        "startColumns": "4",
+                        "startOffsets": "2991",
+                        "endColumns": "64",
+                        "endOffsets": "3051"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\aa233ef5153e4079e62ee9306c787207\\jetified-ui-1.1.0\\res\\values-bn\\values-bn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,108,172,234",
+                        "endColumns": "52,63,61,48",
+                        "endOffsets": "103,167,229,278"
+                    },
+                    "to": {
+                        "startLines": "32,33,34,35",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3056,3109,3173,3235",
+                        "endColumns": "52,63,61,48",
+                        "endOffsets": "3104,3168,3230,3279"
                     }
                 }
             ]

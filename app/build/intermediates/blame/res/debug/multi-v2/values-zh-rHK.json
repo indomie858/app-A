@@ -4,23 +4,6 @@
             "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\8841685b461319401495351be26ddf2a\\jetified-mapbox-android-sdk-8.5.1\\res\\values-zh-rHK\\values-zh-rHK.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,136,236,305,373,442,517,604,709,790,883,968,1082,1142",
-                        "endColumns": "80,99,68,67,68,74,86,104,80,92,84,113,59,64",
-                        "endOffsets": "131,231,300,368,437,512,599,704,785,878,963,1077,1137,1202"
-                    },
-                    "to": {
-                        "startLines": "31,32,33,34,35,36,37,38,39,40,41,42,43,44",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2813,2894,2994,3063,3131,3200,3275,3362,3467,3548,3641,3726,3840,3900",
-                        "endColumns": "80,99,68,67,68,74,86,104,80,92,84,113,59,64",
-                        "endOffsets": "2889,2989,3058,3126,3195,3270,3357,3462,3543,3636,3721,3835,3895,3960"
-                    }
-                },
-                {
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\9f8c6bf6d6cfede505145b0a0a600913\\appcompat-1.2.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
@@ -69,6 +52,23 @@
                         "startOffsets": "2666,2732,3965,4034,4333,4501,4580",
                         "endColumns": "65,80,68,118,167,78,75",
                         "endOffsets": "2727,2808,4029,4148,4496,4575,4651"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\47931dc4706474d8e63f12c93770daf3\\jetified-mapbox-android-sdk-9.5.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,136,236,305,373,442,517,604,709,790,883,968,1082,1142",
+                        "endColumns": "80,99,68,67,68,74,86,104,80,92,84,113,59,64",
+                        "endOffsets": "131,231,300,368,437,512,599,704,785,878,963,1077,1137,1202"
+                    },
+                    "to": {
+                        "startLines": "31,32,33,34,35,36,37,38,39,40,41,42,43,44",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2813,2894,2994,3063,3131,3200,3275,3362,3467,3548,3641,3726,3840,3900",
+                        "endColumns": "80,99,68,67,68,74,86,104,80,92,84,113,59,64",
+                        "endOffsets": "2889,2989,3058,3126,3195,3270,3357,3462,3543,3636,3721,3835,3895,3960"
                     }
                 }
             ]
