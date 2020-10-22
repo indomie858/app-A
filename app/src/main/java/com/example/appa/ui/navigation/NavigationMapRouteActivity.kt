@@ -43,8 +43,6 @@ import java.util.*
  * For reference, view https://github.com/mapbox/mapbox-navigation-android/blob/master/examples/src/main/java/com/mapbox/navigation/examples/core/NavigationMapRouteActivity.java
  */
 class NavigationMapRouteActivity : AppCompatActivity(), OnMapReadyCallback, OnMapLongClickListener {
-
-
     private var mapboxMap: MapboxMap? = null
     private var navigationMapRoute: NavigationMapRoute? = null
     private var mapboxNavigation: MapboxNavigation? = null
