@@ -7,7 +7,6 @@
     tools:context=".ui.home.HomeFragment"
     >
 
-
     <Button
         android:id="@+id/connect_button"
         android:layout_width="match_parent"
