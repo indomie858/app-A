@@ -2,39 +2,18 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/navigationLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:mapbox_uiAttribution="false"
-        app:mapbox_uiCompass="true"
-        app:mapbox_uiCompassGravity="bottom|left"
-        app:mapbox_uiCompassMarginBottom="110dp"
-        app:mapbox_uiCompassMarginLeft="16dp"
+        app:mapbox_uiCompass="false"
         app:mapbox_uiLogo="false" />
-
-
-    <ImageView
-        android:id="@+id/screenshotView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        tools:ignore="ContentDescription" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/startNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
-        android:text="@string/start_navigation"
-        android:textColor="@android:color/white"
-        android:visibility="gone"
-        tools:visibility="visible" />
 
     <com.mapbox.navigation.ui.summary.SummaryBottomSheet
         android:id="@+id/summaryBottomSheet"
@@ -53,12 +32,18 @@
         app:layout_anchor="@id/summaryBottomSheet"
         app:layout_anchorGravity="top|right" />
 
-
-    <com.mapbox.navigation.ui.instruction.InstructionView
-        android:id="@+id/instructionView"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top"
-        android:visibility="invisible"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@color/colorPrimary"
+        android:text="@string/start_navigation"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
