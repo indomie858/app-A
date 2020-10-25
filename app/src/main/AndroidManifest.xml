@@ -19,7 +19,13 @@
             android:exported="true" />
         <activity
             android:name=".ui.navigation.InstructionViewActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.navigation.DirectionsActivity"
             android:exported="true" />
@@ -29,11 +35,11 @@
         <activity
             android:name=".ui.navigation.CustomDirectionsActivity"
             android:exported="true">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.ACTION_VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".ui.MapActivity"

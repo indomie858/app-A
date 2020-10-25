@@ -13,6 +13,8 @@ import android.view.View.VISIBLE
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
@@ -48,10 +50,14 @@ import com.mapbox.navigation.core.trip.session.TripSessionState
 import com.mapbox.navigation.core.trip.session.TripSessionStateObserver
 import com.mapbox.navigation.core.trip.session.VoiceInstructionsObserver
 import com.example.appa.R
+import com.example.appa.db.PlaceEntity
+import com.example.appa.viewmodel.MapWithNavViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.geojson.Point
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener
 import com.mapbox.mapboxsdk.location.modes.CameraMode
+import com.mapbox.navigation.base.internal.route.RouteUrl
 import com.mapbox.navigation.ui.NavigationButton
 import com.mapbox.navigation.ui.NavigationConstants
 import com.mapbox.navigation.ui.SoundButton
@@ -87,6 +93,10 @@ class InstructionViewActivity :
         OnMapReadyCallback,
         FeedbackBottomSheetListener {
 
+    private lateinit var viewModel: MapWithNavViewModel
+    private var currentPlace: PlaceEntity? = null
+    private var currentPlaceID: Int? = null
+
     private var mapboxNavigation: MapboxNavigation? = null
     private var navigationMapboxMap: NavigationMapboxMap? = null
     private lateinit var speechPlayer: NavigationSpeechPlayer
@@ -114,6 +124,9 @@ class InstructionViewActivity :
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
+        viewModel = ViewModelProvider(this)[MapWithNavViewModel::class.java]
+        setPlaceFromIntent()
+
         val mapboxNavigationOptions = MapboxNavigation
                 .defaultNavigationOptionsBuilder(this, getString(R.string.mapbox_access_token))
                 .locationEngine(getLocationEngine())
@@ -130,6 +143,16 @@ class InstructionViewActivity :
         initializeSpeechPlayer()
     }
 
+    private fun setPlaceFromIntent() {
+        // Get the intent, apply it to the current place ID,
+        val intent = intent
+        currentPlaceID = intent.getIntExtra("NewPlace", 1)
+        val placeEntityObserver = Observer<PlaceEntity> { placeEntity ->
+            currentPlace = placeEntity
+        }
+        viewModel.getPlaceFromID(currentPlaceID).observeForever(placeEntityObserver)
+    }
+
     override fun onStart() {
         super.onStart()
         mapView.onStart()
@@ -143,6 +166,7 @@ class InstructionViewActivity :
     public override fun onResume() {
         super.onResume()
         mapView.onResume()
+        setPlaceFromIntent()
     }
 
     override fun onStop() {
@@ -203,49 +227,59 @@ class InstructionViewActivity :
     }
 
     @SuppressLint("MissingPermission")
+    private fun initializeLocationComponent(mapboxMap: MapboxMap, style: Style) {
+        val activationOptions = LocationComponentActivationOptions.builder(this, style)
+                .useDefaultLocationEngine(false)
+                .build()
+        mapboxMap.locationComponent.activateLocationComponent(activationOptions)
+        mapboxMap.locationComponent.isLocationComponentEnabled = true
+        mapboxMap.locationComponent.renderMode = RenderMode.COMPASS
+        mapboxMap.locationComponent.cameraMode = CameraMode.TRACKING
+    }
+
+    @SuppressLint("MissingPermission")
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
         mapboxMap.setStyle(Style.MAPBOX_STREETS) {
+            initializeLocationComponent(mapboxMap, it)
             mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(15.0))
             navigationMapboxMap = NavigationMapboxMap(mapView, mapboxMap, this, true)
 
             when (directionRoute) {
-                    null -> {
-                            if (shouldSimulateRoute()) {
-                                    mapboxNavigation?.registerRouteProgressObserver(ReplayProgressObserver(mapboxReplayer))
-                                    mapboxReplayer.pushRealLocation(this, 0.0)
-                                    mapboxReplayer.play()
-                            }
-                            mapboxNavigation
-                                    ?.navigationOptions
-                                    ?.locationEngine
-                                    ?.getLastLocation(locationListenerCallback)
-                            Snackbar.make(container, R.string.msg_long_press_map_to_place_waypoint, LENGTH_SHORT).show()
+                null -> {
+                    if (shouldSimulateRoute()) {
+                        mapboxNavigation?.registerRouteProgressObserver(ReplayProgressObserver(mapboxReplayer))
+                        mapboxReplayer.pushRealLocation(this, 0.0)
+                        mapboxReplayer.play()
                     }
+                    mapboxNavigation
+                            ?.navigationOptions
+                            ?.locationEngine
+                            ?.getLastLocation(locationListenerCallback)
+                    //Snackbar.make(container, R.string.msg_long_press_map_to_place_waypoint, LENGTH_SHORT).show()
+
+                    if (currentPlace != null) {
+                        val destinationLong = currentPlace!!.longitude.toDouble()
+                        val destinationLat = currentPlace!!.latitude.toDouble()
+                        val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
+                        val originLong = mapboxMap.locationComponent.lastKnownLocation!!.longitude
+                        val originLat = mapboxMap.locationComponent.lastKnownLocation!!.latitude
+                        val originPoint = Point.fromLngLat(originLong, originLat);
+
+                        mapboxNavigation?.requestRoutes(
+                                RouteOptions.builder()
+                                        .applyDefaultParams()
+                                        .profile(RouteUrl.PROFILE_WALKING)
+                                        .accessToken(getString(R.string.mapbox_access_token))
+                                        .coordinates(listOf(originPoint, destinationPoint))
+                                        .build(), routesReqCallback
+                        )
+                    }
+                }
                 else -> restoreNavigation()
             }
         }
-
-        mapboxMap.addOnMapLongClickListener { latLng ->
-            destination = latLng
-            mapboxMap.locationComponent.lastKnownLocation?.let { originLocation ->
-                mapboxNavigation?.requestRoutes(
-                        RouteOptions.builder().applyDefaultParams()
-                                .accessToken(getString(R.string.mapbox_access_token))
-                                .coordinates(originLocation.toPoint(), null, latLng.toPoint())
-                                .alternatives(true)
-                                .profile(DirectionsCriteria.PROFILE_WALKING)
-                                .build(),
-                        routesReqCallback
-                )
-            }
-            true
-        }
     }
-
-    // These are nice functions to have to deal with locations and latng conversions to points
-    fun Location.toPoint(): Point = Point.fromLngLat(this.longitude, this.latitude)
-    fun LatLng.toPoint(): Point = Point.fromLngLat(this.longitude, this.latitude)
 
     // InstructionView Feedback Bottom Sheet listener
     override fun onFeedbackDismissed() {
@@ -435,23 +469,23 @@ class InstructionViewActivity :
 
     private fun updateViews(tripSessionState: TripSessionState) {
         when (tripSessionState) {
-                TripSessionState.STARTED -> {
-                        startNavigation.visibility = GONE
-                        summaryBottomSheet.visibility = VISIBLE
-                        recenterBtn.hide()
-                        instructionView.visibility = VISIBLE
-                        feedbackButton?.show()
-                        instructionSoundButton?.show()
-                }
-                TripSessionState.STOPPED -> {
-                        startNavigation.visibility = VISIBLE
-                        startNavigation.isEnabled = false
-                        summaryBottomSheet.visibility = GONE
-                        recenterBtn.hide()
-                        instructionView.visibility = GONE
-                        feedbackButton?.hide()
-                        instructionSoundButton?.hide()
-                }
+            TripSessionState.STARTED -> {
+                startNavigation.visibility = GONE
+                summaryBottomSheet.visibility = VISIBLE
+                recenterBtn.hide()
+                instructionView.visibility = VISIBLE
+                feedbackButton?.show()
+                instructionSoundButton?.show()
+            }
+            TripSessionState.STOPPED -> {
+                startNavigation.visibility = VISIBLE
+                startNavigation.isEnabled = false
+                summaryBottomSheet.visibility = GONE
+                recenterBtn.hide()
+                instructionView.visibility = GONE
+                feedbackButton?.hide()
+                instructionSoundButton?.hide()
+            }
         }
     }
 
@@ -493,16 +527,16 @@ class InstructionViewActivity :
     private val tripSessionStateObserver = object : TripSessionStateObserver {
         override fun onSessionStateChanged(tripSessionState: TripSessionState) {
             when (tripSessionState) {
-                    TripSessionState.STARTED -> {
-                            updateViews(TripSessionState.STARTED)
-                            stopLocationUpdates()
-                    }
-                    TripSessionState.STOPPED -> {
-                            updateViews(TripSessionState.STOPPED)
-                            startLocationUpdates()
-                            navigationMapboxMap?.hideRoute()
-                            updateCameraOnNavigationStateChange(false)
-                    }
+                TripSessionState.STARTED -> {
+                    updateViews(TripSessionState.STARTED)
+                    stopLocationUpdates()
+                }
+                TripSessionState.STOPPED -> {
+                    updateViews(TripSessionState.STOPPED)
+                    startLocationUpdates()
+                    navigationMapboxMap?.hideRoute()
+                    updateCameraOnNavigationStateChange(false)
+                }
             }
         }
     }
@@ -559,7 +593,7 @@ class InstructionViewActivity :
     // This is used for testing purposes.
     private fun shouldSimulateRoute(): Boolean {
         return PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
-                .getBoolean(this.getString(R.string.simulate_route_key), true)
+                .getBoolean(this.getString(R.string.simulate_route_key), false)
     }
 
     // If shouldSimulateRoute is true a ReplayRouteLocationEngine will be used which is intended
