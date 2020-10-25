@@ -43,16 +43,22 @@ public class MainActivity extends AppCompatActivity {
                     fm.beginTransaction().hide(active).show(homeFragment).commit();
                     actionbar.setTitle("Home");
                     active = homeFragment;
+                    backButtonFlag = false;
+                    counter = 0;
                     break;
                 case R.id.settings_button:
                     fm.beginTransaction().hide(active).show(settingsFragment).commit();
                     actionbar.setTitle("Settings");
                     active = settingsFragment;
+                    backButtonFlag = true;
+                    counter = 0;
                     break;
                 case R.id.tutorial_button:
                     fm.beginTransaction().hide(active).show(tutorialFragment).commit();
                     actionbar.setTitle("Tutorial");
                     active = tutorialFragment;
+                    backButtonFlag = true;
+                    counter = 0;
                     break;
                 case R.id.assistant_button:
 
