@@ -141,6 +141,6 @@ class HomeFragmentTest {
 
         // EXIT APP
         pressBack()
-        pressBack()
+
     }
 }
