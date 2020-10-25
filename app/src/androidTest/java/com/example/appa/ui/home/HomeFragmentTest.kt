@@ -76,4 +76,71 @@ class HomeFragmentTest {
         // VERIFY
         onView(withId(R.id.homeFragment_parent)).check(matches(isDisplayed()))
     }
+
+    @Test
+    fun navigateBluetoothButtonTest() {
+
+        // SETUP
+        val mainActivityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        // VERIFY
+        onView(withId(R.id.connect_button)).check(matches(isDisplayed()))
+
+        // ACTION
+        onView(withId(R.id.connect_button)).perform(click())
+
+        // NAVIGATE
+        pressBack()
+
+        // VERIFY
+        onView(withId(R.id.homeFragment_parent)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun navigateDirectoryButtonTest() {
+
+        // SETUP
+        val mainActivityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        // VERIFY
+        onView(withId(R.id.directory_button)).check(matches(isDisplayed()))
+
+        // ACTION
+        onView(withId(R.id.directory_button)).perform(click())
+
+        // NAVIGATE
+        pressBack()
+
+        // VERIFY
+        onView(withId(R.id.homeFragment_parent)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun navigateNavigationButtonTest() {
+
+        // SETUP
+        val mainActivityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        // VERIFY
+        onView(withId(R.id.navigation_button)).check(matches(isDisplayed()))
+
+        // ACTION
+        onView(withId(R.id.navigation_button)).perform(click())
+
+        // NAVIGATE
+        pressBack()
+
+        // VERIFY
+        onView(withId(R.id.homeFragment_parent)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun exitAppTest() {
+        // SETUP
+        val mainActivityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        // EXIT APP
+        pressBack()
+        pressBack()
+    }
 }
