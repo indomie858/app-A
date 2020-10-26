@@ -262,10 +262,18 @@ class InstructionViewActivity :
                         val destinationLong = currentPlace!!.longitude.toDouble()
                         val destinationLat = currentPlace!!.latitude.toDouble()
                         val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
-                        val originLong = mapboxMap.locationComponent.lastKnownLocation!!.longitude
-                        val originLat = mapboxMap.locationComponent.lastKnownLocation!!.latitude
-                        val originPoint = Point.fromLngLat(originLong, originLat);
-
+                        val originLong: Double
+                        val originLat: Double
+                        val originPoint: Point
+                        if (shouldSimulateRoute()){ //choose CSUN coordinates for simulation/testing
+                            originLong = -118.527645
+                            originLat = 34.2410366
+                            originPoint = Point.fromLngLat(originLong, originLat)
+                        } else {
+                            originLong = mapboxMap.locationComponent.lastKnownLocation!!.longitude
+                            originLat = mapboxMap.locationComponent.lastKnownLocation!!.latitude
+                            originPoint = Point.fromLngLat(originLong, originLat);
+                        }
                         mapboxNavigation?.requestRoutes(
                                 RouteOptions.builder()
                                         .applyDefaultParams()
