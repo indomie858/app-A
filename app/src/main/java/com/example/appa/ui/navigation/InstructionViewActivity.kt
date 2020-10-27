@@ -75,7 +75,6 @@ import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_instruction_view_layout.*
 import kotlinx.android.synthetic.main.activity_instruction_view_layout.mapView
 import kotlinx.android.synthetic.main.activity_instruction_view_layout.recenterBtn
-import kotlinx.android.synthetic.main.activity_instruction_view_layout.startNavigation
 import kotlinx.android.synthetic.main.activity_instruction_view_layout.summaryBottomSheet
 import kotlinx.android.synthetic.main.activity_summary_bottom_sheet.*
 import okhttp3.Cache
@@ -167,7 +166,7 @@ class InstructionViewActivity :
         super.onResume()
         mapView.onResume()
         setPlaceFromIntent()
-
+        beginNavigation()
     }
 
     override fun onStop() {
@@ -336,8 +335,7 @@ class InstructionViewActivity :
     }
 
 
-    // Calling this function starts the navigation
-    // On the currently selected location.
+    // Call this function to initiate navigation.
     @SuppressLint("MissingPermission")
     private fun beginNavigation() {
         updateCameraOnNavigationStateChange(true)
@@ -351,16 +349,6 @@ class InstructionViewActivity :
 
     @SuppressLint("MissingPermission")
     private fun initListeners() {
-        startNavigation.setOnClickListener {
-            updateCameraOnNavigationStateChange(true)
-            navigationMapboxMap?.addOnCameraTrackingChangedListener(cameraTrackingChangedListener)
-            navigationMapboxMap?.addProgressChangeListener(mapboxNavigation!!)
-            if (mapboxNavigation?.getRoutes()?.isNotEmpty() == true) {
-                navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
-            }
-            mapboxNavigation?.startTripSession()
-        }
-
         summaryBehavior.setBottomSheetCallback(bottomSheetCallback)
 
         routeOverviewButton.setOnClickListener {
@@ -453,8 +441,6 @@ class InstructionViewActivity :
     }
 
     private fun initViews() {
-        startNavigation.visibility = VISIBLE
-        startNavigation.isEnabled = false
 
         summaryBottomSheet.visibility = GONE
         summaryBehavior = BottomSheetBehavior.from(summaryBottomSheet).apply {
@@ -494,16 +480,12 @@ class InstructionViewActivity :
     private fun updateViews(tripSessionState: TripSessionState) {
         when (tripSessionState) {
             TripSessionState.STARTED -> {
-                startNavigation.visibility = GONE
-                summaryBottomSheet.visibility = VISIBLE
                 recenterBtn.hide()
                 instructionView.visibility = VISIBLE
                 feedbackButton?.show()
                 instructionSoundButton?.show()
             }
             TripSessionState.STOPPED -> {
-                startNavigation.visibility = VISIBLE
-                startNavigation.isEnabled = false
                 summaryBottomSheet.visibility = GONE
                 recenterBtn.hide()
                 instructionView.visibility = GONE
@@ -532,10 +514,6 @@ class InstructionViewActivity :
             if (routes.isNotEmpty()) {
                 directionRoute = routes[0]
                 navigationMapboxMap?.drawRoute(routes[0])
-                startNavigation.visibility = VISIBLE
-                startNavigation.isEnabled = true
-            } else {
-                startNavigation.isEnabled = false
             }
         }
 
