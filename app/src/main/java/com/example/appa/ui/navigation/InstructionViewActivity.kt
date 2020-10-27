@@ -259,25 +259,34 @@ class InstructionViewActivity :
                             ?.getLastLocation(locationListenerCallback)
                     // Snackbar.make(container, R.string.msg_long_press_map_to_place_waypoint, LENGTH_SHORT).show()
 
-                    if (currentPlace != null) {
-                        val destinationLong = currentPlace!!.longitude.toDouble()
-                        val destinationLat = currentPlace!!.latitude.toDouble()
-                        val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
-                        val originLong = mapboxMap.locationComponent.lastKnownLocation!!.longitude
-                        val originLat = mapboxMap.locationComponent.lastKnownLocation!!.latitude
-                        val originPoint = Point.fromLngLat(originLong, originLat);
-
-                        mapboxNavigation?.requestRoutes(
-                                RouteOptions.builder()
-                                        .applyDefaultParams()
-                                        .profile(RouteUrl.PROFILE_WALKING)
-                                        .accessToken(getString(R.string.mapbox_access_token))
-                                        .coordinates(listOf(originPoint, destinationPoint))
-                                        .build(), routesReqCallback
-                        )
-                    }
                 }
                 else -> restoreNavigation()
+            }
+
+            if (currentPlace != null) {
+                val destinationLong = currentPlace!!.longitude.toDouble()
+                val destinationLat = currentPlace!!.latitude.toDouble()
+                val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
+                val originLong: Double
+                val originLat: Double
+                val originPoint: Point
+                if (shouldSimulateRoute()){ //choose CSUN coordinates for simulation/testing
+                    originLong = -118.527645
+                    originLat = 34.2410366
+                    originPoint = Point.fromLngLat(originLong, originLat)
+                } else {
+                    originLong = mapboxMap.locationComponent.lastKnownLocation!!.longitude
+                    originLat = mapboxMap.locationComponent.lastKnownLocation!!.latitude
+                    originPoint = Point.fromLngLat(originLong, originLat);
+                }
+                mapboxNavigation?.requestRoutes(
+                        RouteOptions.builder()
+                                .applyDefaultParams()
+                                .profile(RouteUrl.PROFILE_WALKING)
+                                .accessToken(getString(R.string.mapbox_access_token))
+                                .coordinates(listOf(originPoint, destinationPoint))
+                                .build(), routesReqCallback
+                )
             }
         }
     }
