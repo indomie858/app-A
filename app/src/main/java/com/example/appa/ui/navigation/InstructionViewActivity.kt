@@ -167,6 +167,7 @@ class InstructionViewActivity :
         super.onResume()
         mapView.onResume()
         setPlaceFromIntent()
+
     }
 
     override fun onStop() {
@@ -256,7 +257,7 @@ class InstructionViewActivity :
                             ?.navigationOptions
                             ?.locationEngine
                             ?.getLastLocation(locationListenerCallback)
-                    //Snackbar.make(container, R.string.msg_long_press_map_to_place_waypoint, LENGTH_SHORT).show()
+                    // Snackbar.make(container, R.string.msg_long_press_map_to_place_waypoint, LENGTH_SHORT).show()
 
                     if (currentPlace != null) {
                         val destinationLong = currentPlace!!.longitude.toDouble()
@@ -323,6 +324,20 @@ class InstructionViewActivity :
             // Daniel: Not sure where this feedback function is defined.
             //showFeedbackSentSnackBar(context = this, view = mapView)
         }
+    }
+
+
+    // Calling this function starts the navigation
+    // On the currently selected location.
+    @SuppressLint("MissingPermission")
+    private fun beginNavigation() {
+        updateCameraOnNavigationStateChange(true)
+        navigationMapboxMap?.addOnCameraTrackingChangedListener(cameraTrackingChangedListener)
+        navigationMapboxMap?.addProgressChangeListener(mapboxNavigation!!)
+        if (mapboxNavigation?.getRoutes()?.isNotEmpty() == true) {
+            navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
+        }
+        mapboxNavigation?.startTripSession()
     }
 
     @SuppressLint("MissingPermission")
