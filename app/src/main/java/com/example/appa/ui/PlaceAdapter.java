@@ -69,11 +69,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         // Attach this listener to every button,
         // which will set the view model for the direction activity
         // then launch that activity.
-        holder.binding.getRoot().findViewById(R.id.app_manual_btn).setOnClickListener(new View.OnClickListener() {
+        holder.binding.getRoot().findViewById(R.id.place_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context viewContext = v.getContext();
-                Toast.makeText(viewContext, holder.binding.getPlace().getName(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(viewContext, InstructionViewActivity.class);
                 intent.putExtra("NewPlace", currentPlace.getId());
                 viewContext.startActivity(intent);
