@@ -13,26 +13,26 @@ public class PlaceTileBindingImpl extends PlaceTileBinding  {
     private static final android.util.SparseIntArray sViewsWithIds;
     static {
         sIncludes = null;
-        sViewsWithIds = null;
+        sViewsWithIds = new android.util.SparseIntArray();
+        sViewsWithIds.put(R.id.button, 2);
     }
     // views
-    @NonNull
-    private final androidx.cardview.widget.CardView mboundView0;
     // variables
     // values
     // listeners
     // Inverse Binding Event Handlers
 
     public PlaceTileBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 2, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 3, sIncludes, sViewsWithIds));
     }
     private PlaceTileBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.Button) bindings[1]
+            , (android.widget.Button) bindings[2]
+            , (androidx.cardview.widget.CardView) bindings[0]
+            , (android.widget.TextView) bindings[1]
             );
-        this.appManualBtn.setTag(null);
-        this.mboundView0 = (androidx.cardview.widget.CardView) bindings[0];
-        this.mboundView0.setTag(null);
+        this.placeCard.setTag(null);
+        this.textView2.setTag(null);
         setRootTag(root);
         // listeners
         invalidateAll();
@@ -107,7 +107,7 @@ public class PlaceTileBindingImpl extends PlaceTileBinding  {
         if ((dirtyFlags & 0x3L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.appManualBtn, placeName);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.textView2, placeName);
         }
     }
     // Listener Stub Implementations

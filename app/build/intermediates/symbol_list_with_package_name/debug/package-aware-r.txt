@@ -60,7 +60,6 @@ array entry_values_preference_textSize
 array locations_categories_array
 array reply_entries
 array reply_values
-<<<<<<< HEAD
 array routeLineCasingScaleMultiplierArray
 array routeLineCasingScaleStopsArray
 array routeLineCasingScalesArray
@@ -70,10 +69,8 @@ array routeLineScalesArray
 array routeLineTrafficScaleMultiplierArray
 array routeLineTrafficScaleStopsArray
 array routeLineTrafficScalesArray
-=======
 array theme_names_array
 array theme_values_array
->>>>>>> settings
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -1547,6 +1544,7 @@ dimen appcompat_dialog_background_inset
 dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
 dimen cardview_default_radius
+dimen cardview_margin_vertical
 dimen compat_button_inset_horizontal_material
 dimen compat_button_inset_vertical_material
 dimen compat_button_padding_horizontal_material
@@ -1968,21 +1966,12 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_action_bluetooth_off
+drawable ic_action_bluetooth_on
 drawable ic_arrow_down_24dp
 drawable ic_baseline_arrow_back_24
 drawable ic_baseline_map_24
-<<<<<<< HEAD
-=======
-drawable ic_circle
-drawable ic_clear
-drawable ic_close
 drawable ic_color_lens
-drawable ic_confusing_directions
-drawable ic_confusing_directions_filled
-drawable ic_confusing_directions_unfilled
-drawable ic_exit_arrow_left
-drawable ic_exit_arrow_right
->>>>>>> settings
 drawable ic_home_24px
 drawable ic_keyboard_voice_24px
 drawable ic_launcher_background
@@ -2105,6 +2094,7 @@ drawable tooltip_frame_light
 id ALT
 id BOTTOM_END
 id BOTTOM_START
+id BTListOfDevices
 id CTRL
 id FUNCTION
 id META
@@ -2183,7 +2173,6 @@ id always
 id animateToEnd
 id animateToStart
 id appBarLayout
-id app_manual_btn
 id arrivalTimeText
 id asConfigured
 id assistant_button
@@ -2200,6 +2189,8 @@ id blocking
 id bottom
 id bottom_navigation
 id bounce
+id bt_connect_dialog
+id button
 id buttonLayout
 id buttonPanel
 id cache_measures
@@ -2229,7 +2220,6 @@ id container
 id content
 id contentPanel
 id coordinator
-id coordinatorLayout2
 id cos
 id custom
 id customPanel
@@ -2250,6 +2240,7 @@ id design_navigation_view
 id dialog_button
 id dimensions
 id direct
+id directoryFragment_parent
 id directory_button
 id disableHome
 id disablePostScroll
@@ -2317,6 +2308,7 @@ id guideline
 id hideable
 id home
 id homeAsUp
+id homeFragment_parent
 id home_button
 id honorRequest
 id icon
@@ -2394,6 +2386,7 @@ id navigationCollapsedNotificationLayout
 id navigationExpandedNotificationLayout
 id navigationIssueItems
 id navigationLayout
+id navigationLayout_parent
 id navigationMapView
 id navigation_button
 id navigation_header_container
@@ -2424,6 +2417,7 @@ id pathRelative
 id peekHeight
 id percent
 id pin
+id place_card
 id place_list
 id place_search
 id position
@@ -2505,6 +2499,7 @@ id src_over
 id standard
 id start
 id startHorizontal
+id startNavigation
 id startNavigationButton
 id startVertical
 id staticLayout
@@ -2544,6 +2539,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView
+id textView2
 id textWatcher
 id text_input_end_icon
 id text_input_start_icon
@@ -2574,6 +2570,7 @@ id transition_transform
 id triangle
 id turnLaneLayout
 id turnLaneView
+id tutorialFragment_parent
 id tutorial_button
 id tutorial_tabs
 id unchecked
@@ -2653,11 +2650,13 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_bluetooth_connect_acitvity
 layout activity_directions
+layout activity_instruction_view_layout
 layout activity_main
 layout activity_map
 layout activity_navigation_map_route
+layout activity_summary_bottom_sheet
+layout bluetooth_connect_dialog
 layout content_main
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -2844,12 +2843,11 @@ string clear_text_end_icon_content_description
 string connect_appa
 string content_description_map
 string copy
-<<<<<<< HEAD
+string dark_theme_name
+string dark_theme_value
 string default_locale
 string default_route_profile
 string default_unit_type
-string default_value_preference_textSize
-string default_value_preference_theme
 string description_basic_navigation_fragment
 string description_basic_navigation_kotlin
 string description_basic_navigation_sdk_only_kotlin
@@ -2879,31 +2877,16 @@ string description_simple_navigation_kotlin
 string description_summary_bottom_sheet
 string description_traffic_toggle
 string description_ui_building_extrusions_kotlin
-=======
-string dark_theme_name
-string dark_theme_value
->>>>>>> settings
 string directory
 string error_icon_content_description
 string expand_button_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
-<<<<<<< HEAD
-string general_category_title
-string git_hash_key
-=======
-string feedback_bad_route
-string feedback_confusing_instruction
-string feedback_missing_exit
-string feedback_missing_road
-string feedback_not_allowed
-string feedback_road_closure
-string feedback_submitted
-string feet
 string follow_system_name
 string follow_system_value
->>>>>>> settings
+string general_category_title
+string git_hash_key
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string history_failed_to_load_item
@@ -2914,14 +2897,10 @@ string home_nav
 string home_title
 string icon_content_description
 string item_view_role_description
-<<<<<<< HEAD
 string language
 string language_key
-=======
-string kilometers
 string light_theme_name
 string light_theme_value
->>>>>>> settings
 string location_list
 string map
 string mapbox_access_token
@@ -3063,13 +3042,9 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string play_history
 string preference_copied
-<<<<<<< HEAD
-string replay_playback_speed_seekbar
-=======
 string preference_key_theme
 string preference_theme_title
-string re_center
->>>>>>> settings
+string replay_playback_speed_seekbar
 string reply_title
 string resource_links
 string route_profile
@@ -3094,8 +3069,6 @@ string sync_header
 string sync_title
 string title_activity_map
 string title_activity_navigation_list
-<<<<<<< HEAD
-string title_activity_settings
 string title_basic_navigation_fragment
 string title_basic_navigation_kotlin
 string title_basic_navigation_sdk_only_kotlin
@@ -3126,8 +3099,6 @@ string title_simple_navigation_kotlin
 string title_summary_bottom_sheet
 string title_traffic_toggle
 string title_ui_building_extrusions_kotlin
-=======
->>>>>>> settings
 string tutorial_body
 string tutorial_header
 string tutorial_nav

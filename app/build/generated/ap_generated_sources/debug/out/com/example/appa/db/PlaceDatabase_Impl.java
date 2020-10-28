@@ -30,9 +30,9 @@ public final class PlaceDatabase_Impl extends PlaceDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `place_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `description` TEXT, `latitude` REAL, `longitude` REAL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `place_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `description` TEXT, `latitude` REAL, `longitude` REAL, `categories` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6e1a62dc276b58303dee15b3a69b8134')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '851e2ff92da36369818bca8f82a9b670')");
       }
 
       @Override
@@ -76,12 +76,13 @@ public final class PlaceDatabase_Impl extends PlaceDatabase {
 
       @Override
       protected RoomOpenHelper.ValidationResult onValidateSchema(SupportSQLiteDatabase _db) {
-        final HashMap<String, TableInfo.Column> _columnsPlaceTable = new HashMap<String, TableInfo.Column>(5);
+        final HashMap<String, TableInfo.Column> _columnsPlaceTable = new HashMap<String, TableInfo.Column>(6);
         _columnsPlaceTable.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPlaceTable.put("name", new TableInfo.Column("name", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPlaceTable.put("description", new TableInfo.Column("description", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPlaceTable.put("latitude", new TableInfo.Column("latitude", "REAL", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPlaceTable.put("longitude", new TableInfo.Column("longitude", "REAL", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsPlaceTable.put("categories", new TableInfo.Column("categories", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysPlaceTable = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesPlaceTable = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoPlaceTable = new TableInfo("place_table", _columnsPlaceTable, _foreignKeysPlaceTable, _indicesPlaceTable);
@@ -93,7 +94,7 @@ public final class PlaceDatabase_Impl extends PlaceDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "6e1a62dc276b58303dee15b3a69b8134", "df6ca0928a3dab497c1d89368f644e9a");
+    }, "851e2ff92da36369818bca8f82a9b670", "9033b592457f9091761efb1b58b5ff22");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)

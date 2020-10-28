@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
@@ -17,15 +19,23 @@ import java.lang.Object;
 
 public abstract class PlaceTileBinding extends ViewDataBinding {
   @NonNull
-  public final Button appManualBtn;
+  public final Button button;
+
+  @NonNull
+  public final CardView placeCard;
+
+  @NonNull
+  public final TextView textView2;
 
   @Bindable
   protected Place mPlace;
 
   protected PlaceTileBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      Button appManualBtn) {
+      Button button, CardView placeCard, TextView textView2) {
     super(_bindingComponent, _root, _localFieldCount);
-    this.appManualBtn = appManualBtn;
+    this.button = button;
+    this.placeCard = placeCard;
+    this.textView2 = textView2;
   }
 
   public abstract void setPlace(@Nullable Place place);

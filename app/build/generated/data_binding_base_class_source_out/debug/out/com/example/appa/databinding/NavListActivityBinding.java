@@ -27,6 +27,9 @@ public final class NavListActivityBinding implements ViewBinding {
   public final AppBarLayout appBarLayout;
 
   @NonNull
+  public final ConstraintLayout directoryFragmentParent;
+
+  @NonNull
   public final LinearLayout linearLayout2;
 
   @NonNull
@@ -42,11 +45,13 @@ public final class NavListActivityBinding implements ViewBinding {
   public final MaterialToolbar topAppBar;
 
   private NavListActivityBinding(@NonNull ConstraintLayout rootView,
-      @NonNull AppBarLayout appBarLayout, @NonNull LinearLayout linearLayout2,
-      @NonNull Spinner locationCatSpinner, @NonNull RecyclerView placeList,
-      @NonNull SearchView placeSearch, @NonNull MaterialToolbar topAppBar) {
+      @NonNull AppBarLayout appBarLayout, @NonNull ConstraintLayout directoryFragmentParent,
+      @NonNull LinearLayout linearLayout2, @NonNull Spinner locationCatSpinner,
+      @NonNull RecyclerView placeList, @NonNull SearchView placeSearch,
+      @NonNull MaterialToolbar topAppBar) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
+    this.directoryFragmentParent = directoryFragmentParent;
     this.linearLayout2 = linearLayout2;
     this.locationCatSpinner = locationCatSpinner;
     this.placeList = placeList;
@@ -87,6 +92,8 @@ public final class NavListActivityBinding implements ViewBinding {
         break missingId;
       }
 
+      ConstraintLayout directoryFragmentParent = (ConstraintLayout) rootView;
+
       id = R.id.linearLayout2;
       LinearLayout linearLayout2 = rootView.findViewById(id);
       if (linearLayout2 == null) {
@@ -117,8 +124,9 @@ public final class NavListActivityBinding implements ViewBinding {
         break missingId;
       }
 
-      return new NavListActivityBinding((ConstraintLayout) rootView, appBarLayout, linearLayout2,
-          locationCatSpinner, placeList, placeSearch, topAppBar);
+      return new NavListActivityBinding((ConstraintLayout) rootView, appBarLayout,
+          directoryFragmentParent, linearLayout2, locationCatSpinner, placeList, placeSearch,
+          topAppBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

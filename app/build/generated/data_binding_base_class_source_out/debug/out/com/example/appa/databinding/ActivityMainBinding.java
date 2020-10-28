@@ -27,14 +27,18 @@ public final class ActivityMainBinding implements ViewBinding {
   public final BottomNavigationView bottomNavigation;
 
   @NonNull
+  public final ConstraintLayout homeFragmentParent;
+
+  @NonNull
   public final MaterialToolbar topAppBar;
 
   private ActivityMainBinding(@NonNull ConstraintLayout rootView,
       @NonNull AppBarLayout appBarLayout, @NonNull BottomNavigationView bottomNavigation,
-      @NonNull MaterialToolbar topAppBar) {
+      @NonNull ConstraintLayout homeFragmentParent, @NonNull MaterialToolbar topAppBar) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
     this.bottomNavigation = bottomNavigation;
+    this.homeFragmentParent = homeFragmentParent;
     this.topAppBar = topAppBar;
   }
 
@@ -77,6 +81,8 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      ConstraintLayout homeFragmentParent = (ConstraintLayout) rootView;
+
       id = R.id.topAppBar;
       MaterialToolbar topAppBar = rootView.findViewById(id);
       if (topAppBar == null) {
@@ -84,7 +90,7 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((ConstraintLayout) rootView, appBarLayout, bottomNavigation,
-          topAppBar);
+          homeFragmentParent, topAppBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

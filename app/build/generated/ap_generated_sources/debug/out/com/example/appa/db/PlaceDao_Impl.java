@@ -38,6 +38,7 @@ public final class PlaceDao_Impl implements PlaceDao {
           final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
           final int _cursorIndexOfLatitude = CursorUtil.getColumnIndexOrThrow(_cursor, "latitude");
           final int _cursorIndexOfLongitude = CursorUtil.getColumnIndexOrThrow(_cursor, "longitude");
+          final int _cursorIndexOfCategories = CursorUtil.getColumnIndexOrThrow(_cursor, "categories");
           final List<PlaceEntity> _result = new ArrayList<PlaceEntity>(_cursor.getCount());
           while(_cursor.moveToNext()) {
             final PlaceEntity _item;
@@ -59,7 +60,9 @@ public final class PlaceDao_Impl implements PlaceDao {
             } else {
               _tmpLongitude = _cursor.getFloat(_cursorIndexOfLongitude);
             }
-            _item = new PlaceEntity(_tmpId,_tmpName,_tmpDescription,_tmpLatitude,_tmpLongitude);
+            final String _tmpCategories;
+            _tmpCategories = _cursor.getString(_cursorIndexOfCategories);
+            _item = new PlaceEntity(_tmpId,_tmpName,_tmpDescription,_tmpLatitude,_tmpLongitude,_tmpCategories);
             _result.add(_item);
           }
           return _result;
@@ -95,6 +98,7 @@ public final class PlaceDao_Impl implements PlaceDao {
           final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
           final int _cursorIndexOfLatitude = CursorUtil.getColumnIndexOrThrow(_cursor, "latitude");
           final int _cursorIndexOfLongitude = CursorUtil.getColumnIndexOrThrow(_cursor, "longitude");
+          final int _cursorIndexOfCategories = CursorUtil.getColumnIndexOrThrow(_cursor, "categories");
           final PlaceEntity _result;
           if(_cursor.moveToFirst()) {
             final int _tmpId;
@@ -115,7 +119,9 @@ public final class PlaceDao_Impl implements PlaceDao {
             } else {
               _tmpLongitude = _cursor.getFloat(_cursorIndexOfLongitude);
             }
-            _result = new PlaceEntity(_tmpId,_tmpName,_tmpDescription,_tmpLatitude,_tmpLongitude);
+            final String _tmpCategories;
+            _tmpCategories = _cursor.getString(_cursorIndexOfCategories);
+            _result = new PlaceEntity(_tmpId,_tmpName,_tmpDescription,_tmpLatitude,_tmpLongitude,_tmpCategories);
           } else {
             _result = null;
           }
@@ -152,6 +158,7 @@ public final class PlaceDao_Impl implements PlaceDao {
           final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
           final int _cursorIndexOfLatitude = CursorUtil.getColumnIndexOrThrow(_cursor, "latitude");
           final int _cursorIndexOfLongitude = CursorUtil.getColumnIndexOrThrow(_cursor, "longitude");
+          final int _cursorIndexOfCategories = CursorUtil.getColumnIndexOrThrow(_cursor, "categories");
           final List<PlaceEntity> _result = new ArrayList<PlaceEntity>(_cursor.getCount());
           while(_cursor.moveToNext()) {
             final PlaceEntity _item;
@@ -173,7 +180,76 @@ public final class PlaceDao_Impl implements PlaceDao {
             } else {
               _tmpLongitude = _cursor.getFloat(_cursorIndexOfLongitude);
             }
-            _item = new PlaceEntity(_tmpId,_tmpName,_tmpDescription,_tmpLatitude,_tmpLongitude);
+            final String _tmpCategories;
+            _tmpCategories = _cursor.getString(_cursorIndexOfCategories);
+            _item = new PlaceEntity(_tmpId,_tmpName,_tmpDescription,_tmpLatitude,_tmpLongitude,_tmpCategories);
+            _result.add(_item);
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+        }
+      }
+
+      @Override
+      protected void finalize() {
+        _statement.release();
+      }
+    });
+  }
+
+  @Override
+  public LiveData<List<PlaceEntity>> searchQuery(final String searchName,
+      final String categoryName) {
+    final String _sql = "SELECT * FROM place_table WHERE name LIKE '%' || ? || '%' AND categories LIKE '%' || ? || '%'";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
+    int _argIndex = 1;
+    if (searchName == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, searchName);
+    }
+    _argIndex = 2;
+    if (categoryName == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, categoryName);
+    }
+    return __db.getInvalidationTracker().createLiveData(new String[]{"place_table"}, false, new Callable<List<PlaceEntity>>() {
+      @Override
+      public List<PlaceEntity> call() throws Exception {
+        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+        try {
+          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+          final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
+          final int _cursorIndexOfLatitude = CursorUtil.getColumnIndexOrThrow(_cursor, "latitude");
+          final int _cursorIndexOfLongitude = CursorUtil.getColumnIndexOrThrow(_cursor, "longitude");
+          final int _cursorIndexOfCategories = CursorUtil.getColumnIndexOrThrow(_cursor, "categories");
+          final List<PlaceEntity> _result = new ArrayList<PlaceEntity>(_cursor.getCount());
+          while(_cursor.moveToNext()) {
+            final PlaceEntity _item;
+            final int _tmpId;
+            _tmpId = _cursor.getInt(_cursorIndexOfId);
+            final String _tmpName;
+            _tmpName = _cursor.getString(_cursorIndexOfName);
+            final String _tmpDescription;
+            _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
+            final Float _tmpLatitude;
+            if (_cursor.isNull(_cursorIndexOfLatitude)) {
+              _tmpLatitude = null;
+            } else {
+              _tmpLatitude = _cursor.getFloat(_cursorIndexOfLatitude);
+            }
+            final Float _tmpLongitude;
+            if (_cursor.isNull(_cursorIndexOfLongitude)) {
+              _tmpLongitude = null;
+            } else {
+              _tmpLongitude = _cursor.getFloat(_cursorIndexOfLongitude);
+            }
+            final String _tmpCategories;
+            _tmpCategories = _cursor.getString(_cursorIndexOfCategories);
+            _item = new PlaceEntity(_tmpId,_tmpName,_tmpDescription,_tmpLatitude,_tmpLongitude,_tmpCategories);
             _result.add(_item);
           }
           return _result;

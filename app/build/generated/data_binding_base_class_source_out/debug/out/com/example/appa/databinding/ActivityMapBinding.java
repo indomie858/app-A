@@ -27,13 +27,18 @@ public final class ActivityMapBinding implements ViewBinding {
   public final MapView mapView;
 
   @NonNull
+  public final ConstraintLayout navigationLayoutParent;
+
+  @NonNull
   public final MaterialToolbar topAppBar;
 
   private ActivityMapBinding(@NonNull ConstraintLayout rootView, @NonNull AppBarLayout appBarLayout,
-      @NonNull MapView mapView, @NonNull MaterialToolbar topAppBar) {
+      @NonNull MapView mapView, @NonNull ConstraintLayout navigationLayoutParent,
+      @NonNull MaterialToolbar topAppBar) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
     this.mapView = mapView;
+    this.navigationLayoutParent = navigationLayoutParent;
     this.topAppBar = topAppBar;
   }
 
@@ -76,13 +81,16 @@ public final class ActivityMapBinding implements ViewBinding {
         break missingId;
       }
 
+      ConstraintLayout navigationLayoutParent = (ConstraintLayout) rootView;
+
       id = R.id.topAppBar;
       MaterialToolbar topAppBar = rootView.findViewById(id);
       if (topAppBar == null) {
         break missingId;
       }
 
-      return new ActivityMapBinding((ConstraintLayout) rootView, appBarLayout, mapView, topAppBar);
+      return new ActivityMapBinding((ConstraintLayout) rootView, appBarLayout, mapView,
+          navigationLayoutParent, topAppBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

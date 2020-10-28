@@ -1,24 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\rmpok\\AndroidStudioProjects\\app-A\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-id\\values-id.xml",
+            "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-id\\values-id.xml",
             "map": [
                 {
-<<<<<<< HEAD
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\aa233ef5153e4079e62ee9306c787207\\jetified-ui-1.1.0\\res\\values-id\\values-id.xml",
-=======
-                    "source": "C:\\Users\\rmpok\\.gradle\\caches\\transforms-2\\files-2.1\\0d16845251d07cae47b31e9f8e387095\\jetified-mapbox-android-navigation-0.42.6\\res\\values-id\\values-id.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "57",
-                        "endOffsets": "108"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\rmpok\\.gradle\\caches\\transforms-2\\files-2.1\\038e591561149ff17c7fcfba7e56fc2a\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-id\\values-id.xml",
->>>>>>> settings
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -33,7 +19,6 @@
                         "endColumns": "56,58,59",
                         "endOffsets": "172,231,291"
                     }
-<<<<<<< HEAD
                 },
                 {
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\67c8c14afedf7b82a13b7782d71a7577\\jetified-notification-1.1.0\\res\\values-id\\values-id.xml",
@@ -44,8 +29,6 @@
                         "endColumns": "64",
                         "endOffsets": "115"
                     }
-=======
->>>>>>> settings
                 }
             ]
         }
