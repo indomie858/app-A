@@ -15,14 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.navigation.SummaryBottomSheetActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".ui.navigation.NavigationMapRouteActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".ui.navigation.InstructionViewActivity"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -32,10 +24,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.navigation.DirectionsActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.navigation.CustomDirectionsActivity"
             android:exported="true"

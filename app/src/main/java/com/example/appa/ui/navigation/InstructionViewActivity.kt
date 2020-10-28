@@ -4,39 +4,42 @@ package com.example.appa.ui.navigation
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
-import com.mapbox.android.core.location.LocationEngine
-import com.mapbox.android.core.location.LocationEngineCallback
-import com.mapbox.android.core.location.LocationEngineProvider
-import com.mapbox.android.core.location.LocationEngineRequest
-import com.mapbox.android.core.location.LocationEngineResult
-import com.mapbox.api.directions.v5.DirectionsCriteria
+import com.example.appa.R
+import com.example.appa.db.PlaceEntity
+import com.example.appa.viewmodel.MapWithNavViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.mapbox.android.core.location.*
+import com.mapbox.android.core.permissions.PermissionsListener
+import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.api.directions.v5.models.BannerInstructions
 import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.api.directions.v5.models.RouteOptions
 import com.mapbox.api.directions.v5.models.VoiceInstructions
+import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
+import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener
+import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.navigation.base.internal.extensions.applyDefaultParams
-import com.mapbox.navigation.base.internal.extensions.coordinates
+import com.mapbox.navigation.base.internal.route.RouteUrl
 import com.mapbox.navigation.base.trip.model.RouteProgress
 import com.mapbox.navigation.core.MapboxNavigation
 import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
@@ -44,20 +47,7 @@ import com.mapbox.navigation.core.replay.MapboxReplayer
 import com.mapbox.navigation.core.replay.ReplayLocationEngine
 import com.mapbox.navigation.core.replay.route.ReplayProgressObserver
 import com.mapbox.navigation.core.telemetry.events.FeedbackEvent.UI
-import com.mapbox.navigation.core.trip.session.BannerInstructionsObserver
-import com.mapbox.navigation.core.trip.session.RouteProgressObserver
-import com.mapbox.navigation.core.trip.session.TripSessionState
-import com.mapbox.navigation.core.trip.session.TripSessionStateObserver
-import com.mapbox.navigation.core.trip.session.VoiceInstructionsObserver
-import com.example.appa.R
-import com.example.appa.db.PlaceEntity
-import com.example.appa.viewmodel.MapWithNavViewModel
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.mapbox.geojson.Point
-import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
-import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener
-import com.mapbox.mapboxsdk.location.modes.CameraMode
-import com.mapbox.navigation.base.internal.route.RouteUrl
+import com.mapbox.navigation.core.trip.session.*
 import com.mapbox.navigation.ui.NavigationButton
 import com.mapbox.navigation.ui.NavigationConstants
 import com.mapbox.navigation.ui.SoundButton
@@ -73,14 +63,10 @@ import com.mapbox.navigation.ui.voice.NavigationSpeechPlayer
 import com.mapbox.navigation.ui.voice.SpeechPlayerProvider
 import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_instruction_view_layout.*
-import kotlinx.android.synthetic.main.activity_instruction_view_layout.mapView
-import kotlinx.android.synthetic.main.activity_instruction_view_layout.recenterBtn
-import kotlinx.android.synthetic.main.activity_instruction_view_layout.summaryBottomSheet
-import kotlinx.android.synthetic.main.activity_summary_bottom_sheet.*
 import okhttp3.Cache
 import java.io.File
 import java.lang.ref.WeakReference
-import java.util.Locale
+import java.util.*
 
 /**
  * This activity shows how to integrate the Navigation UI SDK's
@@ -90,11 +76,13 @@ import java.util.Locale
 class InstructionViewActivity :
         AppCompatActivity(),
         OnMapReadyCallback,
-        FeedbackBottomSheetListener {
+        FeedbackBottomSheetListener,
+        PermissionsListener {
 
     private lateinit var viewModel: MapWithNavViewModel
     private var currentPlace: PlaceEntity? = null
     private var currentPlaceID: Int? = null
+    private var permissionsManager: PermissionsManager? = null
 
     private var mapboxNavigation: MapboxNavigation? = null
     private var navigationMapboxMap: NavigationMapboxMap? = null
@@ -228,13 +216,19 @@ class InstructionViewActivity :
 
     @SuppressLint("MissingPermission")
     private fun initializeLocationComponent(mapboxMap: MapboxMap, style: Style) {
-        val activationOptions = LocationComponentActivationOptions.builder(this, style)
-                .useDefaultLocationEngine(false)
-                .build()
-        mapboxMap.locationComponent.activateLocationComponent(activationOptions)
-        mapboxMap.locationComponent.isLocationComponentEnabled = true
-        mapboxMap.locationComponent.renderMode = RenderMode.COMPASS
-        mapboxMap.locationComponent.cameraMode = CameraMode.TRACKING
+        // Check if permissions are enabled and if not request
+        if (PermissionsManager.areLocationPermissionsGranted(this)) {
+            val activationOptions = LocationComponentActivationOptions.builder(this, style)
+                    .useDefaultLocationEngine(false)
+                    .build()
+            mapboxMap.locationComponent.activateLocationComponent(activationOptions)
+            mapboxMap.locationComponent.isLocationComponentEnabled = true
+            mapboxMap.locationComponent.renderMode = RenderMode.COMPASS
+            mapboxMap.locationComponent.cameraMode = CameraMode.TRACKING
+        } else {
+            permissionsManager = PermissionsManager(this)
+            permissionsManager!!.requestLocationPermissions(this)
+        }
     }
 
     @SuppressLint("MissingPermission")
@@ -635,6 +629,23 @@ class InstructionViewActivity :
             navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
             updateCameraOnNavigationStateChange(true)
             mapboxNavigation?.startTripSession()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
+        permissionsManager!!.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onExplanationNeeded(permissionsToExplain: List<String?>?) {
+        Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onPermissionResult(granted: Boolean) {
+        if (granted) {
+            mapboxMap!!.getStyle { style -> initializeLocationComponent(mapboxMap!!, style) }
+        } else {
+            Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show()
+            finish()
         }
     }
 }
