@@ -484,6 +484,7 @@ class InstructionViewActivity :
                 instructionView.visibility = VISIBLE
                 feedbackButton?.show()
                 instructionSoundButton?.show()
+                summaryBottomSheet.visibility = VISIBLE
             }
             TripSessionState.STOPPED -> {
                 summaryBottomSheet.visibility = GONE
