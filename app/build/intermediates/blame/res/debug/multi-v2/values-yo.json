@@ -1,10 +1,14 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-yo\\values-yo.xml",
+            "outputFile": "C:\\Users\\rmpok\\AndroidStudioProjects\\app-A\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-yo\\values-yo.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\aa233ef5153e4079e62ee9306c787207\\jetified-ui-1.1.0\\res\\values-yo\\values-yo.xml",
+=======
+                    "source": "C:\\Users\\rmpok\\.gradle\\caches\\transforms-2\\files-2.1\\0d16845251d07cae47b31e9f8e387095\\jetified-mapbox-android-navigation-0.42.6\\res\\values-yo\\values-yo.xml",
+>>>>>>> settings
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
@@ -21,7 +25,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\a2cd8e34b98f9c17e49f05a9daedb555\\jetified-utils-1.1.0\\res\\values-yo\\values-yo.xml",
+=======
+                    "source": "C:\\Users\\rmpok\\.gradle\\caches\\transforms-2\\files-2.1\\038e591561149ff17c7fcfba7e56fc2a\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-yo\\values-yo.xml",
+>>>>>>> settings
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/038e591561149ff17c7fcfba7e56fc2a/jetified-mapbox-android-navigation-ui-0.42.6/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/038e591561149ff17c7fcfba7e56fc2a/jetified-mapbox-android-navigation-ui-0.42.6/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/038e591561149ff17c7fcfba7e56fc2a/jetified-mapbox-android-navigation-ui-0.42.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/038e591561149ff17c7fcfba7e56fc2a/jetified-mapbox-android-navigation-ui-0.42.6/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-android-navigation-ui/0.42.6/f42b8336dd5bc6be5b2ab613479a6cbc33e68f3e/mapbox-android-navigation-ui-0.42.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-android-navigation-ui/0.42.6/3d3e03e001fffcbcd1c3f3b08e012c35a888a16c/mapbox-android-navigation-ui-0.42.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -20,7 +20,8 @@
             android:background="@color/design_default_color_on_secondary"
 
             app:menu="@menu/top_app_bar"
-            app:title="@string/directory" />
+            app:title="@string/directory"
+            app:titleTextColor="@color/white"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout

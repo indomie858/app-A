@@ -19,14 +19,25 @@
     <string name="content_description_map">show map</string>
 
     <!-- Settings -->
-    <string name="default_value_preference_theme">light</string>
-    <string name="default_value_preference_textSize">12</string>
-    <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_navigation_list">NavigationListActivity</string>
 
     <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
     <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+
+    <!-- Preferences -->
+    <string name="preference_key_theme" translatable="false">preference_key_theme</string>
+    <string name="preference_theme_title">Theme</string>
+
+    <string name="light_theme_name">Light theme</string>
+    <string name="dark_theme_name">Dark theme</string>
+    <string name="auto_battery_name">Auto battery</string>
+    <string name="follow_system_name">Follow system</string>
+
+    <string name="light_theme_value" translatable="false">Light</string>
+    <string name="dark_theme_value" translatable="false">Dark</string>
+    <string name="auto_battery_value" translatable="false">Auto-battery</string>
+    <string name="follow_system_value" translatable="false">System</string>
 
     <!-- Location change listening -->
     <string name="new_location">New lat: %1$s New longitude: %2$s</string>

@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.appa.R;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.settings.SettingsFragment;
+import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ThemeSetting.Companion.setDefaultNightModeByPreference(this);
 
         MaterialToolbar actionbar = (MaterialToolbar) findViewById(R.id.topAppBar);
 

@@ -55,13 +55,12 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
-array entries_preference_theme
 array entries_preferences_textSize
 array entry_values_preference_textSize
-array entry_values_preference_theme
 array locations_categories_array
 array reply_entries
 array reply_values
+<<<<<<< HEAD
 array routeLineCasingScaleMultiplierArray
 array routeLineCasingScaleStopsArray
 array routeLineCasingScalesArray
@@ -71,6 +70,10 @@ array routeLineScalesArray
 array routeLineTrafficScaleMultiplierArray
 array routeLineTrafficScaleStopsArray
 array routeLineTrafficScalesArray
+=======
+array theme_names_array
+array theme_values_array
+>>>>>>> settings
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -1179,10 +1182,12 @@ color accent_material_dark
 color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
+color background_color
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color black
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
 color bright_foreground_inverse_material_dark
@@ -1191,6 +1196,7 @@ color bright_foreground_material_dark
 color bright_foreground_material_light
 color button_material_dark
 color button_material_light
+color button_text_color
 color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
@@ -1247,7 +1253,10 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_attachment_color
+color ic_color_lens_color
 color ic_launcher_background
+color ic_settings_color
 color mapboxBlue
 color mapboxGrayLight
 color mapboxPink
@@ -1447,6 +1456,7 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color test_mtrl_calendar_day
 color test_mtrl_calendar_day_selected
+color text_color
 color tooltip_background_dark
 color tooltip_background_light
 color white
@@ -1961,6 +1971,18 @@ drawable design_snackbar_background
 drawable ic_arrow_down_24dp
 drawable ic_baseline_arrow_back_24
 drawable ic_baseline_map_24
+<<<<<<< HEAD
+=======
+drawable ic_circle
+drawable ic_clear
+drawable ic_close
+drawable ic_color_lens
+drawable ic_confusing_directions
+drawable ic_confusing_directions_filled
+drawable ic_confusing_directions_unfilled
+drawable ic_exit_arrow_left
+drawable ic_exit_arrow_right
+>>>>>>> settings
 drawable ic_home_24px
 drawable ic_keyboard_voice_24px
 drawable ic_launcher_background
@@ -2809,6 +2831,8 @@ string assistant_nav
 string attachment_summary_off
 string attachment_summary_on
 string attachment_title
+string auto_battery_name
+string auto_battery_value
 string bluetooth_title
 string bottom_sheet_behavior
 string cane_setup
@@ -2820,6 +2844,7 @@ string clear_text_end_icon_content_description
 string connect_appa
 string content_description_map
 string copy
+<<<<<<< HEAD
 string default_locale
 string default_route_profile
 string default_unit_type
@@ -2854,14 +2879,31 @@ string description_simple_navigation_kotlin
 string description_summary_bottom_sheet
 string description_traffic_toggle
 string description_ui_building_extrusions_kotlin
+=======
+string dark_theme_name
+string dark_theme_value
+>>>>>>> settings
 string directory
 string error_icon_content_description
 string expand_button_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+<<<<<<< HEAD
 string general_category_title
 string git_hash_key
+=======
+string feedback_bad_route
+string feedback_confusing_instruction
+string feedback_missing_exit
+string feedback_missing_road
+string feedback_not_allowed
+string feedback_road_closure
+string feedback_submitted
+string feet
+string follow_system_name
+string follow_system_value
+>>>>>>> settings
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string history_failed_to_load_item
@@ -2872,8 +2914,14 @@ string home_nav
 string home_title
 string icon_content_description
 string item_view_role_description
+<<<<<<< HEAD
 string language
 string language_key
+=======
+string kilometers
+string light_theme_name
+string light_theme_value
+>>>>>>> settings
 string location_list
 string map
 string mapbox_access_token
@@ -3015,7 +3063,13 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string play_history
 string preference_copied
+<<<<<<< HEAD
 string replay_playback_speed_seekbar
+=======
+string preference_key_theme
+string preference_theme_title
+string re_center
+>>>>>>> settings
 string reply_title
 string resource_links
 string route_profile
@@ -3040,6 +3094,7 @@ string sync_header
 string sync_title
 string title_activity_map
 string title_activity_navigation_list
+<<<<<<< HEAD
 string title_activity_settings
 string title_basic_navigation_fragment
 string title_basic_navigation_kotlin
@@ -3071,6 +3126,8 @@ string title_simple_navigation_kotlin
 string title_summary_bottom_sheet
 string title_traffic_toggle
 string title_ui_building_extrusions_kotlin
+=======
+>>>>>>> settings
 string tutorial_body
 string tutorial_header
 string tutorial_nav

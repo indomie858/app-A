@@ -1,10 +1,14 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
+            "outputFile": "C:\\Users\\rmpok\\AndroidStudioProjects\\app-A\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\aa233ef5153e4079e62ee9306c787207\\jetified-ui-1.1.0\\res\\values-port\\values-port.xml",
+=======
+                    "source": "C:\\Users\\rmpok\\.gradle\\caches\\transforms-2\\files-2.1\\038e591561149ff17c7fcfba7e56fc2a\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-port\\values-port.xml",
+>>>>>>> settings
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
@@ -21,7 +25,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\9f8c6bf6d6cfede505145b0a0a600913\\appcompat-1.2.0\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\rmpok\\.gradle\\caches\\transforms-2\\files-2.1\\9f8c6bf6d6cfede505145b0a0a600913\\appcompat-1.2.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
