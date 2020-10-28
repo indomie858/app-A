@@ -23,6 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/tutorial_body"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/text_color"/>
 
 </LinearLayout>

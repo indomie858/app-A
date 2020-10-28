@@ -56,13 +56,13 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
-array entries_preference_theme
 array entries_preferences_textSize
 array entry_values_preference_textSize
-array entry_values_preference_theme
 array locations_categories_array
 array reply_entries
 array reply_values
+array theme_names_array
+array theme_values_array
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -1114,10 +1114,12 @@ color accent_material_dark
 color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
+color background_color
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color black
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
 color bright_foreground_inverse_material_dark
@@ -1126,6 +1128,7 @@ color bright_foreground_material_dark
 color bright_foreground_material_light
 color button_material_dark
 color button_material_light
+color button_text_color
 color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
@@ -1182,7 +1185,10 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_attachment_color
+color ic_color_lens_color
 color ic_launcher_background
+color ic_settings_color
 color mapboxBlue
 color mapboxGrayLight
 color mapboxNotificationBlue
@@ -1346,6 +1352,7 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color test_mtrl_calendar_day
 color test_mtrl_calendar_day_selected
+color text_color
 color tooltip_background_dark
 color tooltip_background_light
 color white
@@ -1860,6 +1867,7 @@ drawable ic_baseline_map_24
 drawable ic_circle
 drawable ic_clear
 drawable ic_close
+drawable ic_color_lens
 drawable ic_confusing_directions
 drawable ic_confusing_directions_filled
 drawable ic_confusing_directions_unfilled
@@ -2721,6 +2729,8 @@ string assistant_nav
 string attachment_summary_off
 string attachment_summary_on
 string attachment_title
+string auto_battery_name
+string auto_battery_value
 string bluetooth_title
 string bottom_sheet_behavior
 string cane_setup
@@ -2733,8 +2743,8 @@ string clear_text_end_icon_content_description
 string connect_appa
 string content_description_map
 string copy
-string default_value_preference_textSize
-string default_value_preference_theme
+string dark_theme_name
+string dark_theme_value
 string directory
 string dropoff_dialog_negative_text
 string dropoff_dialog_positive_text
@@ -2754,6 +2764,8 @@ string feedback_not_allowed
 string feedback_road_closure
 string feedback_submitted
 string feet
+string follow_system_name
+string follow_system_value
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string home_nav
@@ -2762,6 +2774,8 @@ string hr
 string icon_content_description
 string item_view_role_description
 string kilometers
+string light_theme_name
+string light_theme_value
 string location_list
 string map
 string mapbox_access_token
@@ -2844,6 +2858,8 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string preference_copied
+string preference_key_theme
+string preference_theme_title
 string re_center
 string reply_title
 string report_feedback
@@ -2860,7 +2876,6 @@ string sync_header
 string sync_title
 string title_activity_map
 string title_activity_navigation_list
-string title_activity_settings
 string tutorial_body
 string tutorial_header
 string tutorial_nav

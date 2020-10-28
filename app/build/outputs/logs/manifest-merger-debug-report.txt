@@ -1,442 +1,442 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
-MERGED from [androidx.databinding:databinding-adapters:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6f6d2380b6a21f5e4b0ffdfcac687374\databinding-adapters-4.0.2\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.databinding:databinding-runtime:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\41aaaabbf446c1d6527b4b732f650b9e\databinding-runtime-4.0.2\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.databinding:viewbinding:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3a885d5fb0478f9d15beaa85949e5585\jetified-viewbinding-4.0.2\AndroidManifest.xml:17:1-22:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:2:1-13:12
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:2:1-11:12
-MERGED from [com.google.android.material:material:1.2.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.preference:preference:1.1.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b4f0042a3a61da58666340ef7b57ac58\preference-1.1.1\AndroidManifest.xml:17:1-24:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:2:1-17:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v8:0.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\92564652cd857fc69abe69caa20626de\jetified-mapbox-android-plugin-annotation-v8-0.7.0\AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9f8c6bf6d6cfede505145b0a0a600913\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\658d36fb919e60e5724bb85925202a33\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.room:room-rxjava2:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\ccee3557045ff6e645f2b7f221534178\room-rxjava2-2.2.5\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.room:room-guava:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\39776e0d3bf799809faf7c39808dd57c\room-guava-2.2.5\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:17:1-31:12
-MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\016eb7fedc3eabc31b317e685a8006c4\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6239fd328bd4692fc9bd7709b5d366d6\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:2:1-20:12
-MERGED from [androidx.fragment:fragment:1.2.4] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\ff7cb4a1d5c09a278dd4ea6ca899add1\fragment-1.2.4\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4df444dff12f49e85d152f060cc44987\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:2:1-29:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3025a18289c360946f5a37cfd5f70634\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\942f312b80e1e7619d0a4c60f676210b\loader-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7864de7e08927db1530550b5c4ee4ffe\jetified-activity-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7c7c3389a33fcc41855f0770374ef171\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\bde897b092ad39a4c70993a06cbec95f\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\eabe7267cc24828a8d6aba5143d23cab\lifecycle-livedata-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\0336836fa8836b626caf89b408b1cd40\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\cc06215a37ebb899bc6b994de940135a\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\64ced66a213e35e6bfafd2572c9d6193\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\d93b0e8fb9f0b2843ccfcb7de7660fe1\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.transition:transition:1.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b7a9bd6bba40096ac932643971a97185\transition-1.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7b74a721f451896224dc36e5725764f6\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\ba76f1e89e33bd24d33ee963f5fa5a72\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.media:media:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1a935625b8c1a0c0813bf27e92631210\media-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\eada461250a7a0bb526c3f52c06439dd\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3a077b87d6d228ca64a0eb5ad93f4f24\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\fc31f1ba1e0919b4887c8f25735e7dcb\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\a560a4ec3fd8da2628ebe50565a3a822\customview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-gestures:0.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66337fbce63d30ba3f29dbdbfb9e1366\jetified-mapbox-android-gestures-0.5.1\AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6df3662a28be36077d555b905f533a37\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\e7ff1863608185737296bd15d2238989\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.3.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:17:1-26:12
-MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:2:1-14:12
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:17:1-32:12
-MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\64fb15fbae84aeb150c99ff8cd8dde6c\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\d160ce36b30641588df76a38b6f1e6a5\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\0cfd83a55a044c092e210101824d141a\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1e8fb717889bc8cf9bdbc867f69a7522\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b0aba59caa2786e7632fe3de918f10a4\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.sqlite:sqlite-framework:2.0.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\96a60cd3983d03499f93e684ee197f15\sqlite-framework-2.0.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.sqlite:sqlite:2.0.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\37eb1bd873fc3f9b3b35536a5a64648e\sqlite-2.0.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-accounts:0.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6a81eb5f8f7709743b719195a3aad86f\jetified-mapbox-android-accounts-0.2.0\AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1e238a5e1ccd943ce6cfc9b51caf6bcd\exifinterface-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4ad254c760abca231626fe43def313c6\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\11d27e721a185c58cee5158adca79a1e\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7bc37b7780771b866d8e7a020ee86318\print-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\0bd619628a3b98e7ebbe43e99831f5f6\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\d38094735905352cb6a3213163d304a5\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:2:1-9:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\a56689b734eb92788db53a290d92530b\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:2:1-13:12
-MERGED from [com.mapbox.navigator:mapbox-navigation-native:7.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\00c89e3c75e0038fb8a8cd2104eaa075\jetified-mapbox-navigation-native-7.0.0\AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:2:1-13:12
-MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:2:1-13:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:1-51:12
+MERGED from [androidx.databinding:databinding-adapters:4.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6f6d2380b6a21f5e4b0ffdfcac687374\databinding-adapters-4.0.2\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.databinding:databinding-runtime:4.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\41aaaabbf446c1d6527b4b732f650b9e\databinding-runtime-4.0.2\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.databinding:viewbinding:4.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\3a885d5fb0478f9d15beaa85949e5585\jetified-viewbinding-4.0.2\AndroidManifest.xml:17:1-22:12
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\038e591561149ff17c7fcfba7e56fc2a\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.material:material:1.2.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.preference:preference:1.1.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b4f0042a3a61da58666340ef7b57ac58\preference-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:2:1-17:12
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v8:0.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\e396607c8af8248de88cd0f5605db761\jetified-mapbox-android-plugin-annotation-v8-0.7.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9f8c6bf6d6cfede505145b0a0a600913\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\658d36fb919e60e5724bb85925202a33\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.room:room-rxjava2:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\ccee3557045ff6e645f2b7f221534178\room-rxjava2-2.2.5\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.room:room-guava:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\39776e0d3bf799809faf7c39808dd57c\room-guava-2.2.5\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\016eb7fedc3eabc31b317e685a8006c4\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6239fd328bd4692fc9bd7709b5d366d6\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:2:1-20:12
+MERGED from [androidx.fragment:fragment:1.2.4] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\ff7cb4a1d5c09a278dd4ea6ca899add1\fragment-1.2.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4df444dff12f49e85d152f060cc44987\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:2:1-29:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\3025a18289c360946f5a37cfd5f70634\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\942f312b80e1e7619d0a4c60f676210b\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7864de7e08927db1530550b5c4ee4ffe\jetified-activity-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7c7c3389a33fcc41855f0770374ef171\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\bde897b092ad39a4c70993a06cbec95f\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\eabe7267cc24828a8d6aba5143d23cab\lifecycle-livedata-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0336836fa8836b626caf89b408b1cd40\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\cc06215a37ebb899bc6b994de940135a\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\64ced66a213e35e6bfafd2572c9d6193\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\d93b0e8fb9f0b2843ccfcb7de7660fe1\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b7a9bd6bba40096ac932643971a97185\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7b74a721f451896224dc36e5725764f6\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\ba76f1e89e33bd24d33ee963f5fa5a72\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1a935625b8c1a0c0813bf27e92631210\media-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\eada461250a7a0bb526c3f52c06439dd\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\3a077b87d6d228ca64a0eb5ad93f4f24\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\fc31f1ba1e0919b4887c8f25735e7dcb\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\a560a4ec3fd8da2628ebe50565a3a822\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-gestures:0.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\2f1e3b76581b92cf180232109bbfa138\jetified-mapbox-android-gestures-0.5.1\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6df3662a28be36077d555b905f533a37\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\e7ff1863608185737296bd15d2238989\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.3.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:17:1-26:12
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:2:1-14:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:17:1-32:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\64fb15fbae84aeb150c99ff8cd8dde6c\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\d160ce36b30641588df76a38b6f1e6a5\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0cfd83a55a044c092e210101824d141a\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1e8fb717889bc8cf9bdbc867f69a7522\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b0aba59caa2786e7632fe3de918f10a4\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.sqlite:sqlite-framework:2.0.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\96a60cd3983d03499f93e684ee197f15\sqlite-framework-2.0.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.0.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\37eb1bd873fc3f9b3b35536a5a64648e\sqlite-2.0.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-accounts:0.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9f0c9130c9b83bb03d48f2f1600b748c\jetified-mapbox-android-accounts-0.2.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1e238a5e1ccd943ce6cfc9b51caf6bcd\exifinterface-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4ad254c760abca231626fe43def313c6\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\11d27e721a185c58cee5158adca79a1e\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7bc37b7780771b866d8e7a020ee86318\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0bd619628a3b98e7ebbe43e99831f5f6\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\d38094735905352cb6a3213163d304a5\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\a0e53cbc90d46b277f202aa1b4e2cd4e\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:2:1-13:12
+MERGED from [com.mapbox.navigator:mapbox-navigation-native:7.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\185b42a9a117cdf4cfa9a0e8091b533a\jetified-mapbox-navigation-native-7.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:2:1-13:12
+MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:2:1-13:12
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:1-51:12
 	package
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:3:5-31
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:3:5-31
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:1-51:12
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:1-51:12
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:1-51:12
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:5:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:10:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:10:5-79
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:5:5-79
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:10:5-79
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:10:5-79
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:5:22-76
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:5:22-76
 application
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:7:5-49:19
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:9:5-11:19
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:9:5-11:19
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
-MERGED from [com.google.android.material:material:1.2.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.2.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:13:5-15:19
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:13:5-15:19
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:17:5-27:19
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:17:5-27:19
-MERGED from [androidx.core:core:1.3.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.3.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:24:5-89
-MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:7:5-12:19
-MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:7:5-12:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:7:5-20
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:7:5-20
-MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:11:5-20
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:7:5-49:19
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\038e591561149ff17c7fcfba7e56fc2a\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:9:5-11:19
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\038e591561149ff17c7fcfba7e56fc2a\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:9:5-11:19
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.material:material:1.2.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.2.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:13:5-15:19
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:13:5-15:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:17:5-27:19
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:17:5-27:19
+MERGED from [androidx.core:core:1.3.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.3.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:24:5-89
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:7:5-12:19
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:7:5-12:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:7:5-20
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:7:5-20
+MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:11:5-20
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.3.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.3.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:12:9-35
 	android:label
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:10:9-41
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:10:9-41
 	android:roundIcon
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:11:9-54
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:11:9-54
 	android:icon
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:9:9-43
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:9:9-43
 	android:allowBackup
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:8:9-35
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:8:9-35
 	android:theme
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:13:9-40
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:13:9-40
 activity#com.example.appa.ui.navigation.DirectionsActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:14:9-16:48
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:14:9-16:48
 	android:exported
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:16:13-36
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:16:13-36
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:15:13-61
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:15:13-61
 activity#com.example.appa.ui.navigation.MapWithNavActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:17:9-24:20
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:17:9-24:20
 	android:exported
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:19:13-36
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:19:13-36
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:18:13-61
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:18:13-61
 intent-filter#action:name:android.intent.action.ACTION_VIEW+category:name:android.intent.category.DEFAULT
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:20:13-23:29
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:20:13-23:29
 action#android.intent.action.ACTION_VIEW
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:21:17-76
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:21:17-76
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:21:25-73
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:21:25-73
 category#android.intent.category.DEFAULT
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:22:17-76
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:22:17-76
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:22:27-73
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:22:27-73
 activity#com.example.appa.ui.BluetoothConnectAcitvity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:25:9-27:61
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:25:9-27:61
 	android:parentActivityName
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:27:13-58
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:27:13-58
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:26:13-56
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:26:13-56
 activity#com.example.appa.ui.MapActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:28:9-31:61
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:28:9-31:61
 	android:parentActivityName
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:31:13-58
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:31:13-58
 	android:exported
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:30:13-36
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:30:13-36
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:29:13-43
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:29:13-43
 activity#com.example.appa.ui.MainActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:32:9-40:20
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:32:9-40:20
 	android:label
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:34:13-45
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:34:13-45
 	android:theme
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:35:13-56
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:35:13-56
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:33:13-44
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:33:13-44
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:36:13-39:29
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:36:13-39:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:37:17-69
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:37:17-69
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:37:25-66
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:37:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:38:17-77
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:38:17-77
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:38:27-74
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:38:27-74
 activity#com.example.appa.ui.navigationlist.NavigationListActivity
-ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:41:9-46:59
+ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:41:9-46:59
 	android:parentActivityName
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:45:13-58
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:45:13-58
 	android:label
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:44:13-45
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:44:13-45
 	android:exported
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:43:13-36
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:43:13-36
 	android:theme
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:46:13-56
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:46:13-56
 	android:name
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:42:13-69
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:42:13-69
 uses-sdk
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-MERGED from [androidx.databinding:databinding-adapters:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6f6d2380b6a21f5e4b0ffdfcac687374\databinding-adapters-4.0.2\AndroidManifest.xml:22:5-44
-MERGED from [androidx.databinding:databinding-adapters:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6f6d2380b6a21f5e4b0ffdfcac687374\databinding-adapters-4.0.2\AndroidManifest.xml:22:5-44
-MERGED from [androidx.databinding:databinding-runtime:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\41aaaabbf446c1d6527b4b732f650b9e\databinding-runtime-4.0.2\AndroidManifest.xml:22:5-44
-MERGED from [androidx.databinding:databinding-runtime:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\41aaaabbf446c1d6527b4b732f650b9e\databinding-runtime-4.0.2\AndroidManifest.xml:22:5-44
-MERGED from [androidx.databinding:viewbinding:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3a885d5fb0478f9d15beaa85949e5585\jetified-viewbinding-4.0.2\AndroidManifest.xml:20:5-44
-MERGED from [androidx.databinding:viewbinding:4.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3a885d5fb0478f9d15beaa85949e5585\jetified-viewbinding-4.0.2\AndroidManifest.xml:20:5-44
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.android.material:material:1.2.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.2.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.preference:preference:1.1.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b4f0042a3a61da58666340ef7b57ac58\preference-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.preference:preference:1.1.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b4f0042a3a61da58666340ef7b57ac58\preference-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v8:0.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\92564652cd857fc69abe69caa20626de\jetified-mapbox-android-plugin-annotation-v8-0.7.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v8:0.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\92564652cd857fc69abe69caa20626de\jetified-mapbox-android-plugin-annotation-v8-0.7.0\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9f8c6bf6d6cfede505145b0a0a600913\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9f8c6bf6d6cfede505145b0a0a600913\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\658d36fb919e60e5724bb85925202a33\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\658d36fb919e60e5724bb85925202a33\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.room:room-rxjava2:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\ccee3557045ff6e645f2b7f221534178\room-rxjava2-2.2.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.room:room-rxjava2:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\ccee3557045ff6e645f2b7f221534178\room-rxjava2-2.2.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.room:room-guava:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\39776e0d3bf799809faf7c39808dd57c\room-guava-2.2.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.room:room-guava:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\39776e0d3bf799809faf7c39808dd57c\room-guava-2.2.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\016eb7fedc3eabc31b317e685a8006c4\cardview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\016eb7fedc3eabc31b317e685a8006c4\cardview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6239fd328bd4692fc9bd7709b5d366d6\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6239fd328bd4692fc9bd7709b5d366d6\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.fragment:fragment:1.2.4] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\ff7cb4a1d5c09a278dd4ea6ca899add1\fragment-1.2.4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.2.4] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\ff7cb4a1d5c09a278dd4ea6ca899add1\fragment-1.2.4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4df444dff12f49e85d152f060cc44987\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4df444dff12f49e85d152f060cc44987\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3025a18289c360946f5a37cfd5f70634\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3025a18289c360946f5a37cfd5f70634\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\942f312b80e1e7619d0a4c60f676210b\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\942f312b80e1e7619d0a4c60f676210b\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7864de7e08927db1530550b5c4ee4ffe\jetified-activity-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7864de7e08927db1530550b5c4ee4ffe\jetified-activity-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7c7c3389a33fcc41855f0770374ef171\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7c7c3389a33fcc41855f0770374ef171\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\bde897b092ad39a4c70993a06cbec95f\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\bde897b092ad39a4c70993a06cbec95f\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\eabe7267cc24828a8d6aba5143d23cab\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\eabe7267cc24828a8d6aba5143d23cab\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\0336836fa8836b626caf89b408b1cd40\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\0336836fa8836b626caf89b408b1cd40\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\cc06215a37ebb899bc6b994de940135a\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\cc06215a37ebb899bc6b994de940135a\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\64ced66a213e35e6bfafd2572c9d6193\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\64ced66a213e35e6bfafd2572c9d6193\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\d93b0e8fb9f0b2843ccfcb7de7660fe1\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\d93b0e8fb9f0b2843ccfcb7de7660fe1\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b7a9bd6bba40096ac932643971a97185\transition-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b7a9bd6bba40096ac932643971a97185\transition-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7b74a721f451896224dc36e5725764f6\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7b74a721f451896224dc36e5725764f6\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\ba76f1e89e33bd24d33ee963f5fa5a72\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\ba76f1e89e33bd24d33ee963f5fa5a72\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media:media:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1a935625b8c1a0c0813bf27e92631210\media-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1a935625b8c1a0c0813bf27e92631210\media-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\eada461250a7a0bb526c3f52c06439dd\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\eada461250a7a0bb526c3f52c06439dd\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3a077b87d6d228ca64a0eb5ad93f4f24\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\3a077b87d6d228ca64a0eb5ad93f4f24\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\fc31f1ba1e0919b4887c8f25735e7dcb\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\fc31f1ba1e0919b4887c8f25735e7dcb\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\a560a4ec3fd8da2628ebe50565a3a822\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\a560a4ec3fd8da2628ebe50565a3a822\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-gestures:0.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66337fbce63d30ba3f29dbdbfb9e1366\jetified-mapbox-android-gestures-0.5.1\AndroidManifest.xml:7:5-9:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-gestures:0.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66337fbce63d30ba3f29dbdbfb9e1366\jetified-mapbox-android-gestures-0.5.1\AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6df3662a28be36077d555b905f533a37\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6df3662a28be36077d555b905f533a37\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\e7ff1863608185737296bd15d2238989\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\e7ff1863608185737296bd15d2238989\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.3.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.3.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:5:5-44
-MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\64fb15fbae84aeb150c99ff8cd8dde6c\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\64fb15fbae84aeb150c99ff8cd8dde6c\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\d160ce36b30641588df76a38b6f1e6a5\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\d160ce36b30641588df76a38b6f1e6a5\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\0cfd83a55a044c092e210101824d141a\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\0cfd83a55a044c092e210101824d141a\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1e8fb717889bc8cf9bdbc867f69a7522\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1e8fb717889bc8cf9bdbc867f69a7522\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b0aba59caa2786e7632fe3de918f10a4\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b0aba59caa2786e7632fe3de918f10a4\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.sqlite:sqlite-framework:2.0.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\96a60cd3983d03499f93e684ee197f15\sqlite-framework-2.0.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite-framework:2.0.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\96a60cd3983d03499f93e684ee197f15\sqlite-framework-2.0.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite:2.0.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\37eb1bd873fc3f9b3b35536a5a64648e\sqlite-2.0.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite:2.0.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\37eb1bd873fc3f9b3b35536a5a64648e\sqlite-2.0.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-accounts:0.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6a81eb5f8f7709743b719195a3aad86f\jetified-mapbox-android-accounts-0.2.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-accounts:0.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\6a81eb5f8f7709743b719195a3aad86f\jetified-mapbox-android-accounts-0.2.0\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1e238a5e1ccd943ce6cfc9b51caf6bcd\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1e238a5e1ccd943ce6cfc9b51caf6bcd\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4ad254c760abca231626fe43def313c6\documentfile-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\4ad254c760abca231626fe43def313c6\documentfile-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\11d27e721a185c58cee5158adca79a1e\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\11d27e721a185c58cee5158adca79a1e\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7bc37b7780771b866d8e7a020ee86318\print-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7bc37b7780771b866d8e7a020ee86318\print-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\0bd619628a3b98e7ebbe43e99831f5f6\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\0bd619628a3b98e7ebbe43e99831f5f6\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\d38094735905352cb6a3213163d304a5\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\d38094735905352cb6a3213163d304a5\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:5:5-43
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:5:5-43
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\a56689b734eb92788db53a290d92530b\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\a56689b734eb92788db53a290d92530b\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.mapbox.navigator:mapbox-navigation-native:7.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\00c89e3c75e0038fb8a8cd2104eaa075\jetified-mapbox-navigation-native-7.0.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.navigator:mapbox-navigation-native:7.0.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\00c89e3c75e0038fb8a8cd2104eaa075\jetified-mapbox-navigation-native-7.0.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:7:5-9:41
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+MERGED from [androidx.databinding:databinding-adapters:4.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6f6d2380b6a21f5e4b0ffdfcac687374\databinding-adapters-4.0.2\AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-adapters:4.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6f6d2380b6a21f5e4b0ffdfcac687374\databinding-adapters-4.0.2\AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-runtime:4.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\41aaaabbf446c1d6527b4b732f650b9e\databinding-runtime-4.0.2\AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-runtime:4.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\41aaaabbf446c1d6527b4b732f650b9e\databinding-runtime-4.0.2\AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:viewbinding:4.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\3a885d5fb0478f9d15beaa85949e5585\jetified-viewbinding-4.0.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:viewbinding:4.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\3a885d5fb0478f9d15beaa85949e5585\jetified-viewbinding-4.0.2\AndroidManifest.xml:20:5-44
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\038e591561149ff17c7fcfba7e56fc2a\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:5:5-7:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\038e591561149ff17c7fcfba7e56fc2a\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1dd4ed3901b8534cd2b6b8025da6644c\constraintlayout-2.0.2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.material:material:1.2.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.2.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\23c1a5e549ab20f32360b1e98ab5d332\material-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.preference:preference:1.1.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b4f0042a3a61da58666340ef7b57ac58\preference-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.preference:preference:1.1.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b4f0042a3a61da58666340ef7b57ac58\preference-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:5:5-7:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:5:5-7:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v8:0.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\e396607c8af8248de88cd0f5605db761\jetified-mapbox-android-plugin-annotation-v8-0.7.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v8:0.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\e396607c8af8248de88cd0f5605db761\jetified-mapbox-android-plugin-annotation-v8-0.7.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9f8c6bf6d6cfede505145b0a0a600913\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9f8c6bf6d6cfede505145b0a0a600913\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\14bc91b2e641c8c49d9672bae580ce81\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\658d36fb919e60e5724bb85925202a33\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\658d36fb919e60e5724bb85925202a33\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-rxjava2:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\ccee3557045ff6e645f2b7f221534178\room-rxjava2-2.2.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-rxjava2:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\ccee3557045ff6e645f2b7f221534178\room-rxjava2-2.2.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-guava:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\39776e0d3bf799809faf7c39808dd57c\room-guava-2.2.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-guava:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\39776e0d3bf799809faf7c39808dd57c\room-guava-2.2.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\016eb7fedc3eabc31b317e685a8006c4\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\016eb7fedc3eabc31b317e685a8006c4\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6239fd328bd4692fc9bd7709b5d366d6\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6239fd328bd4692fc9bd7709b5d366d6\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.fragment:fragment:1.2.4] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\ff7cb4a1d5c09a278dd4ea6ca899add1\fragment-1.2.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.4] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\ff7cb4a1d5c09a278dd4ea6ca899add1\fragment-1.2.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4df444dff12f49e85d152f060cc44987\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4df444dff12f49e85d152f060cc44987\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\3025a18289c360946f5a37cfd5f70634\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\3025a18289c360946f5a37cfd5f70634\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\942f312b80e1e7619d0a4c60f676210b\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\942f312b80e1e7619d0a4c60f676210b\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7864de7e08927db1530550b5c4ee4ffe\jetified-activity-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7864de7e08927db1530550b5c4ee4ffe\jetified-activity-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7c7c3389a33fcc41855f0770374ef171\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7c7c3389a33fcc41855f0770374ef171\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\bde897b092ad39a4c70993a06cbec95f\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\bde897b092ad39a4c70993a06cbec95f\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\eabe7267cc24828a8d6aba5143d23cab\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\eabe7267cc24828a8d6aba5143d23cab\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0336836fa8836b626caf89b408b1cd40\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0336836fa8836b626caf89b408b1cd40\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\cc06215a37ebb899bc6b994de940135a\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\cc06215a37ebb899bc6b994de940135a\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\64ced66a213e35e6bfafd2572c9d6193\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\64ced66a213e35e6bfafd2572c9d6193\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\d93b0e8fb9f0b2843ccfcb7de7660fe1\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\d93b0e8fb9f0b2843ccfcb7de7660fe1\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b7a9bd6bba40096ac932643971a97185\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b7a9bd6bba40096ac932643971a97185\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7b74a721f451896224dc36e5725764f6\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7b74a721f451896224dc36e5725764f6\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\ba76f1e89e33bd24d33ee963f5fa5a72\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\ba76f1e89e33bd24d33ee963f5fa5a72\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1a935625b8c1a0c0813bf27e92631210\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1a935625b8c1a0c0813bf27e92631210\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\eada461250a7a0bb526c3f52c06439dd\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\eada461250a7a0bb526c3f52c06439dd\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\3a077b87d6d228ca64a0eb5ad93f4f24\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\3a077b87d6d228ca64a0eb5ad93f4f24\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\fc31f1ba1e0919b4887c8f25735e7dcb\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\fc31f1ba1e0919b4887c8f25735e7dcb\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\a560a4ec3fd8da2628ebe50565a3a822\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\a560a4ec3fd8da2628ebe50565a3a822\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-gestures:0.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\2f1e3b76581b92cf180232109bbfa138\jetified-mapbox-android-gestures-0.5.1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-gestures:0.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\2f1e3b76581b92cf180232109bbfa138\jetified-mapbox-android-gestures-0.5.1\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6df3662a28be36077d555b905f533a37\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6df3662a28be36077d555b905f533a37\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\e7ff1863608185737296bd15d2238989\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\e7ff1863608185737296bd15d2238989\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.3.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:5:5-44
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\64fb15fbae84aeb150c99ff8cd8dde6c\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\64fb15fbae84aeb150c99ff8cd8dde6c\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\d160ce36b30641588df76a38b6f1e6a5\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\d160ce36b30641588df76a38b6f1e6a5\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0cfd83a55a044c092e210101824d141a\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0cfd83a55a044c092e210101824d141a\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1e8fb717889bc8cf9bdbc867f69a7522\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1e8fb717889bc8cf9bdbc867f69a7522\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b0aba59caa2786e7632fe3de918f10a4\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b0aba59caa2786e7632fe3de918f10a4\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.0.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\96a60cd3983d03499f93e684ee197f15\sqlite-framework-2.0.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.0.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\96a60cd3983d03499f93e684ee197f15\sqlite-framework-2.0.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.0.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\37eb1bd873fc3f9b3b35536a5a64648e\sqlite-2.0.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.0.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\37eb1bd873fc3f9b3b35536a5a64648e\sqlite-2.0.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4c6f324eabd4efdf01c45e025f6f1a51\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-accounts:0.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9f0c9130c9b83bb03d48f2f1600b748c\jetified-mapbox-android-accounts-0.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-accounts:0.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9f0c9130c9b83bb03d48f2f1600b748c\jetified-mapbox-android-accounts-0.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1e238a5e1ccd943ce6cfc9b51caf6bcd\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\1e238a5e1ccd943ce6cfc9b51caf6bcd\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4ad254c760abca231626fe43def313c6\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\4ad254c760abca231626fe43def313c6\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\11d27e721a185c58cee5158adca79a1e\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\11d27e721a185c58cee5158adca79a1e\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7bc37b7780771b866d8e7a020ee86318\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\7bc37b7780771b866d8e7a020ee86318\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0bd619628a3b98e7ebbe43e99831f5f6\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0bd619628a3b98e7ebbe43e99831f5f6\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\d38094735905352cb6a3213163d304a5\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\d38094735905352cb6a3213163d304a5\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:5:5-43
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\afb4bdf12725ae33696c68357c3b0fed\jetified-timber-4.7.1\AndroidManifest.xml:5:5-43
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\a0e53cbc90d46b277f202aa1b4e2cd4e\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\a0e53cbc90d46b277f202aa1b4e2cd4e\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.mapbox.navigator:mapbox-navigation-native:7.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\185b42a9a117cdf4cfa9a0e8091b533a\jetified-mapbox-navigation-native-7.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.mapbox.navigator:mapbox-navigation-native:7.0.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\185b42a9a117cdf4cfa9a0e8091b533a\jetified-mapbox-navigation-native-7.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\66e0da8b0594fe96b6687c298705380a\jetified-soloader-0.8.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:annotation:0.8.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9c694616eaad01317af0b3ee5612480d\jetified-annotation-0.8.0\AndroidManifest.xml:7:5-9:41
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
 activity#com.mapbox.services.android.navigation.ui.v5.MapboxNavigationActivity
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:10:9-106
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\038e591561149ff17c7fcfba7e56fc2a\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:10:9-106
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:10:19-103
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\038e591561149ff17c7fcfba7e56fc2a\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:10:19-103
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:9:5-81
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:9:5-81
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:9:22-78
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:9:22-78
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:11:5-77
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:11:5-77
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:11:22-74
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:11:22-74
 service#com.mapbox.services.android.navigation.v5.navigation.NavigationService
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:14:9-106
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:14:9-106
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:14:18-103
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:14:18-103
 service#androidx.room.MultiInstanceInvalidationService
-ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
+ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
 	android:exported
-		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
+		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
 	android:directBootAware
-		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
+		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
 	android:name
-		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
+		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
 uses-feature#0x00020000
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:9:5-11:35
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:9:5-11:35
 	android:glEsVersion
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:10:9-41
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:10:9-41
 	android:required
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:11:9-32
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:11:9-32
 uses-feature#android.hardware.wifi
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:12:5-14:36
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:12:5-14:36
 	android:required
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:14:9-33
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:14:9-33
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:13:9-45
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:13:9-45
 uses-permission#android.permission.INTERNET
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:16:5-67
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:15:5-67
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:15:5-67
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:16:5-67
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:15:5-67
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:15:5-67
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:16:22-64
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:16:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:17:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:13:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:13:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\a56689b734eb92788db53a290d92530b\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:11:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\a56689b734eb92788db53a290d92530b\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:11:5-79
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:17:5-79
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:13:5-79
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:13:5-79
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\a0e53cbc90d46b277f202aa1b4e2cd4e\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:11:5-79
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\a0e53cbc90d46b277f202aa1b4e2cd4e\jetified-mapbox-android-core-1.4.0\AndroidManifest.xml:11:5-79
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:17:22-76
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:17:22-76
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:18:5-76
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:14:5-76
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:14:5-76
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:18:5-76
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:14:5-76
+MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:14:5-76
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:18:22-73
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:18:22-73
 uses-permission#android.permission.WAKE_LOCK
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:12:5-68
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:12:5-68
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:12:22-65
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:12:22-65
 provider#com.mapbox.android.telemetry.provider.MapboxTelemetryInitProvider
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:18:9-22:39
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:18:9-22:39
 	android:authorities
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:20:13-79
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:20:13-79
 	android:exported
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:21:13-37
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:21:13-37
 	android:initOrder
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:22:13-36
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:22:13-36
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:19:13-93
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:19:13-93
 service#com.mapbox.android.telemetry.crash.CrashReporterJobIntentService
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:24:9-26:72
+ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:24:9-26:72
 	android:permission
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:26:13-69
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:26:13-69
 	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:25:13-92
+		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:25:13-92
 provider#com.squareup.picasso.PicassoProvider
-ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
 	android:authorities
-		ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+		ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
 	android:exported
-		ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+		ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
 	android:name
-		ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+		ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
 provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
-ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
 	android:authorities
-		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
 	android:multiprocess
-		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
 	android:exported
-		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
 	android:name
-		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79

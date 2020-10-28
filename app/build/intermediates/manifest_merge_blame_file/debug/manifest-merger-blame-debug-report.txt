@@ -6,183 +6,183 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="22"
-8-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
+8-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml
+9-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-11-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:5:5-79
-11-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:5:22-76
+11-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:5:5-79
+11-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:5:22-76
 12    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-12-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:9:5-81
-12-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:9:22-78
+12-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:9:5-81
+12-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:9:22-78
 13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-13-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:11:5-77
-13-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:11:22-74
+13-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:11:5-77
+13-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:11:22-74
 14
 15    <uses-feature
-15-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:9:5-11:35
+15-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:9:5-11:35
 16        android:glEsVersion="0x00020000"
-16-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:10:9-41
+16-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:10:9-41
 17        android:required="true" />
-17-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:11:9-32
+17-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:11:9-32
 18    <uses-feature
-18-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:12:5-14:36
+18-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:12:5-14:36
 19        android:name="android.hardware.wifi"
-19-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:13:9-45
+19-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:13:9-45
 20        android:required="false" /> <!-- Implied by ACCESS_WIFI_STATE. -->
-20-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:14:9-33
+20-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:14:9-33
 21    <uses-permission android:name="android.permission.INTERNET" />
-21-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:16:5-67
-21-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:16:22-64
+21-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:16:5-67
+21-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:16:22-64
 22    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-22-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:17:5-79
-22-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:17:22-76
+22-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:17:5-79
+22-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:17:22-76
 23    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Required for CrashReporterJobIntentService on API levels below 25 -->
-23-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:18:5-76
-23-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\8841685b461319401495351be26ddf2a\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:18:22-73
+23-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:18:5-76
+23-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\6892732b53def81dbc026220f36fcdb5\jetified-mapbox-android-sdk-8.5.1\AndroidManifest.xml:18:22-73
 24    <uses-permission android:name="android.permission.WAKE_LOCK" />
-24-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:12:5-68
-24-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:12:22-65
+24-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:12:5-68
+24-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:12:22-65
 25
 26    <application
-26-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:7:5-49:19
+26-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:7:5-49:19
 27        android:allowBackup="true"
-27-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:8:9-35
+27-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:8:9-35
 28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-28-->[androidx.core:core:1.3.1] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:24:18-86
+28-->[androidx.core:core:1.3.1] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\05e29462981c1284471da59c61fe239e\core-1.3.1\AndroidManifest.xml:24:18-86
 29        android:debuggable="true"
 30        android:icon="@mipmap/ic_launcher"
-30-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:9:9-43
+30-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:9:9-43
 31        android:label="@string/app_name"
-31-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:10:9-41
+31-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:10:9-41
 32        android:roundIcon="@mipmap/ic_launcher_round"
-32-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:11:9-54
+32-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:11:9-54
 33        android:supportsRtl="true"
-33-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:12:9-35
+33-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:12:9-35
 34        android:testOnly="true"
 35        android:theme="@style/AppTheme" >
-35-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:13:9-40
+35-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:13:9-40
 36        <activity
-36-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:14:9-16:48
+36-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:14:9-16:48
 37            android:name="com.example.appa.ui.navigation.DirectionsActivity"
-37-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:15:13-61
+37-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:15:13-61
 38            android:exported="true" />
-38-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:16:13-36
+38-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:16:13-36
 39        <activity
-39-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:17:9-24:20
+39-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:17:9-24:20
 40            android:name="com.example.appa.ui.navigation.MapWithNavActivity"
-40-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:18:13-61
+40-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:18:13-61
 41            android:exported="true" >
-41-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:19:13-36
+41-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:19:13-36
 42            <intent-filter>
-42-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:20:13-23:29
+42-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:20:13-23:29
 43                <action android:name="android.intent.action.ACTION_VIEW" />
-43-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:21:17-76
-43-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:21:25-73
+43-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:21:17-76
+43-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:21:25-73
 44
 45                <category android:name="android.intent.category.DEFAULT" />
-45-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:22:17-76
-45-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:22:27-73
+45-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:22:17-76
+45-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:22:27-73
 46            </intent-filter>
 47        </activity>
 48        <activity
-48-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:25:9-27:61
+48-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:25:9-27:61
 49            android:name="com.example.appa.ui.BluetoothConnectAcitvity"
-49-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:26:13-56
+49-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:26:13-56
 50            android:parentActivityName="com.example.appa.ui.MainActivity" />
-50-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:27:13-58
+50-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:27:13-58
 51        <activity
-51-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:28:9-31:61
+51-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:28:9-31:61
 52            android:name="com.example.appa.ui.MapActivity"
-52-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:29:13-43
+52-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:29:13-43
 53            android:exported="true"
-53-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:30:13-36
+53-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:30:13-36
 54            android:parentActivityName="com.example.appa.ui.MainActivity" />
-54-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:31:13-58
+54-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:31:13-58
 55        <activity
-55-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:32:9-40:20
+55-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:32:9-40:20
 56            android:name="com.example.appa.ui.MainActivity"
-56-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:33:13-44
+56-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:33:13-44
 57            android:label="@string/app_name"
-57-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:34:13-45
+57-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:34:13-45
 58            android:theme="@style/AppTheme.NoActionBar" >
-58-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:35:13-56
+58-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:35:13-56
 59            <intent-filter>
-59-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:36:13-39:29
+59-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:36:13-39:29
 60                <action android:name="android.intent.action.MAIN" />
-60-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:37:17-69
-60-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:37:25-66
+60-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:37:17-69
+60-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:37:25-66
 61
 62                <category android:name="android.intent.category.LAUNCHER" />
-62-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:38:17-77
-62-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:38:27-74
+62-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:38:17-77
+62-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:38:27-74
 63            </intent-filter>
 64        </activity>
 65        <activity
-65-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:41:9-46:59
+65-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:41:9-46:59
 66            android:name="com.example.appa.ui.navigationlist.NavigationListActivity"
-66-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:42:13-69
+66-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:42:13-69
 67            android:exported="true"
-67-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:43:13-36
+67-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:43:13-36
 68            android:label="@string/app_name"
-68-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:44:13-45
+68-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:44:13-45
 69            android:parentActivityName="com.example.appa.ui.MainActivity"
-69-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:45:13-58
+69-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:45:13-58
 70            android:theme="@style/AppTheme.NoActionBar" />
-70-->C:\Users\gafaa\Desktop\senior-design\appa\app\src\main\AndroidManifest.xml:46:13-56
+70-->C:\Users\rmpok\AndroidStudioProjects\app-A\app\src\main\AndroidManifest.xml:46:13-56
 71        <activity android:name="com.mapbox.services.android.navigation.ui.v5.MapboxNavigationActivity" />
-71-->[com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:10:9-106
-71-->[com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\1d5960e0c6b211f7a43f89d0ff8f599f\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:10:19-103
+71-->[com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\038e591561149ff17c7fcfba7e56fc2a\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:10:9-106
+71-->[com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\038e591561149ff17c7fcfba7e56fc2a\jetified-mapbox-android-navigation-ui-0.42.6\AndroidManifest.xml:10:19-103
 72
 73        <service android:name="com.mapbox.services.android.navigation.v5.navigation.NavigationService" />
-73-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:14:9-106
-73-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\84cefc42239aa0bf117f2329f27606b6\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:14:18-103
+73-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:14:9-106
+73-->[com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\0d16845251d07cae47b31e9f8e387095\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:14:18-103
 74        <service
-74-->[androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
+74-->[androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
 75            android:name="androidx.room.MultiInstanceInvalidationService"
-75-->[androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
+75-->[androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
 76            android:directBootAware="true"
-76-->[androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
+76-->[androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
 77            android:exported="false" />
-77-->[androidx.room:room-runtime:2.2.5] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
+77-->[androidx.room:room-runtime:2.2.5] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\9507ccf9706ff9560abd2833e129f2b1\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
 78
 79        <provider
-79-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:18:9-22:39
+79-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:18:9-22:39
 80            android:name="com.mapbox.android.telemetry.provider.MapboxTelemetryInitProvider"
-80-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:19:13-93
+80-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:19:13-93
 81            android:authorities="com.example.appa.mapboxtelemetryinitprovider"
-81-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:20:13-79
+81-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:20:13-79
 82            android:exported="false"
-82-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:21:13-37
+82-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:21:13-37
 83            android:initOrder="100" />
-83-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:22:13-36
+83-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:22:13-36
 84
 85        <service
-85-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:24:9-26:72
+85-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:24:9-26:72
 86            android:name="com.mapbox.android.telemetry.crash.CrashReporterJobIntentService"
-86-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:25:13-92
+86-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:25:13-92
 87            android:permission="android.permission.BIND_JOB_SERVICE" />
-87-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\66b3e8bf76a12136ca85e7d06e9044c2\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:26:13-69
+87-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\816008f9bf5832894a2c46012a93e45b\jetified-mapbox-android-telemetry-4.7.0\AndroidManifest.xml:26:13-69
 88
 89        <provider
-89-->[com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+89-->[com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
 90            android:name="com.squareup.picasso.PicassoProvider"
-90-->[com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+90-->[com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
 91            android:authorities="com.example.appa.com.squareup.picasso"
-91-->[com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+91-->[com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
 92            android:exported="false" />
-92-->[com.squareup.picasso:picasso:2.71828] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\7ab353265eac82381a5472ab462a62d6\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+92-->[com.squareup.picasso:picasso:2.71828] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\318c626bcf9a93f0a7fa1b55cb47aec0\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
 93        <provider
-93-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+93-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
 94            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-94-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+94-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
 95            android:authorities="com.example.appa.lifecycle-process"
-95-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+95-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
 96            android:exported="false"
-96-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+96-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
 97            android:multiprocess="true" />
-97-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\gafaa\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+97-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\rmpok\.gradle\caches\transforms-2\files-2.1\b6215ce5e8a05a69a580737bf81f7a8d\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
 98    </application>
 99
 100</manifest>

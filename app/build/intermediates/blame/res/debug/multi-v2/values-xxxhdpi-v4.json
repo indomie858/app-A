@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\gafaa\\Desktop\\senior-design\\appa\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xxxhdpi-v4\\values-xxxhdpi-v4.xml",
+            "outputFile": "C:\\Users\\rmpok\\AndroidStudioProjects\\app-A\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xxxhdpi-v4\\values-xxxhdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\gafaa\\.gradle\\caches\\transforms-2\\files-2.1\\1d5960e0c6b211f7a43f89d0ff8f599f\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-xxxhdpi-v4\\values-xxxhdpi-v4.xml",
+                    "source": "C:\\Users\\rmpok\\.gradle\\caches\\transforms-2\\files-2.1\\038e591561149ff17c7fcfba7e56fc2a\\jetified-mapbox-android-navigation-ui-0.42.6\\res\\values-xxxhdpi-v4\\values-xxxhdpi-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
