@@ -3,6 +3,7 @@ package com.example.appa.ui;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -14,12 +15,13 @@ import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BluetoothDialog.BluetoothDialogListener {
 
     final Fragment tutorialFragment = new TutorialFragment();
     final Fragment settingsFragment = new SettingsFragment();
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
+
     Fragment active = homeFragment;
 
     @Override
@@ -54,9 +56,19 @@ public class MainActivity extends AppCompatActivity {
                     active = tutorialFragment;
                     break;
                 case R.id.assistant_button:
-
             }
             return false;
         });
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog)
+    {
+
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+
     }
 }

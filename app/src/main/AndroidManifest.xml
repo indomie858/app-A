@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,17 +33,12 @@
             android:name=".ui.navigation.DirectionsActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.BluetoothConnectAcitvity"
-            android:parentActivityName=".ui.MainActivity" />
-        <activity
             android:name=".ui.navigation.CustomDirectionsActivity"
             android:exported="true">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.ACTION_VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>-->
         </activity>
+        <activity
+            android:name=".ui.BluetoothDialog"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
             android:name=".ui.MapActivity"
             android:exported="true"
