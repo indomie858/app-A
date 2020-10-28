@@ -16,13 +16,16 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.navigation.SummaryBottomSheetActivity"
-            android:exported="true"></activity>
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.navigation.NavigationMapRouteActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.navigation.InstructionViewActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_VIEW" />
 
@@ -31,14 +34,17 @@
         </activity>
         <activity
             android:name=".ui.navigation.DirectionsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.navigation.CustomDirectionsActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.BluetoothDialog"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.MapActivity"
             android:exported="true"
