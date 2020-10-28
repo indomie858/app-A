@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
@@ -19,6 +20,16 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            java {
+                exclude '**/DirectionsActivity.java'
+                exclude '**/MapWithNavActivity.java'
+                exclude '**/Geocoder.java'
+            }
+        }
+    }
+
     buildFeatures {
         viewBinding true
         dataBinding true
@@ -26,6 +37,10 @@ android {
     compileOptions{
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
@@ -39,7 +54,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
 
     //Mapbox Navigation SDK dependencies
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6'
+    //implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6'
+    implementation "com.mapbox.navigation:ui:1.1.0"
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.5.0'
+
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // Required -- JUnit 4 framework
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
@@ -83,9 +102,26 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     // Annotation processor
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    // Testing Fragments
+    def fragment_version = "1.2.5"
+    androidTestImplementation "androidx.fragment:fragment-testing:$fragment_version"
 
 
 }
 repositories {
     mavenCentral()
+    maven {
+        url 'https://api.mapbox.com/downloads/v2/releases/maven'
+        authentication {
+            basic(BasicAuthentication)
+        }
+        credentials {
+            // Do not change the username below.
+            // This should always be `mapbox` (not your username).
+            username = "mapbox"
+            // Use the secret token you stored in gradle.properties as the password
+            password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
+        }
+    }
+
 }

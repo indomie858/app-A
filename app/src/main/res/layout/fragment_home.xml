@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment"
+    android:background="@color/background_color"
     >
-
 
     <Button
         android:id="@+id/connect_button"
@@ -18,7 +18,8 @@
         android:layout_weight=".33"
         android:backgroundTint="#FFFFFF"
         android:text="@string/connect_appa"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/button_text_color"/>
 
     <Button
         android:id="@+id/directory_button"
@@ -30,7 +31,8 @@
         android:layout_weight="0.33"
         android:backgroundTint="#FFFFFF"
         android:text="@string/directory"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/button_text_color"/>
 
     <Button
         android:id="@+id/navigation_button"
@@ -42,7 +44,8 @@
         android:layout_marginBottom="50dp"
         android:layout_weight="0.33"
         android:backgroundTint="#FFFFFF"
-        android:text="@string/navigation"
+        android:text="@string/map"
+        android:textColor="@color/button_text_color"
         android:textSize="24sp" />
 
 </LinearLayout>

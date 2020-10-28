@@ -118,6 +118,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             finish();
         }
     }
+
     @Override
     @SuppressWarnings( {"MissingPermission"})
     protected void onStart() {

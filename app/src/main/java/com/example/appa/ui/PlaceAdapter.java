@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
 import com.example.appa.db.PlaceEntity;
-import com.example.appa.ui.navigation.DirectionsActivity;
+import com.example.appa.ui.navigation.CustomDirectionsActivity;
+import com.example.appa.ui.navigation.InstructionViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,12 +69,11 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         // Attach this listener to every button,
         // which will set the view model for the direction activity
         // then launch that activity.
-        holder.binding.getRoot().findViewById(R.id.app_manual_btn).setOnClickListener(new View.OnClickListener() {
+        holder.binding.getRoot().findViewById(R.id.place_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context viewContext = v.getContext();
-                Toast.makeText(viewContext, holder.binding.getPlace().getName(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(viewContext, DirectionsActivity.class);
+                Intent intent = new Intent(viewContext, InstructionViewActivity.class);
                 intent.putExtra("NewPlace", currentPlace.getId());
                 viewContext.startActivity(intent);
             }

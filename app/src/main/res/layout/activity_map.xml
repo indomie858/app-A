@@ -8,7 +8,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MapActivity">
+    tools:context=".ui.MapActivity"
+    android:id="@+id/navigationLayout_parent">
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
@@ -39,7 +40,9 @@
             android:background="@color/design_default_color_on_secondary"
 
             app:menu="@menu/top_app_bar"
-            app:title="@string/navigation" />
+            app:title="@string/map"
+            app:titleTextColor="@color/white"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 

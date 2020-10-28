@@ -1,5 +1,6 @@
 *.iml
 .gradle
+.idea
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -7,11 +8,13 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+.idea
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
+app/build
 
 # Built application files
 /*/build/
@@ -50,3 +53,4 @@ local.properties
 .Trashes
 ehthumbs.db
 Thumbs.db
+

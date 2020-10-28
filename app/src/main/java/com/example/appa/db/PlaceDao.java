@@ -22,4 +22,11 @@ public interface PlaceDao {
     // as a user fills in a field.
     @Query("SELECT * FROM place_table WHERE name LIKE '%' || :searchName || '%'")
     LiveData<List<PlaceEntity>> getPlacesFromString(String searchName);
+
+
+    // Building a bigger query
+    // Filter results by name and category
+    @Query("SELECT * FROM place_table WHERE name LIKE '%' || :searchName || '%' AND categories LIKE '%' || :categoryName || '%'")
+    LiveData<List<PlaceEntity>> searchQuery(String searchName, String categoryName);
+
 }

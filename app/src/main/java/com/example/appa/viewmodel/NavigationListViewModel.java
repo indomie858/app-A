@@ -24,4 +24,9 @@ public class NavigationListViewModel extends AndroidViewModel {
         return allPlaces;
     }
     public LiveData<List<PlaceEntity>> getPlacesFromString(String query) { return repository.getPlacesFromString(query); }
+
+    // Forward search name and category to DAO
+    public LiveData<List<PlaceEntity>> searchQuery(String searchName, String searchCategory) {
+        return repository.searchQuery(searchName, searchCategory);
+    }
 }

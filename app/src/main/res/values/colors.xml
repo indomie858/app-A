@@ -6,10 +6,19 @@
     <color name="ic_launcher_background">#2D4E73</color>
     <color name="red">#FF0000</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="mapboxWhite">#ffffff</color>
     <color name="mapboxBlue">#4264fb</color>
     <color name="mapboxGrayLight">#c6d2e1</color>
     <color name="mapboxPink">#ee4e8b</color>
     <color name="mapboxYellow">#d9d838</color>
     <color name="mapboxRed">#b43b71</color>
+
+    <color name="ic_settings_color">#FFFFFF</color>
+    <color name="ic_attachment_color">#FFFFFFFF</color>
+    <color name="background_color">#FFFFFFFF</color>
+    <color name="ic_color_lens_color">#FFFFFFFF</color>
+
+    <color name="button_text_color">#000000</color>
+    <color name="text_color">#000000</color>
 </resources>

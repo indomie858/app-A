@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mapbox_uiAttribution="false"
+        app:mapbox_uiCompass="true"
+        app:mapbox_uiCompassGravity="bottom|left"
+        app:mapbox_uiCompassMarginBottom="110dp"
+        app:mapbox_uiCompassMarginLeft="16dp"
+        app:mapbox_uiLogo="false" />
+
+
+    <ImageView
+        android:id="@+id/screenshotView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        tools:ignore="ContentDescription" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:text="@string/start_navigation"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <com.mapbox.navigation.ui.summary.SummaryBottomSheet
+        android:id="@+id/summaryBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
+
+    <com.mapbox.navigation.ui.RecenterButton
+        android:id="@+id/recenterBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_margin="16dp"
+        android:visibility="invisible"
+        app:layout_anchor="@id/summaryBottomSheet"
+        app:layout_anchorGravity="top|right" />
+
+
+    <com.mapbox.navigation.ui.instruction.InstructionView
+        android:id="@+id/instructionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:visibility="invisible"
+        tools:visibility="visible" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

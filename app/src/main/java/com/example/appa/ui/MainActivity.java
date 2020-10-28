@@ -3,30 +3,37 @@ package com.example.appa.ui;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.appa.R;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.settings.SettingsFragment;
+import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BluetoothDialog.BluetoothDialogListener {
 
+    private boolean backButtonFlag = false;
     final Fragment tutorialFragment = new TutorialFragment();
     final Fragment settingsFragment = new SettingsFragment();
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
+
     Fragment active = homeFragment;
+    MaterialToolbar actionbar;
+    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ThemeSetting.Companion.setDefaultNightModeByPreference(this);
 
-        MaterialToolbar actionbar = (MaterialToolbar) findViewById(R.id.topAppBar);
+        actionbar = (MaterialToolbar) findViewById(R.id.topAppBar);
 
         fm.beginTransaction().add(R.id.main_container, tutorialFragment, "4").hide(tutorialFragment).commit();
         fm.beginTransaction().add(R.id.main_container, settingsFragment, "2").hide(settingsFragment).commit();
@@ -40,21 +47,61 @@ public class MainActivity extends AppCompatActivity {
                     fm.beginTransaction().hide(active).show(homeFragment).commit();
                     actionbar.setTitle("Home");
                     active = homeFragment;
+                    backButtonFlag = false;
+                    counter = 0;
                     break;
                 case R.id.settings_button:
                     fm.beginTransaction().hide(active).show(settingsFragment).commit();
                     actionbar.setTitle("Settings");
                     active = settingsFragment;
+                    backButtonFlag = true;
+                    counter = 0;
                     break;
                 case R.id.tutorial_button:
                     fm.beginTransaction().hide(active).show(tutorialFragment).commit();
                     actionbar.setTitle("Tutorial");
                     active = tutorialFragment;
+                    backButtonFlag = true;
+                    counter = 0;
                     break;
                 case R.id.assistant_button:
-
             }
             return false;
         });
+    }
+
+    @Override
+    //  Custom back button  operation
+    public void onBackPressed() {
+
+        // when back button is pressed -- return to home
+        if (backButtonFlag == true){
+            fm.beginTransaction().hide(active).show(homeFragment).commit();
+            actionbar.setTitle("Home");
+            active = homeFragment;
+            backButtonFlag = false;
+        }
+
+        //  requires counter to be '1' in order to exit the app
+        else if (backButtonFlag == false && counter <1){
+            counter++;
+        }
+
+        //if back button is pressed 2x and they are on home page -- exit app
+        else if (backButtonFlag == false && counter == 1){
+            counter = 0;
+            finish();
+        }
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog)
+    {
+
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+
     }
 }
