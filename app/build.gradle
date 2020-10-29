@@ -38,6 +38,10 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -98,6 +102,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     // Annotation processor
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    // Testing Fragments
+    def fragment_version = "1.2.5"
+    androidTestImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+
 }
 repositories {
     mavenCentral()

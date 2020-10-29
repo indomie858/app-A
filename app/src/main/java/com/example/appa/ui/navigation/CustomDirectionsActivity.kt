@@ -49,8 +49,6 @@ import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
 import com.mapbox.navigation.core.trip.session.RouteProgressObserver
 import com.mapbox.navigation.ui.route.NavigationMapRoute
 import kotlinx.android.synthetic.main.activity_directions.*
-import kotlinx.android.synthetic.main.activity_directions.mapView
-import kotlinx.android.synthetic.main.activity_navigation_map_route.*
 import java.lang.ref.WeakReference
 
 

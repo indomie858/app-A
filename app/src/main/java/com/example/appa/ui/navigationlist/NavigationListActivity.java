@@ -2,6 +2,7 @@ package com.example.appa.ui.navigationlist;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -12,6 +13,7 @@ import androidx.core.app.NavUtils;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Update;
 
 import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
@@ -25,6 +27,8 @@ public class NavigationListActivity extends AppCompatActivity {
     public static final String TAG = "NavigationListFragment";
     private PlaceAdapter placeAdapter;
     private NavigationListViewModel viewModel;
+    private String queryName = "";
+    private String queryCategory = "";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +49,6 @@ public class NavigationListActivity extends AppCompatActivity {
         // Adapter for the RecyclerView UI
         placeAdapter = new PlaceAdapter();
 
-
         // Set the listener for the searchview,
         // to respond to text updates.
         SearchView searchView = findViewById(R.id.place_search);
@@ -54,19 +57,16 @@ public class NavigationListActivity extends AppCompatActivity {
             public NavigationQueryTextListener() {
                 super();
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
-                viewModel.getPlacesFromString(newText).observe(NavigationListActivity.this, new Observer<List<PlaceEntity>>() {
-                    @Override
-                    public void onChanged(List<PlaceEntity> placeEntities) {
-                        placeAdapter.setPlaces(placeEntities);
-                    }
-                });
+                queryName = newText;
+
+                // Return false to perform the default action
+                // of showing any suggestions if available
+
+                UpdateRVAdapter();
                 return false;
             }
-
-
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -79,7 +79,20 @@ public class NavigationListActivity extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.location_cat_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.locations_categories_array, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                queryCategory = (String) parent.getItemAtPosition(position);
+                if (queryCategory.equals("All")) {
+                    queryCategory = "";
+                }
+                UpdateRVAdapter();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
 
         // Binds the adapter to the recyclerview.
         RecyclerView recyclerView = findViewById(R.id.place_list);
@@ -97,6 +110,14 @@ public class NavigationListActivity extends AppCompatActivity {
                 placeAdapter.setPlaces(placeEntities);
             }
         });
+    }
 
+    public void UpdateRVAdapter() {
+        viewModel.searchQuery(queryName, queryCategory).observe(this, new Observer<List<PlaceEntity>>() {
+            @Override
+            public void onChanged(List<PlaceEntity> placeEntities) {
+                placeAdapter.setPlaces(placeEntities);
+            }
+        });
     }
 }

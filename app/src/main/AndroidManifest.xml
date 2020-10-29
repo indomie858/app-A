@@ -15,31 +15,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.navigation.NavigationMapRouteActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".ui.navigation.DirectionsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.navigation.CustomDirectionsActivity"
-            android:exported="true">
+            android:name=".ui.navigation.InstructionViewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
-               <action android:name="android.intent.action.ACTION_VIEW" />
+                <action android:name="android.intent.action.ACTION_VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.navigation.CustomDirectionsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ui.BluetoothDialog"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.MapActivity"
             android:exported="true"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

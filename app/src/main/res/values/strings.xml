@@ -4,6 +4,7 @@
     <string name="mapbox_access_token">pk.eyJ1IjoiaW5kb21pZTg1OCIsImEiOiJja2ZlbW44dmMwMjdvMzBvNTk3ZXFwcDk2In0._VSFOGxW70jW308e9MxFWA</string>
     <string name="location_list">List of locations</string>
 
+    <!-- Navigation-->
     <string name="home_nav">Home</string>
     <string name="settings_nav">Settings</string>
     <string name="assistant_nav">Assistant</string>
@@ -18,14 +19,25 @@
     <string name="content_description_map">show map</string>
 
     <!-- Settings -->
-    <string name="default_value_preference_theme">light</string>
-    <string name="default_value_preference_textSize">12</string>
-    <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_navigation_list">NavigationListActivity</string>
 
     <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
     <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+
+    <!-- Preferences -->
+    <string name="preference_key_theme" translatable="false">preference_key_theme</string>
+    <string name="preference_theme_title">Theme</string>
+
+    <string name="light_theme_name">Light theme</string>
+    <string name="dark_theme_name">Dark theme</string>
+    <string name="auto_battery_name">Auto battery</string>
+    <string name="follow_system_name">Follow system</string>
+
+    <string name="light_theme_value" translatable="false">Light</string>
+    <string name="dark_theme_value" translatable="false">Dark</string>
+    <string name="auto_battery_value" translatable="false">Auto-battery</string>
+    <string name="follow_system_value" translatable="false">System</string>
 
     <!-- Location change listening -->
     <string name="new_location">New lat: %1$s New longitude: %2$s</string>
@@ -45,14 +57,15 @@ Etiam tempus, nibh sed fringilla ullamcorper, sem risus porta ligula, at bibendu
 \n \n
 Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce viverra enim eu leo imperdiet ullamcorper. Proin ullamcorper nibh sed maximus imperdiet. Pellentesque suscipit urna odio, ac tempus dolor pulvinar et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec metus eleifend, tincidunt diam at, laoreet justo. Nam pellentesque dolor quis rhoncus pretium. Cras ut turpis a orci cursus ultricies nec et nisi. Nullam placerat felis vel felis accumsan pretium. Etiam congue lacus vitae nulla hendrerit, non porttitor nisl tempus. </string>
 
-    <!-- PLaceholders for the spinnerview -->
-    <!-- DELETE THIS IF YOU'RE IN DOUBT AND CLEANING STUFF UP! -->
+    <!-- Category Names For Search Queries-->
     <string-array name="locations_categories_array">
+        <item>All</item>
         <item>Food &amp; Drink</item>
         <item>Classrooms</item>
-        <item>Study Areas</item>
+        <item>Study</item>
         <item>Services</item>
         <item>Sports &amp; Fitness</item>
+        <item>Shopping</item>
     </string-array>
 
     <!-- ALL OF THESE ARE FROM MAPBOX GITHUB REPO -->
