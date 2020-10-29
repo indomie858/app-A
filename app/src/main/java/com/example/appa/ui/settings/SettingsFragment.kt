@@ -52,8 +52,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         theme.onPreferenceChangeListener = Preference.OnPreferenceChangeListener{preference, newValue ->
             val id = newValue as String
             ThemeSetting.setDefaultNightMode(ThemeEnum.idOf(id))
+            reload()
             true
         }
+    }
+
+    private fun reload() {
+        getParentFragmentManager().beginTransaction().remove(this).commit()
     }
 
 
