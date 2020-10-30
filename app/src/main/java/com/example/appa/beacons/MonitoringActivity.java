@@ -34,7 +34,7 @@ public class MonitoringActivity extends Activity  {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitoring);
-        //verifyBluetooth();
+        verifyBluetooth();
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

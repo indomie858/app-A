@@ -28,7 +28,7 @@ public class TimedBeaconSimulator implements org.altbeacon.beacon.simulator.Beac
      *
      * Any simulated beacons will automatically be ignored when building for production.
      */
-    public boolean USE_SIMULATED_BEACONS = true;
+    public boolean USE_SIMULATED_BEACONS = false;
 
     /**
      *  Creates empty beacons ArrayList.
