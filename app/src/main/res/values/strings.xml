@@ -7,7 +7,7 @@
     <!-- Navigation-->
     <string name="home_nav">Home</string>
     <string name="settings_nav">Settings</string>
-    <string name="assistant_nav">Assistant</string>
+    <string name="hardware_connection_nav">Connect to Hardware</string>
     <string name="tutorial_nav">Tutorial</string>
     <string name="connect_appa">Connect app-A</string>
     <string name="directory">Directory</string>

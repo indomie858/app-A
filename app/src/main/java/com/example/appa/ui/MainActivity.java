@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
                     backButtonFlag = true;
                     counter = 0;
                     break;
+
                 case R.id.tutorial_button:
                     fm.beginTransaction().hide(active).show(tutorialFragment).commit();
                     actionbar.setTitle("Tutorial");
@@ -64,7 +65,9 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
                     backButtonFlag = true;
                     counter = 0;
                     break;
-                case R.id.assistant_button:
+                case R.id.hardware_connection_button:
+                    backButtonFlag = true;
+                    counter = 0;
             }
             return false;
         });
