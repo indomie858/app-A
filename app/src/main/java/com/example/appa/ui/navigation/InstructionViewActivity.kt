@@ -268,13 +268,13 @@ class InstructionViewActivity :
                                 // Do whatever you want
                                 when {
                                     firstBeacon.distance < beaconDistance -> {
-                                        beaconText.setText("You are moving closer to the beacon")
+                                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance)
                                     }
                                     firstBeacon.distance == beaconDistance -> {
                                         //do nothing
                                     }
                                     else -> {
-                                        beaconText.setText("You are moving farther away from beacon")
+                                        beaconText.setText("You are moving farther away from beacon. Distance is now " + firstBeacon.distance)
                                     }
                                 }
                             })
