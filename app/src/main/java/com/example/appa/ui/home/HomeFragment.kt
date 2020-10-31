@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import android.widget.GridView
 import androidx.fragment.app.Fragment
 import com.example.appa.R
-import com.example.appa.ui.navigationlist.NavigationListActivity
+
+/*import com.example.appa.ui.navigationlist.NavigationListActivity*/
 
 
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -15,6 +16,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     var numWord = arrayOf("Classroom", "Study", "Services", "Food&Drinks", "Sports&Fitness", "Shopping")
 
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    var numImages = intArrayOf(R.drawable.ic_launcher_foreground_classrooms, R.drawable.ic_launcher_foreground_study, R.drawable.ic_launcher_foreground_services,
+    R.drawable.ic_launcher_foreground_food_drinks, R.drawable.ic_launcher_foreground_sports_fitness, R.drawable.ic_launcher_foreground_shopping)
 
 
 
@@ -22,6 +26,13 @@ class HomeFragment : Fragment(), View.OnClickListener {
                               savedInstanceState: Bundle?): View? {
 
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
+
+
+       // gridView = findViewById(R.id.grid_view)
+
+        //HomeAdapter adapter = new HomeAdapter(HomeFragment.this,numWord,numImages);
+        val adapter = HomeAdapter(this@HomeFragment, numWord, numImages)
+        gridView!!.adapter = adapter
 
 
         return view
