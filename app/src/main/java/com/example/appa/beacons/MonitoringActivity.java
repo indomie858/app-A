@@ -167,7 +167,7 @@ public class MonitoringActivity extends Activity  {
     public void onResume() {
         super.onResume();
         BeaconReferenceApplication application = ((BeaconReferenceApplication) this.getApplicationContext());
-        application.setMonitoringActivity(this);
+        //application.setMonitoringActivity(this);
         updateLog(application.getLog());
     }
 

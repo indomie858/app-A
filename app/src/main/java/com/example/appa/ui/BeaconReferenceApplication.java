@@ -14,6 +14,7 @@ import android.util.Log;
 import com.example.appa.R;
 import com.example.appa.beacons.MonitoringActivity;
 import com.example.appa.beacons.TimedBeaconSimulator;
+import com.example.appa.ui.navigation.InstructionViewActivity;
 
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
@@ -29,7 +30,8 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
     private static final String TAG = "BeaconReferenceApp";
     private RegionBootstrap regionBootstrap;
     private BackgroundPowerSaver backgroundPowerSaver;
-    private MonitoringActivity monitoringActivity = null;
+    //private MonitoringActivity monitoringActivity = null;
+    private InstructionViewActivity instructionViewActivity = null;
     private String cumulativeLog = "";
 
     public void onCreate() {
@@ -125,7 +127,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
         // matching a Region (defined above) are first seen.
         Log.d(TAG, "Sending notification.");
         sendNotification();
-        if (monitoringActivity != null) {
+        if (instructionViewActivity != null) {
             // If the Monitoring Activity is visible, we log info about the beacons we have
             // seen on its display
             logToDisplay("I see a beacon again" );
@@ -174,14 +176,18 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
         notificationManager.notify(1, builder.build());
     }
 
-    public void setMonitoringActivity(MonitoringActivity activity) {
+    /*public void setMonitoringActivity(MonitoringActivity activity) {
         this.monitoringActivity = activity;
+    }*/
+
+    public void setMonitoringActivity(InstructionViewActivity activity) {
+        this.instructionViewActivity = activity;
     }
 
     private void logToDisplay(String line) {
         cumulativeLog += (line + "\n");
-        if (this.monitoringActivity != null) {
-            this.monitoringActivity.updateLog(cumulativeLog);
+        if (this.instructionViewActivity != null) {
+            //this.instructionViewActivity.updateLog(cumulativeLog);
         }
     }
 

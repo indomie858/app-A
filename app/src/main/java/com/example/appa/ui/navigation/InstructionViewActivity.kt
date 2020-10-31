@@ -2,26 +2,31 @@
 
 package com.example.appa.ui.navigation
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
+import android.os.RemoteException
 import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.example.appa.R
+import com.example.appa.beacons.RangingActivity
 import com.example.appa.db.PlaceEntity
+import com.example.appa.ui.BeaconReferenceApplication
 import com.example.appa.viewmodel.MapWithNavViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
-import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.api.directions.v5.models.BannerInstructions
 import com.mapbox.api.directions.v5.models.DirectionsRoute
@@ -64,6 +69,10 @@ import com.mapbox.navigation.ui.voice.SpeechPlayerProvider
 import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_instruction_view_layout.*
 import okhttp3.Cache
+import org.altbeacon.beacon.BeaconConsumer
+import org.altbeacon.beacon.BeaconManager
+import org.altbeacon.beacon.RangeNotifier
+import org.altbeacon.beacon.Region
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.*
@@ -76,8 +85,7 @@ import java.util.*
 class InstructionViewActivity :
         AppCompatActivity(),
         OnMapReadyCallback,
-        FeedbackBottomSheetListener,
-        PermissionsListener {
+        FeedbackBottomSheetListener, BeaconConsumer {
 
     private lateinit var viewModel: MapWithNavViewModel
     private var currentPlace: PlaceEntity? = null
@@ -103,10 +111,62 @@ class InstructionViewActivity :
     private lateinit var cancelBtn: AppCompatImageButton
     private val routeOverviewPadding by lazy { buildRouteOverviewPadding() }
 
+    private val TAG = "InstructionViewActivity"
+    private val PERMISSION_REQUEST_FINE_LOCATION = 1
+    private val PERMISSION_REQUEST_BACKGROUND_LOCATION = 2
+    private val beaconManager = BeaconManager.getInstanceForApplication(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_instruction_view_layout)
+
+        ///////////////////////////beacon code from MonitoringActivity////////////////////////////////////////////
+        verifyBluetooth()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    if (checkSelfPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        if (!shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+                            val builder = AlertDialog.Builder(this)
+                            builder.setTitle("This app needs background location access")
+                            builder.setMessage("Please grant location access so this app can detect beacons in the background.")
+                            builder.setPositiveButton(android.R.string.ok, null)
+                            builder.setOnDismissListener {
+                                requestPermissions(arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                                        PERMISSION_REQUEST_BACKGROUND_LOCATION)
+                            }
+                            builder.show()
+                        } else {
+                            val builder = AlertDialog.Builder(this)
+                            builder.setTitle("Functionality limited")
+                            builder.setMessage("Since background location access has not been granted, this app will not be able to discover beacons in the background.  Please go to Settings -> Applications -> Permissions and grant background location access to this app.")
+                            builder.setPositiveButton(android.R.string.ok, null)
+                            builder.setOnDismissListener { }
+                            builder.show()
+                        }
+                    }
+                }
+            } else {
+                if (!shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                            PERMISSION_REQUEST_FINE_LOCATION)
+                } else {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Functionality limited")
+                    builder.setMessage("Since location access has not been granted, this app will not be able to discover beacons.  Please go to Settings -> Applications -> Permissions and grant location access to this app.")
+                    builder.setPositiveButton(android.R.string.ok, null)
+                    builder.setOnDismissListener { }
+                    builder.show()
+                }
+            }
+        }
+        /////////////////////////////end beacon code//////////////////////////////////////////////////
+
         initViews()
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
@@ -128,7 +188,84 @@ class InstructionViewActivity :
 
         initListeners()
         initializeSpeechPlayer()
+    }//end of onCreate function
+
+    //////////////////////////////Beacon functions begin//////////////////////////////////////////
+    private fun verifyBluetooth() {
+        try {
+            if (!BeaconManager.getInstanceForApplication(this).checkAvailability()) {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Bluetooth not enabled")
+                builder.setMessage("Please enable bluetooth in settings and restart this application.")
+                builder.setPositiveButton(android.R.string.ok, null)
+                builder.setOnDismissListener {
+                    //finish();
+                    //System.exit(0);
+                }
+                builder.show()
+            }
+        } catch (e: RuntimeException) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Bluetooth LE not available")
+            builder.setMessage("Sorry, this device does not support Bluetooth LE.")
+            builder.setPositiveButton(android.R.string.ok, null)
+            builder.setOnDismissListener {
+                //finish();
+                //System.exit(0);
+            }
+            builder.show()
+        }
     }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
+        //permissionsManager!!.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            PERMISSION_REQUEST_FINE_LOCATION -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "fine location permission granted")
+                } else {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Functionality limited")
+                    builder.setMessage("Since location access has not been granted, this app will not be able to discover beacons.")
+                    builder.setPositiveButton(android.R.string.ok, null)
+                    builder.setOnDismissListener { }
+                    builder.show()
+                }
+                return
+            }
+            PERMISSION_REQUEST_BACKGROUND_LOCATION -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "background location permission granted")
+                } else {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Functionality limited")
+                    builder.setMessage("Since background location access has not been granted, this app will not be able to discover beacons when in the background.")
+                    builder.setPositiveButton(android.R.string.ok, null)
+                    builder.setOnDismissListener { }
+                    builder.show()
+                }
+                return
+            }
+        }
+    }
+
+    override fun onBeaconServiceConnect() {
+        val rangeNotifier = RangeNotifier { beacons, region ->
+            if (beacons.size > 0) {
+                Log.d(TAG, "didRangeBeaconsInRegion called with beacon count:  " + beacons.size)
+                val firstBeacon = beacons.iterator().next()
+                //logToDisplay("The first beacon " + firstBeacon.toString() + " is about " + firstBeacon.distance + " meters away.")
+            }
+        }
+        try {
+            beaconManager.startRangingBeaconsInRegion(Region("myRangingUniqueId", null, null, null))
+            beaconManager.addRangeNotifier(rangeNotifier)
+            beaconManager.startRangingBeaconsInRegion(Region("myRangingUniqueId", null, null, null))
+            beaconManager.addRangeNotifier(rangeNotifier)
+        } catch (e: RemoteException) {
+        }
+    }
+    /////////////////////////////////////end beacon functions//////////////////////////////////////////////////////////////
 
     private fun setPlaceFromIntent() {
         // Get the intent, apply it to the current place ID,
@@ -147,11 +284,19 @@ class InstructionViewActivity :
 
     public override fun onPause() {
         super.onPause()
+        (this.applicationContext as BeaconReferenceApplication).setMonitoringActivity(null)
+        beaconManager.unbind(this)
         mapView.onPause()
     }
 
     public override fun onResume() {
         super.onResume()
+        //for beacons
+        val application = this.applicationContext as BeaconReferenceApplication
+        application.setMonitoringActivity(this)
+        beaconManager.bind(this)
+
+        //for mapbox
         mapView.onResume()
         setPlaceFromIntent()
         beginNavigation()
@@ -216,8 +361,6 @@ class InstructionViewActivity :
 
     @SuppressLint("MissingPermission")
     private fun initializeLocationComponent(mapboxMap: MapboxMap, style: Style) {
-        // Check if permissions are enabled and if not request
-        if (PermissionsManager.areLocationPermissionsGranted(this)) {
             val activationOptions = LocationComponentActivationOptions.builder(this, style)
                     .useDefaultLocationEngine(false)
                     .build()
@@ -225,10 +368,6 @@ class InstructionViewActivity :
             mapboxMap.locationComponent.isLocationComponentEnabled = true
             mapboxMap.locationComponent.renderMode = RenderMode.COMPASS
             mapboxMap.locationComponent.cameraMode = CameraMode.TRACKING
-        } else {
-            permissionsManager = PermissionsManager(this)
-            permissionsManager!!.requestLocationPermissions(this)
-        }
     }
 
     @SuppressLint("MissingPermission")
@@ -629,23 +768,6 @@ class InstructionViewActivity :
             navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
             updateCameraOnNavigationStateChange(true)
             mapboxNavigation?.startTripSession()
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        permissionsManager!!.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
-    override fun onExplanationNeeded(permissionsToExplain: List<String?>?) {
-        Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show()
-    }
-
-    override fun onPermissionResult(granted: Boolean) {
-        if (granted) {
-            mapboxMap!!.getStyle { style -> initializeLocationComponent(mapboxMap!!, style) }
-        } else {
-            Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show()
-            finish()
         }
     }
 }
