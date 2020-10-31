@@ -25,6 +25,21 @@
         android:visibility="invisible"
         tools:ignore="ContentDescription" />
 
+    <LinearLayout
+        android:id="@+id/beaconTextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center|center_horizontal">
+
+        <TextView
+            android:id="@+id/beaconText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EA3636"
+            android:text="SUP YALL" />
+    </LinearLayout>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/startNavigation"

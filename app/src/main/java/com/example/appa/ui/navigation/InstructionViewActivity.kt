@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.RemoteException
 import android.util.Log
 import android.view.View
@@ -21,7 +22,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.example.appa.R
-import com.example.appa.beacons.RangingActivity
 import com.example.appa.db.PlaceEntity
 import com.example.appa.ui.BeaconReferenceApplication
 import com.example.appa.viewmodel.MapWithNavViewModel
@@ -253,13 +253,43 @@ class InstructionViewActivity :
         val rangeNotifier = RangeNotifier { beacons, region ->
             if (beacons.size > 0) {
                 Log.d(TAG, "didRangeBeaconsInRegion called with beacon count:  " + beacons.size)
-                val firstBeacon = beacons.iterator().next()
-                //logToDisplay("The first beacon " + firstBeacon.toString() + " is about " + firstBeacon.distance + " meters away.")
+                //val firstBeacon = beacons.iterator().next()
+                val firstBeacon = beacons.first()
+
+                if (firstBeacon.distance < 5.0) {
+                    beaconText.setText("The first beacon " + firstBeacon.toString() + " is about " + firstBeacon.distance + " meters away.")
+                    var beaconDistance = firstBeacon.distance
+
+                    val handler = Handler()
+                    val timer = Timer(false)
+                    val timerTask: TimerTask = object : TimerTask() {
+                        override fun run() {
+                            handler.post(Runnable {
+                                // Do whatever you want
+                                when {
+                                    firstBeacon.distance < beaconDistance -> {
+                                        beaconText.setText("You are moving closer to the beacon")
+                                    }
+                                    firstBeacon.distance == beaconDistance -> {
+                                        //do nothing
+                                    }
+                                    else -> {
+                                        beaconText.setText("You are moving farther away from beacon")
+                                    }
+                                }
+                            })
+                        }
+                    }
+                    timer.schedule(timerTask, 5000, 5000) // 1000 = 1 second.
+                }
+
+
+                /*runOnUiThread {
+
+                }*/
             }
         }
         try {
-            beaconManager.startRangingBeaconsInRegion(Region("myRangingUniqueId", null, null, null))
-            beaconManager.addRangeNotifier(rangeNotifier)
             beaconManager.startRangingBeaconsInRegion(Region("myRangingUniqueId", null, null, null))
             beaconManager.addRangeNotifier(rangeNotifier)
         } catch (e: RemoteException) {
@@ -361,13 +391,13 @@ class InstructionViewActivity :
 
     @SuppressLint("MissingPermission")
     private fun initializeLocationComponent(mapboxMap: MapboxMap, style: Style) {
-            val activationOptions = LocationComponentActivationOptions.builder(this, style)
-                    .useDefaultLocationEngine(false)
-                    .build()
-            mapboxMap.locationComponent.activateLocationComponent(activationOptions)
-            mapboxMap.locationComponent.isLocationComponentEnabled = true
-            mapboxMap.locationComponent.renderMode = RenderMode.COMPASS
-            mapboxMap.locationComponent.cameraMode = CameraMode.TRACKING
+        val activationOptions = LocationComponentActivationOptions.builder(this, style)
+                .useDefaultLocationEngine(false)
+                .build()
+        mapboxMap.locationComponent.activateLocationComponent(activationOptions)
+        mapboxMap.locationComponent.isLocationComponentEnabled = true
+        mapboxMap.locationComponent.renderMode = RenderMode.COMPASS
+        mapboxMap.locationComponent.cameraMode = CameraMode.TRACKING
     }
 
     @SuppressLint("MissingPermission")
@@ -402,7 +432,7 @@ class InstructionViewActivity :
                 val originLong: Double
                 val originLat: Double
                 val originPoint: Point
-                if (shouldSimulateRoute()){ //choose CSUN coordinates for simulation/testing
+                if (shouldSimulateRoute()) { //choose CSUN coordinates for simulation/testing
                     originLong = -118.527645
                     originLat = 34.2410366
                     originPoint = Point.fromLngLat(originLong, originLat)
