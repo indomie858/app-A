@@ -256,37 +256,20 @@ class InstructionViewActivity :
                 //val firstBeacon = beacons.iterator().next()
                 val firstBeacon = beacons.first()
 
-                if (firstBeacon.distance < 5.0) {
-                    beaconText.setText("The first beacon " + firstBeacon.toString() + " is about " + firstBeacon.distance + " meters away.")
-                    var beaconDistance = firstBeacon.distance
-
-                    val handler = Handler()
-                    val timer = Timer(false)
-                    val timerTask: TimerTask = object : TimerTask() {
-                        override fun run() {
-                            handler.post(Runnable {
-                                // Do whatever you want
-                                when {
-                                    firstBeacon.distance < beaconDistance -> {
-                                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance)
-                                    }
-                                    firstBeacon.distance == beaconDistance -> {
-                                        //do nothing
-                                    }
-                                    else -> {
-                                        beaconText.setText("You are moving farther away from beacon. Distance is now " + firstBeacon.distance)
-                                    }
-                                }
-                            })
-                        }
+                when {
+                    firstBeacon.distance < 1.0 -> {
+                        beaconText.setText("You are within 1 meter of the beacon. Distance is now " + firstBeacon.distance)
                     }
-                    timer.schedule(timerTask, 5000, 5000) // 1000 = 1 second.
+                    firstBeacon.distance < 2.5 -> {
+                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance)
+                    }
+                    firstBeacon.distance < 5.0 -> {
+                        beaconText.setText("The first beacon " + firstBeacon.toString() + " is about " + firstBeacon.distance + " meters away.")
+                    }
+                    firstBeacon.distance > 5.0 -> {
+                        //do something to indicate you are not near beacon anymore. maybe stop vibrate or stop beep? depending on what we choose to do
+                    }
                 }
-
-
-                /*runOnUiThread {
-
-                }*/
             }
         }
         try {
