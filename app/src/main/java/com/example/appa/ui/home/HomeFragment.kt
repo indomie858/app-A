@@ -17,8 +17,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
     var numWord = arrayOf("Classroom", "Study", "Services", "Food&Drinks", "Sports&Fitness", "Shopping")
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    var numImages = intArrayOf(R.drawable.ic_launcher_foreground_classrooms, R.drawable.ic_launcher_foreground_study, R.drawable.ic_launcher_foreground_services,
-    R.drawable.ic_launcher_foreground_food_drinks, R.drawable.ic_launcher_foreground_sports_fitness, R.drawable.ic_launcher_foreground_shopping)
+    var numImages = intArrayOf(R.drawable.ic_action_classroom, R.drawable.ic_action_study, R.drawable.ic_action_service,
+    R.drawable.ic_action_food, R.drawable.ic_action_fitness, R.drawable.ic_action_shop)
 
 
 
