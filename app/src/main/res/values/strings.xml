@@ -47,15 +47,6 @@
     <string name="app_manual">App Manual</string>
     <string name="cane_setup">Cane Setup</string>
     <string name="resource_links">Resource Links</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="tutorial_header">APP-A Tutorial</string>
-    <string name="tutorial_body"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et enim in ex pharetra venenatis. Praesent urna justo, maximus quis ligula et, tempor tincidunt ex. Integer lobortis suscipit pretium. Mauris convallis, massa ut dignissim ornare, velit ligula pharetra turpis, id posuere purus magna sed nulla. Nam sed purus mauris. Sed in nunc bibendum, maximus nunc sit amet, blandit lorem. Maecenas tristique nec enim at sodales. Donec fringilla ultricies tempor. Aliquam maximus finibus est, sit amet aliquam arcu faucibus et. Cras faucibus sagittis justo, quis vehicula tellus convallis at. Mauris convallis, metus at laoreet ultrices, diam turpis lacinia nibh, ut accumsan lorem urna at ipsum. Ut ac quam ut massa scelerisque convallis. Fusce id elementum nisi. Morbi ut neque pellentesque, consectetur lectus auctor, posuere magna. Duis faucibus semper dapibus. Vestibulum sed pretium ex, quis ullamcorper tellus.
-\n \n
-Pellentesque faucibus id lectus non pellentesque. Ut egestas consectetur vulputate. Cras id elit dapibus sem viverra molestie ullamcorper nec neque. Donec a neque diam. Aliquam suscipit erat eu turpis dictum pellentesque. In feugiat consectetur lacus, sed pretium mi tristique in. Vivamus dictum id erat id fermentum. Aliquam et lacus a nisl tincidunt tincidunt. Aenean auctor placerat justo, a tempor tortor viverra eu. Suspendisse congue vestibulum lacus. Fusce sollicitudin scelerisque justo nec faucibus. Integer sagittis purus id gravida commodo. Pellentesque sagittis rutrum efficitur. Vestibulum fermentum, est non consectetur dignissim, mauris risus viverra nibh, eget sagittis ipsum sapien ut nisl. Duis sit amet nulla nec nisi ullamcorper porta.
-\n \n
-Etiam tempus, nibh sed fringilla ullamcorper, sem risus porta ligula, at bibendum nisi erat at urna. Fusce tincidunt nulla nulla, et dignissim ipsum sollicitudin et. Cras non tortor imperdiet, vehicula nunc eget, auctor sapien. Cras justo erat, aliquet nec faucibus a, mattis condimentum justo. Etiam suscipit mi nec mi imperdiet venenatis. Vestibulum vitae tellus ut nulla tincidunt hendrerit sed ac orci. Nullam ac molestie turpis. Vivamus blandit laoreet molestie. Morbi ut sem mi. Maecenas et cursus magna. Mauris sem tortor, finibus a ex ac, elementum ullamcorper erat. Sed luctus mauris tellus, in tempor turpis suscipit ac. Maecenas metus libero, laoreet id mauris et, laoreet euismod leo.
-\n \n
-Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce viverra enim eu leo imperdiet ullamcorper. Proin ullamcorper nibh sed maximus imperdiet. Pellentesque suscipit urna odio, ac tempus dolor pulvinar et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec metus eleifend, tincidunt diam at, laoreet justo. Nam pellentesque dolor quis rhoncus pretium. Cras ut turpis a orci cursus ultricies nec et nisi. Nullam placerat felis vel felis accumsan pretium. Etiam congue lacus vitae nulla hendrerit, non porttitor nisl tempus. </string>
 
     <!-- Category Names For Search Queries-->
     <string-array name="locations_categories_array">
@@ -218,6 +209,18 @@ Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculu
     <string name="history_local_history_file">Local history file</string>
     <string name="history_recorded_history_file">Recorded history file</string>
     <!-- END MAPBOX GITHUB REPO -->
-    <strin name="tutorial_2_body">BODY 2 </strin>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tutorial_header">APP-A Tutorial</string>
+    <string name="tutorial_body"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et enim in ex pharetra venenatis. Praesent urna justo, maximus quis ligula et, tempor tincidunt ex. Integer lobortis suscipit pretium. Mauris convallis, massa ut dignissim ornare, velit ligula pharetra turpis, id posuere purus magna sed nulla. Nam sed purus mauris. Sed in nunc bibendum, maximus nunc sit amet, blandit lorem. Maecenas tristique nec enim at sodales. Donec fringilla ultricies tempor. Aliquam maximus finibus est, sit amet aliquam arcu faucibus et. Cras faucibus sagittis justo, quis vehicula tellus convallis at. Mauris convallis, metus at laoreet ultrices, diam turpis lacinia nibh, ut accumsan lorem urna at ipsum. Ut ac quam ut massa scelerisque convallis. Fusce id elementum nisi. Morbi ut neque pellentesque, consectetur lectus auctor, posuere magna. Duis faucibus semper dapibus. Vestibulum sed pretium ex, quis ullamcorper tellus.
+\n \n
+Pellentesque faucibus id lectus non pellentesque. Ut egestas consectetur vulputate. Cras id elit dapibus sem viverra molestie ullamcorper nec neque. Donec a neque diam. Aliquam suscipit erat eu turpis dictum pellentesque. In feugiat consectetur lacus, sed pretium mi tristique in. Vivamus dictum id erat id fermentum. Aliquam et lacus a nisl tincidunt tincidunt. Aenean auctor placerat justo, a tempor tortor viverra eu. Suspendisse congue vestibulum lacus. Fusce sollicitudin scelerisque justo nec faucibus. Integer sagittis purus id gravida commodo. Pellentesque sagittis rutrum efficitur. Vestibulum fermentum, est non consectetur dignissim, mauris risus viverra nibh, eget sagittis ipsum sapien ut nisl. Duis sit amet nulla nec nisi ullamcorper porta.
+\n \n
+Etiam tempus, nibh sed fringilla ullamcorper, sem risus porta ligula, at bibendum nisi erat at urna. Fusce tincidunt nulla nulla, et dignissim ipsum sollicitudin et. Cras non tortor imperdiet, vehicula nunc eget, auctor sapien. Cras justo erat, aliquet nec faucibus a, mattis condimentum justo. Etiam suscipit mi nec mi imperdiet venenatis. Vestibulum vitae tellus ut nulla tincidunt hendrerit sed ac orci. Nullam ac molestie turpis. Vivamus blandit laoreet molestie. Morbi ut sem mi. Maecenas et cursus magna. Mauris sem tortor, finibus a ex ac, elementum ullamcorper erat. Sed luctus mauris tellus, in tempor turpis suscipit ac. Maecenas metus libero, laoreet id mauris et, laoreet euismod leo.
+\n \n
+Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce viverra enim eu leo imperdiet ullamcorper. Proin ullamcorper nibh sed maximus imperdiet. Pellentesque suscipit urna odio, ac tempus dolor pulvinar et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec metus eleifend, tincidunt diam at, laoreet justo. Nam pellentesque dolor quis rhoncus pretium. Cras ut turpis a orci cursus ultricies nec et nisi. Nullam placerat felis vel felis accumsan pretium. Etiam congue lacus vitae nulla hendrerit, non porttitor nisl tempus. </string>
+    <string name="tutorial_2_head">CANE</string>
+    <string name="tutorial_2_body">BODY 2 </string>
+
 </resources>
 

@@ -33,14 +33,12 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new TutorialTextFragment();
             case 1:
-
-                return new TutorialTextFragment();
+                return new TutorialTextFragment2();
             default:
                 return null;
         }
 
     }
-
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
@@ -49,7 +47,7 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Total of 3 tabs.
+        // Total of 2 tabs.
         return 2;
     }
 
