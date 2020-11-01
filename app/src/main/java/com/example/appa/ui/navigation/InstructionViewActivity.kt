@@ -260,19 +260,19 @@ class InstructionViewActivity :
                 val firstBeacon = beacons.first()   //need to change this to read specific beacons by id
 
                 when {
-                    firstBeacon.distance < 1.0 -> {
-                        beaconText.setText("You are within 1 meter of the beacon. Distance is now " + firstBeacon.distance)
+                    firstBeacon.distance < 2.0 -> {
+                        beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT,270);
                     }
-                    firstBeacon.distance < 2.5 -> {
+                    firstBeacon.distance < 5.0 -> {
                         beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2,270);
                     }
-                    firstBeacon.distance < 5.0 -> {
+                    firstBeacon.distance < 10.0 -> {
                         beaconText.setText("The first beacon " + firstBeacon.toString() + " is about " + firstBeacon.distance + " meters away.")
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP,150);
                     }
-                    firstBeacon.distance > 5.0 -> {
+                    firstBeacon.distance > 10.0 -> {
                         //do something to indicate you are not near beacon anymore. maybe stop vibrate or stop beep? depending on what we choose to do
                     }
                 }
@@ -741,7 +741,7 @@ class InstructionViewActivity :
     private val voiceInstructionsObserver = object : VoiceInstructionsObserver {
         override fun onNewVoiceInstructions(voiceInstructions: VoiceInstructions) {
             //remember to uncomment this for voice instructions during navigation
-            //speechPlayer.play(voiceInstructions)
+            speechPlayer.play(voiceInstructions)
         }
     }
 
