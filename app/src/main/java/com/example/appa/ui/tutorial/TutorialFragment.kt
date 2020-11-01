@@ -4,15 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.appa.R
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 
 class TutorialFragment : Fragment() {
 
-
+    lateinit var  tabLayout: TabLayout
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -24,7 +26,8 @@ class TutorialFragment : Fragment() {
         val adapter = TutorialPagerAdapter(activity, activity?.supportFragmentManager)
         val viewPager: ViewPager = view.findViewById<ViewPager>(R.id.view_pager)
         viewPager.adapter = adapter
-        val tabs: TabLayout = view.findViewById<TabLayout>(R.id.tutorial_tabs)
+
+       val tabs: TabLayout = view.findViewById<TabLayout>(R.id.tutorial_tabs)
         tabs.setupWithViewPager(viewPager)
 
         return view
