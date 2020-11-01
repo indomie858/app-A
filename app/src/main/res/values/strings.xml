@@ -218,5 +218,6 @@ Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculu
     <string name="history_local_history_file">Local history file</string>
     <string name="history_recorded_history_file">Recorded history file</string>
     <!-- END MAPBOX GITHUB REPO -->
+    <strin name="tutorial_2_body">BODY 2 </strin>
 </resources>
 

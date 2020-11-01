@@ -22,6 +22,7 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
     public TutorialPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+
     }
 
     @NonNull
@@ -30,11 +31,14 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch(position) {
             case 0:
-                fragment = TutorialTextFragment.newInstance();
+                return new TutorialTextFragment();
             case 1:
-                fragment = TutorialTextFragment.newInstance();
+
+                return new TutorialTextFragment();
+            default:
+                return null;
         }
-        return fragment;
+
     }
 
     @Nullable
@@ -47,5 +51,10 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         // Total of 3 tabs.
         return 2;
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
     }
 }
