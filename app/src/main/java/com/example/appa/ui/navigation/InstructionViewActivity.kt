@@ -7,9 +7,10 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.os.RemoteException
 import android.util.Log
 import android.view.View
@@ -250,21 +251,26 @@ class InstructionViewActivity :
     }
 
     override fun onBeaconServiceConnect() {
+        val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+
         val rangeNotifier = RangeNotifier { beacons, region ->
             if (beacons.size > 0) {
                 Log.d(TAG, "didRangeBeaconsInRegion called with beacon count:  " + beacons.size)
                 //val firstBeacon = beacons.iterator().next()
-                val firstBeacon = beacons.first()
+                val firstBeacon = beacons.first()   //need to change this to read specific beacons by id
 
                 when {
                     firstBeacon.distance < 1.0 -> {
                         beaconText.setText("You are within 1 meter of the beacon. Distance is now " + firstBeacon.distance)
+                        toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT,270);
                     }
                     firstBeacon.distance < 2.5 -> {
                         beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance)
+                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2,270);
                     }
                     firstBeacon.distance < 5.0 -> {
                         beaconText.setText("The first beacon " + firstBeacon.toString() + " is about " + firstBeacon.distance + " meters away.")
+                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP,150);
                     }
                     firstBeacon.distance > 5.0 -> {
                         //do something to indicate you are not near beacon anymore. maybe stop vibrate or stop beep? depending on what we choose to do
@@ -734,7 +740,8 @@ class InstructionViewActivity :
 
     private val voiceInstructionsObserver = object : VoiceInstructionsObserver {
         override fun onNewVoiceInstructions(voiceInstructions: VoiceInstructions) {
-            speechPlayer.play(voiceInstructions)
+            //remember to uncomment this for voice instructions during navigation
+            //speechPlayer.play(voiceInstructions)
         }
     }
 
