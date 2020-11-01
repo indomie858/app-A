@@ -2,10 +2,7 @@ package com.example.appa.ui.navigationlist;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.SearchView;
-import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +10,9 @@ import androidx.core.app.NavUtils;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Update;
 
 import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
-import com.example.appa.ui.PlaceAdapter;
 import com.example.appa.viewmodel.NavigationListViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -74,25 +69,6 @@ public class NavigationListActivity extends AppCompatActivity {
         }
 
         searchView.setOnQueryTextListener(new NavigationQueryTextListener());
-
-        // Assigning data to the spinners, AKA the dropdown menu.
-        Spinner spinner = (Spinner) findViewById(R.id.location_cat_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.locations_categories_array, android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                queryCategory = (String) parent.getItemAtPosition(position);
-                if (queryCategory.equals("All")) {
-                    queryCategory = "";
-                }
-                UpdateRVAdapter();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         // Binds the adapter to the recyclerview.
         RecyclerView recyclerView = findViewById(R.id.place_list);

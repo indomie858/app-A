@@ -1,10 +1,18 @@
 package com.example.appa.db;
 
+import android.location.Location;
+import android.location.LocationListener;
+import android.os.Bundle;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.appa.model.Place;
+
+import java.lang.reflect.Array;
+
+import static android.location.Location.distanceBetween;
 
 @Entity(tableName = "place_table")
 public class PlaceEntity implements Place {
@@ -54,5 +62,4 @@ public class PlaceEntity implements Place {
     }
 
     public String getCategories() { return categories; }
-
 }
