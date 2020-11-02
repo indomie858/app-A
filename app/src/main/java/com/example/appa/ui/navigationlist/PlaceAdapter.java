@@ -84,7 +84,6 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         PlaceViewModel currentPlaceViewModel = mPlaceViewModels.get(position);
         currentPlaceViewModel.setLocationManager(holder.manager);
         holder.binding.setPlace(currentPlaceViewModel);
-
         LocationManager manager = holder.manager;
 
         // Attach this listener to every button,

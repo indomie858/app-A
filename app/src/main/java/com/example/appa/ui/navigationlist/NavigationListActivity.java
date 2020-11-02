@@ -1,5 +1,6 @@
 package com.example.appa.ui.navigationlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
@@ -10,6 +11,7 @@ import androidx.core.app.NavUtils;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Update;
 
 import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
@@ -29,18 +31,6 @@ public class NavigationListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_list_activity);
 
-        // TODO: Move this to a fragment.
-        // This handles the back navigation button on top app bar
-        MaterialToolbar actionbar = (MaterialToolbar) findViewById(R.id.topAppBar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    NavUtils.navigateUpFromSameTask(NavigationListActivity.this);
-                }
-            });
-        }
         // Adapter for the RecyclerView UI
         placeAdapter = new PlaceAdapter();
 
@@ -55,11 +45,10 @@ public class NavigationListActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 queryName = newText;
-
+                UpdateRVAdapter();
                 // Return false to perform the default action
                 // of showing any suggestions if available
 
-                UpdateRVAdapter();
                 return false;
             }
             @Override
@@ -76,19 +65,29 @@ public class NavigationListActivity extends AppCompatActivity {
 
         // Viewmodel. Handles all data interactions between the UI and DB.
         viewModel = new ViewModelProvider(this).get(NavigationListViewModel.class);
-        // This line gets the list of places from the database,
-        // and sends it to the adapter,
-        // which is responsible for creating the layout
-        // with the data.
-        viewModel.getAllPlaces().observe(this, new Observer<List<PlaceEntity>>() {
-            @Override
-            public void onChanged(List<PlaceEntity> placeEntities) {
-                placeAdapter.setPlaces(placeEntities);
-            }
-        });
+
+        // Update list from intent
+        setViewModelFromIntent();
     }
 
-    public void UpdateRVAdapter() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setViewModelFromIntent();
+    }
+
+    private void setViewModelFromIntent() {
+        // Sets data from a given intent
+        Intent intent  = getIntent();
+        queryCategory = intent.getStringExtra("QueryCategory");
+        UpdateRVAdapter();
+    }
+
+    private void UpdateRVAdapter() {
+        // Gets the list of places from the database and
+        // send it to the adapter,
+        // which is responsible for creating the layout
+        // with the data.
         viewModel.searchQuery(queryName, queryCategory).observe(this, new Observer<List<PlaceEntity>>() {
             @Override
             public void onChanged(List<PlaceEntity> placeEntities) {
