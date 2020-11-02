@@ -91,12 +91,10 @@ class InstructionViewActivity :
     private lateinit var viewModel: MapWithNavViewModel
     private var currentPlace: PlaceEntity? = null
     private var currentPlaceID: Int? = null
-    private var permissionsManager: PermissionsManager? = null
 
     private var mapboxNavigation: MapboxNavigation? = null
     private var navigationMapboxMap: NavigationMapboxMap? = null
     private lateinit var speechPlayer: NavigationSpeechPlayer
-    private lateinit var destination: LatLng
     private val mapboxReplayer = MapboxReplayer()
 
     private var mapboxMap: MapboxMap? = null
@@ -110,7 +108,6 @@ class InstructionViewActivity :
     private lateinit var summaryBehavior: BottomSheetBehavior<SummaryBottomSheet>
     private lateinit var routeOverviewButton: ImageButton
     private lateinit var cancelBtn: AppCompatImageButton
-    private val routeOverviewPadding by lazy { buildRouteOverviewPadding() }
 
     private val TAG = "InstructionViewActivity"
     private val PERMISSION_REQUEST_FINE_LOCATION = 1
@@ -219,7 +216,6 @@ class InstructionViewActivity :
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        //permissionsManager!!.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             PERMISSION_REQUEST_FINE_LOCATION -> {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -499,57 +495,6 @@ class InstructionViewActivity :
         mapboxNavigation?.startTripSession()
     }
 
-    @SuppressLint("MissingPermission")
-    private fun initListeners() {
-        summaryBehavior.setBottomSheetCallback(bottomSheetCallback)
-
-        routeOverviewButton.setOnClickListener {
-            navigationMapboxMap?.showRouteOverview(routeOverviewPadding)
-            recenterBtn.show()
-        }
-
-        recenterBtn.addOnClickListener {
-            recenterBtn.hide()
-            navigationMapboxMap?.resetPadding()
-            navigationMapboxMap
-                    ?.resetCameraPositionWith(NavigationCamera.NAVIGATION_TRACKING_MODE_GPS)
-        }
-
-        cancelBtn.setOnClickListener {
-            mapboxNavigation?.stopTripSession()
-            updateCameraOnNavigationStateChange(false)
-        }
-    }
-
-    private fun buildRouteOverviewPadding(): IntArray {
-        val leftRightPadding =
-                resources
-                        .getDimension(
-                                com.mapbox.navigation.ui.R.dimen.mapbox_route_overview_left_right_padding
-                        )
-                        .toInt()
-        val paddingBuffer =
-                resources
-                        .getDimension(
-                                com.mapbox.navigation.ui.R.dimen.mapbox_route_overview_buffer_padding
-                        )
-                        .toInt()
-        val instructionHeight =
-                (
-                        resources
-                                .getDimension(
-                                        com.mapbox.navigation.ui.R.dimen.mapbox_instruction_content_height
-                                ) +
-                                paddingBuffer
-                        )
-                        .toInt()
-        val summaryHeight =
-                resources
-                        .getDimension(com.mapbox.navigation.ui.R.dimen.mapbox_summary_bottom_sheet_height)
-                        .toInt()
-        return intArrayOf(leftRightPadding, instructionHeight, leftRightPadding, summaryHeight)
-    }
-
     private fun isLocationTracking(cameraMode: Int): Boolean {
         return cameraMode == CameraMode.TRACKING ||
                 cameraMode == CameraMode.TRACKING_COMPASS ||
@@ -592,6 +537,23 @@ class InstructionViewActivity :
         }
     }
 
+    @SuppressLint("MissingPermission")
+    private fun initListeners() {
+        summaryBehavior.setBottomSheetCallback(bottomSheetCallback)
+
+        recenterBtn.addOnClickListener {
+            recenterBtn.hide()
+            navigationMapboxMap?.resetPadding()
+            navigationMapboxMap
+                    ?.resetCameraPositionWith(NavigationCamera.NAVIGATION_TRACKING_MODE_GPS)
+        }
+
+        cancelBtn.setOnClickListener {
+            mapboxNavigation?.stopTripSession()
+            updateCameraOnNavigationStateChange(false)
+        }
+    }
+
     private fun initViews() {
 
         summaryBottomSheet.visibility = GONE
@@ -600,6 +562,7 @@ class InstructionViewActivity :
         }
         recenterBtn.hide()
         routeOverviewButton = findViewById(R.id.routeOverviewBtn)
+        routeOverviewButton.visibility = GONE
         cancelBtn = findViewById(R.id.cancelBtn)
 
         instructionView.visibility = GONE
