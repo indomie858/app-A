@@ -11,7 +11,6 @@ import androidx.core.app.NavUtils;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Update;
 
 import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
