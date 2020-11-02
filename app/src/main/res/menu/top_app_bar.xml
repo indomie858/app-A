@@ -3,12 +3,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/map_toggle"
 
-        android:contentDescription="@string/content_description_map"
-        app:showAsAction="ifRoom"
-
-        />
 
 </menu>
