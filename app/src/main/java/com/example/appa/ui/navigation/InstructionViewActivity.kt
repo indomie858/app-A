@@ -71,13 +71,11 @@ import com.mapbox.navigation.ui.voice.SpeechPlayerProvider
 import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_instruction_view_layout.*
 import okhttp3.Cache
-import org.altbeacon.beacon.BeaconConsumer
-import org.altbeacon.beacon.BeaconManager
-import org.altbeacon.beacon.RangeNotifier
-import org.altbeacon.beacon.Region
+import org.altbeacon.beacon.*
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.*
+import java.util.UUID
 
 /**
  * This activity shows how to integrate the Navigation UI SDK's
@@ -201,6 +199,7 @@ class InstructionViewActivity :
         try {
             if (!BeaconManager.getInstanceForApplication(this).checkAvailability()) {
                 val builder = AlertDialog.Builder(this)
+
                 builder.setTitle("Bluetooth not enabled")
                 builder.setMessage("Please enable bluetooth in settings and restart this application.")
                 builder.setPositiveButton(android.R.string.ok, null)
@@ -286,7 +285,9 @@ class InstructionViewActivity :
             }
         }
         try {
-            beaconManager.startRangingBeaconsInRegion(Region("myRangingUniqueId", null, null, null))
+
+            //beaconManager.startMonitoringBeaconsInRegion(Region("myRangingUniqueId",uniqueID))
+            beaconManager.startRangingBeaconsInRegion(Region("myRangingUniqueId", Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"), null, null))
             beaconManager.addRangeNotifier(rangeNotifier)
         } catch (e: RemoteException) {
         }
