@@ -19,6 +19,7 @@ import android.view.View.VISIBLE
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.app.NavUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -26,9 +27,9 @@ import com.example.appa.R
 import com.example.appa.db.PlaceEntity
 import com.example.appa.ui.BeaconReferenceApplication
 import com.example.appa.viewmodel.MapWithNavViewModel
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
-import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.api.directions.v5.models.BannerInstructions
 import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.api.directions.v5.models.RouteOptions
@@ -36,7 +37,6 @@ import com.mapbox.api.directions.v5.models.VoiceInstructions
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
-import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener
 import com.mapbox.mapboxsdk.location.modes.CameraMode
@@ -118,6 +118,13 @@ class InstructionViewActivity :
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_instruction_view_layout)
+
+        // This handles the back navigation button on top app bar
+        val actionbar = findViewById<View>(R.id.topAppBar) as MaterialToolbar
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+            actionbar.setNavigationOnClickListener { NavUtils.navigateUpFromSameTask(this@InstructionViewActivity) }
+        }
 
         ///////////////////////////beacon code from MonitoringActivity////////////////////////////////////////////
         verifyBluetooth()
@@ -258,15 +265,15 @@ class InstructionViewActivity :
                 when {
                     firstBeacon.distance < 2.0 -> {
                         beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance)
-                        toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT,270);
+                        toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
                     }
                     firstBeacon.distance < 5.0 -> {
                         beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance)
-                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2,270);
+                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
                     }
                     firstBeacon.distance < 10.0 -> {
                         beaconText.setText("The first beacon " + firstBeacon.toString() + " is about " + firstBeacon.distance + " meters away.")
-                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP,150);
+                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
                     }
                     firstBeacon.distance > 10.0 -> {
                         //do something to indicate you are not near beacon anymore. maybe stop vibrate or stop beep? depending on what we choose to do
