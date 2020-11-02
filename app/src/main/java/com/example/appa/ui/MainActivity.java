@@ -1,6 +1,7 @@
 package com.example.appa.ui;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -14,6 +15,8 @@ import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class MainActivity extends AppCompatActivity implements BluetoothDialog.BluetoothDialogListener {
 
@@ -87,6 +90,9 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
 
         //  requires counter to be '1' in order to exit the app
         else if (backButtonFlag == false && counter <1){
+            String text = "Press back again to exit the app.";
+            Toast toast = Toast.makeText(this, text, LENGTH_SHORT);
+            toast.show();
             counter++;
         }
 
