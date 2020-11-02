@@ -14,7 +14,7 @@ import com.example.appa.R
 class HomeFragment : Fragment(), View.OnClickListener {
     var gridView: GridView? = null
 
-    var numWord = arrayOf("Classroom", "Study", "Services", "Food&Drinks", "Sports&Fitness", "Shopping")
+    var numWord = arrayOf("Classroom", "Study", "Services", "Food&Drinks", "Fitness", "Shopping")
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     var numImages = intArrayOf(R.drawable.ic_action_classroom, R.drawable.ic_action_study, R.drawable.ic_action_service,
