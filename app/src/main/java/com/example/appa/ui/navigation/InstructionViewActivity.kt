@@ -86,7 +86,7 @@ class InstructionViewActivity :
         AppCompatActivity(),
         OnMapReadyCallback,
         FeedbackBottomSheetListener, BeaconConsumer {
-
+    // SO MANY MEMBERS
     private lateinit var viewModel: MapWithNavViewModel
     private var currentPlace: PlaceEntity? = null
     private var currentPlaceID: Int? = null
@@ -285,9 +285,31 @@ class InstructionViewActivity :
             }
         }
         try {
-
-            //beaconManager.startMonitoringBeaconsInRegion(Region("myRangingUniqueId",uniqueID))
-            beaconManager.startRangingBeaconsInRegion(Region("myRangingUniqueId", Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"), null, null))
+            //beaconManager.startMonitoringBeaconsInRegion(Region("myRangingUniqueId",uniqueID))\
+            // Get major and minor ID's if they exit,
+            // otherwise set them to null
+            var majorIdentifier : Identifier?;
+            var minorIdentifier : Identifier?;
+            if(currentPlace?.major_id != null) {
+                majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
+            } else {
+                majorIdentifier = null;
+            }
+            if(currentPlace?.minor_id != null) {
+                minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
+            }
+            else {
+               minorIdentifier = null;
+            }
+            // Look for beacons with the UUID, Major, and Minor.
+            beaconManager.startRangingBeaconsInRegion(
+                    Region(
+                            "myRangingUniqueId",
+                            Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
+                            majorIdentifier,
+                            minorIdentifier,
+                    )
+            )
             beaconManager.addRangeNotifier(rangeNotifier)
         } catch (e: RemoteException) {
         }
