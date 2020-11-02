@@ -11,6 +11,7 @@ import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.RemoteException
 import android.util.Log
 import android.view.View
@@ -253,9 +254,12 @@ class InstructionViewActivity :
         }
     }
 
+    //Called when the beacon service is running and ready to accept your commands through the BeaconManager
     override fun onBeaconServiceConnect() {
+        //ToneGenerator class contains various system sounds...beeps boops and whatnot
         val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
 
+        //Called once per second to give an estimate of the mDistance to visible beacons
         val rangeNotifier = RangeNotifier { beacons, region ->
             if (beacons.size > 0) {
                 Log.d(TAG, "didRangeBeaconsInRegion called with beacon count:  " + beacons.size)
@@ -272,7 +276,7 @@ class InstructionViewActivity :
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
                     }
                     firstBeacon.distance < 10.0 -> {
-                        beaconText.setText("The first beacon " + firstBeacon.toString() + " is about " + firstBeacon.distance + " meters away.")
+                        beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
                     }
                     firstBeacon.distance > 10.0 -> {
@@ -493,13 +497,19 @@ class InstructionViewActivity :
     // Call this function to initiate navigation.
     @SuppressLint("MissingPermission")
     private fun beginNavigation() {
-        updateCameraOnNavigationStateChange(true)
-        navigationMapboxMap?.addOnCameraTrackingChangedListener(cameraTrackingChangedListener)
-        navigationMapboxMap?.addProgressChangeListener(mapboxNavigation!!)
-        if (mapboxNavigation?.getRoutes()?.isNotEmpty() == true) {
-            navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
+        //this task runs after a delay to ensure everything is loaded before starting nav session
+        val task = Runnable {
+            updateCameraOnNavigationStateChange(true)
+            navigationMapboxMap?.addOnCameraTrackingChangedListener(cameraTrackingChangedListener)
+            navigationMapboxMap?.addProgressChangeListener(mapboxNavigation!!)
+            if (mapboxNavigation?.getRoutes()?.isNotEmpty() == true) {
+                navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
+            }
+            mapboxNavigation?.startTripSession()
         }
-        mapboxNavigation?.startTripSession()
+
+        val handler = Handler()
+        handler.postDelayed(task, 1000) //set task delay duration
     }
 
     private fun isLocationTracking(cameraMode: Int): Boolean {
