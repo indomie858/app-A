@@ -28,10 +28,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
 
-       // gridView = findViewById(R.id.grid_view)
+        gridView = view.findViewById(R.id.grid_view)
 
         //HomeAdapter adapter = new HomeAdapter(HomeFragment.this,numWord,numImages);
-        val adapter = HomeAdapter(this@HomeFragment, numWord, numImages)
+        val adapter = HomeAdapter(activity, numWord, numImages)
         gridView!!.adapter = adapter
 
 
