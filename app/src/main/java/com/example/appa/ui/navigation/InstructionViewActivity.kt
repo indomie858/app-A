@@ -270,15 +270,15 @@ class InstructionViewActivity :
                         beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
                     }
-                    firstBeacon.distance < 5.0 -> {
+                    firstBeacon.distance < 4.0 -> {
                         beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
                     }
-                    firstBeacon.distance < 10.0 -> {
+                    firstBeacon.distance < 8.0 -> {
                         beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
                     }
-                    firstBeacon.distance > 10.0 -> {
+                    firstBeacon.distance > 8.0 -> {
                         //do something to indicate you are not near beacon anymore. maybe stop vibrate or stop beep? depending on what we choose to do
                     }
                 }
