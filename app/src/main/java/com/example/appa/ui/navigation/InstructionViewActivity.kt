@@ -36,6 +36,7 @@ import com.mapbox.api.directions.v5.models.VoiceInstructions
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.mapbox.mapboxsdk.location.LocationComponent
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener
 import com.mapbox.mapboxsdk.location.modes.CameraMode
@@ -89,6 +90,7 @@ class InstructionViewActivity :
     private var currentPlaceID: Int? = null
 
     private var mapboxNavigation: MapboxNavigation? = null
+    private var locationComponent: LocationComponent? = null
     private var navigationMapboxMap: NavigationMapboxMap? = null
     private lateinit var speechPlayer: NavigationSpeechPlayer
     private val mapboxReplayer = MapboxReplayer()
@@ -288,18 +290,17 @@ class InstructionViewActivity :
             //beaconManager.startMonitoringBeaconsInRegion(Region("myRangingUniqueId",uniqueID))\
             // Get major and minor ID's if they exit,
             // otherwise set them to null
-            var majorIdentifier : Identifier?;
-            var minorIdentifier : Identifier?;
-            if(currentPlace?.major_id != null) {
+            var majorIdentifier: Identifier?;
+            var minorIdentifier: Identifier?;
+            if (currentPlace?.major_id != null) {
                 majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
             } else {
                 majorIdentifier = null;
             }
-            if(currentPlace?.minor_id != null) {
+            if (currentPlace?.minor_id != null) {
                 minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
-            }
-            else {
-               minorIdentifier = null;
+            } else {
+                minorIdentifier = null;
             }
             // Look for beacons with the UUID, Major, and Minor.
             beaconManager.startRangingBeaconsInRegion(
@@ -428,21 +429,21 @@ class InstructionViewActivity :
     }
 
     @SuppressLint("MissingPermission")
-    private fun initializeLocationComponent(mapboxMap: MapboxMap, style: Style) {
-        val activationOptions = LocationComponentActivationOptions.builder(this, style)
-                .useDefaultLocationEngine(false)
-                .build()
-        mapboxMap.locationComponent.activateLocationComponent(activationOptions)
-        mapboxMap.locationComponent.isLocationComponentEnabled = true
-        mapboxMap.locationComponent.renderMode = RenderMode.COMPASS
-        mapboxMap.locationComponent.cameraMode = CameraMode.TRACKING
-    }
-
-    @SuppressLint("MissingPermission")
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(Style.MAPBOX_STREETS) {
-            initializeLocationComponent(mapboxMap, it)
+        mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
+            //initializeLocationComponent(mapboxMap, it)
+            locationComponent = mapboxMap.locationComponent.apply {
+                activateLocationComponent(
+                        LocationComponentActivationOptions.builder(
+                                this@InstructionViewActivity,
+                                style
+                        ).build()
+                )
+                renderMode = RenderMode.COMPASS
+                isLocationComponentEnabled = true
+            }
+
             mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(15.0))
             navigationMapboxMap = NavigationMapboxMap(mapView, mapboxMap, this, true)
 
@@ -467,18 +468,10 @@ class InstructionViewActivity :
                 val destinationLong = currentPlace!!.longitude.toDouble()
                 val destinationLat = currentPlace!!.latitude.toDouble()
                 val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
-                val originLong: Double
-                val originLat: Double
-                val originPoint: Point
-                if (shouldSimulateRoute()) { //choose CSUN coordinates for simulation/testing
-                    originLong = -118.527645
-                    originLat = 34.2410366
-                    originPoint = Point.fromLngLat(originLong, originLat)
-                } else {
-                    originLong = mapboxMap.locationComponent.lastKnownLocation!!.longitude
-                    originLat = mapboxMap.locationComponent.lastKnownLocation!!.latitude
-                    originPoint = Point.fromLngLat(originLong, originLat);
-                }
+                val originLong = locationComponent!!.lastKnownLocation!!.longitude
+                val originLat = locationComponent!!.lastKnownLocation!!.latitude
+                val originPoint = Point.fromLngLat(originLong, originLat);
+
                 mapboxNavigation?.requestRoutes(
                         RouteOptions.builder()
                                 .applyDefaultParams()
@@ -489,6 +482,24 @@ class InstructionViewActivity :
                 )
             }
         }
+    }
+
+    // Call this function to initiate navigation.
+    @SuppressLint("MissingPermission")
+    private fun beginNavigation() {
+        //this task runs after a delay to ensure everything is loaded before starting nav session
+        val task = Runnable {
+            updateCameraOnNavigationStateChange(true)
+            navigationMapboxMap?.addOnCameraTrackingChangedListener(cameraTrackingChangedListener)
+            navigationMapboxMap?.addProgressChangeListener(mapboxNavigation!!)
+            if (mapboxNavigation?.getRoutes()?.isNotEmpty() == true) {
+                navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
+            }
+            mapboxNavigation?.startTripSession()
+        }
+
+        val handler = Handler()
+        handler.postDelayed(task, 1000) //set task delay duration
     }
 
     // InstructionView Feedback Bottom Sheet listener
@@ -533,25 +544,6 @@ class InstructionViewActivity :
             // Daniel: Not sure where this feedback function is defined.
             //showFeedbackSentSnackBar(context = this, view = mapView)
         }
-    }
-
-
-    // Call this function to initiate navigation.
-    @SuppressLint("MissingPermission")
-    private fun beginNavigation() {
-        //this task runs after a delay to ensure everything is loaded before starting nav session
-        val task = Runnable {
-            updateCameraOnNavigationStateChange(true)
-            navigationMapboxMap?.addOnCameraTrackingChangedListener(cameraTrackingChangedListener)
-            navigationMapboxMap?.addProgressChangeListener(mapboxNavigation!!)
-            if (mapboxNavigation?.getRoutes()?.isNotEmpty() == true) {
-                navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
-            }
-            mapboxNavigation?.startTripSession()
-        }
-
-        val handler = Handler()
-        handler.postDelayed(task, 1000) //set task delay duration
     }
 
     private fun isLocationTracking(cameraMode: Int): Boolean {
