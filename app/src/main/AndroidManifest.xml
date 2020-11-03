@@ -22,7 +22,8 @@
         <activity
             android:name=".ui.navigation.InstructionViewActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.navigationlist.NavigationListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_VIEW" />
 
