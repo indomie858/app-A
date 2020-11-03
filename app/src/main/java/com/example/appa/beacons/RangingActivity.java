@@ -1,5 +1,10 @@
 package com.example.appa.beacons;
 
+/**
+ * Note: We are using this activity as a reference/guideline for beacon setup.
+ * This activity is not implemented in our app.
+ */
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.RemoteException;

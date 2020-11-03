@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.appa.ui.navigation
 
 import android.Manifest
@@ -108,8 +106,6 @@ class InstructionViewActivity :
     private lateinit var cancelBtn: AppCompatImageButton
 
     private val TAG = "InstructionViewActivity"
-    private val PERMISSION_REQUEST_FINE_LOCATION = 1
-    private val PERMISSION_REQUEST_BACKGROUND_LOCATION = 2
     private val beaconManager = BeaconManager.getInstanceForApplication(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -242,6 +238,7 @@ class InstructionViewActivity :
     }
     /////////////////////////////////////end beacon functions//////////////////////////////////////////////////////////////
 
+    //we can create custom vibration patterns with this function
     private fun vibrate(vibrateMode: Int) {
 
         var vibratePattern = longArrayOf(0, 400, 100, 400)  //default pattern: delay 0ms, vibrate 400ms, pause 100ms, vibrate 400ms
@@ -424,7 +421,7 @@ class InstructionViewActivity :
         }
 
         val handler = Handler()
-        handler.postDelayed(task, 1000) //set task delay duration
+        handler.postDelayed(task, 1200) //set task delay duration
     }
 
     // InstructionView Feedback Bottom Sheet listener
@@ -515,7 +512,7 @@ class InstructionViewActivity :
 
     @SuppressLint("MissingPermission")
     private fun initListeners() {
-        summaryBehavior.setBottomSheetCallback(bottomSheetCallback)
+        summaryBehavior.addBottomSheetCallback(bottomSheetCallback)
 
         recenterBtn.addOnClickListener {
             recenterBtn.hide()

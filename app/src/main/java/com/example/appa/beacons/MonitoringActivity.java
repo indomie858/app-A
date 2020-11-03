@@ -1,5 +1,10 @@
 package com.example.appa.beacons;
 
+/**
+ * Note: We are using this activity as a reference/guideline for beacon setup.
+ * This activity is not implemented in our app.
+ */
+
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
