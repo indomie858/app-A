@@ -177,37 +177,6 @@ class InstructionViewActivity :
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        when (requestCode) {
-            PERMISSION_REQUEST_FINE_LOCATION -> {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.d(TAG, "fine location permission granted")
-                } else {
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Functionality limited")
-                    builder.setMessage("Since location access has not been granted, this app will not be able to discover beacons.")
-                    builder.setPositiveButton(android.R.string.ok, null)
-                    builder.setOnDismissListener { }
-                    builder.show()
-                }
-                return
-            }
-            PERMISSION_REQUEST_BACKGROUND_LOCATION -> {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.d(TAG, "background location permission granted")
-                } else {
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Functionality limited")
-                    builder.setMessage("Since background location access has not been granted, this app will not be able to discover beacons when in the background.")
-                    builder.setPositiveButton(android.R.string.ok, null)
-                    builder.setOnDismissListener { }
-                    builder.show()
-                }
-                return
-            }
-        }
-    }
-
     //Called when the beacon service is running and ready to accept your commands through the BeaconManager
     override fun onBeaconServiceConnect() {
         //ToneGenerator class contains various system sounds...beeps boops and whatnot
