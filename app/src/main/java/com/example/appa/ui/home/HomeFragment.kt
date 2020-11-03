@@ -12,14 +12,14 @@ import com.example.appa.R
 
 
 class HomeFragment : Fragment(), View.OnClickListener {
-    var gridView: GridView? = null
+    /*var gridView: GridView? = null
 
-    var numWord = arrayOf("Classroom", "Study", "Services", "Food&Drinks", "Fitness", "Shopping")
+    var numWord = arrayOf("Classroom", "Study", "Services", "Food&Drinks", "Fitness", "Shopping")*/
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    var numImages = intArrayOf(R.drawable.ic_action_classroom, R.drawable.ic_action_study, R.drawable.ic_action_service,
+   /* var numImages = intArrayOf(R.drawable.ic_action_classroom, R.drawable.ic_action_study, R.drawable.ic_action_service,
     R.drawable.ic_action_food, R.drawable.ic_action_fitness, R.drawable.ic_action_shop)
-
+*/
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -28,11 +28,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
 
-        gridView = view.findViewById(R.id.grid_view)
+        //gridView = view.findViewById(R.id.grid_view)
 
         //HomeAdapter adapter = new HomeAdapter(HomeFragment.this,numWord,numImages);
-        val adapter = HomeAdapter(activity, numWord, numImages)
-        gridView!!.adapter = adapter
+        //val adapter = HomeAdapter(activity, numWord, numImages)
+        //gridView!!.adapter = adapter
 
 
         return view

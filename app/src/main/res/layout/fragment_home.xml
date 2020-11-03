@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,252 +9,246 @@
     tools:context=".ui.home.HomeFragment"
     android:background="@color/background_color">
 
-    <RelativeLayout
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Choose a category to list nearby locations ..."
+      android:textColor="@color/black"
+      android:textSize="22sp"
+      android:textStyle="bold"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="10dp"
+      android:layout_marginRight="10dp"
+      android:layout_marginBottom="10dp"/>
+
+  <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp">
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Choose a category to list nearby locations ..."
-          android:textStyle="bold"
-          android:textSize="22sp"
-          android:textColor="@color/black"
-          android:layout_marginBottom="20dp" />
-    </RelativeLayout>
+  </RelativeLayout>-->
 
 
   <GridLayout
-      android:columnCount="2"
-      android:rowCount="3"
-      android:alignmentMode="alignMargins"
-      android:columnOrderPreserved="false"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="150dp"
+      android:alignmentMode="alignMargins"
+      android:columnCount="2"
+      android:columnOrderPreserved="false"
+      android:rowCount="3"
+      >
 
     <androidx.cardview.widget.CardView
-      android:layout_width="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_columnWeight="2"
-        android:layout_rowWeight="2"
-        app:cardElevation="6dp"
-        app:cardCornerRadius="12dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:layout_margin="12dp"
-        >
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center"
-          android:padding="30dp"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:padding="5dp">
+
         <ImageView
-            android:src="@drawable/ic_action_classroom"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_action_classroom" />
+
         <TextView
-            android:layout_marginTop="12dp"
-            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Classrooms"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
       </LinearLayout>
-
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_columnWeight="2"
-        android:layout_rowWeight="2"
-        app:cardElevation="6dp"
-        app:cardCornerRadius="12dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:layout_margin="12dp"
-        >
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center"
-          android:padding="30dp"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:padding="25dp">
+
         <ImageView
-            android:src="@drawable/ic_action_study"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_action_study" />
+
         <TextView
-            android:layout_marginTop="12dp"
-            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Study"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
       </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
-
-
   </GridLayout>
+
   <GridLayout
-      android:columnCount="2"
-      android:rowCount="3"
-      android:alignmentMode="alignMargins"
-      android:columnOrderPreserved="false"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="150dp"
+      android:alignmentMode="alignMargins"
+      android:columnCount="2"
+      android:columnOrderPreserved="false"
+      android:rowCount="3">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_columnWeight="2"
-        android:layout_rowWeight="2"
-        app:cardElevation="6dp"
-        app:cardCornerRadius="12dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:layout_margin="12dp"
-        >
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center"
-          android:padding="30dp"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:padding="1dp">
+
         <ImageView
-            android:src="@drawable/ic_action_food"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_action_food" />
+
         <TextView
-            android:layout_marginTop="12dp"
-            android:textColor="@color/black"
-            android:text="Restaurant"
-            android:textSize="18sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Restaurants"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
       </LinearLayout>
-
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_columnWeight="2"
-        android:layout_rowWeight="2"
-        app:cardElevation="6dp"
-        app:cardCornerRadius="12dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:layout_margin="12dp"
-        >
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center"
-          android:padding="30dp"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:padding="19dp">
+
         <ImageView
-            android:src="@drawable/ic_action_service"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_action_service" />
+
         <TextView
-            android:layout_marginTop="12dp"
-            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Services"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
       </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
-
-
   </GridLayout>
+
   <GridLayout
-      android:columnCount="2"
-      android:rowCount="3"
-      android:alignmentMode="alignMargins"
-      android:columnOrderPreserved="false"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="150dp"
+      android:alignmentMode="alignMargins"
+      android:columnCount="2"
+      android:columnOrderPreserved="false"
+      android:rowCount="3">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_columnWeight="2"
-        android:layout_rowWeight="2"
-        app:cardElevation="6dp"
-        app:cardCornerRadius="12dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:layout_margin="12dp"
-        >
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center"
-          android:padding="30dp"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:padding="1dp">
+
         <ImageView
-            android:src="@drawable/ic_action_shop"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_action_shop" />
+
         <TextView
-            android:layout_marginTop="12dp"
-            android:textColor="@color/black"
-            android:text="Shopping"
-            android:textSize="18sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Student Stores"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
       </LinearLayout>
-
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_columnWeight="2"
-        android:layout_rowWeight="2"
-        app:cardElevation="6dp"
-        app:cardCornerRadius="12dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:layout_margin="12dp"
-        >
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center"
-          android:padding="30dp"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:padding="31dp">
+
         <ImageView
-            android:src="@drawable/ic_action_fitness"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_action_fitness" />
+
         <TextView
-            android:layout_marginTop="12dp"
-            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Fitness"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
       </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
-
-
   </GridLayout>
-
 
 </LinearLayout>
