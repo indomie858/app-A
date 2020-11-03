@@ -5,14 +5,12 @@ package com.example.appa.ui.navigation
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.media.AudioManager
 import android.media.ToneGenerator
-import android.os.Build
-import android.os.Bundle
-import android.os.Handler
-import android.os.RemoteException
+import android.os.*
 import android.util.Log
 import android.view.View
 import android.view.View.GONE
@@ -75,7 +73,6 @@ import org.altbeacon.beacon.*
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.*
-import java.util.UUID
 
 /**
  * This activity shows how to integrate the Navigation UI SDK's
@@ -269,14 +266,17 @@ class InstructionViewActivity :
                     firstBeacon.distance < 2.0 -> {
                         beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
+                        vibrate(2)
                     }
                     firstBeacon.distance < 4.0 -> {
                         beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
+                        vibrate(1)
                     }
                     firstBeacon.distance < 8.0 -> {
                         beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
+                        vibrate(0)
                     }
                     firstBeacon.distance > 8.0 -> {
                         //do something to indicate you are not near beacon anymore. maybe stop vibrate or stop beep? depending on what we choose to do
@@ -315,6 +315,25 @@ class InstructionViewActivity :
         }
     }
     /////////////////////////////////////end beacon functions//////////////////////////////////////////////////////////////
+
+    private fun vibrate(vibrateMode: Int) {
+
+        var vibratePattern = longArrayOf(0, 400, 100, 400)  //default pattern: delay 0ms, vibrate 400ms, pause 100ms, vibrate 400ms
+
+        //0 is for largest distance, 2 is for shortest distance from beacons
+        when (vibrateMode) {
+            0 -> vibratePattern = longArrayOf(0, 200, 400, 200)   //sequence: delay 0ms, vibrate 200ms, pause 400ms, vibrate 200ms
+            1 -> vibratePattern = longArrayOf(0, 100, 100, 100, 100, 100, 100, 100)     //sequence: delay 0ms, vibrate 100ms, pause 100ms, vibrate 100ms, pause 100ms, vibrate 100ms, pause 100ms vibrate 100ms
+            2 -> vibratePattern = longArrayOf(0, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50)    //sequence: delay 0ms, vibrate 50ms, pause 50ms...
+        }
+
+        val vibrator: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createWaveform(vibratePattern, -1))    //use this as of api level 26
+        } else {
+            vibrator.vibrate(vibratePattern, -1)    //depricated function. uses this only if build api is less than 26
+        }
+    }
 
     private fun setPlaceFromIntent() {
         // Get the intent, apply it to the current place ID,
