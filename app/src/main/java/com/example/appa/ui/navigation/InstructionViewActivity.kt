@@ -678,6 +678,9 @@ class InstructionViewActivity :
              * Make sure bind function in onResume is commented out
              */
             if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)){
+                instructionView.visibility = GONE
+                summaryBottomSheet.visibility = GONE
+                beaconTextContainer.visibility = VISIBLE
                 beaconManager.bind(this@InstructionViewActivity)
             }
         }

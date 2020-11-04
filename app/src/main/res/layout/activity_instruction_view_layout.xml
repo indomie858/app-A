@@ -47,16 +47,20 @@
     <LinearLayout
         android:id="@+id/beaconTextContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center|center_horizontal"
+        android:layout_marginTop="?attr/actionBarSize"
         android:orientation="vertical"
-        android:layout_gravity="center|center_horizontal">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/beaconText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="#EA3636"
-            android:text="SUP YALL" />
+            android:text="SUP YALL. SEARCHING FOR THAT YOUNG ENTRANCE"
+            android:textSize="36sp" />
     </LinearLayout>
 
 
