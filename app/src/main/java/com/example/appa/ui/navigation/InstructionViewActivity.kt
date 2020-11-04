@@ -187,18 +187,18 @@ class InstructionViewActivity :
                 val firstBeacon = beacons.first()   //need to change this to read specific beacons by id
 
                 when {
-                    firstBeacon.distance < 2.0 -> {
-                        beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + majorIdentifier + "\nMinorID is: " + minorIdentifier)
+                    firstBeacon.distance < 2.0 && firstBeacon.id2 == majorIdentifier -> {
+                        beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
                         vibrate(2)
                     }
-                    firstBeacon.distance < 4.0 -> {
-                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + majorIdentifier + "\nMinorID is: " + minorIdentifier)
+                    firstBeacon.distance < 4.0 && firstBeacon.id2 == majorIdentifier -> {
+                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
                         vibrate(1)
                     }
-                    firstBeacon.distance < 8.0 -> {
-                        beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + majorIdentifier + "\nMinorID is: " + minorIdentifier)
+                    firstBeacon.distance < 8.0 && firstBeacon.id2 == majorIdentifier -> {
+                        beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
                         vibrate(0)
                     }
