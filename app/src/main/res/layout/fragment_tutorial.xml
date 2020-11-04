@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.tutorial.TutorialFragment"
-    android:id="@+id/tutorialFragment_parent"
-    android:background="@color/background_color">
+    android:id="@+id/tutorialFragment_parent">
 
 
     <com.google.android.material.tabs.TabLayout
