@@ -1,10 +1,9 @@
 package com.example.appa.ui.home
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.appa.R
 
@@ -12,16 +11,10 @@ import com.example.appa.R
 
 
 class HomeFragment : Fragment(), View.OnClickListener {
-    /*var gridView: GridView? = null
 
-    var numWord = arrayOf("Classroom", "Study", "Services", "Food&Drinks", "Fitness", "Shopping")*/
+
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-   /* var numImages = intArrayOf(R.drawable.ic_action_classroom, R.drawable.ic_action_study, R.drawable.ic_action_service,
-    R.drawable.ic_action_food, R.drawable.ic_action_fitness, R.drawable.ic_action_shop)
-*/
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -37,6 +30,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // you can add listener of elements here
