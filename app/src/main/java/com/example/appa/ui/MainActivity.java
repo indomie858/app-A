@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
 
         // when back button is pressed -- return to home
         if (backButtonFlag == true){
-            fm.beginTransaction().hide(active).show(homeFragment).commit();
+            fm.beginTransaction().hide(active).replace(R.id.main_container, homeFragment, "1").commit();
             actionbar.setTitle("Home");
             active = homeFragment;
             backButtonFlag = false;
@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
         }
     }
 
+
+
     @Override
     public void onDialogNegativeClick(DialogFragment dialog)
     {
@@ -108,5 +110,19 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
 
+    }
+
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String selectedTheme = prefs.getString("theme", "2");
+        if((lastTheme != "2") && (lastTheme != selectedTheme)) {
+            //log.d(TAG, "the theme was changed");
+            finish();
+            startActivity(getIntent());
+        }
     }
 }
