@@ -85,6 +85,8 @@ class InstructionViewActivity :
     private lateinit var viewModel: MapWithNavViewModel
     private var currentPlace: PlaceEntity? = null
     private var currentPlaceID: Int? = null
+    private var majorIdentifier: Identifier? = null
+    private var minorIdentifier: Identifier? = null
 
     private var mapboxNavigation: MapboxNavigation? = null
     private var locationComponent: LocationComponent? = null
@@ -186,17 +188,17 @@ class InstructionViewActivity :
 
                 when {
                     firstBeacon.distance < 2.0 -> {
-                        beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance)
+                        beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + majorIdentifier + "\nMinorID is: " + minorIdentifier)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
                         vibrate(2)
                     }
                     firstBeacon.distance < 4.0 -> {
-                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance)
+                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + majorIdentifier + "\nMinorID is: " + minorIdentifier)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
                         vibrate(1)
                     }
                     firstBeacon.distance < 8.0 -> {
-                        beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance)
+                        beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + majorIdentifier + "\nMinorID is: " + minorIdentifier)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
                         vibrate(0)
                     }
@@ -210,7 +212,7 @@ class InstructionViewActivity :
             //beaconManager.startMonitoringBeaconsInRegion(Region("myRangingUniqueId",uniqueID))\
             // Get major and minor ID's if they exit,
             // otherwise set them to null
-            var majorIdentifier: Identifier?;
+            /*var majorIdentifier: Identifier?;
             var minorIdentifier: Identifier?;
             if (currentPlace?.major_id != null) {
                 majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
@@ -221,7 +223,8 @@ class InstructionViewActivity :
                 minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
             } else {
                 minorIdentifier = null;
-            }
+            }*/
+
             // Look for beacons with the UUID, Major, and Minor.
             beaconManager.startRangingBeaconsInRegion(
                     Region(
@@ -323,6 +326,20 @@ class InstructionViewActivity :
             onDestroy()
         }
 
+        try {
+            (this.applicationContext as BeaconReferenceApplication).setMonitoringActivity(null)
+            beaconManager.unbind(this)
+            beaconManager.stopRangingBeaconsInRegion(Region(
+                    "myRangingUniqueId",
+                    Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
+                    majorIdentifier,
+                    minorIdentifier,
+            ))
+            beaconManager.removeAllRangeNotifiers()
+        } catch (e: RemoteException) {
+            Log.e(TAG, e.toString())
+        }
+
         speechPlayer.onDestroy()
         mapView.onDestroy()
     }
@@ -394,6 +411,9 @@ class InstructionViewActivity :
             }
 
             if (currentPlace != null) {
+                majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
+                minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
+
                 val destinationLong = currentPlace!!.longitude.toDouble()
                 val destinationLat = currentPlace!!.latitude.toDouble()
                 val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
@@ -687,7 +707,7 @@ class InstructionViewActivity :
              * Uncomment this if condition when you want beacon detection to start when route is completed.
              * Make sure bind function in onResume is commented out
              */
-            if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)){
+            if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {
                 instructionView.visibility = GONE
                 summaryBottomSheet.visibility = GONE
                 beaconTextContainer.visibility = VISIBLE
