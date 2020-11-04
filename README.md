@@ -20,11 +20,11 @@ Anne Xaymountry, Gaven Grantz, Frank Joseph Serdenia, Daniel Palencia, Allan Hui
 ```
 ## Tools
 ```
-Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane
+Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane | Mapbox
 ```
 ## Languages
 ```
-Java | C 
+Java | C | Kotlin
 ```
 
 ## Devops Documentation (GitHub/GitKraken/Travis CI)

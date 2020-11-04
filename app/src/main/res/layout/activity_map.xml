@@ -8,13 +8,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MapActivity">
+    tools:context=".ui.MapActivity"
+    android:id="@+id/navigationLayout_parent">
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        mapbox:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        mapbox:layout_constraintBottom_toBottomOf="parent"
         mapbox:layout_constraintEnd_toEndOf="parent"
         mapbox:layout_constraintStart_toStartOf="parent"
         mapbox:layout_constraintTop_toBottomOf="@+id/appBarLayout"
@@ -39,24 +40,10 @@
             android:background="@color/design_default_color_on_secondary"
 
             app:menu="@menu/top_app_bar"
-            app:title="@string/navigation" />
+            app:title="@string/map"
+            app:titleTextColor="@color/white"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        app:itemIconTint="@drawable/nav_item_color_state"
-        app:itemRippleColor="@android:color/primary_text_dark"
-        app:itemTextColor="@drawable/nav_item_color_state"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

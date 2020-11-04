@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="entries_preference_theme">
-        <item>Light</item>
-        <item>Dark</item>
+    <string-array name="theme_names_array">
+        <item>@string/follow_system_name</item>
+        <item>@string/light_theme_name</item>
+        <item>@string/dark_theme_name</item>
+
     </string-array>
-    <string-array name="entry_values_preference_theme">
-        <item>Light</item>
-        <item>Dark</item>
+
+    <string-array name="theme_values_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+
     </string-array>
 
     <string-array name="entries_preferences_textSize">
@@ -17,5 +22,15 @@
     <string-array name="entry_values_preference_textSize">
         <item>10</item>
         <item>12</item>
+    </string-array>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
     </string-array>
 </resources>

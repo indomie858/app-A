@@ -7,7 +7,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.MainActivity"
+    android:id="@+id/homeFragment_parent"
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -27,9 +29,20 @@
             android:background="@color/design_default_color_on_secondary"
 
             app:menu="@menu/top_app_bar"
-            app:title="@string/home_title" />
+            app:title="@string/home_title"
+            app:titleTextColor="@color/white"/>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <include
+        layout="@layout/content_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -47,7 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation_menu" />
 
-    <LinearLayout
+    <!--<LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -66,7 +79,7 @@
             android:layout_marginTop="16dp"
             android:layout_weight=".33"
             android:backgroundTint="#FFFFFF"
-            android:onClick="openBluetoothConnectActivity"
+            android:onClick="appaButtonPressed"
             android:text="@string/connect_appa"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +117,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/around_me_button" />
 
-    </LinearLayout>
+    </LinearLayout>-->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
