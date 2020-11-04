@@ -1,15 +1,20 @@
 package com.example.appa.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.appa.R;
 import com.example.appa.ui.home.HomeFragment;
+import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
 import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
@@ -113,4 +118,12 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
     public void onDialogPositiveClick(DialogFragment dialog) {
 
     }
+
+    public void onClickCardView(View view) {
+        Context context = view.getContext();
+        Intent intent = new Intent(context, NavigationListActivity.class);
+        intent.putExtra("QueryCategory", view.getId());
+        context.startActivity(intent);
+    }
+
 }

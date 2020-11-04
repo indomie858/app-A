@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/home_linear_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.home.HomeFragment"
+    tools:context=".ui.MainActivity"
     android:background="@color/background_color">
 
   <TextView
@@ -38,17 +39,20 @@
       android:columnCount="2"
       android:columnOrderPreserved="false"
       android:rowCount="3"
+      android:id="@+id/grid_layout"
       >
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/classrooms"
+        android:id="@+id/Classrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_margin="12dp"
+        android:onClick="onClickCardView"
         app:cardCornerRadius="12dp"
-        app:cardElevation="10dp">
+        app:cardElevation="10dp"
+        >
 
       <LinearLayout
           android:layout_width="match_parent"
@@ -69,7 +73,7 @@
             android:text="Classrooms"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
       </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -81,7 +85,9 @@
         android:layout_columnWeight="1"
         android:layout_margin="12dp"
         app:cardCornerRadius="12dp"
-        app:cardElevation="10dp">
+        app:cardElevation="10dp"
+        android:onClick="onClickCardView"
+        >
 
       <LinearLayout
           android:layout_width="match_parent"
@@ -116,14 +122,16 @@
       android:rowCount="3">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/restaurants"
+        android:id="@+id/Restaurants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_margin="12dp"
         app:cardCornerRadius="12dp"
-        app:cardElevation="10dp">
+        app:cardElevation="10dp"
+        android:onClick="onClickCardView"
+        >
 
       <LinearLayout
           android:layout_width="match_parent"
@@ -149,14 +157,16 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/services"
+        android:id="@+id/Services"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_margin="12dp"
         app:cardCornerRadius="12dp"
-        app:cardElevation="10dp">
+        app:cardElevation="10dp"
+        android:onClick="onClickCardView"
+        >
 
       <LinearLayout
           android:layout_width="match_parent"
@@ -191,12 +201,13 @@
       android:rowCount="3">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/student_store"
+        android:id="@+id/Student_Store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_margin="12dp"
+        android:onClick="onClickCardView"
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp">
 
@@ -204,6 +215,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center"
+          android:onClick="onClickCardView"
           android:orientation="vertical"
           android:padding="1dp">
 
@@ -219,19 +231,21 @@
             android:text="Student Stores"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
       </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/fitness"
+        android:id="@+id/Fitness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_margin="12dp"
         app:cardCornerRadius="12dp"
-        app:cardElevation="10dp">
+        app:cardElevation="10dp"
+        android:onClick="onClickCardView"
+        >
 
       <LinearLayout
           android:layout_width="match_parent"
