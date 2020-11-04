@@ -1,10 +1,8 @@
 package com.example.appa.ui.navigation
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.media.AudioManager
 import android.media.ToneGenerator
@@ -285,6 +283,14 @@ class InstructionViewActivity :
         //for beacons
         val application = this.applicationContext as BeaconReferenceApplication
         application.setMonitoringActivity(this)
+
+        /**
+         * BeaconManager bind function is necessary to start beacons ranging detection.
+         * For testing and setup, leave the bind function here in onResume.
+         * Once we want to start beacon ranging at the end of the navigation session,
+         * comment out this bind function and uncomment the if condition in routeProgressObserver.
+         * It's near the bottom. too much goddamn code in this activity
+         */
         beaconManager.bind(this)
 
         //for mapbox
@@ -665,6 +671,14 @@ class InstructionViewActivity :
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
             instructionView.updateDistanceWith(routeProgress)
             summaryBottomSheet.update(routeProgress)
+
+            /**
+             * Uncomment this if condition when you want beacon detection to start when route is completed.
+             * Make sure bind function in onResume is commented out
+             */
+            /*if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)){
+                beaconManager.bind(this@InstructionViewActivity)
+            }*/
         }
     }
 
@@ -685,7 +699,7 @@ class InstructionViewActivity :
     // This is used for testing purposes.
     private fun shouldSimulateRoute(): Boolean {
         return PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
-                .getBoolean(this.getString(R.string.simulate_route_key), false)
+                .getBoolean(this.getString(R.string.simulate_route_key), true)
     }
 
     // If shouldSimulateRoute is true a ReplayRouteLocationEngine will be used which is intended
