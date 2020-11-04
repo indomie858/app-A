@@ -41,6 +41,7 @@
       >
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/classrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
@@ -73,6 +74,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/study"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
@@ -114,6 +116,7 @@
       android:rowCount="3">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/restaurants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
@@ -146,6 +149,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/services"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
@@ -187,6 +191,7 @@
       android:rowCount="3">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/student_store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
@@ -219,6 +224,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/fitness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
