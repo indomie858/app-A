@@ -20,9 +20,7 @@ class HomeFragmentTest {
         val mainActivityScenario = ActivityScenario.launch(MainActivity::class.java)
 
         onView(withId(R.id.homeFragment_parent)).check(matches(isDisplayed()))
-        onView(withId(R.id.connect_button)).check(matches(isDisplayed()))
-        onView(withId(R.id.directory_button)).check(matches(isDisplayed()))
-        //onView(withId(R.id.navigation_button)).check(matches(isDisplayed()))
+
 
     }
 
