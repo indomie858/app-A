@@ -43,6 +43,7 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.navigation.base.internal.extensions.applyDefaultParams
 import com.mapbox.navigation.base.internal.route.RouteUrl
 import com.mapbox.navigation.base.trip.model.RouteProgress
+import com.mapbox.navigation.base.trip.model.RouteProgressState
 import com.mapbox.navigation.core.MapboxNavigation
 import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
 import com.mapbox.navigation.core.replay.MapboxReplayer
@@ -291,7 +292,7 @@ class InstructionViewActivity :
          * comment out this bind function and uncomment the if condition in routeProgressObserver.
          * It's near the bottom. too much goddamn code in this activity
          */
-        beaconManager.bind(this)
+        //beaconManager.bind(this)
 
         //for mapbox
         mapView.onResume()
@@ -676,9 +677,9 @@ class InstructionViewActivity :
              * Uncomment this if condition when you want beacon detection to start when route is completed.
              * Make sure bind function in onResume is commented out
              */
-            /*if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)){
+            if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)){
                 beaconManager.bind(this@InstructionViewActivity)
-            }*/
+            }
         }
     }
 
