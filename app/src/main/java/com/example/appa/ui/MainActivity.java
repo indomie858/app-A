@@ -83,6 +83,45 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
             return false;
         });
 
+        checkLocationPermissions();
+    }
+
+    @Override
+    //  Custom back button  operation
+    public void onBackPressed() {
+
+        // when back button is pressed -- return to home
+        if (backButtonFlag == true){
+            fm.beginTransaction().hide(active).show(homeFragment).commit();
+            actionbar.setTitle("Home");
+            active = homeFragment;
+            backButtonFlag = false;
+        }
+
+        //  requires counter to be '1' in order to exit the app
+        else if (backButtonFlag == false && counter <1){
+            counter++;
+        }
+
+        //if back button is pressed 2x and they are on home page -- exit app
+        else if (backButtonFlag == false && counter == 1){
+            counter = 0;
+            finish();
+        }
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog)
+    {
+
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+
+    }
+
+    public void checkLocationPermissions() {
         //This checks if app location permissions have been granted. If not, prompt the user for permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -146,41 +185,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
 
             }
         }
-    }
-
-    @Override
-    //  Custom back button  operation
-    public void onBackPressed() {
-
-        // when back button is pressed -- return to home
-        if (backButtonFlag == true){
-            fm.beginTransaction().hide(active).show(homeFragment).commit();
-            actionbar.setTitle("Home");
-            active = homeFragment;
-            backButtonFlag = false;
-        }
-
-        //  requires counter to be '1' in order to exit the app
-        else if (backButtonFlag == false && counter <1){
-            counter++;
-        }
-
-        //if back button is pressed 2x and they are on home page -- exit app
-        else if (backButtonFlag == false && counter == 1){
-            counter = 0;
-            finish();
-        }
-    }
-
-    @Override
-    public void onDialogNegativeClick(DialogFragment dialog)
-    {
-
-    }
-
-    @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-
     }
 
     //executes after location permissions request
