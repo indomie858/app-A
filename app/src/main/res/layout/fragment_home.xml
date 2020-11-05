@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/home_linear_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_color"
     android:orientation="vertical"
-    tools:context=".ui.MainActivity"
-    android:background="@color/background_color">
+    tools:context=".ui.MainActivity">
 
   <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="Choose a category to list nearby locations ..."
-      android:textColor="@color/black"
-      android:textSize="22sp"
-      android:textStyle="bold"
-      android:layout_marginTop="10dp"
       android:layout_marginLeft="10dp"
+      android:layout_marginTop="10dp"
       android:layout_marginRight="10dp"
-      android:layout_marginBottom="10dp"/>
+      android:layout_marginBottom="10dp"
+      android:text="Welcome to CSUN! Choose a category to list nearby locations."
+      android:textAlignment="center"
+      android:textColor="@color/text_color"
+      android:textSize="24sp"
+      android:textStyle="bold" />
 
   <!--<RelativeLayout
         android:layout_width="match_parent"
@@ -33,31 +33,31 @@
 
 
   <GridLayout
+      android:id="@+id/grid_layout"
       android:layout_width="match_parent"
       android:layout_height="150dp"
       android:alignmentMode="alignMargins"
       android:columnCount="2"
+
       android:columnOrderPreserved="false"
-      android:rowCount="3"
-      android:id="@+id/grid_layout"
-      >
+      android:rowCount="3">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Classrooms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
+        android:layout_columnWeight=".5"
         android:layout_margin="12dp"
-        android:onClick="onClickCardView"
         android:contentDescription="@string/classrooms"
+        android:onClick="onClickCardView"
         app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        >
+        app:cardElevation="10dp">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:background="@color/card_background_color"
           android:gravity="center"
           android:orientation="vertical"
           android:padding="5dp">
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Classrooms"
-            android:textColor="@color/black"
+            android:textColor="@color/button_text_color"
             android:textSize="15sp"
             android:textStyle="bold" />
       </LinearLayout>
@@ -80,20 +80,20 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/study"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
+        android:layout_columnWeight=".5"
         android:layout_margin="12dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        android:onClick="onClickCardView"
         android:contentDescription="@string/study"
-        >
+        android:onClick="onClickCardView"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:background="@color/card_background_color"
           android:gravity="center"
           android:orientation="vertical"
           android:padding="25dp">
@@ -108,9 +108,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Study"
-            android:textColor="@color/black"
+            android:textColor="@color/button_text_color"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
       </LinearLayout>
     </androidx.cardview.widget.CardView>
   </GridLayout>
@@ -125,20 +125,21 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Restaurants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_rowWeight=".5"
+        android:layout_columnWeight=".5"
         android:layout_margin="12dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        android:onClick="onClickCardView"
         android:contentDescription="@string/restaurants"
-        >
+        android:onClick="onClickCardView"
+        app:cardBackgroundColor="@color/card_background_color"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:background="@color/card_background_color"
           android:gravity="center"
           android:orientation="vertical"
           android:padding="1dp">
@@ -153,31 +154,32 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Restaurants"
-            android:textColor="@color/black"
+            android:textColor="@color/button_text_color"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
       </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Services"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
+        android:layout_columnWeight=".5"
         android:layout_margin="12dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        android:onClick="onClickCardView"
         android:contentDescription="@string/Services"
-        >
+        android:onClick="onClickCardView"
+        app:cardBackgroundColor="@color/card_background_color"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:background="@color/card_background_color"
           android:gravity="center"
           android:orientation="vertical"
-          android:padding="19dp">
+          android:padding="1dp">
 
         <ImageView
             android:layout_width="50dp"
@@ -189,9 +191,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Services"
-            android:textColor="@color/black"
+            android:textColor="@color/button_text_color"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
       </LinearLayout>
     </androidx.cardview.widget.CardView>
   </GridLayout>
@@ -205,22 +207,22 @@
       android:rowCount="3">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/Student_Store"
-        android:layout_width="wrap_content"
+        android:id="@+id/Student_Stores"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
+        android:layout_columnWeight=".5"
         android:layout_margin="12dp"
+        android:contentDescription="@string/student_stores"
         android:onClick="onClickCardView"
         app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        android:contentDescription="@string/student_stores">
+        app:cardElevation="10dp">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:background="@color/card_background_color"
           android:gravity="center"
-          android:onClick="onClickCardView"
           android:orientation="vertical"
           android:padding="1dp">
 
@@ -234,45 +236,50 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Student Stores"
-            android:textColor="@color/black"
+            android:textColor="@color/button_text_color"
             android:textSize="15sp"
             android:textStyle="bold" />
+
       </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Fitness"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
+        android:layout_columnWeight=".5"
         android:layout_margin="12dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        android:onClick="onClickCardView"
         android:contentDescription="@string/Fitness"
-        >
+        android:onClick="onClickCardView"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:background="@color/card_background_color"
           android:gravity="center"
+          android:onClick="onClickCardView"
           android:orientation="vertical"
-          android:padding="31dp">
+          android:padding="1dp">
 
         <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/ic_action_fitness" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_action_fitness"
+            android:visibility="visible" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="Fitness"
-            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            android:baselineAligned="false"
+            android:text="@string/Fitness"
+            android:textColor="@color/button_text_color"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
       </LinearLayout>
     </androidx.cardview.widget.CardView>
   </GridLayout>
