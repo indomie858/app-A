@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
             return false;
         });
 
-        checkLocationPermissions();
+        //checkLocationPermissions();
     }
 
     @Override
