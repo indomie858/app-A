@@ -180,6 +180,12 @@ class InstructionViewActivity :
     override fun onBeaconServiceConnect() {
         //ToneGenerator class contains various system sounds...beeps boops and whatnot
         val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+        val region = Region(
+                "myRangingUniqueId",
+                Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
+                majorIdentifier,
+                minorIdentifier,
+        )
 
         //Called once per second to give an estimate of the mDistance to visible beacons
         val rangeNotifier = RangeNotifier { beacons, region ->
@@ -189,6 +195,16 @@ class InstructionViewActivity :
                 val firstBeacon = beacons.first()   //need to change this to read specific beacons by id
 
                 when {
+                    firstBeacon.distance < 1.0 && firstBeacon.id2 == majorIdentifier -> {   //stopping point for ranging. user has arrived at entrance
+                        beaconText.setText("You have arrived at the entrance. Beacon range detection will end now.\n" +
+                                "\nDistance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        try {
+                            beaconManager.stopRangingBeaconsInRegion(region)
+                            Log.e(TAG, "Reaches past stopRangingBeacons at 1.0 meter distance")
+                        } catch (e: RemoteException){
+                            Log.e(TAG, e.toString())
+                        }
+                    }
                     firstBeacon.distance < 2.0 && firstBeacon.id2 == majorIdentifier -> {
                         beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
                         toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
@@ -205,7 +221,7 @@ class InstructionViewActivity :
                         vibrate(0)
                     }
                     firstBeacon.distance > 8.0 -> {
-                        //do something to indicate you are not near beacon anymore. maybe stop vibrate or stop beep? depending on what we choose to do
+                        //do nothing until user is within certain distance
                     }
                 }
             }
@@ -228,14 +244,7 @@ class InstructionViewActivity :
             }*/
 
             // Look for beacons with the UUID, Major, and Minor.
-            beaconManager.startRangingBeaconsInRegion(
-                    Region(
-                            "myRangingUniqueId",
-                            Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
-                            majorIdentifier,
-                            minorIdentifier,
-                    )
-            )
+            beaconManager.startRangingBeaconsInRegion(region)   //region is initialized at the top of this function
             beaconManager.addRangeNotifier(rangeNotifier)
         } catch (e: RemoteException) {
         }
