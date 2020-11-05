@@ -116,13 +116,6 @@ class InstructionViewActivity :
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_instruction_view_layout)
 
-        // This handles the back navigation button on top app bar
-        val actionbar = findViewById<View>(R.id.topAppBar) as MaterialToolbar
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
-            actionbar.setNavigationOnClickListener { NavUtils.navigateUpFromSameTask(this@InstructionViewActivity) }
-        }
-
         verifyBluetooth()
 
         initViews()
