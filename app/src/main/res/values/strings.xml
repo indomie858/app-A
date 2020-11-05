@@ -54,15 +54,14 @@
     <string name="resource_links">Resource Links</string>
 
     <!-- Category Names For Search Queries-->
-    <string-array name="locations_categories_array">
-        <item>All</item>
-        <item>Food &amp; Drink</item>
-        <item>Classrooms</item>
-        <item>Study</item>
-        <item>Services</item>
-        <item>Sports &amp; Fitness</item>
-        <item>Shopping</item>
-    </string-array>
+    <string name="all">All</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="study">Study</string>
+    <string name="classrooms">Classrooms</string>
+    <string name="Services">Services</string>
+    <string name="student_stores">Student Stores</string>
+    <string name="Fitness">Fitness</string>
+
 
     <!-- ALL OF THESE ARE FROM MAPBOX GITHUB REPO -->
     <string name="navigation_core_sdk_title">Navigation Core SDK</string>

@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
     public void onClickCardView(View view) {
         Context context = view.getContext();
         Intent intent = new Intent(context, NavigationListActivity.class);
-        intent.putExtra("QueryCategory", view.getId());
+        intent.putExtra("QueryCategory", view.getContentDescription());
         context.startActivity(intent);
     }
 

@@ -50,6 +50,7 @@
         android:layout_columnWeight="1"
         android:layout_margin="12dp"
         android:onClick="onClickCardView"
+        android:contentDescription="@string/classrooms"
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp"
         >
@@ -87,6 +88,7 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp"
         android:onClick="onClickCardView"
+        android:contentDescription="@string/study"
         >
 
       <LinearLayout
@@ -131,6 +133,7 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp"
         android:onClick="onClickCardView"
+        android:contentDescription="@string/restaurants"
         >
 
       <LinearLayout
@@ -166,6 +169,7 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp"
         android:onClick="onClickCardView"
+        android:contentDescription="@string/Services"
         >
 
       <LinearLayout
@@ -209,7 +213,8 @@
         android:layout_margin="12dp"
         android:onClick="onClickCardView"
         app:cardCornerRadius="12dp"
-        app:cardElevation="10dp">
+        app:cardElevation="10dp"
+        android:contentDescription="@string/student_stores">
 
       <LinearLayout
           android:layout_width="match_parent"
@@ -245,6 +250,7 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp"
         android:onClick="onClickCardView"
+        android:contentDescription="@string/Fitness"
         >
 
       <LinearLayout
