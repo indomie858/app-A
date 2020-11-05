@@ -307,6 +307,20 @@ class InstructionViewActivity :
         super.onStop()
         stopLocationUpdates()
         mapView.onStop()
+
+        try {
+            (this.applicationContext as BeaconReferenceApplication).setMonitoringActivity(null)
+            beaconManager.stopRangingBeaconsInRegion(Region(
+                    "myRangingUniqueId",
+                    Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
+                    majorIdentifier,
+                    minorIdentifier,
+            ))
+            beaconManager.removeAllRangeNotifiers()
+        } catch (e: RemoteException) {
+            Log.e(TAG, e.toString())
+        }
+        beaconManager.unbind(this)
     }
 
     override fun onLowMemory() {
@@ -378,7 +392,6 @@ class InstructionViewActivity :
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
         mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
-            //initializeLocationComponent(mapboxMap, it)
             locationComponent = mapboxMap.locationComponent.apply {
                 activateLocationComponent(
                         LocationComponentActivationOptions.builder(
@@ -404,20 +417,20 @@ class InstructionViewActivity :
                             ?.navigationOptions
                             ?.locationEngine
                             ?.getLastLocation(locationListenerCallback)
-                    // Snackbar.make(container, R.string.msg_long_press_map_to_place_waypoint, LENGTH_SHORT).show()
-
                 }
                 else -> restoreNavigation()
             }
 
-            if (currentPlace != null) {
-                majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
-                minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
-
+            if (currentPlace != null) { //this is where we get values from the database
+                try {
+                    majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
+                    minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
+                } catch (e: NullPointerException) {
+                    Log.e(TAG, e.toString())
+                }
                 val destinationLong = currentPlace!!.longitude.toDouble()
                 val destinationLat = currentPlace!!.latitude.toDouble()
                 val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
-
                 val originLong: Double
                 val originLat: Double
                 val originPoint: Point
@@ -430,7 +443,6 @@ class InstructionViewActivity :
                     originLat = locationComponent!!.lastKnownLocation!!.latitude
                     originPoint = Point.fromLngLat(originLong, originLat);
                 }
-
                 mapboxNavigation?.requestRoutes(
                         RouteOptions.builder()
                                 .applyDefaultParams()
@@ -707,7 +719,7 @@ class InstructionViewActivity :
              * Uncomment this if condition when you want beacon detection to start when route is completed.
              * Make sure bind function in onResume is commented out
              */
-            if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {
+            if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {     //executes when user has reached destination
                 instructionView.visibility = GONE
                 summaryBottomSheet.visibility = GONE
                 beaconTextContainer.visibility = VISIBLE
