@@ -14,7 +14,7 @@ import org.junit.Test
 
 class HomeFragmentTest {
 
-    @Test
+    /*@Test
     fun homeFragmentTest() {
         //SETUP
         val mainActivityScenario = ActivityScenario.launch(MainActivity::class.java)
@@ -140,5 +140,5 @@ class HomeFragmentTest {
         // EXIT APP
         pressBack()
 
-    }
+    }*/
 }
