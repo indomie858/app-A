@@ -328,7 +328,6 @@ class InstructionViewActivity :
 
         try {
             (this.applicationContext as BeaconReferenceApplication).setMonitoringActivity(null)
-            beaconManager.unbind(this)
             beaconManager.stopRangingBeaconsInRegion(Region(
                     "myRangingUniqueId",
                     Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
@@ -339,6 +338,7 @@ class InstructionViewActivity :
         } catch (e: RemoteException) {
             Log.e(TAG, e.toString())
         }
+        beaconManager.unbind(this)
 
         speechPlayer.onDestroy()
         mapView.onDestroy()
