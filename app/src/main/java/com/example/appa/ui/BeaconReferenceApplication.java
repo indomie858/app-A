@@ -54,7 +54,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
 
         beaconManager.getBeaconParsers().clear();
         beaconManager.getBeaconParsers().add(new BeaconParser().
-                setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
+                setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));  //this is the ibeacon protocol
 
         beaconManager.setDebug(true);
 
@@ -116,6 +116,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
             regionBootstrap = null;
         }
     }
+
     public void enableMonitoring() {
         Region region = new Region("backgroundRegion",
                 null, null, null);
@@ -133,7 +134,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
         if (instructionViewActivity != null) {
             // If the Monitoring Activity is visible, we log info about the beacons we have
             // seen on its display
-            logToDisplay("I see a beacon again" );
+            logToDisplay("I see a beacon again");
         }
     }
 
@@ -144,7 +145,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
 
     @Override
     public void didDetermineStateForRegion(int state, Region region) {
-        logToDisplay("Current region state is: " + (state == 1 ? "INSIDE" : "OUTSIDE ("+state+")"));
+        logToDisplay("Current region state is: " + (state == 1 ? "INSIDE" : "OUTSIDE (" + state + ")"));
     }
 
     private void sendNotification() {
@@ -159,8 +160,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             notificationManager.createNotificationChannel(channel);
             builder = new Notification.Builder(this, channel.getId());
-        }
-        else {
+        } else {
             builder = new Notification.Builder(this);
             builder.setPriority(Notification.PRIORITY_HIGH);
         }

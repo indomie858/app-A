@@ -31,9 +31,9 @@ public class TimedBeaconSimulator implements org.altbeacon.beacon.simulator.Beac
     public boolean USE_SIMULATED_BEACONS = false;
 
     /**
-     *  Creates empty beacons ArrayList.
+     * Creates empty beacons ArrayList.
      */
-    public TimedBeaconSimulator(){
+    public TimedBeaconSimulator() {
         beacons = new ArrayList<Beacon>();
     }
 
@@ -41,18 +41,18 @@ public class TimedBeaconSimulator implements org.altbeacon.beacon.simulator.Beac
      * Required getter method that is called regularly by the Android Beacon Library.
      * Any beacons returned by this method will appear within your test environment immediately.
      */
-    public List<Beacon> getBeacons(){
+    public List<Beacon> getBeacons() {
         return beacons;
     }
 
     /**
      * Creates simulated beacons all at once.
      */
-    public void createBasicSimulatedBeacons(){
+    public void createBasicSimulatedBeacons() {
         if (USE_SIMULATED_BEACONS) {
-            Beacon beacon1 = new AltBeacon.Builder().setId1("DF7E1C79-43E9-44FF-886F-1D1F7DA6997A")
+            Beacon beacon1 = new AltBeacon.Builder().setId1("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE") //frank's uuid
                     .setId2("1").setId3("1").setRssi(-55).setTxPower(-55).build();
-            Beacon beacon2 = new AltBeacon.Builder().setId1("DF7E1C79-43E9-44FF-886F-1D1F7DA6997A")
+            Beacon beacon2 = new AltBeacon.Builder().setId1("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE")
                     .setId2("1").setId3("2").setRssi(-55).setTxPower(-55).build();
             Beacon beacon3 = new AltBeacon.Builder().setId1("DF7E1C79-43E9-44FF-886F-1D1F7DA6997A")
                     .setId2("1").setId3("3").setRssi(-55).setTxPower(-55).build();
@@ -74,10 +74,10 @@ public class TimedBeaconSimulator implements org.altbeacon.beacon.simulator.Beac
     /**
      * Simulates a new beacon every 10 seconds until it runs out of new ones to add.
      */
-    public void createTimedSimulatedBeacons(){
-        if (USE_SIMULATED_BEACONS){
+    public void createTimedSimulatedBeacons() {
+        if (USE_SIMULATED_BEACONS) {
             beacons = new ArrayList<Beacon>();
-            Beacon beacon1 = new AltBeacon.Builder().setId1("DF7E1C79-43E9-44FF-886F-1D1F7DA6997A")
+            Beacon beacon1 = new AltBeacon.Builder().setId1("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE")
                     .setId2("1").setId3("1").setRssi(-55).setTxPower(-55).build();
             Beacon beacon2 = new AltBeacon.Builder().setId1("DF7E1C79-43E9-44FF-886F-1D1F7DA6997A")
                     .setId2("1").setId3("2").setRssi(-55).setTxPower(-55).build();
@@ -96,19 +96,19 @@ public class TimedBeaconSimulator implements org.altbeacon.beacon.simulator.Beac
             //These will be added back into the beacons list from finalBeacons later.
             beacons.clear();
 
-            scheduleTaskExecutor= Executors.newScheduledThreadPool(5);
+            scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
 
             // This schedules an beacon to appear every 10 seconds:
             scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
                 public void run() {
-                    try{
+                    try {
                         //putting a single beacon back into the beacons list.
                         if (finalBeacons.size() > beacons.size())
                             beacons.add(finalBeacons.get(beacons.size()));
                         else
                             scheduleTaskExecutor.shutdown();
 
-                    }catch(Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
