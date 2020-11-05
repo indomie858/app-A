@@ -11,6 +11,8 @@ import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
@@ -290,12 +292,13 @@ class InstructionViewActivity :
 
         /**
          * BeaconManager bind function is necessary to start beacons ranging detection.
-         * For testing and setup, leave the bind function here in onResume.
-         * Once we want to start beacon ranging at the end of the navigation session,
-         * comment out this bind function and uncomment the if condition in routeProgressObserver.
-         * It's near the bottom. too much goddamn code in this activity
+         * The one that actually starts the beacon ranging is in routeProgressObserver near the
+         * bottom of this file. too much goddamn code in this activity.
+         * The bind function here in onResume is to handle when the app loses focus.
          */
-        //beaconManager.bind(this)
+        if (isRouteComplete) {
+            beaconManager.bind(this)
+        }
 
         //for mapbox
         mapView.onResume()
@@ -694,6 +697,7 @@ class InstructionViewActivity :
         }
     }
 
+    private var isRouteComplete = false;    //flag to indicate route is complete
 
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
     private val routeProgressObserver = object : RouteProgressObserver {
@@ -702,14 +706,18 @@ class InstructionViewActivity :
             summaryBottomSheet.update(routeProgress)
 
             /**
-             * Uncomment this if condition when you want beacon detection to start when route is completed.
-             * Make sure bind function in onResume is commented out
+             * This if block contains actions that execute once the user has arrived at the destination (route is complete).
              */
             if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {     //executes when user has reached destination
-                instructionView.visibility = GONE
-                summaryBottomSheet.visibility = GONE
-                beaconTextContainer.visibility = VISIBLE
-                beaconManager.bind(this@InstructionViewActivity)
+                if (!isRouteComplete) { //this check is necessary because routeProgressObserver is constantly repeating
+                    isRouteComplete = true
+                    instructionView.visibility = GONE
+                    summaryBottomSheet.visibility = GONE
+                    beaconTextContainer.visibility = VISIBLE
+                    val anim: Animation = AnimationUtils.loadAnimation(this@InstructionViewActivity, R.anim.slide_in_top)
+                    beaconTextContainer.startAnimation(anim)
+                    beaconManager.bind(this@InstructionViewActivity)    //binds to BeaconService and starts beacon ranging
+                }
             }
         }
     }
