@@ -307,20 +307,6 @@ class InstructionViewActivity :
         super.onStop()
         stopLocationUpdates()
         mapView.onStop()
-
-        try {
-            (this.applicationContext as BeaconReferenceApplication).setMonitoringActivity(null)
-            beaconManager.stopRangingBeaconsInRegion(Region(
-                    "myRangingUniqueId",
-                    Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
-                    majorIdentifier,
-                    minorIdentifier,
-            ))
-            beaconManager.removeAllRangeNotifiers()
-        } catch (e: RemoteException) {
-            Log.e(TAG, e.toString())
-        }
-        beaconManager.unbind(this)
     }
 
     override fun onLowMemory() {
