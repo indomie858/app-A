@@ -20,7 +20,7 @@ Anne Xaymountry, Gaven Grantz, Frank Joseph Serdenia, Daniel Palencia, Allan Hui
 ```
 ## Tools
 ```
-Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane | Mapbox
+Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane | Mapbox | Altbeacon Android Beacon Library 
 ```
 ## Languages
 ```

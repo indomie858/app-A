@@ -1,28 +1,32 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.appa.ui.navigation
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
 import android.graphics.Bitmap
-import android.os.Bundle
+import android.media.AudioManager
+import android.media.ToneGenerator
+import android.os.*
 import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.app.NavUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.example.appa.R
 import com.example.appa.db.PlaceEntity
+import com.example.appa.ui.BeaconReferenceApplication
 import com.example.appa.viewmodel.MapWithNavViewModel
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
-import com.mapbox.android.core.permissions.PermissionsListener
-import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.api.directions.v5.models.BannerInstructions
 import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.api.directions.v5.models.RouteOptions
@@ -30,7 +34,7 @@ import com.mapbox.api.directions.v5.models.VoiceInstructions
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
-import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.location.LocationComponent
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener
 import com.mapbox.mapboxsdk.location.modes.CameraMode
@@ -41,6 +45,7 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.navigation.base.internal.extensions.applyDefaultParams
 import com.mapbox.navigation.base.internal.route.RouteUrl
 import com.mapbox.navigation.base.trip.model.RouteProgress
+import com.mapbox.navigation.base.trip.model.RouteProgressState
 import com.mapbox.navigation.core.MapboxNavigation
 import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
 import com.mapbox.navigation.core.replay.MapboxReplayer
@@ -64,6 +69,7 @@ import com.mapbox.navigation.ui.voice.SpeechPlayerProvider
 import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_instruction_view_layout.*
 import okhttp3.Cache
+import org.altbeacon.beacon.*
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.*
@@ -76,18 +82,18 @@ import java.util.*
 class InstructionViewActivity :
         AppCompatActivity(),
         OnMapReadyCallback,
-        FeedbackBottomSheetListener,
-        PermissionsListener {
-
+        FeedbackBottomSheetListener, BeaconConsumer {
+    // SO MANY MEMBERS
     private lateinit var viewModel: MapWithNavViewModel
     private var currentPlace: PlaceEntity? = null
     private var currentPlaceID: Int? = null
-    private var permissionsManager: PermissionsManager? = null
+    private var majorIdentifier: Identifier? = null
+    private var minorIdentifier: Identifier? = null
 
     private var mapboxNavigation: MapboxNavigation? = null
+    private var locationComponent: LocationComponent? = null
     private var navigationMapboxMap: NavigationMapboxMap? = null
     private lateinit var speechPlayer: NavigationSpeechPlayer
-    private lateinit var destination: LatLng
     private val mapboxReplayer = MapboxReplayer()
 
     private var mapboxMap: MapboxMap? = null
@@ -101,12 +107,17 @@ class InstructionViewActivity :
     private lateinit var summaryBehavior: BottomSheetBehavior<SummaryBottomSheet>
     private lateinit var routeOverviewButton: ImageButton
     private lateinit var cancelBtn: AppCompatImageButton
-    private val routeOverviewPadding by lazy { buildRouteOverviewPadding() }
+
+    private val TAG = "InstructionViewActivity"
+    private val beaconManager = BeaconManager.getInstanceForApplication(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_instruction_view_layout)
+
+        verifyBluetooth()
+
         initViews()
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
@@ -128,6 +139,129 @@ class InstructionViewActivity :
 
         initListeners()
         initializeSpeechPlayer()
+    }//end of onCreate function
+
+    //////////////////////////////Beacon functions begin//////////////////////////////////////////
+    private fun verifyBluetooth() {
+        try {
+            if (!BeaconManager.getInstanceForApplication(this).checkAvailability()) {
+                val builder = AlertDialog.Builder(this)
+
+                builder.setTitle("Bluetooth not enabled")
+                builder.setMessage("Please enable bluetooth in settings and restart this application.")
+                builder.setPositiveButton(android.R.string.ok, null)
+                builder.setOnDismissListener {
+                    //finish();
+                    //System.exit(0);
+                }
+                builder.show()
+            }
+        } catch (e: RuntimeException) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Bluetooth LE not available")
+            builder.setMessage("Sorry, this device does not support Bluetooth LE.")
+            builder.setPositiveButton(android.R.string.ok, null)
+            builder.setOnDismissListener {
+                //finish();
+                //System.exit(0);
+            }
+            builder.show()
+        }
+    }
+
+    //Called when the beacon service is running and ready to accept your commands through the BeaconManager
+    override fun onBeaconServiceConnect() {
+        //ToneGenerator class contains various system sounds...beeps boops and whatnot
+        val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+        val region = Region(
+                "myRangingUniqueId",
+                Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
+                majorIdentifier,
+                minorIdentifier,
+        )
+
+        //Called once per second to give an estimate of the mDistance to visible beacons
+        val rangeNotifier = RangeNotifier { beacons, region ->
+            if (beacons.size > 0) {
+                Log.d(TAG, "didRangeBeaconsInRegion called with beacon count:  " + beacons.size)
+                //val firstBeacon = beacons.iterator().next()
+                val firstBeacon = beacons.first()   //need to change this to read specific beacons by id
+
+                when {
+                    firstBeacon.distance < 1.0 && firstBeacon.id2 == majorIdentifier -> {   //stopping point for ranging. user has arrived at entrance
+                        beaconText.setText("You have arrived at the entrance. Beacon range detection will end now.\n" +
+                                "\nDistance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        try {
+                            beaconManager.stopRangingBeaconsInRegion(region)
+                            Log.e(TAG, "Reaches past stopRangingBeacons at 1.0 meter distance")
+                        } catch (e: RemoteException){
+                            Log.e(TAG, e.toString())
+                        }
+                    }
+                    firstBeacon.distance < 2.0 && firstBeacon.id2 == majorIdentifier -> {
+                        beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
+                        vibrate(2)
+                    }
+                    firstBeacon.distance < 4.0 && firstBeacon.id2 == majorIdentifier -> {
+                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
+                        vibrate(1)
+                    }
+                    firstBeacon.distance < 8.0 && firstBeacon.id2 == majorIdentifier -> {
+                        beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
+                        vibrate(0)
+                    }
+                    firstBeacon.distance > 8.0 -> {
+                        //do nothing until user is within certain distance
+                    }
+                }
+            }
+        }
+        try {
+            //beaconManager.startMonitoringBeaconsInRegion(Region("myRangingUniqueId",uniqueID))\
+            // Get major and minor ID's if they exit,
+            // otherwise set them to null
+            /*var majorIdentifier: Identifier?;
+            var minorIdentifier: Identifier?;
+            if (currentPlace?.major_id != null) {
+                majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
+            } else {
+                majorIdentifier = null;
+            }
+            if (currentPlace?.minor_id != null) {
+                minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
+            } else {
+                minorIdentifier = null;
+            }*/
+
+            // Look for beacons with the UUID, Major, and Minor.
+            beaconManager.startRangingBeaconsInRegion(region)   //region is initialized at the top of this function
+            beaconManager.addRangeNotifier(rangeNotifier)
+        } catch (e: RemoteException) {
+        }
+    }
+    /////////////////////////////////////end beacon functions//////////////////////////////////////////////////////////////
+
+    //we can create custom vibration patterns with this function
+    private fun vibrate(vibrateMode: Int) {
+
+        var vibratePattern = longArrayOf(0, 400, 100, 400)  //default pattern: delay 0ms, vibrate 400ms, pause 100ms, vibrate 400ms
+
+        //0 is for largest distance, 2 is for shortest distance from beacons
+        when (vibrateMode) {
+            0 -> vibratePattern = longArrayOf(0, 200, 400, 200)   //sequence: delay 0ms, vibrate 200ms, pause 400ms, vibrate 200ms
+            1 -> vibratePattern = longArrayOf(0, 100, 100, 100, 100, 100, 100, 100)     //sequence: delay 0ms, vibrate 100ms, pause 100ms, vibrate 100ms, pause 100ms, vibrate 100ms, pause 100ms vibrate 100ms
+            2 -> vibratePattern = longArrayOf(0, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50)    //sequence: delay 0ms, vibrate 50ms, pause 50ms...
+        }
+
+        val vibrator: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createWaveform(vibratePattern, -1))    //use this as of api level 26
+        } else {
+            vibrator.vibrate(vibratePattern, -1)    //depricated function. uses this only if build api is less than 26
+        }
     }
 
     private fun setPlaceFromIntent() {
@@ -147,11 +281,28 @@ class InstructionViewActivity :
 
     public override fun onPause() {
         super.onPause()
+        (this.applicationContext as BeaconReferenceApplication).setMonitoringActivity(null)
+        beaconManager.unbind(this)
         mapView.onPause()
     }
 
     public override fun onResume() {
         super.onResume()
+        //for beacons
+        val application = this.applicationContext as BeaconReferenceApplication
+        application.setMonitoringActivity(this)
+
+        /**
+         * BeaconManager bind function is necessary to start beacons ranging detection.
+         * The one that actually starts the beacon ranging is in routeProgressObserver near the
+         * bottom of this file. too much goddamn code in this activity.
+         * The bind function here in onResume is to handle when the app loses focus.
+         */
+        if (isRouteComplete) {
+            beaconManager.bind(this)
+        }
+
+        //for mapbox
         mapView.onResume()
         setPlaceFromIntent()
         beginNavigation()
@@ -179,6 +330,20 @@ class InstructionViewActivity :
             stopTripSession()
             onDestroy()
         }
+
+        try {
+            (this.applicationContext as BeaconReferenceApplication).setMonitoringActivity(null)
+            beaconManager.stopRangingBeaconsInRegion(Region(
+                    "myRangingUniqueId",
+                    Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
+                    majorIdentifier,
+                    minorIdentifier,
+            ))
+            beaconManager.removeAllRangeNotifiers()
+        } catch (e: RemoteException) {
+            Log.e(TAG, e.toString())
+        }
+        beaconManager.unbind(this)
 
         speechPlayer.onDestroy()
         mapView.onDestroy()
@@ -215,28 +380,21 @@ class InstructionViewActivity :
     }
 
     @SuppressLint("MissingPermission")
-    private fun initializeLocationComponent(mapboxMap: MapboxMap, style: Style) {
-        // Check if permissions are enabled and if not request
-        if (PermissionsManager.areLocationPermissionsGranted(this)) {
-            val activationOptions = LocationComponentActivationOptions.builder(this, style)
-                    .useDefaultLocationEngine(false)
-                    .build()
-            mapboxMap.locationComponent.activateLocationComponent(activationOptions)
-            mapboxMap.locationComponent.isLocationComponentEnabled = true
-            mapboxMap.locationComponent.renderMode = RenderMode.COMPASS
-            mapboxMap.locationComponent.cameraMode = CameraMode.TRACKING
-        } else {
-            permissionsManager = PermissionsManager(this)
-            permissionsManager!!.requestLocationPermissions(this)
-        }
-    }
-
-    @SuppressLint("MissingPermission")
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(Style.MAPBOX_STREETS) {
-            initializeLocationComponent(mapboxMap, it)
-            mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(15.0))
+        mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
+            locationComponent = mapboxMap.locationComponent.apply {
+                activateLocationComponent(
+                        LocationComponentActivationOptions.builder(
+                                this@InstructionViewActivity,
+                                style
+                        ).build()
+                )
+                renderMode = RenderMode.COMPASS
+                isLocationComponentEnabled = true
+            }
+
+            mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(16.0))
             navigationMapboxMap = NavigationMapboxMap(mapView, mapboxMap, this, true)
 
             when (directionRoute) {
@@ -250,26 +408,30 @@ class InstructionViewActivity :
                             ?.navigationOptions
                             ?.locationEngine
                             ?.getLastLocation(locationListenerCallback)
-                    // Snackbar.make(container, R.string.msg_long_press_map_to_place_waypoint, LENGTH_SHORT).show()
-
                 }
                 else -> restoreNavigation()
             }
 
-            if (currentPlace != null) {
+            if (currentPlace != null) { //this is where we get values from the database
+                try {
+                    majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
+                    minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
+                } catch (e: NullPointerException) {
+                    Log.e(TAG, e.toString())
+                }
                 val destinationLong = currentPlace!!.longitude.toDouble()
                 val destinationLat = currentPlace!!.latitude.toDouble()
                 val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
                 val originLong: Double
                 val originLat: Double
                 val originPoint: Point
-                if (shouldSimulateRoute()){ //choose CSUN coordinates for simulation/testing
+                if (shouldSimulateRoute()) { //choose CSUN coordinates for simulation/testing
                     originLong = -118.527645
                     originLat = 34.2410366
                     originPoint = Point.fromLngLat(originLong, originLat)
                 } else {
-                    originLong = mapboxMap.locationComponent.lastKnownLocation!!.longitude
-                    originLat = mapboxMap.locationComponent.lastKnownLocation!!.latitude
+                    originLong = locationComponent!!.lastKnownLocation!!.longitude
+                    originLat = locationComponent!!.lastKnownLocation!!.latitude
                     originPoint = Point.fromLngLat(originLong, originLat);
                 }
                 mapboxNavigation?.requestRoutes(
@@ -282,6 +444,24 @@ class InstructionViewActivity :
                 )
             }
         }
+    }
+
+    // Call this function to initiate navigation.
+    @SuppressLint("MissingPermission")
+    private fun beginNavigation() {
+        //this task runs after a delay to ensure everything is loaded before starting nav session
+        val task = Runnable {
+            updateCameraOnNavigationStateChange(true)
+            navigationMapboxMap?.addOnCameraTrackingChangedListener(cameraTrackingChangedListener)
+            navigationMapboxMap?.addProgressChangeListener(mapboxNavigation!!)
+            if (mapboxNavigation?.getRoutes()?.isNotEmpty() == true) {
+                navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
+            }
+            mapboxNavigation?.startTripSession()
+        }
+
+        val handler = Handler()
+        handler.postDelayed(task, 1200) //set task delay duration
     }
 
     // InstructionView Feedback Bottom Sheet listener
@@ -328,70 +508,6 @@ class InstructionViewActivity :
         }
     }
 
-
-    // Call this function to initiate navigation.
-    @SuppressLint("MissingPermission")
-    private fun beginNavigation() {
-        updateCameraOnNavigationStateChange(true)
-        navigationMapboxMap?.addOnCameraTrackingChangedListener(cameraTrackingChangedListener)
-        navigationMapboxMap?.addProgressChangeListener(mapboxNavigation!!)
-        if (mapboxNavigation?.getRoutes()?.isNotEmpty() == true) {
-            navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
-        }
-        mapboxNavigation?.startTripSession()
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun initListeners() {
-        summaryBehavior.setBottomSheetCallback(bottomSheetCallback)
-
-        routeOverviewButton.setOnClickListener {
-            navigationMapboxMap?.showRouteOverview(routeOverviewPadding)
-            recenterBtn.show()
-        }
-
-        recenterBtn.addOnClickListener {
-            recenterBtn.hide()
-            navigationMapboxMap?.resetPadding()
-            navigationMapboxMap
-                    ?.resetCameraPositionWith(NavigationCamera.NAVIGATION_TRACKING_MODE_GPS)
-        }
-
-        cancelBtn.setOnClickListener {
-            mapboxNavigation?.stopTripSession()
-            updateCameraOnNavigationStateChange(false)
-        }
-    }
-
-    private fun buildRouteOverviewPadding(): IntArray {
-        val leftRightPadding =
-                resources
-                        .getDimension(
-                                com.mapbox.navigation.ui.R.dimen.mapbox_route_overview_left_right_padding
-                        )
-                        .toInt()
-        val paddingBuffer =
-                resources
-                        .getDimension(
-                                com.mapbox.navigation.ui.R.dimen.mapbox_route_overview_buffer_padding
-                        )
-                        .toInt()
-        val instructionHeight =
-                (
-                        resources
-                                .getDimension(
-                                        com.mapbox.navigation.ui.R.dimen.mapbox_instruction_content_height
-                                ) +
-                                paddingBuffer
-                        )
-                        .toInt()
-        val summaryHeight =
-                resources
-                        .getDimension(com.mapbox.navigation.ui.R.dimen.mapbox_summary_bottom_sheet_height)
-                        .toInt()
-        return intArrayOf(leftRightPadding, instructionHeight, leftRightPadding, summaryHeight)
-    }
-
     private fun isLocationTracking(cameraMode: Int): Boolean {
         return cameraMode == CameraMode.TRACKING ||
                 cameraMode == CameraMode.TRACKING_COMPASS ||
@@ -434,6 +550,23 @@ class InstructionViewActivity :
         }
     }
 
+    @SuppressLint("MissingPermission")
+    private fun initListeners() {
+        summaryBehavior.addBottomSheetCallback(bottomSheetCallback)
+
+        recenterBtn.addOnClickListener {
+            recenterBtn.hide()
+            navigationMapboxMap?.resetPadding()
+            navigationMapboxMap
+                    ?.resetCameraPositionWith(NavigationCamera.NAVIGATION_TRACKING_MODE_GPS)
+        }
+
+        cancelBtn.setOnClickListener {
+            mapboxNavigation?.stopTripSession()
+            updateCameraOnNavigationStateChange(false)
+        }
+    }
+
     private fun initViews() {
 
         summaryBottomSheet.visibility = GONE
@@ -442,6 +575,7 @@ class InstructionViewActivity :
         }
         recenterBtn.hide()
         routeOverviewButton = findViewById(R.id.routeOverviewBtn)
+        routeOverviewButton.visibility = GONE
         cancelBtn = findViewById(R.id.cancelBtn)
 
         instructionView.visibility = GONE
@@ -565,12 +699,28 @@ class InstructionViewActivity :
         }
     }
 
+    private var isRouteComplete = false;    //flag to indicate route is complete
 
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
     private val routeProgressObserver = object : RouteProgressObserver {
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
             instructionView.updateDistanceWith(routeProgress)
             summaryBottomSheet.update(routeProgress)
+
+            /**
+             * This if block contains actions that execute once the user has arrived at the destination (route is complete).
+             */
+            if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {     //executes when user has reached destination
+                if (!isRouteComplete) { //this check is necessary because routeProgressObserver is constantly repeating
+                    isRouteComplete = true
+                    instructionView.visibility = GONE
+                    summaryBottomSheet.visibility = GONE
+                    beaconTextContainer.visibility = VISIBLE
+                    val anim: Animation = AnimationUtils.loadAnimation(this@InstructionViewActivity, R.anim.slide_in_top)
+                    beaconTextContainer.startAnimation(anim)
+                    beaconManager.bind(this@InstructionViewActivity)    //binds to BeaconService and starts beacon ranging
+                }
+            }
         }
     }
 
@@ -582,6 +732,7 @@ class InstructionViewActivity :
 
     private val voiceInstructionsObserver = object : VoiceInstructionsObserver {
         override fun onNewVoiceInstructions(voiceInstructions: VoiceInstructions) {
+            //remember to uncomment this for voice instructions during navigation
             speechPlayer.play(voiceInstructions)
         }
     }
@@ -590,7 +741,7 @@ class InstructionViewActivity :
     // This is used for testing purposes.
     private fun shouldSimulateRoute(): Boolean {
         return PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
-                .getBoolean(this.getString(R.string.simulate_route_key), false)
+                .getBoolean(this.getString(R.string.simulate_route_key), true)
     }
 
     // If shouldSimulateRoute is true a ReplayRouteLocationEngine will be used which is intended
@@ -629,23 +780,6 @@ class InstructionViewActivity :
             navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
             updateCameraOnNavigationStateChange(true)
             mapboxNavigation?.startTripSession()
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        permissionsManager!!.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
-    override fun onExplanationNeeded(permissionsToExplain: List<String?>?) {
-        Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show()
-    }
-
-    override fun onPermissionResult(granted: Boolean) {
-        if (granted) {
-            mapboxMap!!.getStyle { style -> initializeLocationComponent(mapboxMap!!, style) }
-        } else {
-            Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show()
-            finish()
         }
     }
 }

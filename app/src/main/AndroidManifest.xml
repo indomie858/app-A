@@ -3,9 +3,9 @@
     package="com.example.appa">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -13,11 +13,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".ui.BeaconReferenceApplication">
+        <activity android:name=".beacons.RangingActivity"></activity>
+        <activity
+            android:name=".beacons.MonitoringActivity"
+            android:exported="true"/>
         <activity
             android:name=".ui.navigation.InstructionViewActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.navigationlist.NavigationListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_VIEW" />
 
@@ -27,22 +33,16 @@
         <activity
             android:name=".ui.navigation.CustomDirectionsActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.BluetoothDialog"
-            android:parentActivityName=".ui.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ui.MapActivity"
-            android:exported="true"
             android:parentActivityName=".ui.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,9 +54,8 @@
             android:exported="true"
             android:label="@string/app_name"
             android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
     </application>
 
 </manifest>

@@ -1,13 +1,10 @@
 package com.example.appa.ui.settings
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.appa.R
-import com.example.appa.ui.MainActivity
-import com.example.appa.ui.MapActivity
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -52,8 +49,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         theme.onPreferenceChangeListener = Preference.OnPreferenceChangeListener{preference, newValue ->
             val id = newValue as String
             ThemeSetting.setDefaultNightMode(ThemeEnum.idOf(id))
+            reload()
             true
         }
+    }
+
+    private fun reload() {
+        getParentFragmentManager().beginTransaction().remove(this).commit()
     }
 
 
