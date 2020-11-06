@@ -31,18 +31,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     // For debugging
     public static final String TAG = "RecyclerviewAdapter";
     // Our list of places
-    private List<PlaceEntity> mPlaceEntities = new ArrayList<>();
     private List<PlaceViewModel> mPlaceViewModels = new ArrayList<>();
 
 
-
-    public void setPlaces(List<PlaceEntity> places) {
-        this.mPlaceEntities = places;
-
-        for (PlaceEntity placeEntity : mPlaceEntities) {
-            PlaceViewModel placeViewModel = new PlaceViewModel(placeEntity);
-            mPlaceViewModels.add(placeViewModel);
-        }
+    public void setPlaces(List<PlaceViewModel> places) {
+        this.mPlaceViewModels.clear();
+        this.mPlaceViewModels.addAll(places);
         // Recyclerview thing to let it know our data has changed
         notifyDataSetChanged();
     }
@@ -77,14 +71,14 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     }
 
 
+
     @Override
     public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
         // This method is called any time
         // an item is added to the list.
         PlaceViewModel currentPlaceViewModel = mPlaceViewModels.get(position);
-        currentPlaceViewModel.setLocationManager(holder.manager);
+
         holder.binding.setPlace(currentPlaceViewModel);
-        LocationManager manager = holder.manager;
 
         // Attach this listener to every button,
         // which will set the view model for the direction activity
@@ -105,7 +99,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
     @Override
     public int getItemCount() {
-        return mPlaceEntities.size();
+        return mPlaceViewModels.size();
     }
 
 }
