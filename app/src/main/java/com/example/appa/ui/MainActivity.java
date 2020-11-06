@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
     final FragmentManager fm = getSupportFragmentManager();
 
     Fragment active = homeFragment;
-    MaterialToolbar actionbar;
     private int counter = 0;
 
     protected static final String TAG = "MainActivity";
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
         setContentView(R.layout.activity_main);
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
 
-        actionbar = (MaterialToolbar) findViewById(R.id.topAppBar);
 
         //fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "4").hide(tutorialFragment).commit();
         //fm.beginTransaction().replace(R.id.main_container, settingsFragment, "2").commit();
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
                 case R.id.home_button:
                     fm.beginTransaction().replace(R.id.main_container, homeFragment, "1").commit();
                     fm.beginTransaction().addToBackStack(null);
-                    actionbar.setTitle("Home");
                     active = homeFragment;
                     backButtonFlag = false;
                     counter = 0;
@@ -73,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
                     //fm.beginTransaction().hide(active).show(settingsFragment).commit();
                     fm.beginTransaction().replace(R.id.main_container, settingsFragment, "2").commit();
                     fm.beginTransaction().addToBackStack(null);
-                    actionbar.setTitle("Settings");
                     active = settingsFragment;
                     backButtonFlag = true;
                     counter = 0;
@@ -82,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
                 case R.id.tutorial_button:
                     fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "4").commit();
                     fm.beginTransaction().addToBackStack(null);
-                    actionbar.setTitle("Tutorial");
                     active = tutorialFragment;
                     backButtonFlag = true;
                     counter = 0;
@@ -104,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
         // when back button is pressed -- return to home
         if (backButtonFlag == true) {
             fm.beginTransaction().hide(active).replace(R.id.main_container, homeFragment, "1").commit();
-            actionbar.setTitle("Home");
             active = homeFragment;
             backButtonFlag = false;
         }
