@@ -34,7 +34,7 @@
             android:layout_weight="1"
             android:background="@color/background_color"
             android:gravity="center"
-            android:text="SUP YALL. SEARCHING FOR THAT YOUNG ENTRANCE"
+            android:text="LOCATING ENTRANCE"
             android:textAlignment="center"
             android:textColor="@color/text_color"
             android:textSize="36sp" />
