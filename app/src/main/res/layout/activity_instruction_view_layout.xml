@@ -37,13 +37,6 @@
         app:mapbox_uiLogo="false" />
 
 
-    <ImageView
-        android:id="@+id/screenshotView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        tools:ignore="ContentDescription" />
-
     <LinearLayout
         android:id="@+id/beaconTextContainer"
         android:layout_width="match_parent"

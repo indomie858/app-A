@@ -3,7 +3,6 @@ package com.example.appa.ui.navigation
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Bitmap
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.*
@@ -20,8 +19,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.example.appa.R
-import com.example.appa.db.PlaceEntity
 import com.example.appa.beacons.BeaconReferenceApplication
+import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.MapWithNavViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
@@ -49,17 +48,10 @@ import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
 import com.mapbox.navigation.core.replay.MapboxReplayer
 import com.mapbox.navigation.core.replay.ReplayLocationEngine
 import com.mapbox.navigation.core.replay.route.ReplayProgressObserver
-import com.mapbox.navigation.core.telemetry.events.FeedbackEvent.UI
 import com.mapbox.navigation.core.trip.session.*
 import com.mapbox.navigation.ui.NavigationButton
-import com.mapbox.navigation.ui.NavigationConstants
 import com.mapbox.navigation.ui.SoundButton
 import com.mapbox.navigation.ui.camera.NavigationCamera
-import com.mapbox.navigation.ui.feedback.FeedbackBottomSheet
-import com.mapbox.navigation.ui.feedback.FeedbackBottomSheetListener
-import com.mapbox.navigation.ui.feedback.FeedbackItem
-import com.mapbox.navigation.ui.internal.utils.BitmapEncodeOptions
-import com.mapbox.navigation.ui.internal.utils.ViewUtils
 import com.mapbox.navigation.ui.map.NavigationMapboxMap
 import com.mapbox.navigation.ui.summary.SummaryBottomSheet
 import com.mapbox.navigation.ui.voice.NavigationSpeechPlayer
@@ -80,7 +72,7 @@ import java.util.*
 class InstructionViewActivity :
         AppCompatActivity(),
         OnMapReadyCallback,
-        FeedbackBottomSheetListener, BeaconConsumer {
+        BeaconConsumer {
     // SO MANY MEMBERS
     private lateinit var viewModel: MapWithNavViewModel
     private var currentPlace: PlaceEntity? = null
@@ -95,12 +87,8 @@ class InstructionViewActivity :
     private val mapboxReplayer = MapboxReplayer()
 
     private var mapboxMap: MapboxMap? = null
-    private var feedbackButton: NavigationButton? = null
     private var instructionSoundButton: NavigationButton? = null
     private var directionRoute: DirectionsRoute? = null
-
-    private var feedbackItem: FeedbackItem? = null
-    private var feedbackEncodedScreenShot: String? = null
 
     private lateinit var summaryBehavior: BottomSheetBehavior<SummaryBottomSheet>
     private lateinit var routeOverviewButton: ImageButton
@@ -188,7 +176,7 @@ class InstructionViewActivity :
                         try {
                             beaconManager.stopRangingBeaconsInRegion(region)
                             Log.e(TAG, "Reaches past stopRangingBeacons at 1.0 meter distance")
-                        } catch (e: RemoteException){
+                        } catch (e: RemoteException) {
                             Log.e(TAG, e.toString())
                         }
                     }
@@ -442,49 +430,6 @@ class InstructionViewActivity :
         handler.postDelayed(task, 1200) //set task delay duration
     }
 
-    // InstructionView Feedback Bottom Sheet listener
-    override fun onFeedbackDismissed() {
-        // do nothing
-    }
-
-    override fun onFeedbackSelected(feedbackItem: FeedbackItem?) {
-        feedbackItem?.let { feedback ->
-            this.feedbackItem = feedback
-            sendFeedback()
-        }
-    }
-
-    private fun encodeSnapshot(snapshot: Bitmap) {
-        screenshotView.visibility = VISIBLE
-        screenshotView.setImageBitmap(snapshot)
-        mapView.visibility = View.INVISIBLE
-        feedbackEncodedScreenShot = ViewUtils.encodeView(
-                ViewUtils.captureView(mapView),
-                BitmapEncodeOptions.Builder()
-                        .width(400).compressQuality(40).build()
-        )
-        screenshotView.visibility = View.INVISIBLE
-        mapView.visibility = VISIBLE
-
-        sendFeedback()
-    }
-
-    private fun sendFeedback() {
-        val feedback = feedbackItem
-        val screenShot = feedbackEncodedScreenShot
-        if (feedback != null && !screenShot.isNullOrEmpty()) {
-            mapboxNavigation?.postUserFeedback(
-                    feedback.feedbackType,
-                    feedback.description,
-                    UI,
-                    screenShot,
-                    feedback.feedbackSubType.toTypedArray()
-            )
-
-            // Daniel: Not sure where this feedback function is defined.
-            //showFeedbackSentSnackBar(context = this, view = mapView)
-        }
-    }
 
     private fun isLocationTracking(cameraMode: Int): Boolean {
         return cameraMode == CameraMode.TRACKING ||
@@ -546,7 +491,6 @@ class InstructionViewActivity :
     }
 
     private fun initViews() {
-
         summaryBottomSheet.visibility = GONE
         summaryBehavior = BottomSheetBehavior.from(summaryBottomSheet).apply {
             isHideable = false
@@ -557,21 +501,7 @@ class InstructionViewActivity :
         cancelBtn = findViewById(R.id.cancelBtn)
 
         instructionView.visibility = GONE
-        feedbackButton = instructionView.retrieveFeedbackButton().apply {
-            hide()
-            addOnClickListener {
-                feedbackItem = null
-                feedbackEncodedScreenShot = null
-                supportFragmentManager.let {
-                    mapboxMap?.snapshot(this@InstructionViewActivity::encodeSnapshot)
-                    FeedbackBottomSheet.newInstance(
-                            this@InstructionViewActivity,
-                            NavigationConstants.FEEDBACK_BOTTOM_SHEET_DURATION
-                    )
-                            .show(it, FeedbackBottomSheet.TAG)
-                }
-            }
-        }
+
         instructionSoundButton = instructionView.retrieveSoundButton().apply {
             hide()
             addOnClickListener {
@@ -588,7 +518,6 @@ class InstructionViewActivity :
             TripSessionState.STARTED -> {
                 recenterBtn.hide()
                 instructionView.visibility = VISIBLE
-                feedbackButton?.show()
                 instructionSoundButton?.show()
                 summaryBottomSheet.visibility = VISIBLE
             }
@@ -596,15 +525,12 @@ class InstructionViewActivity :
                 summaryBottomSheet.visibility = GONE
                 recenterBtn.hide()
                 instructionView.visibility = GONE
-                feedbackButton?.hide()
                 instructionSoundButton?.hide()
             }
         }
     }
 
-    private fun updateCameraOnNavigationStateChange(
-            navigationStarted: Boolean
-    ) {
+    private fun updateCameraOnNavigationStateChange(navigationStarted: Boolean) {
         navigationMapboxMap?.apply {
             if (navigationStarted) {
                 updateCameraTrackingMode(NavigationCamera.NAVIGATION_TRACKING_MODE_GPS)
