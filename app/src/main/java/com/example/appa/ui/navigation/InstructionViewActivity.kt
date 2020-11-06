@@ -6,6 +6,9 @@ import android.content.Context
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.*
+import android.speech.tts.TextToSpeech
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.View.GONE
@@ -97,6 +100,8 @@ class InstructionViewActivity :
     private val TAG = "InstructionViewActivity"
     private val beaconManager = BeaconManager.getInstanceForApplication(this)
 
+    private var ttsObject: TextToSpeech? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
@@ -125,6 +130,12 @@ class InstructionViewActivity :
 
         initListeners()
         initializeSpeechPlayer()
+
+        ttsObject = TextToSpeech(applicationContext) { status ->
+            if (status != TextToSpeech.ERROR) {
+                ttsObject?.setLanguage(Locale.UK)
+            }
+        }
     }//end of onCreate function
 
     //////////////////////////////Beacon functions begin//////////////////////////////////////////
@@ -171,8 +182,9 @@ class InstructionViewActivity :
 
                 when {
                     firstBeacon.distance < 1.0 && firstBeacon.id2 == majorIdentifier -> {   //stopping point for ranging. user has arrived at entrance
-                        beaconText.setText("You have arrived at the entrance. Beacon range detection will end now.\n" +
-                                "\nDistance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        //beaconText.setText("You have arrived at the entrance. Beacon range detection will end now.\n" +
+                        //        "\nDistance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        beaconText.text = "You have arrived at the entrance. Beacon range detection will end now."
                         try {
                             beaconManager.stopRangingBeaconsInRegion(region)
                             Log.e(TAG, "Reaches past stopRangingBeacons at 1.0 meter distance")
@@ -181,17 +193,20 @@ class InstructionViewActivity :
                         }
                     }
                     firstBeacon.distance < 2.0 && firstBeacon.id2 == majorIdentifier -> {
-                        beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        //beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        beaconText.text = "You are within 2 meters of the beacon."
                         toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
                         vibrate(2)
                     }
                     firstBeacon.distance < 4.0 && firstBeacon.id2 == majorIdentifier -> {
-                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        //beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        beaconText.text = "You are moving closer to the beacon."
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
                         vibrate(1)
                     }
                     firstBeacon.distance < 8.0 && firstBeacon.id2 == majorIdentifier -> {
-                        beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        //beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        beaconText.text = "You are within 10 meters of the beacon."
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
                         vibrate(0)
                     }
@@ -603,6 +618,23 @@ class InstructionViewActivity :
         }
     }
 
+
+    private fun initTextChangeListener(){
+        beaconText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int,
+                                  count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int,
+                              before: Int, count: Int) {
+                var toSpeak = beaconText.text.toString()
+                ttsObject?.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null)
+            }
+        })
+
+    }
+
     private var isRouteComplete = false;    //flag to indicate route is complete
 
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
@@ -617,6 +649,7 @@ class InstructionViewActivity :
             if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {     //executes when user has reached destination
                 if (!isRouteComplete) { //this check is necessary because routeProgressObserver is constantly repeating
                     isRouteComplete = true
+                    initTextChangeListener()
                     instructionView.visibility = GONE
                     summaryBottomSheet.visibility = GONE
                     beaconTextContainer.visibility = VISIBLE
