@@ -16,15 +16,13 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.core.app.NavUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.example.appa.R
 import com.example.appa.db.PlaceEntity
-import com.example.appa.ui.BeaconReferenceApplication
+import com.example.appa.beacons.BeaconReferenceApplication
 import com.example.appa.viewmodel.MapWithNavViewModel
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
 import com.mapbox.api.directions.v5.models.BannerInstructions
@@ -151,8 +149,6 @@ class InstructionViewActivity :
                 builder.setMessage("Please enable bluetooth in settings and restart this application.")
                 builder.setPositiveButton(android.R.string.ok, null)
                 builder.setOnDismissListener {
-                    //finish();
-                    //System.exit(0);
                 }
                 builder.show()
             }
@@ -162,8 +158,6 @@ class InstructionViewActivity :
             builder.setMessage("Sorry, this device does not support Bluetooth LE.")
             builder.setPositiveButton(android.R.string.ok, null)
             builder.setOnDismissListener {
-                //finish();
-                //System.exit(0);
             }
             builder.show()
         }
@@ -220,22 +214,6 @@ class InstructionViewActivity :
             }
         }
         try {
-            //beaconManager.startMonitoringBeaconsInRegion(Region("myRangingUniqueId",uniqueID))\
-            // Get major and minor ID's if they exit,
-            // otherwise set them to null
-            /*var majorIdentifier: Identifier?;
-            var minorIdentifier: Identifier?;
-            if (currentPlace?.major_id != null) {
-                majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
-            } else {
-                majorIdentifier = null;
-            }
-            if (currentPlace?.minor_id != null) {
-                minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
-            } else {
-                minorIdentifier = null;
-            }*/
-
             // Look for beacons with the UUID, Major, and Minor.
             beaconManager.startRangingBeaconsInRegion(region)   //region is initialized at the top of this function
             beaconManager.addRangeNotifier(rangeNotifier)
