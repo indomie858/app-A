@@ -6,24 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            style="@style/Widget.MaterialComponents.Toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/design_default_color_on_secondary"
-
-            app:menu="@menu/top_app_bar"
-            app:title="@string/navigation"
-            app:titleTextColor="@color/white"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
@@ -37,19 +19,11 @@
         app:mapbox_uiLogo="false" />
 
 
-    <ImageView
-        android:id="@+id/screenshotView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        tools:ignore="ContentDescription" />
-
     <LinearLayout
         android:id="@+id/beaconTextContainer"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center|center_horizontal"
-        android:layout_marginTop="?attr/actionBarSize"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -60,7 +34,7 @@
             android:layout_weight="1"
             android:background="@color/background_color"
             android:gravity="center"
-            android:text="SUP YALL. SEARCHING FOR THAT YOUNG ENTRANCE"
+            android:text="LOCATING ENTRANCE."
             android:textAlignment="center"
             android:textColor="@color/text_color"
             android:textSize="36sp" />
@@ -89,7 +63,6 @@
         android:id="@+id/instructionView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="?attr/actionBarSize"
         android:gravity="top"
         android:visibility="invisible"
         tools:visibility="visible" />

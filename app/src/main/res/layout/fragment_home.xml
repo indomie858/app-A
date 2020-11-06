@@ -16,6 +16,7 @@
       android:layout_marginTop="10dp"
       android:layout_marginRight="10dp"
       android:layout_marginBottom="10dp"
+      android:layout_weight=".05"
       android:text="Welcome to CSUN! Choose a category to list nearby locations."
       android:textAlignment="center"
       android:textColor="@color/text_color"
@@ -35,7 +36,8 @@
   <GridLayout
       android:id="@+id/grid_layout"
       android:layout_width="match_parent"
-      android:layout_height="150dp"
+      android:layout_height="wrap_content"
+      android:layout_weight=".3"
       android:alignmentMode="alignMargins"
       android:columnCount="2"
 
@@ -45,7 +47,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/Classrooms"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_rowWeight="1"
         android:layout_columnWeight=".5"
         android:layout_margin="12dp"
@@ -60,7 +62,7 @@
           android:background="@color/card_background_color"
           android:gravity="center"
           android:orientation="vertical"
-          android:padding="5dp">
+          android:padding="1dp">
 
         <ImageView
             android:layout_width="50dp"
@@ -70,7 +72,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:text="Classrooms"
             android:textColor="@color/button_text_color"
             android:textSize="15sp"
@@ -81,7 +82,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/study"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_rowWeight="1"
         android:layout_columnWeight=".5"
         android:layout_margin="12dp"
@@ -96,7 +97,7 @@
           android:background="@color/card_background_color"
           android:gravity="center"
           android:orientation="vertical"
-          android:padding="25dp">
+          android:padding="1dp">
 
         <ImageView
             android:layout_width="50dp"
@@ -106,7 +107,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:text="Study"
             android:textColor="@color/button_text_color"
             android:textSize="15sp"
@@ -117,7 +117,8 @@
 
   <GridLayout
       android:layout_width="match_parent"
-      android:layout_height="150dp"
+      android:layout_height="wrap_content"
+      android:layout_weight=".3"
       android:alignmentMode="alignMargins"
       android:columnCount="2"
       android:columnOrderPreserved="false"
@@ -152,7 +153,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:text="Restaurants"
             android:textColor="@color/button_text_color"
             android:textSize="15sp"
@@ -189,7 +189,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:text="Services"
             android:textColor="@color/button_text_color"
             android:textSize="15sp"
@@ -200,7 +199,8 @@
 
   <GridLayout
       android:layout_width="match_parent"
-      android:layout_height="150dp"
+      android:layout_height="wrap_content"
+      android:layout_weight=".3"
       android:alignmentMode="alignMargins"
       android:columnCount="2"
       android:columnOrderPreserved="false"
@@ -234,7 +234,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:text="Student Stores"
             android:textColor="@color/button_text_color"
             android:textSize="15sp"
@@ -273,7 +272,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:baselineAligned="false"
             android:text="@string/Fitness"
             android:textColor="@color/button_text_color"

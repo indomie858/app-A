@@ -3,10 +3,12 @@ package com.example.appa.ui.navigation
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Bitmap
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.*
+import android.speech.tts.TextToSpeech
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.View.GONE
@@ -16,15 +18,13 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.core.app.NavUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.example.appa.R
+import com.example.appa.beacons.BeaconReferenceApplication
 import com.example.appa.db.PlaceEntity
-import com.example.appa.ui.BeaconReferenceApplication
 import com.example.appa.viewmodel.MapWithNavViewModel
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
 import com.mapbox.api.directions.v5.models.BannerInstructions
@@ -51,17 +51,10 @@ import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
 import com.mapbox.navigation.core.replay.MapboxReplayer
 import com.mapbox.navigation.core.replay.ReplayLocationEngine
 import com.mapbox.navigation.core.replay.route.ReplayProgressObserver
-import com.mapbox.navigation.core.telemetry.events.FeedbackEvent.UI
 import com.mapbox.navigation.core.trip.session.*
 import com.mapbox.navigation.ui.NavigationButton
-import com.mapbox.navigation.ui.NavigationConstants
 import com.mapbox.navigation.ui.SoundButton
 import com.mapbox.navigation.ui.camera.NavigationCamera
-import com.mapbox.navigation.ui.feedback.FeedbackBottomSheet
-import com.mapbox.navigation.ui.feedback.FeedbackBottomSheetListener
-import com.mapbox.navigation.ui.feedback.FeedbackItem
-import com.mapbox.navigation.ui.internal.utils.BitmapEncodeOptions
-import com.mapbox.navigation.ui.internal.utils.ViewUtils
 import com.mapbox.navigation.ui.map.NavigationMapboxMap
 import com.mapbox.navigation.ui.summary.SummaryBottomSheet
 import com.mapbox.navigation.ui.voice.NavigationSpeechPlayer
@@ -82,7 +75,7 @@ import java.util.*
 class InstructionViewActivity :
         AppCompatActivity(),
         OnMapReadyCallback,
-        FeedbackBottomSheetListener, BeaconConsumer {
+        BeaconConsumer {
     // SO MANY MEMBERS
     private lateinit var viewModel: MapWithNavViewModel
     private var currentPlace: PlaceEntity? = null
@@ -97,12 +90,8 @@ class InstructionViewActivity :
     private val mapboxReplayer = MapboxReplayer()
 
     private var mapboxMap: MapboxMap? = null
-    private var feedbackButton: NavigationButton? = null
     private var instructionSoundButton: NavigationButton? = null
     private var directionRoute: DirectionsRoute? = null
-
-    private var feedbackItem: FeedbackItem? = null
-    private var feedbackEncodedScreenShot: String? = null
 
     private lateinit var summaryBehavior: BottomSheetBehavior<SummaryBottomSheet>
     private lateinit var routeOverviewButton: ImageButton
@@ -110,6 +99,8 @@ class InstructionViewActivity :
 
     private val TAG = "InstructionViewActivity"
     private val beaconManager = BeaconManager.getInstanceForApplication(this)
+
+    private var ttsObject: TextToSpeech? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,6 +130,12 @@ class InstructionViewActivity :
 
         initListeners()
         initializeSpeechPlayer()
+
+        ttsObject = TextToSpeech(applicationContext) { status ->
+            if (status != TextToSpeech.ERROR) {
+                ttsObject?.setLanguage(Locale.UK)
+            }
+        }
     }//end of onCreate function
 
     //////////////////////////////Beacon functions begin//////////////////////////////////////////
@@ -151,8 +148,6 @@ class InstructionViewActivity :
                 builder.setMessage("Please enable bluetooth in settings and restart this application.")
                 builder.setPositiveButton(android.R.string.ok, null)
                 builder.setOnDismissListener {
-                    //finish();
-                    //System.exit(0);
                 }
                 builder.show()
             }
@@ -162,8 +157,6 @@ class InstructionViewActivity :
             builder.setMessage("Sorry, this device does not support Bluetooth LE.")
             builder.setPositiveButton(android.R.string.ok, null)
             builder.setOnDismissListener {
-                //finish();
-                //System.exit(0);
             }
             builder.show()
         }
@@ -189,27 +182,31 @@ class InstructionViewActivity :
 
                 when {
                     firstBeacon.distance < 1.0 && firstBeacon.id2 == majorIdentifier -> {   //stopping point for ranging. user has arrived at entrance
-                        beaconText.setText("You have arrived at the entrance. Beacon range detection will end now.\n" +
-                                "\nDistance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        //beaconText.setText("You have arrived at the entrance. Beacon range detection will end now.\n" +
+                        //        "\nDistance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        beaconText.text = "You have arrived at the entrance. Beacon range detection will end now."
                         try {
                             beaconManager.stopRangingBeaconsInRegion(region)
                             Log.e(TAG, "Reaches past stopRangingBeacons at 1.0 meter distance")
-                        } catch (e: RemoteException){
+                        } catch (e: RemoteException) {
                             Log.e(TAG, e.toString())
                         }
                     }
                     firstBeacon.distance < 2.0 && firstBeacon.id2 == majorIdentifier -> {
-                        beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        //beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        beaconText.text = "You are within 2 meters of the beacon."
                         toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
                         vibrate(2)
                     }
                     firstBeacon.distance < 4.0 && firstBeacon.id2 == majorIdentifier -> {
-                        beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        //beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        beaconText.text = "You are moving closer to the beacon."
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
                         vibrate(1)
                     }
                     firstBeacon.distance < 8.0 && firstBeacon.id2 == majorIdentifier -> {
-                        beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        //beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                        beaconText.text = "You are within 10 meters of the beacon."
                         toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
                         vibrate(0)
                     }
@@ -220,22 +217,6 @@ class InstructionViewActivity :
             }
         }
         try {
-            //beaconManager.startMonitoringBeaconsInRegion(Region("myRangingUniqueId",uniqueID))\
-            // Get major and minor ID's if they exit,
-            // otherwise set them to null
-            /*var majorIdentifier: Identifier?;
-            var minorIdentifier: Identifier?;
-            if (currentPlace?.major_id != null) {
-                majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
-            } else {
-                majorIdentifier = null;
-            }
-            if (currentPlace?.minor_id != null) {
-                minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
-            } else {
-                minorIdentifier = null;
-            }*/
-
             // Look for beacons with the UUID, Major, and Minor.
             beaconManager.startRangingBeaconsInRegion(region)   //region is initialized at the top of this function
             beaconManager.addRangeNotifier(rangeNotifier)
@@ -461,52 +442,9 @@ class InstructionViewActivity :
         }
 
         val handler = Handler()
-        handler.postDelayed(task, 1200) //set task delay duration
+        handler.postDelayed(task, 3000) //set task delay duration
     }
 
-    // InstructionView Feedback Bottom Sheet listener
-    override fun onFeedbackDismissed() {
-        // do nothing
-    }
-
-    override fun onFeedbackSelected(feedbackItem: FeedbackItem?) {
-        feedbackItem?.let { feedback ->
-            this.feedbackItem = feedback
-            sendFeedback()
-        }
-    }
-
-    private fun encodeSnapshot(snapshot: Bitmap) {
-        screenshotView.visibility = VISIBLE
-        screenshotView.setImageBitmap(snapshot)
-        mapView.visibility = View.INVISIBLE
-        feedbackEncodedScreenShot = ViewUtils.encodeView(
-                ViewUtils.captureView(mapView),
-                BitmapEncodeOptions.Builder()
-                        .width(400).compressQuality(40).build()
-        )
-        screenshotView.visibility = View.INVISIBLE
-        mapView.visibility = VISIBLE
-
-        sendFeedback()
-    }
-
-    private fun sendFeedback() {
-        val feedback = feedbackItem
-        val screenShot = feedbackEncodedScreenShot
-        if (feedback != null && !screenShot.isNullOrEmpty()) {
-            mapboxNavigation?.postUserFeedback(
-                    feedback.feedbackType,
-                    feedback.description,
-                    UI,
-                    screenShot,
-                    feedback.feedbackSubType.toTypedArray()
-            )
-
-            // Daniel: Not sure where this feedback function is defined.
-            //showFeedbackSentSnackBar(context = this, view = mapView)
-        }
-    }
 
     private fun isLocationTracking(cameraMode: Int): Boolean {
         return cameraMode == CameraMode.TRACKING ||
@@ -568,7 +506,6 @@ class InstructionViewActivity :
     }
 
     private fun initViews() {
-
         summaryBottomSheet.visibility = GONE
         summaryBehavior = BottomSheetBehavior.from(summaryBottomSheet).apply {
             isHideable = false
@@ -579,21 +516,7 @@ class InstructionViewActivity :
         cancelBtn = findViewById(R.id.cancelBtn)
 
         instructionView.visibility = GONE
-        feedbackButton = instructionView.retrieveFeedbackButton().apply {
-            hide()
-            addOnClickListener {
-                feedbackItem = null
-                feedbackEncodedScreenShot = null
-                supportFragmentManager.let {
-                    mapboxMap?.snapshot(this@InstructionViewActivity::encodeSnapshot)
-                    FeedbackBottomSheet.newInstance(
-                            this@InstructionViewActivity,
-                            NavigationConstants.FEEDBACK_BOTTOM_SHEET_DURATION
-                    )
-                            .show(it, FeedbackBottomSheet.TAG)
-                }
-            }
-        }
+
         instructionSoundButton = instructionView.retrieveSoundButton().apply {
             hide()
             addOnClickListener {
@@ -610,7 +533,6 @@ class InstructionViewActivity :
             TripSessionState.STARTED -> {
                 recenterBtn.hide()
                 instructionView.visibility = VISIBLE
-                feedbackButton?.show()
                 instructionSoundButton?.show()
                 summaryBottomSheet.visibility = VISIBLE
             }
@@ -618,15 +540,12 @@ class InstructionViewActivity :
                 summaryBottomSheet.visibility = GONE
                 recenterBtn.hide()
                 instructionView.visibility = GONE
-                feedbackButton?.hide()
                 instructionSoundButton?.hide()
             }
         }
     }
 
-    private fun updateCameraOnNavigationStateChange(
-            navigationStarted: Boolean
-    ) {
+    private fun updateCameraOnNavigationStateChange(navigationStarted: Boolean) {
         navigationMapboxMap?.apply {
             if (navigationStarted) {
                 updateCameraTrackingMode(NavigationCamera.NAVIGATION_TRACKING_MODE_GPS)
@@ -699,6 +618,23 @@ class InstructionViewActivity :
         }
     }
 
+
+    private fun initTextChangeListener(){
+        beaconText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int,
+                                  count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int,
+                              before: Int, count: Int) {
+                var toSpeak = beaconText.text.toString()
+                ttsObject?.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null)
+            }
+        })
+
+    }
+
     private var isRouteComplete = false;    //flag to indicate route is complete
 
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
@@ -713,11 +649,13 @@ class InstructionViewActivity :
             if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {     //executes when user has reached destination
                 if (!isRouteComplete) { //this check is necessary because routeProgressObserver is constantly repeating
                     isRouteComplete = true
+                    initTextChangeListener()
                     instructionView.visibility = GONE
                     summaryBottomSheet.visibility = GONE
                     beaconTextContainer.visibility = VISIBLE
                     val anim: Animation = AnimationUtils.loadAnimation(this@InstructionViewActivity, R.anim.slide_in_top)
                     beaconTextContainer.startAnimation(anim)
+                    beaconText.text = "LOCATING ENTRANCE..."
                     beaconManager.bind(this@InstructionViewActivity)    //binds to BeaconService and starts beacon ranging
                 }
             }

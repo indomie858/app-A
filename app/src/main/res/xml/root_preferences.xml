@@ -12,7 +12,8 @@
             android:entryValues="@array/theme_values_array"
             android:icon="@drawable/ic_color_lens"
             android:key="theme"
-            android:title="@string/preference_theme_title" />
+            android:title="@string/preference_theme_title"
+            android:textColor="@color/text_color"/>
 
     </PreferenceCategory>
 

@@ -1,4 +1,4 @@
-package com.example.appa.ui;
+package com.example.appa.beacons;
 
 import android.app.Application;
 import android.app.Notification;
@@ -12,8 +12,6 @@ import android.os.Build;
 import android.util.Log;
 
 import com.example.appa.R;
-import com.example.appa.beacons.MonitoringActivity;
-import com.example.appa.beacons.TimedBeaconSimulator;
 import com.example.appa.ui.navigation.InstructionViewActivity;
 
 import org.altbeacon.beacon.BeaconManager;
@@ -31,9 +29,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
     private static final String TAG = "BeaconReferenceApp";
     private RegionBootstrap regionBootstrap;
     private BackgroundPowerSaver backgroundPowerSaver;
-    //private MonitoringActivity monitoringActivity = null;
     private InstructionViewActivity instructionViewActivity = null;
-    private String cumulativeLog = "";
 
     public void onCreate() {
         super.onCreate();
@@ -127,75 +123,19 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
     @Override
     public void didEnterRegion(Region arg0) {
         Log.d(TAG, "did enter region.");
-        // Send a notification to the user whenever a Beacon
-        // matching a Region (defined above) are first seen.
-        Log.d(TAG, "Sending notification.");
-        sendNotification();
-        if (instructionViewActivity != null) {
-            // If the Monitoring Activity is visible, we log info about the beacons we have
-            // seen on its display
-            logToDisplay("I see a beacon again");
-        }
     }
 
     @Override
     public void didExitRegion(Region region) {
-        logToDisplay("I no longer see a beacon.");
+
     }
 
     @Override
     public void didDetermineStateForRegion(int state, Region region) {
-        logToDisplay("Current region state is: " + (state == 1 ? "INSIDE" : "OUTSIDE (" + state + ")"));
+
     }
-
-    private void sendNotification() {
-        NotificationManager notificationManager =
-                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification.Builder builder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("Beacon Reference Notifications",
-                    "Beacon Reference Notifications", NotificationManager.IMPORTANCE_HIGH);
-            channel.enableLights(true);
-            channel.enableVibration(true);
-            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-            notificationManager.createNotificationChannel(channel);
-            builder = new Notification.Builder(this, channel.getId());
-        } else {
-            builder = new Notification.Builder(this);
-            builder.setPriority(Notification.PRIORITY_HIGH);
-        }
-
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addNextIntent(new Intent(this, MonitoringActivity.class));
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-        builder.setSmallIcon(R.drawable.ic_launcher);
-        builder.setContentTitle("I detect a beacon");
-        builder.setContentText("Tap here to see details in the reference app");
-        builder.setContentIntent(resultPendingIntent);
-        notificationManager.notify(1, builder.build());
-    }
-
-    /*public void setMonitoringActivity(MonitoringActivity activity) {
-        this.monitoringActivity = activity;
-    }*/
 
     public void setMonitoringActivity(InstructionViewActivity activity) {
         this.instructionViewActivity = activity;
     }
-
-    private void logToDisplay(String line) {
-        cumulativeLog += (line + "\n");
-        if (this.instructionViewActivity != null) {
-            //this.instructionViewActivity.updateLog(cumulativeLog);
-        }
-    }
-
-    public String getLog() {
-        return cumulativeLog;
-    }
-
 }

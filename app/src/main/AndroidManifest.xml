@@ -14,11 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".ui.BeaconReferenceApplication">
-        <activity android:name=".beacons.RangingActivity"></activity>
-        <activity
-            android:name=".beacons.MonitoringActivity"
-            android:exported="true"/>
+        android:name=".beacons.BeaconReferenceApplication">
         <activity
             android:name=".ui.navigation.InstructionViewActivity"
             android:exported="true"
