@@ -427,7 +427,7 @@ class InstructionViewActivity :
         }
 
         val handler = Handler()
-        handler.postDelayed(task, 1200) //set task delay duration
+        handler.postDelayed(task, 3000) //set task delay duration
     }
 
 
