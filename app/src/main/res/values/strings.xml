@@ -217,14 +217,27 @@
     <string name="row_item_xml_icon_description">Home categories icon</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="tutorial_header">APP-A Tutorial</string>
-    <string name="tutorial_body"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et enim in ex pharetra venenatis. Praesent urna justo, maximus quis ligula et, tempor tincidunt ex. Integer lobortis suscipit pretium. Mauris convallis, massa ut dignissim ornare, velit ligula pharetra turpis, id posuere purus magna sed nulla. Nam sed purus mauris. Sed in nunc bibendum, maximus nunc sit amet, blandit lorem. Maecenas tristique nec enim at sodales. Donec fringilla ultricies tempor. Aliquam maximus finibus est, sit amet aliquam arcu faucibus et. Cras faucibus sagittis justo, quis vehicula tellus convallis at. Mauris convallis, metus at laoreet ultrices, diam turpis lacinia nibh, ut accumsan lorem urna at ipsum. Ut ac quam ut massa scelerisque convallis. Fusce id elementum nisi. Morbi ut neque pellentesque, consectetur lectus auctor, posuere magna. Duis faucibus semper dapibus. Vestibulum sed pretium ex, quis ullamcorper tellus.
-\n \n
-Pellentesque faucibus id lectus non pellentesque. Ut egestas consectetur vulputate. Cras id elit dapibus sem viverra molestie ullamcorper nec neque. Donec a neque diam. Aliquam suscipit erat eu turpis dictum pellentesque. In feugiat consectetur lacus, sed pretium mi tristique in. Vivamus dictum id erat id fermentum. Aliquam et lacus a nisl tincidunt tincidunt. Aenean auctor placerat justo, a tempor tortor viverra eu. Suspendisse congue vestibulum lacus. Fusce sollicitudin scelerisque justo nec faucibus. Integer sagittis purus id gravida commodo. Pellentesque sagittis rutrum efficitur. Vestibulum fermentum, est non consectetur dignissim, mauris risus viverra nibh, eget sagittis ipsum sapien ut nisl. Duis sit amet nulla nec nisi ullamcorper porta.
-\n \n
-Etiam tempus, nibh sed fringilla ullamcorper, sem risus porta ligula, at bibendum nisi erat at urna. Fusce tincidunt nulla nulla, et dignissim ipsum sollicitudin et. Cras non tortor imperdiet, vehicula nunc eget, auctor sapien. Cras justo erat, aliquet nec faucibus a, mattis condimentum justo. Etiam suscipit mi nec mi imperdiet venenatis. Vestibulum vitae tellus ut nulla tincidunt hendrerit sed ac orci. Nullam ac molestie turpis. Vivamus blandit laoreet molestie. Morbi ut sem mi. Maecenas et cursus magna. Mauris sem tortor, finibus a ex ac, elementum ullamcorper erat. Sed luctus mauris tellus, in tempor turpis suscipit ac. Maecenas metus libero, laoreet id mauris et, laoreet euismod leo.
-\n \n
-Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce viverra enim eu leo imperdiet ullamcorper. Proin ullamcorper nibh sed maximus imperdiet. Pellentesque suscipit urna odio, ac tempus dolor pulvinar et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec metus eleifend, tincidunt diam at, laoreet justo. Nam pellentesque dolor quis rhoncus pretium. Cras ut turpis a orci cursus ultricies nec et nisi. Nullam placerat felis vel felis accumsan pretium. Etiam congue lacus vitae nulla hendrerit, non porttitor nisl tempus. </string>
+    <string name="tutorial_header">APP-A MANUAL</string>
+    <string name="tutorial_body">This user manual has been specifically designed to guide you
+through the functions and features of our mobile application.\n\n
+Home button = opens the home page.\n
+Settings button = opens the settings page.\n
+Connect button = lets the user know if the Arduino is connected to the app.\n
+Tutorial button = opens the tutorial page.\n\n
+How to use the app?\n
+Step 1: Turn on the Arduino and GPS locator. The app will not work without the GPS locator.\n
+Step 2: Choose one of the following categories on the home screen page.\n
+Step 3: Pick a destination that is listed.\n
+Step 4: Once a destination has been picked, wait for the app to calculate the destination.\n
+Step 5: Follow the directions to get to the destination.\n\n
+How will I know when I have arrived at my destination?\n
+This app is designed to alert the user known when they are near the destination. When the user is within proximity, the app will notify the user by vibrating and beeping.\n\n
+How will I know if the Arduino is connected?\n
+To check if the Arduino is connected, simply go to the home page of the app and click on "Connect". A message will pop up that lets the user know if it\'s connected or not.\n\n
+Is the app accessible?\n
+Yes, this app is designed to adhere to accessibility guidelines.\n\n
+Can this app be use anytime during the day?\n
+Yes, this app is designed to work at any given time. At night, the Arduino will flash a light to notify anyone around of your presence.</string>
     <string name="tutorial_2_head">CANE</string>
     <string name="tutorial_2_body">BODY 2 </string>
 
