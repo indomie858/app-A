@@ -13,13 +13,13 @@
     <color name="mapboxPink">#ee4e8b</color>
     <color name="mapboxYellow">#d9d838</color>
     <color name="mapboxRed">#b43b71</color>
-    <color name="card_background_color">#000000</color>
+    <color name="card_background_color">#EEEEEE</color>
 
     <color name="ic_settings_color">#FFFFFF</color>
     <color name="ic_attachment_color">#FFFFFFFF</color>
     <color name="background_color">#FFFFFFFF</color>
     <color name="ic_color_lens_color">#FFFFFFFF</color>
 
-    <color name="button_text_color">#ffffff</color>
+    <color name="button_text_color">#000000</color>
     <color name="text_color">#000000</color>
 </resources>
