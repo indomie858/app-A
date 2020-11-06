@@ -655,6 +655,7 @@ class InstructionViewActivity :
                     beaconTextContainer.visibility = VISIBLE
                     val anim: Animation = AnimationUtils.loadAnimation(this@InstructionViewActivity, R.anim.slide_in_top)
                     beaconTextContainer.startAnimation(anim)
+                    beaconText.text = "LOCATING ENTRANCE..."
                     beaconManager.bind(this@InstructionViewActivity)    //binds to BeaconService and starts beacon ranging
                 }
             }
