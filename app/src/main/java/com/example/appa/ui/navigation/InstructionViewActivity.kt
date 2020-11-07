@@ -618,23 +618,29 @@ class InstructionViewActivity :
         }
     }
 
+    //used to compare changed on beaconText TextView
+    private var previousText: String? = null
 
-    private fun initTextChangeListener(){
+    private fun initTextChangeListener() {  //starts text change listener for beaconText. TTS will execute when text is changed
         beaconText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int,
-                                  count: Int, after: Int) {
+                                           count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int,
-                              before: Int, count: Int) {
-                var toSpeak = beaconText.text.toString()
-                ttsObject?.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null)
+                                       before: Int, count: Int) {
+                if (previousText.equals(beaconText.text.toString())) {  //if text is the same as before, dont speak TTS
+                    //do nothing
+                } else {
+                    previousText = beaconText.text.toString()
+                    ttsObject?.speak(previousText, TextToSpeech.QUEUE_FLUSH, null)  //speak changed text in beaconText
+                }
             }
         })
-
     }
 
     private var isRouteComplete = false;    //flag to indicate route is complete
