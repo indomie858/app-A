@@ -68,38 +68,38 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 /**
- * This activity shows how to integrate the Navigation UI SDK's
- * InstructionView, FeedbackButton, and SoundButton with
- * the Navigation SDK.
+ * This activity combines a Mapbox navigation implementation with beacon ranging detection.
+ * Main libraries used: Mapbox's Maps SDK and Navigation SDK; Android Beacon Library (Radius Networks)
  */
 class InstructionViewActivity :
         AppCompatActivity(),
         OnMapReadyCallback,
         BeaconConsumer {
     // SO MANY MEMBERS
+    private val TAG = "InstructionViewActivity"
+
+    //members for database access
     private lateinit var viewModel: MapWithNavViewModel
     private var currentPlace: PlaceEntity? = null
     private var currentPlaceID: Int? = null
     private var majorIdentifier: Identifier? = null
     private var minorIdentifier: Identifier? = null
 
+    //Mapbox member variables
     private var mapboxNavigation: MapboxNavigation? = null
     private var locationComponent: LocationComponent? = null
     private var navigationMapboxMap: NavigationMapboxMap? = null
     private lateinit var speechPlayer: NavigationSpeechPlayer
     private val mapboxReplayer = MapboxReplayer()
-
     private var mapboxMap: MapboxMap? = null
     private var instructionSoundButton: NavigationButton? = null
     private var directionRoute: DirectionsRoute? = null
-
     private lateinit var summaryBehavior: BottomSheetBehavior<SummaryBottomSheet>
     private lateinit var routeOverviewButton: ImageButton
     private lateinit var cancelBtn: AppCompatImageButton
 
-    private val TAG = "InstructionViewActivity"
+    //Beacon and text to speech members
     private val beaconManager = BeaconManager.getInstanceForApplication(this)
-
     private var ttsObject: TextToSpeech? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,6 +107,7 @@ class InstructionViewActivity :
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_instruction_view_layout)
 
+        //verifies that device has bluetooth capabilities
         verifyBluetooth()
 
         initViews()
@@ -131,6 +132,7 @@ class InstructionViewActivity :
         initListeners()
         initializeSpeechPlayer()
 
+        //initialize TTS object... initTextChangeListener() is where tts.speak is called
         ttsObject = TextToSpeech(applicationContext) { status ->
             if (status != TextToSpeech.ERROR) {
                 ttsObject?.setLanguage(Locale.UK)
@@ -139,6 +141,7 @@ class InstructionViewActivity :
     }//end of onCreate function
 
     //////////////////////////////Beacon functions begin//////////////////////////////////////////
+    //verifies that device is bluetooth capable and bluetooth is enabled
     private fun verifyBluetooth() {
         try {
             if (!BeaconManager.getInstanceForApplication(this).checkAvailability()) {
@@ -164,63 +167,71 @@ class InstructionViewActivity :
 
     //Called when the beacon service is running and ready to accept your commands through the BeaconManager
     override fun onBeaconServiceConnect() {
-        //ToneGenerator class contains various system sounds...beeps boops and whatnot
-        val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
-        val region = Region(
-                "myRangingUniqueId",
-                Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
-                majorIdentifier,
-                minorIdentifier,
-        )
 
         //Called once per second to give an estimate of the mDistance to visible beacons
         val rangeNotifier = RangeNotifier { beacons, region ->
-            if (beacons.size > 0) {
+            if (beacons.size > 0) {   //beacons is list containing all detected beacons in region
                 Log.d(TAG, "didRangeBeaconsInRegion called with beacon count:  " + beacons.size)
                 //val firstBeacon = beacons.iterator().next()
-                val firstBeacon = beacons.first()   //need to change this to read specific beacons by id
+                val firstBeacon = beacons.first()   //first detected beacon
 
-                when {
-                    firstBeacon.distance < 1.0 && firstBeacon.id2 == majorIdentifier -> {   //stopping point for ranging. user has arrived at entrance
-                        //beaconText.setText("You have arrived at the entrance. Beacon range detection will end now.\n" +
-                        //        "\nDistance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
-                        beaconText.text = "You have arrived at the entrance. Beacon range detection will end now."
-                        try {
-                            beaconManager.stopRangingBeaconsInRegion(region)
-                            Log.e(TAG, "Reaches past stopRangingBeacons at 1.0 meter distance")
-                        } catch (e: RemoteException) {
-                            Log.e(TAG, e.toString())
-                        }
-                    }
-                    firstBeacon.distance < 2.0 && firstBeacon.id2 == majorIdentifier -> {
-                        //beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
-                        beaconText.text = "You are within 2 meters of the beacon."
-                        toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
-                        vibrate(2)
-                    }
-                    firstBeacon.distance < 4.0 && firstBeacon.id2 == majorIdentifier -> {
-                        //beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
-                        beaconText.text = "You are moving closer to the beacon."
-                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
-                        vibrate(1)
-                    }
-                    firstBeacon.distance < 8.0 && firstBeacon.id2 == majorIdentifier -> {
-                        //beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
-                        beaconText.text = "You are within 10 meters of the beacon."
-                        toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
-                        vibrate(0)
-                    }
-                    firstBeacon.distance > 8.0 -> {
-                        //do nothing until user is within certain distance
-                    }
-                }
+                //updated distances are constantly being passed to atDistance()
+                atDistance(firstBeacon.distance, firstBeacon, region)
             }
         }
+
         try {
+            val region = Region(
+                    //info for beacon searching
+                    "myRangingUniqueId",
+                    Identifier.parse("FAB17CB9-C21C-E3B4-CD3B-D3E2E80C29FE"),
+                    majorIdentifier,
+                    minorIdentifier,
+            )
             // Look for beacons with the UUID, Major, and Minor.
             beaconManager.startRangingBeaconsInRegion(region)   //region is initialized at the top of this function
             beaconManager.addRangeNotifier(rangeNotifier)
         } catch (e: RemoteException) {
+        }
+    }
+
+    //contains code to execute at various distances between user and beacon
+    private fun atDistance(distance: Double, beacon: Beacon, region: Region) {
+        //ToneGenerator class contains various system sounds...beeps boops and whatnot
+        val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+
+        when {
+            distance < 1.0 && beacon.id2 == majorIdentifier -> {   //stopping point for ranging. user has arrived at entrance
+                //beaconText.setText("You have arrived at the entrance. Beacon range detection will end now.\n" +
+                //        "\nDistance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                beaconText.text = "You have arrived at the entrance. Beacon range detection will end now."
+                try {
+                    beaconManager.stopRangingBeaconsInRegion(region)    //stops beacon detection in region
+                } catch (e: RemoteException) {
+                    Log.e(TAG, e.toString())
+                }
+            }
+            distance < 2.0 && beacon.id2 == majorIdentifier -> {
+                //beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                beaconText.text = "YOU ARE WITHIN 5 FEET OF THE ENTRANCE."
+                toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
+                vibrate(2)
+            }
+            distance < 4.0 && beacon.id2 == majorIdentifier -> {
+                //beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                beaconText.text = "YOU ARE WITHIN 15 FEET OF THE ENTRANCE."
+                toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
+                vibrate(1)
+            }
+            distance < 8.0 && beacon.id2 == majorIdentifier -> {
+                //beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
+                beaconText.text = "ENTRANCE LOCATED. YOU ARE WITHIN 25 FEET OF THE ENTRANCE"
+                toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
+                vibrate(0)
+            }
+            distance > 8.0 -> {
+                //do nothing until user is within certain distance
+            }
         }
     }
     /////////////////////////////////////end beacon functions//////////////////////////////////////////////////////////////
@@ -239,7 +250,7 @@ class InstructionViewActivity :
 
         val vibrator: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createWaveform(vibratePattern, -1))    //use this as of api level 26
+            vibrator.vibrate(VibrationEffect.createWaveform(vibratePattern, -1)) //createWaveform can take a third argument array containing amplitude values
         } else {
             vibrator.vibrate(vibratePattern, -1)    //depricated function. uses this only if build api is less than 26
         }
@@ -618,21 +629,29 @@ class InstructionViewActivity :
         }
     }
 
+    //used to compare changed on beaconText TextView
+    private var previousText: String? = null
 
-    private fun initTextChangeListener(){
+    private fun initTextChangeListener() {  //starts text change listener for beaconText. TTS will execute when text is changed
         beaconText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int,
-                                  count: Int, after: Int) {
+                                           count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int,
-                              before: Int, count: Int) {
-                var toSpeak = beaconText.text.toString()
-                ttsObject?.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null)
+                                       before: Int, count: Int) {
+                if (previousText.equals(beaconText.text.toString())) {  //if text is the same as before, dont speak TTS
+                    //do nothing
+                } else {
+                    previousText = beaconText.text.toString()
+                    ttsObject?.speak(previousText, TextToSpeech.QUEUE_FLUSH, null)  //speak changed text in beaconText
+                }
             }
         })
-
     }
 
     private var isRouteComplete = false;    //flag to indicate route is complete
@@ -649,14 +668,20 @@ class InstructionViewActivity :
             if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {     //executes when user has reached destination
                 if (!isRouteComplete) { //this check is necessary because routeProgressObserver is constantly repeating
                     isRouteComplete = true
+                    speechPlayer.isMuted = true
                     initTextChangeListener()
                     instructionView.visibility = GONE
                     summaryBottomSheet.visibility = GONE
                     beaconTextContainer.visibility = VISIBLE
                     val anim: Animation = AnimationUtils.loadAnimation(this@InstructionViewActivity, R.anim.slide_in_top)
                     beaconTextContainer.startAnimation(anim)
-                    beaconText.text = "LOCATING ENTRANCE..."
-                    beaconManager.bind(this@InstructionViewActivity)    //binds to BeaconService and starts beacon ranging
+                    beaconText.text = "YOU HAVE ARRIVED\n\nLOCATING ENTRANCE..."
+
+                    val task = Runnable {
+                        beaconManager.bind(this@InstructionViewActivity)    //binds to BeaconService and starts beacon ranging
+                    }
+                    val handler = Handler()
+                    handler.postDelayed(task, 2000) //set task delay to reduce overlap between mapbox and beacons voice
                 }
             }
         }

@@ -63,4 +63,4 @@ script:
 
     # Gradle command to run instrumentation tests
     # located in module-name/src/androidTest/java/
-    - ./gradlew connectedAndroidTest
+    #- ./gradlew connectedAndroidTest
