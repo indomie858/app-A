@@ -1,13 +1,10 @@
 package com.example.appa.ui.settings
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.appa.R
-import com.example.appa.ui.MainActivity
-import com.example.appa.ui.MapActivity
 
 class SettingsFragment : PreferenceFragmentCompat() {
 

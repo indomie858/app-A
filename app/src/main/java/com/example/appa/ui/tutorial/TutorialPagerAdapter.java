@@ -14,7 +14,7 @@ import com.example.appa.R;
 public class TutorialPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.app_manual, R.string.cane_setup, R.string.resource_links};
+    private static final int[] TAB_TITLES = new int[]{R.string.app_manual, R.string.cane_setup};
     private final Context mContext;
 
     // Manages the views in the pager adapter
@@ -22,6 +22,7 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
     public TutorialPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+
     }
 
     @NonNull
@@ -30,15 +31,14 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch(position) {
             case 0:
-                fragment = TutorialTextFragment.newInstance();
+                return new TutorialTextFragment();
             case 1:
-                fragment = TutorialTextFragment.newInstance();
-            case 2:
-                fragment = TutorialTextFragment.newInstance();
+                return new TutorialTextFragment2();
+            default:
+                return null;
         }
-        return fragment;
-    }
 
+    }
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
@@ -47,7 +47,12 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Total of 3 tabs.
-        return 3;
+        // Total of 2 tabs.
+        return 2;
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
     }
 }
