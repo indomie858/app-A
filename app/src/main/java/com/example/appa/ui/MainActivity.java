@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
+
 
 
         //fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "4").hide(tutorialFragment).commit();
