@@ -11,7 +11,9 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
     final Fragment settingsFragment = new SettingsFragment();
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
+    BluetoothDialog btDialog = new BluetoothDialog();
 
     Fragment active = homeFragment;
     private int counter = 0;
@@ -250,7 +253,9 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
     }
 
     public void showDialog() {
-        DialogFragment btDialog = BluetoothDialog.newInstance(R.string.bluetooth_title);
+        BluetoothDialog bluetoothDialog = (BluetoothDialog)BluetoothDialog.newInstance(R.string.bluetooth_title);
+        btDialog = bluetoothDialog;
+        btDialog.setBluetoothService(btServiceHandler);
         btDialog.show(getSupportFragmentManager(), "BTDialog");
     }
 
@@ -278,4 +283,5 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
             bound = false;
         }
     };
+
 }

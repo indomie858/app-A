@@ -46,7 +46,7 @@ public class BluetoothDialog extends DialogFragment {
     private int status = 0;
 
     //BluetoothHandler btHandler;
-//    BluetoothServiceHandler btServiceHandler;
+    BluetoothServiceHandler btServiceHandler;
     String mostRecentRead;
 
     TextView readLineView;
@@ -144,7 +144,7 @@ public class BluetoothDialog extends DialogFragment {
         /*if(btServiceHandler == null)
         {
             startService();
-        }
+        }*/
 
 
 
@@ -176,7 +176,7 @@ public class BluetoothDialog extends DialogFragment {
             deviceStuff.add(btDevice);
         }
         btArrayAdapter = new BluetoothDisplayAdapter(dContext, deviceStuff);
-        randomAddress = deviceStuff.get(0).getAddress();
+        //randomAddress = deviceStuff.get(0).getAddress();
         ListView listOfDevices = (ListView)dContext.findViewById(R.id.BTListOfDevices);
         listOfDevices.setAdapter(btArrayAdapter);
 
@@ -192,9 +192,9 @@ public class BluetoothDialog extends DialogFragment {
         bt_led = (Button) dContext.findViewById(R.id.bt_light_button);
         bt_led.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //byte[] messageToDevice = {'1'};
-                //btServiceHandler.writeToDevice(messageToDevice);
-                btServiceHandler.connectTo(randomAddress);
+                byte[] messageToDevice = {'1'};
+                btServiceHandler.writeToDevice(messageToDevice);
+                //btServiceHandler.connectTo(randomAddress);
             }
         });
 
@@ -204,7 +204,7 @@ public class BluetoothDialog extends DialogFragment {
                 byte[] messageToDevice = {'2'};
                 btServiceHandler.writeToDevice(messageToDevice);
             }
-        });*/
+        });
         builder.setView(view);
         Dialog dialog = builder.create();
 
@@ -212,7 +212,13 @@ public class BluetoothDialog extends DialogFragment {
 
         return dialog;
     }
-/*
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    /*
     @Override
     public void onActivityResult(int request, int result, Intent data) {
         switch (request) {
@@ -233,5 +239,10 @@ public class BluetoothDialog extends DialogFragment {
         getApplicationContext().bindService(intent, bluetoothServiceConnection, Context.BIND_AUTO_CREATE);
         Log.d(LOG_TAG, "Dialog bound to service");
     }*/
+
+    public void setBluetoothService(BluetoothServiceHandler btService)
+    {
+        this.btServiceHandler = btService;
+    }
 }
 
