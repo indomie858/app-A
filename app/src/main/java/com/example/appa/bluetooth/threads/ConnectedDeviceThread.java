@@ -1,6 +1,7 @@
 package com.example.appa.bluetooth.threads;
 
 import android.bluetooth.BluetoothSocket;
+import android.util.Log;
 
 import com.example.appa.bluetooth.BluetoothHandler;
 import com.example.appa.bluetooth.message.MessageHandler;
@@ -12,7 +13,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 public class ConnectedDeviceThread extends Thread{
-
+    private static final String LOG_TAG = ConnectedDeviceThread.class.getSimpleName();
     private BluetoothHandler btHandler;
     private MessageHandler messageHandler;
     private BluetoothSocket btSocket;
@@ -49,6 +50,7 @@ public class ConnectedDeviceThread extends Thread{
                 readLine = reader.readLine();
                 if(readLine != null)
                 {
+                    //Log.e(LOG_TAG, readLine);
                     messageHandler.sendReadLine(readLine);
                 }
             } catch (IOException e)
