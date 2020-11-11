@@ -57,6 +57,8 @@ public class PlaceViewModel  {
         // because we need to initialize it with context from a view
         this.manager = manager;
         Location currentLocation = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        setDistance(currentLocation);
+        if (currentLocation != null) {
+            setDistance(currentLocation);
+        }
     }
 }

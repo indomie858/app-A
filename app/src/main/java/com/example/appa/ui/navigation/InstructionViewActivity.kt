@@ -200,59 +200,43 @@ class InstructionViewActivity :
         //ToneGenerator class contains various system sounds...beeps boops and whatnot
         val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
 
-        when {
-            distance < 1.0 && beacon.id2 == majorIdentifier -> {   //stopping point for ranging. user has arrived at entrance
-                //beaconText.setText("You have arrived at the entrance. Beacon range detection will end now.\n" +
-                //        "\nDistance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
-                beaconText.text = "You have arrived at the entrance. Beacon range detection will end now."
-                try {
-                    beaconManager.stopRangingBeaconsInRegion(region)    //stops beacon detection in region
-                } catch (e: RemoteException) {
-                    Log.e(TAG, e.toString())
+
+        if (beacon.id2 == majorIdentifier) {
+            when {
+                distance < 1.0 -> {
+                    try {
+                        //stopping point for ranging. user has arrived at entrance
+                        beaconText.text = "You have arrived at the entrance. Beacon range detection will end now."
+                        beaconManager.stopRangingBeaconsInRegion(region)
+                    } catch (e: RemoteException) {
+                        Log.e(TAG, e.toString())
+                    }
                 }
-            }
-            distance < 2.0 && beacon.id2 == majorIdentifier -> {
-                //beaconText.setText("You are within 2 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
-                beaconText.text = "YOU ARE WITHIN 5 FEET OF THE ENTRANCE."
-                toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 270);
-                vibrate(2)
-            }
-            distance < 4.0 && beacon.id2 == majorIdentifier -> {
-                //beaconText.setText("You are moving closer to the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
-                beaconText.text = "YOU ARE WITHIN 15 FEET OF THE ENTRANCE."
-                toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 270);
-                vibrate(1)
-            }
-            distance < 8.0 && beacon.id2 == majorIdentifier -> {
-                //beaconText.setText("You are within 10 meters of the beacon. Distance is now " + firstBeacon.distance + "\nMajorID is: " + firstBeacon.id2 + "\nMinorID is: " + firstBeacon.id3)
-                beaconText.text = "ENTRANCE LOCATED. YOU ARE WITHIN 25 FEET OF THE ENTRANCE"
-                toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
-                vibrate(0)
-            }
-            distance > 8.0 -> {
-                //do nothing until user is within certain distance
+                distance < 2.0 -> {
+                    beaconText.text = "YOU ARE WITHIN 5 FEET OF THE ENTRANCE."
+                    toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
+                    vibrate(1000, 255)
+                }
+                distance < 3 -> {
+                    beaconText.text = "YOU ARE WITHIN 10 FEET OF THE ENTRANCE."
+                    toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 500);
+                    vibrate(500, 127)
+                }
+                distance < 8 -> {
+                    beaconText.text = "ENTRANCE LOCATED. YOU ARE WITHIN 25 FEET OF THE ENTRANCE"
+                    toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 250);
+                    vibrate(250, 63)
+                }
             }
         }
     }
     /////////////////////////////////////end beacon functions//////////////////////////////////////////////////////////////
-
-    //we can create custom vibration patterns with this function
-    private fun vibrate(vibrateMode: Int) {
-
-        var vibratePattern = longArrayOf(0, 400, 100, 400)  //default pattern: delay 0ms, vibrate 400ms, pause 100ms, vibrate 400ms
-
-        //0 is for largest distance, 2 is for shortest distance from beacons
-        when (vibrateMode) {
-            0 -> vibratePattern = longArrayOf(0, 200, 400, 200)   //sequence: delay 0ms, vibrate 200ms, pause 400ms, vibrate 200ms
-            1 -> vibratePattern = longArrayOf(0, 100, 100, 100, 100, 100, 100, 100)     //sequence: delay 0ms, vibrate 100ms, pause 100ms, vibrate 100ms, pause 100ms, vibrate 100ms, pause 100ms vibrate 100ms
-            2 -> vibratePattern = longArrayOf(0, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50)    //sequence: delay 0ms, vibrate 50ms, pause 50ms...
-        }
-
+    private fun vibrate(vibeLength: Long, vibeAmplitude: Int) {
         val vibrator: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createWaveform(vibratePattern, -1)) //createWaveform can take a third argument array containing amplitude values
+            vibrator.vibrate(VibrationEffect.createOneShot(vibeLength, vibeAmplitude) )
         } else {
-            vibrator.vibrate(vibratePattern, -1)    //depricated function. uses this only if build api is less than 26
+            vibrator.vibrate(longArrayOf(0, 50), -1)    // deprecated function. uses this only if build api is less than 26
         }
     }
 
