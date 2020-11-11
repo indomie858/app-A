@@ -1,13 +1,16 @@
 package com.example.appa.viewmodel;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
 
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import com.example.appa.db.PlaceEntity;
 
@@ -16,14 +19,13 @@ import static android.location.Location.distanceBetween;
 // Viewmodel for individual locations
 public class PlaceViewModel  {
     private float distance = 0.0f;
+    private LiveData<Float> liveDistance;
     private PlaceEntity placeEntity;
-
-
     public PlaceViewModel(PlaceEntity placeEntity) {
         this.placeEntity = placeEntity;
     }
 
-    private LocationManager manager;
+    public LocationManager manager;
 
     public int getId() {
         return placeEntity.getId();
@@ -31,6 +33,10 @@ public class PlaceViewModel  {
 
     public float getDistance() {
         return distance;
+    }
+
+    public LiveData<Float> getLiveDistance() {
+        return liveDistance;
     }
 
     public String getDistanceString() {
@@ -51,14 +57,13 @@ public class PlaceViewModel  {
         this.distance = results[0];
     }
 
+    @SuppressLint("MissingPermission")
     public void setLocationAndDistance(LocationManager manager) {
         // Set a location manager and initial distance.
         // We need to receive an instance of a locationmanager,
         // because we need to initialize it with context from a view
         this.manager = manager;
         Location currentLocation = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        if (currentLocation != null) {
-            setDistance(currentLocation);
-        }
+        setDistance(currentLocation);
     }
 }

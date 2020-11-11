@@ -1,5 +1,6 @@
 package com.example.appa.ui.navigationlist;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -9,9 +10,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
@@ -72,14 +75,14 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
 
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
         // This method is called any time
         // an item is added to the list.
         PlaceViewModel currentPlaceViewModel = mPlaceViewModels.get(position);
-
+        currentPlaceViewModel.setLocationAndDistance(holder.manager);
         holder.binding.setPlace(currentPlaceViewModel);
-
         // Attach this listener to every button,
         // which will set the view model for the direction activity
         // then launch that activity.
