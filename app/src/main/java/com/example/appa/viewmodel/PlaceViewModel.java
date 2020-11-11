@@ -19,7 +19,6 @@ import static android.location.Location.distanceBetween;
 // Viewmodel for individual locations
 public class PlaceViewModel  {
     private float distance = 0.0f;
-    private LiveData<Float> liveDistance;
     private PlaceEntity placeEntity;
     public PlaceViewModel(PlaceEntity placeEntity) {
         this.placeEntity = placeEntity;
@@ -35,12 +34,9 @@ public class PlaceViewModel  {
         return distance;
     }
 
-    public LiveData<Float> getLiveDistance() {
-        return liveDistance;
-    }
-
     public String getDistanceString() {
-        return Float.valueOf(distance).toString();
+        int distanceToFeet = (int) Math.round(distance * 3.28084);
+        return Integer.valueOf(distanceToFeet).toString() + " feet";
     }
 
     public String getName() {

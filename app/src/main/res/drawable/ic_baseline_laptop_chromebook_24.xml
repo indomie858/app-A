@@ -3,8 +3,8 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24"
-    >
+    android:tint="@color/button_text_color">
   <path
-      android:fillColor="@color/button_text_color"
-      android:pathData="M20,11H7.83l5.59,-5.59L12,4l-8,8 8,8 1.41,-1.41L7.83,13H20v-2z"/>
+      android:fillColor="@color/text_color"
+      android:pathData="M22,18L22,3L2,3v15L0,18v2h24v-2h-2zM14,18h-4v-1h4v1zM20,15L4,15L4,5h16v10z"/>
 </vector>
