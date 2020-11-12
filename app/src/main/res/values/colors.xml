@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#D22030</color>
+    <color name="colorPrimaryDark">#D22030</color>
     <color name="colorAccent">#D81B60</color>
     <color name="ic_launcher_background">#2D4E73</color>
     <color name="red">#FF0000</color>
@@ -13,7 +13,7 @@
     <color name="mapboxPink">#ee4e8b</color>
     <color name="mapboxYellow">#d9d838</color>
     <color name="mapboxRed">#b43b71</color>
-
+    <color name="card_background_color">#EEEEEE</color>
     <color name="ic_settings_color">#FFFFFF</color>
     <color name="ic_attachment_color">#FFFFFFFF</color>
     <color name="background_color">#FFFFFFFF</color>

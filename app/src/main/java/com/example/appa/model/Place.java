@@ -8,4 +8,6 @@ public interface Place {
     public Float getLatitude();
     public Float getLongitude() ;
     public String getCategories();
+    public Integer getMajor_id();
+    public Integer getMinor_id();
 }
