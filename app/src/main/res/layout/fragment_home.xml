@@ -17,6 +17,7 @@
       android:layout_marginRight="10dp"
       android:layout_marginBottom="10dp"
       android:layout_weight=".05"
+      android:gravity="center_vertical"
       android:text="Welcome to CSUN! Choose a category to list nearby locations."
       android:textAlignment="center"
       android:textColor="@color/text_color"
