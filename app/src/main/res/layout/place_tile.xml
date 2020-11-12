@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/cardview_margin_vertical"
         android:layout_marginBottom="@dimen/cardview_margin_vertical"
-        android:contentDescription="Location Card. Tap to start navigation"
         app:cardBackgroundColor="#FFFFFF"
         app:contentPadding="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,9 +69,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="0.5"
-                        android:text="Tap To Start Navigation"
+                        android:text="Select to Start Navigation"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -92,7 +91,7 @@
                         android:layout_marginBottom="8dp"
                         android:backgroundTint="#FFFFFF"
                         android:clickable="true"
-                        android:contentDescription="Tap For More Information"
+                        android:contentDescription="@{place.callString}"
                         android:drawableRight="@drawable/ic_baseline_local_phone_24"
                         android:src="@drawable/ic_baseline_info_24"
                         android:text="Call"
