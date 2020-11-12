@@ -39,6 +39,7 @@ public class PlaceViewModel  {
         return Integer.valueOf(distanceToFeet).toString() + " feet";
     }
 
+    public String getCallString() { return "Call "+ placeEntity.getName(); }
     public String getName() {
         return placeEntity.getName();
     }
