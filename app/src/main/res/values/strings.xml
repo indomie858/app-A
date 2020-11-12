@@ -54,7 +54,7 @@
     <string name="resource_links">Resource Links</string>
 
     <!-- Category Names For Search Queries-->
-    <string name="all">All</string>
+    <string name="all"></string>
     <string name="restaurants">Restaurants</string>
     <string name="study">Study</string>
     <string name="classrooms">Classrooms</string>

@@ -81,7 +81,6 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         // This method is called any time
         // an item is added to the list.
         PlaceViewModel currentPlaceViewModel = mPlaceViewModels.get(position);
-        currentPlaceViewModel.setLocationAndDistance(holder.manager);
         holder.binding.setPlace(currentPlaceViewModel);
         // Attach this listener to every button,
         // which will set the view model for the direction activity
