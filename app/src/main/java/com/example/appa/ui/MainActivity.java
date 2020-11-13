@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
         bindService();
+
+
 
         //fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "4").hide(tutorialFragment).commit();
         //fm.beginTransaction().replace(R.id.main_container, settingsFragment, "2").commit();
