@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
@@ -148,7 +149,7 @@ public class BluetoothDialog extends DialogFragment {
 
 
 
-        readLineView = (TextView) dContext.findViewById(R.id.incoming_bt_message);
+        readLineView = (TextView) view.findViewById(R.id.incoming_bt_message);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -161,8 +162,8 @@ public class BluetoothDialog extends DialogFragment {
 
         while (status == 2); // loop until user returns from request
 
-        dContext.setContentView(R.layout.bluetooth_connect_dialog);
-        readLineView = (TextView) dContext.findViewById(R.id.incoming_bt_message);
+        //dContext.setContentView(R.layout.bluetooth_connect_dialog);
+        readLineView = (TextView) view.findViewById(R.id.incoming_bt_message);
 
         //btArrayAdapter = new ArrayAdapter<BluetoothDevice>(this, android.R.layout.simple_list_item_1);
         //for(BluetoothDevice btDevice : btHandler.getDevices())
@@ -177,7 +178,7 @@ public class BluetoothDialog extends DialogFragment {
         }
         btArrayAdapter = new BluetoothDisplayAdapter(dContext, deviceStuff);
         //randomAddress = deviceStuff.get(0).getAddress();
-        ListView listOfDevices = (ListView)dContext.findViewById(R.id.BTListOfDevices);
+        ListView listOfDevices = (ListView)view.findViewById(R.id.BTListOfDevices);
         listOfDevices.setAdapter(btArrayAdapter);
 
         listOfDevices.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -189,7 +190,7 @@ public class BluetoothDialog extends DialogFragment {
             }
         });
 
-        bt_led = (Button) dContext.findViewById(R.id.bt_light_button);
+        bt_led = (Button) view.findViewById(R.id.bt_light_button);
         bt_led.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 byte[] messageToDevice = {'1'};
@@ -198,17 +199,23 @@ public class BluetoothDialog extends DialogFragment {
             }
         });
 
-        bt_sound = (Button) dContext.findViewById(R.id.bt_sound_button);
+        /*bt_sound = (Button) view.findViewById(R.id.bt_sound_button);
         bt_sound.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 byte[] messageToDevice = {'2'};
                 btServiceHandler.writeToDevice(messageToDevice);
             }
-        });
+        });*/
         builder.setView(view);
+        builder.setPositiveButton(R.string.bluetooth_dialog_confirm, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
         Dialog dialog = builder.create();
 
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
 
         return dialog;
     }
