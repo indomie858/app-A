@@ -12,10 +12,10 @@
         android:icon="@drawable/ic_settings_24px"
         android:title="@string/settings_nav"/>
     <item
-        android:id="@+id/assistant_button"
+        android:id="@+id/hardware_connection_button"
         android:enabled="true"
-        android:icon="@drawable/ic_keyboard_voice_24px"
-        android:title="@string/assistant_nav"/>
+        android:icon="@drawable/ic_action_bluetooth_on"
+        android:title="@string/hardware_connection_nav"/>
     <item
         android:id="@+id/tutorial_button"
         android:enabled="true"

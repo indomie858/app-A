@@ -20,7 +20,7 @@ Anne Xaymountry, Gaven Grantz, Frank Joseph Serdenia, Daniel Palencia, Allan Hui
 ```
 ## Tools
 ```
-Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane | Mapbox
+Android Studio | Bluetooth Beacons | Arduino | Ultrasonic sensors | Cane | Mapbox | Altbeacon Android Beacon Library 
 ```
 ## Languages
 ```
@@ -36,5 +36,6 @@ Java | C | Kotlin
 5.	Create pull request to merge changes from feature branches into dev branch.
 6.	At the end of the day (working session), make sure you commit or stash your changes.
 > Never push directly to “master” branch. This branch will be solely for releases.
+
 
 

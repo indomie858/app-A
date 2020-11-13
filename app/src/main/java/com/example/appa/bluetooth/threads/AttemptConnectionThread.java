@@ -9,9 +9,7 @@ import com.example.appa.bluetooth.BluetoothHandler;
 import com.example.appa.bluetooth.message.MessageHandler;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class AttemptConnectionThread extends Thread{
 
