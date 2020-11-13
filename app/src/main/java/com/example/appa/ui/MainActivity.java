@@ -3,13 +3,19 @@ package com.example.appa.ui;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -20,6 +26,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.appa.R;
+import com.example.appa.bluetooth.BluetoothServiceHandler;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
@@ -30,13 +37,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class MainActivity extends AppCompatActivity implements BluetoothDialog.BluetoothDialogListener {
-
+public class MainActivity extends AppCompatActivity {
+    public final static String LOG_TAG = MainActivity.class.getName();
     private boolean backButtonFlag = false;
     final Fragment tutorialFragment = new TutorialFragment();
     final Fragment settingsFragment = new SettingsFragment();
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
+    BluetoothDialog btDialog = new BluetoothDialog();
 
     Fragment active = homeFragment;
     private int counter = 0;
@@ -48,8 +56,11 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startService(new Intent(MainActivity.this, BluetoothServiceHandler.class));
+
         setContentView(R.layout.activity_main);
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
+        bindService();
 
 
 
@@ -85,12 +96,12 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
                     counter = 0;
                     break;
                 case R.id.hardware_connection_button:
+                    showDialog();
                     backButtonFlag = true;
                     counter = 0;
             }
             return false;
         });
-
         checkLocationPermissions();
     }
 
@@ -120,15 +131,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
         }
     }
 
-    @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
-
-    }
-
-    @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-
-    }
 
     public void onClickCardView(View view) {
         Context context = view.getContext();
@@ -244,5 +246,38 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
             }
         }
     }
+
+    public void showDialog() {
+        BluetoothDialog bluetoothDialog = (BluetoothDialog)BluetoothDialog.newInstance(R.string.bluetooth_title);
+        btDialog = bluetoothDialog;
+        btDialog.setBluetoothService(btServiceHandler);
+
+        btDialog.show(getSupportFragmentManager(), "BTDialog");
+    }
+
+    BluetoothServiceHandler btServiceHandler;
+    boolean bound;
+
+    public void bindService()
+    {
+        Intent intent = new Intent(this, BluetoothServiceHandler.class);
+        getApplicationContext().bindService(intent, bluetoothServiceConnection, Context.BIND_AUTO_CREATE);
+        Log.d(LOG_TAG, "Dialog bound to service");
+    }
+
+    private ServiceConnection bluetoothServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            BluetoothServiceHandler.LocalBinder binder = (BluetoothServiceHandler.LocalBinder) iBinder;
+            btServiceHandler = binder.getService();
+            Log.e(LOG_TAG, "Successfully binded");
+            bound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            bound = false;
+        }
+    };
 
 }
