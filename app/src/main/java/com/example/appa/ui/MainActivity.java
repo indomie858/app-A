@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,7 +36,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class MainActivity extends AppCompatActivity implements BluetoothDialog.BluetoothDialogListener {
+public class MainActivity extends AppCompatActivity {
     public final static String LOG_TAG = MainActivity.class.getName();
     private boolean backButtonFlag = false;
     final Fragment tutorialFragment = new TutorialFragment();
@@ -127,15 +128,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
         }
     }
 
-    @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
-
-    }
-
-    @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-
-    }
 
     public void onClickCardView(View view) {
         Context context = view.getContext();
@@ -256,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothDialog.B
         BluetoothDialog bluetoothDialog = (BluetoothDialog)BluetoothDialog.newInstance(R.string.bluetooth_title);
         btDialog = bluetoothDialog;
         btDialog.setBluetoothService(btServiceHandler);
+
         btDialog.show(getSupportFragmentManager(), "BTDialog");
     }
 

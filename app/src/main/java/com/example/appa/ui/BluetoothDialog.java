@@ -56,7 +56,6 @@ public class BluetoothDialog extends DialogFragment {
 
     FragmentActivity dContext;
 
-    BluetoothDialogListener listener;
     //<BluetoothDevice> btArrayAdapter;
     BluetoothDisplayAdapter btArrayAdapter;
     ArrayList<BluetoothDevice> deviceStuff = new ArrayList<BluetoothDevice>();
@@ -125,10 +124,6 @@ public class BluetoothDialog extends DialogFragment {
         return frag;
     }
 
-    public interface BluetoothDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog);
-        public void onDialogNegativeClick(DialogFragment dialog);
-    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -138,7 +133,7 @@ public class BluetoothDialog extends DialogFragment {
 
         int arguments = getArguments().getInt("title");
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(dContext);
+        AlertDialog.Builder builder = new AlertDialog.Builder(dContext, R.style.MyDialogTheme);
         LayoutInflater inflater = dContext.getLayoutInflater();
         View view = inflater.inflate(R.layout.bluetooth_connect_dialog, null);
 
@@ -215,8 +210,8 @@ public class BluetoothDialog extends DialogFragment {
         });
         Dialog dialog = builder.create();
 
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
-
+        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        //dialog.getActionBar().setBackgroundDrawable(new ColorDrawable(Color.BLUE));
         return dialog;
     }
 

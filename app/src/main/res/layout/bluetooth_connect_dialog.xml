@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:theme="@style/Theme.AppCompat.Dialog"
+    android:theme="@style/MyDialogTheme"
     android:id="@+id/bt_connect_dialog"
     android:orientation="vertical"
     android:layout_width="wrap_content"
@@ -25,9 +25,7 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:padding="100dp"
-        android:background="@color/white"
+        android:background="@color/background_color"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/black"
-        android:text="Light"
         />
 </LinearLayout>
