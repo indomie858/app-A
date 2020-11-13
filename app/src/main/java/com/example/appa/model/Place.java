@@ -10,4 +10,5 @@ public interface Place {
     public String getCategories();
     public Integer getMajor_id();
     public Integer getMinor_id();
+    public String getPhone_number();
 }
