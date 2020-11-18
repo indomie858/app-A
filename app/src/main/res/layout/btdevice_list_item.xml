@@ -17,5 +17,6 @@
     <ImageView
         android:id="@+id/btdevice_list_item_icon"
         android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        android:contentDescription="Bluetooth icon" />
 </LinearLayout>
