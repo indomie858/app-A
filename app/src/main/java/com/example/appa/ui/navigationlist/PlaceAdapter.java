@@ -163,7 +163,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
                 @Override
                 public void onClick(View v) {
                     String formattedNumber = PhoneNumberUtils.formatNumber(placePhoneNumber);
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
                     callIntent.setData(Uri.parse("tel:" + formattedNumber));
                     Context context = phoneBtn.getContext();
                     context.startActivity(callIntent);
