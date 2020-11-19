@@ -96,6 +96,8 @@
                         android:drawableRight="@drawable/ic_baseline_local_phone_24"
                         android:src="@drawable/ic_baseline_info_24"
                         android:text="Call"
+                        android:focusable="true" />
+                        android:textSize="12sp"
                         android:textSize="12sp" />
 
                     <Button
