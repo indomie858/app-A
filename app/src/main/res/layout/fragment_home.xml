@@ -22,7 +22,8 @@
       android:textAlignment="center"
       android:textColor="@color/text_color"
       android:textSize="24sp"
-      android:textStyle="bold" />
+      android:textStyle="bold"
+      tools:ignore="RtlCompat" />
 
   <!--<RelativeLayout
         android:layout_width="match_parent"
