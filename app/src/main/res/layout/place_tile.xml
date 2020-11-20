@@ -113,7 +113,8 @@
                         android:drawableRight="@drawable/ic_baseline_info_24"
                         android:src="@drawable/ic_baseline_info_24"
                         android:text="About"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:focusable="true" />
                 </LinearLayout>
 
             </LinearLayout>
