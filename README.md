@@ -35,7 +35,7 @@ Java | C | Kotlin
 4.	Push only to the feature branches, not directly to dev branch
 5.	Create pull request to merge changes from feature branches into dev branch.
 6.	At the end of the day (working session), make sure you commit or stash your changes.
-> Never push directly to “master” branch. This branch will be solely for releases.
+7.  Never push directly to “master” branch. This branch will be solely for releases.
 
 
 

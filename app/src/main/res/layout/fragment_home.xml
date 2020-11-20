@@ -22,7 +22,8 @@
       android:textAlignment="center"
       android:textColor="@color/text_color"
       android:textSize="24sp"
-      android:textStyle="bold" />
+      android:textStyle="bold"
+      tools:ignore="RtlCompat" />
 
   <!--<RelativeLayout
         android:layout_width="match_parent"
@@ -73,7 +74,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:contentDescription="@string/all" />
 
       </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -114,7 +116,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_school_24" />
+            android:src="@drawable/ic_baseline_school_24"
+            android:contentDescription="@string/classrooms" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -149,7 +152,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_laptop_chromebook_24" />
+            android:src="@drawable/ic_baseline_laptop_chromebook_24"
+            android:contentDescription="@string/study" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -196,7 +200,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_restaurant_menu_24" />
+            android:src="@drawable/ic_baseline_restaurant_menu_24"
+            android:contentDescription="@string/restaurants" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -232,7 +237,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_info_24" />
+            android:src="@drawable/ic_baseline_info_24"
+            android:contentDescription="@string/Services" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -277,7 +283,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_store_24" />
+            android:src="@drawable/ic_baseline_store_24"
+            android:contentDescription="@string/student_stores" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -315,7 +322,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_baseline_fitness_center_24"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:contentDescription="@string/Fitness" />
 
         <TextView
             android:layout_width="wrap_content"

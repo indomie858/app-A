@@ -26,6 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <TextView
@@ -59,7 +60,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="0.5"
-                        android:text="@{place.distanceString}"
+                        android:gravity="left|center_vertical"
+                        android:text=""
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -69,7 +71,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="0.5"
-                        android:text="Select to Start Navigation"
+                        android:gravity="left|center_vertical"
+                        android:text="Activate to Start Navigation"
                         android:textColor="#000000"
                         android:textSize="14sp" />
 
@@ -80,25 +83,52 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:gravity="right|center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <Button
                         android:id="@+id/phone_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_marginRight="4dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="4dp"
                         android:backgroundTint="#FFFFFF"
                         android:clickable="true"
-                        android:contentDescription="@{place.callString}"
+                        android:contentDescription=""
                         android:drawableRight="@drawable/ic_baseline_local_phone_24"
+                        android:focusable="true"
                         android:src="@drawable/ic_baseline_info_24"
-                        android:text="Call"
+                        android:text="Call" />
+                        android:textSize="12sp"
                         android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/about_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FFFFFF"
+                        android:clickable="true"
+                        android:contentDescription=""
+                        android:drawableRight="@drawable/ic_baseline_info_24"
+                        android:src="@drawable/ic_baseline_info_24"
+                        android:text="About"
+                        android:textSize="12sp"
+                        android:focusable="true" />
                 </LinearLayout>
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="0.5"
+                android:text="@{place.description}"
+                android:textColor="@color/card_text_color" />
 
         </LinearLayout>
 
