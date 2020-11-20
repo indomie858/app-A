@@ -34,12 +34,13 @@ public class PlaceViewModel  {
         return distance;
     }
 
-    public String getDistanceString() {
+    public String getDistanceFeet() {
         int distanceToFeet = (int) Math.round(distance * 3.28084);
-        return Integer.valueOf(distanceToFeet).toString() + " feet";
+        return Integer.valueOf(distanceToFeet).toString();
     }
 
-    public String getCallString() { return "Call "+ placeEntity.getName(); }
+    public String getPhoneNumber() { return placeEntity.getPhone_number(); }
+
     public String getName() {
         return placeEntity.getName();
     }
