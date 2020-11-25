@@ -71,12 +71,12 @@ import java.util.*
  * This activity combines a Mapbox navigation implementation with beacon ranging detection.
  * Main libraries used: Mapbox's Maps SDK and Navigation SDK; Android Beacon Library (Radius Networks)
  */
-class InstructionViewActivity :
+class DirectionsActivity :
         AppCompatActivity(),
         OnMapReadyCallback,
         BeaconConsumer {
     // SO MANY MEMBERS
-    private val TAG = "InstructionViewActivity"
+    private val TAG = "DirectionsActivity"
 
     //members for database access
     private lateinit var viewModel: MapWithNavViewModel
@@ -367,7 +367,7 @@ class InstructionViewActivity :
             locationComponent = mapboxMap.locationComponent.apply {
                 activateLocationComponent(
                         LocationComponentActivationOptions.builder(
-                                this@InstructionViewActivity,
+                                this@DirectionsActivity,
                                 style
                         ).build()
                 )
@@ -662,12 +662,12 @@ class InstructionViewActivity :
                     instructionView.visibility = GONE
                     summaryBottomSheet.visibility = GONE
                     beaconTextContainer.visibility = VISIBLE
-                    val anim: Animation = AnimationUtils.loadAnimation(this@InstructionViewActivity, R.anim.slide_in_top)
+                    val anim: Animation = AnimationUtils.loadAnimation(this@DirectionsActivity, R.anim.slide_in_top)
                     beaconTextContainer.startAnimation(anim)
                     beaconText.text = "YOU HAVE ARRIVED\n\nLOCATING ENTRANCE..."
 
                     val task = Runnable {
-                        beaconManager.bind(this@InstructionViewActivity)    //binds to BeaconService and starts beacon ranging
+                        beaconManager.bind(this@DirectionsActivity)    //binds to BeaconService and starts beacon ranging
                     }
                     val handler = Handler()
                     handler.postDelayed(task, 1000) //set task delay to reduce overlap between mapbox and beacons voice
@@ -706,7 +706,7 @@ class InstructionViewActivity :
         }
     }
 
-    private class MyLocationEngineCallback(activity: InstructionViewActivity) :
+    private class MyLocationEngineCallback(activity: DirectionsActivity) :
             LocationEngineCallback<LocationEngineResult> {
 
         private val activityRef = WeakReference(activity)

@@ -1,14 +1,10 @@
 package com.example.appa.ui.navigationlist;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.telephony.PhoneNumberUtils;
 import android.view.LayoutInflater;
@@ -20,17 +16,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
-import com.example.appa.db.PlaceEntity;
-import com.example.appa.model.Place;
-import com.example.appa.ui.navigation.InstructionViewActivity;
+import com.example.appa.ui.navigation.DirectionsActivity;
 import com.example.appa.viewmodel.PlaceViewModel;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +29,6 @@ import java.util.Locale;
 
 import static android.content.Context.ACCESSIBILITY_SERVICE;
 import static android.content.Context.LOCATION_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>  {
     // For debugging
@@ -112,7 +102,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             @Override
             public void onClick(View v) {
                 Context viewContext = v.getContext();
-                Intent intent = new Intent(viewContext, InstructionViewActivity.class);
+                Intent intent = new Intent(viewContext, DirectionsActivity.class);
                 intent.putExtra("NewPlace", currentPlaceViewModel.getId());
                 viewContext.startActivity(intent);
             }

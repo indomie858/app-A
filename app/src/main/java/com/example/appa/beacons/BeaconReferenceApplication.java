@@ -1,18 +1,9 @@
 package com.example.appa.beacons;
 
 import android.app.Application;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.util.Log;
 
-import com.example.appa.R;
-import com.example.appa.ui.navigation.InstructionViewActivity;
+import com.example.appa.ui.navigation.DirectionsActivity;
 
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
@@ -29,7 +20,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
     private static final String TAG = "BeaconReferenceApp";
     private RegionBootstrap regionBootstrap;
     private BackgroundPowerSaver backgroundPowerSaver;
-    private InstructionViewActivity instructionViewActivity = null;
+    private DirectionsActivity directionsActivity = null;
 
     public void onCreate() {
         super.onCreate();
@@ -135,7 +126,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
 
     }
 
-    public void setMonitoringActivity(InstructionViewActivity activity) {
-        this.instructionViewActivity = activity;
+    public void setMonitoringActivity(DirectionsActivity activity) {
+        this.directionsActivity = activity;
     }
 }
