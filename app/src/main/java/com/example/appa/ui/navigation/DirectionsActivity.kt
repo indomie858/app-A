@@ -71,12 +71,12 @@ import java.util.*
  * This activity combines a Mapbox navigation implementation with beacon ranging detection.
  * Main libraries used: Mapbox's Maps SDK and Navigation SDK; Android Beacon Library (Radius Networks)
  */
-class InstructionViewActivity :
+class DirectionsActivity :
         AppCompatActivity(),
         OnMapReadyCallback,
         BeaconConsumer {
     // SO MANY MEMBERS
-    private val TAG = "InstructionViewActivity"
+    private val TAG = "DirectionsActivity"
 
     //members for database access
     private lateinit var viewModel: MapWithNavViewModel
@@ -206,7 +206,7 @@ class InstructionViewActivity :
                 distance < 1.0 -> {
                     try {
                         //stopping point for ranging. user has arrived at entrance
-                        beaconText.text = "You have arrived at the entrance. Beacon range detection will end now."
+                        beaconText.text = "YOU HAVE ARRIVED AT THE ENTRANCE. PRESS BACK BUTTON TO EXIT."
                         beaconManager.stopRangingBeaconsInRegion(region)
                     } catch (e: RemoteException) {
                         Log.e(TAG, e.toString())
@@ -217,12 +217,17 @@ class InstructionViewActivity :
                     toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
                     vibrate(1000, 255)
                 }
-                distance < 3 -> {
+                distance < 4.0 -> {
                     beaconText.text = "YOU ARE WITHIN 10 FEET OF THE ENTRANCE."
+                    toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
+                    vibrate(750, 190)
+                }
+                distance < 6 -> {
+                    beaconText.text = "YOU ARE WITHIN 15 FEET OF THE ENTRANCE."
                     toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 500);
                     vibrate(500, 127)
                 }
-                distance < 8 -> {
+                distance < 9 -> {
                     beaconText.text = "ENTRANCE LOCATED. YOU ARE WITHIN 25 FEET OF THE ENTRANCE"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 250);
                     vibrate(250, 63)
@@ -362,7 +367,7 @@ class InstructionViewActivity :
             locationComponent = mapboxMap.locationComponent.apply {
                 activateLocationComponent(
                         LocationComponentActivationOptions.builder(
-                                this@InstructionViewActivity,
+                                this@DirectionsActivity,
                                 style
                         ).build()
                 )
@@ -657,15 +662,15 @@ class InstructionViewActivity :
                     instructionView.visibility = GONE
                     summaryBottomSheet.visibility = GONE
                     beaconTextContainer.visibility = VISIBLE
-                    val anim: Animation = AnimationUtils.loadAnimation(this@InstructionViewActivity, R.anim.slide_in_top)
+                    val anim: Animation = AnimationUtils.loadAnimation(this@DirectionsActivity, R.anim.slide_in_top)
                     beaconTextContainer.startAnimation(anim)
                     beaconText.text = "YOU HAVE ARRIVED\n\nLOCATING ENTRANCE..."
 
                     val task = Runnable {
-                        beaconManager.bind(this@InstructionViewActivity)    //binds to BeaconService and starts beacon ranging
+                        beaconManager.bind(this@DirectionsActivity)    //binds to BeaconService and starts beacon ranging
                     }
                     val handler = Handler()
-                    handler.postDelayed(task, 2000) //set task delay to reduce overlap between mapbox and beacons voice
+                    handler.postDelayed(task, 1000) //set task delay to reduce overlap between mapbox and beacons voice
                 }
             }
         }
@@ -701,7 +706,7 @@ class InstructionViewActivity :
         }
     }
 
-    private class MyLocationEngineCallback(activity: InstructionViewActivity) :
+    private class MyLocationEngineCallback(activity: DirectionsActivity) :
             LocationEngineCallback<LocationEngineResult> {
 
         private val activityRef = WeakReference(activity)

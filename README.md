@@ -1,5 +1,4 @@
 # Appa
-[![Build Status](https://travis-ci.com/frankmaayn/app-A.svg?token=qBpYUby2oz9ijsiSQp7o&branch=dev)](https://travis-ci.com/frankmaayn/app-A)
 
 Appa is user-friendly application that will be used to help visually impaired students or individuals at California State University, Northridge. <br />
 The idea was brought up when we realized that the university does not provide a wide variety of options for those who are visually impaired. <br />
@@ -35,7 +34,7 @@ Java | C | Kotlin
 4.	Push only to the feature branches, not directly to dev branch
 5.	Create pull request to merge changes from feature branches into dev branch.
 6.	At the end of the day (working session), make sure you commit or stash your changes.
-7.  Never push directly to “master” branch. This branch will be solely for releases.
+7.  Never push directly to “release” branch. This branch will be solely for releases.
 
 
 
