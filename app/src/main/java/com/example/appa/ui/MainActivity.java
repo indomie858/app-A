@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -132,11 +133,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void onClickCardView(View view) {
-        Context context = view.getContext();
-        Intent intent = new Intent(context, NavigationListActivity.class);
-        intent.putExtra("QueryCategory", view.getContentDescription());
-        context.startActivity(intent);
+        if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)  //this checks if location permissions are granted
+                == PackageManager.PERMISSION_GRANTED) {
+            Context context = view.getContext();
+            Intent intent = new Intent(context, NavigationListActivity.class);
+            intent.putExtra("QueryCategory", view.getContentDescription());
+            context.startActivity(intent);
+        } else {    //reaches this else when location permissions are denied.
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Functionality limited");
+            builder.setMessage("Since location access has not been granted, navigation services are disabled. Please go to Settings -> Applications -> Permissions and grant background location access to this app.");
+            builder.setPositiveButton(android.R.string.ok, null);
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                }
+
+            });
+            builder.show();
+        }
     }
 
     public void checkLocationPermissions() {
@@ -149,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                         if (!this.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             builder.setTitle("This app needs background location access");
-                            builder.setMessage("Please grant location access so this app can detect beacons in the background.");
+                            builder.setMessage("Please grant location access so this navigation app can function.");
                             builder.setPositiveButton(android.R.string.ok, null);
                             builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
@@ -165,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             builder.setTitle("Functionality limited");
-                            builder.setMessage("Since background location access has not been granted, this app will not be able to discover beacons in the background.  Please go to Settings -> Applications -> Permissions and grant background location access to this app.");
+                            builder.setMessage("Since background location access has not been granted, navigation services are disabled.  Please go to Settings -> Applications -> Permissions and grant background location access to this app.");
                             builder.setPositiveButton(android.R.string.ok, null);
                             builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
@@ -186,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setTitle("Functionality limited");
-                    builder.setMessage("Since location access has not been granted, this app will not be able to discover beacons.  Please go to Settings -> Applications -> Permissions and grant location access to this app.");
+                    builder.setMessage("Since location access has not been granted, navigation services are disabled.  Please go to Settings -> Applications -> Permissions and grant location access to this app.");
                     builder.setPositiveButton(android.R.string.ok, null);
                     builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
