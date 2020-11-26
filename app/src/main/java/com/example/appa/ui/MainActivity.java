@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
         bindService();
-
 
 
         //fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "4").hide(tutorialFragment).commit();
@@ -132,11 +132,79 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void onClickCardView(View view) {
-        Context context = view.getContext();
-        Intent intent = new Intent(context, NavigationListActivity.class);
-        intent.putExtra("QueryCategory", view.getContentDescription());
-        context.startActivity(intent);
+        if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)  //this checks if location permissions are granted
+                == PackageManager.PERMISSION_GRANTED) {
+
+            if (isGPSEnabled(this)) {   //checks if device GPS is turned on
+                Context context = view.getContext();
+                Intent intent = new Intent(context, NavigationListActivity.class);
+                intent.putExtra("QueryCategory", view.getContentDescription());
+                context.startActivity(intent);
+            } else {    //outputs dialog when GPS is off
+                GPSIsOffDialog();
+            }
+
+        } else {    //reaches this else when location permissions are denied.
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Functionality limited");
+            builder.setMessage("Since location access has not been granted, navigation services are disabled. Please go to Settings -> Applications -> Permissions and grant background location access to this app.");
+            builder.setPositiveButton(android.R.string.ok, null);
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                }
+            });
+            builder.show();
+        }
+    }
+
+    //returns true if device's GPS is turned on
+    public boolean isGPSEnabled(Context mContext) {
+        LocationManager locationManager = (LocationManager)
+                mContext.getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    }
+
+    private void GPSIsOffDialog() {  //dialog outputs message when gps is turned off
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Functionality limited");
+        builder.setMessage("Your device's GPS is currently turned off. Please turn GPS on to use navigation service");
+        builder.setPositiveButton(android.R.string.ok, null);
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+            }
+        });
+        builder.show();
+    }
+
+    ///////////////////////////////location permission stuff begin//////////////////////////////////
+    private void locationPermissionNotGrantedDialog() {      //output dialog when location permissions are denied
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Functionality limited");
+        builder.setMessage("Since location access has not been granted, navigation services are disabled.  Please go to Settings -> Applications -> Permissions and grant location access to this app.");
+        builder.setPositiveButton(android.R.string.ok, null);
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+            }
+        });
+        builder.show();
+    }
+
+    private void backgroundPermissionNotGrantedDialog() {       //output dialog when background location permissions are denied.
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Functionality limited");
+        builder.setMessage("Since background location access has not been granted, navigation services are disabled.  Please go to Settings -> Applications -> Permissions and grant background location access to this app.");
+        builder.setPositiveButton(android.R.string.ok, null);
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+            }
+        });
+        builder.show();
     }
 
     public void checkLocationPermissions() {
@@ -149,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                         if (!this.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             builder.setTitle("This app needs background location access");
-                            builder.setMessage("Please grant location access so this app can detect beacons in the background.");
+                            builder.setMessage("Please grant location access so this navigation app can function.");
                             builder.setPositiveButton(android.R.string.ok, null);
                             builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
@@ -159,22 +227,10 @@ public class MainActivity extends AppCompatActivity {
                                     requestPermissions(new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION},
                                             PERMISSION_REQUEST_BACKGROUND_LOCATION);
                                 }
-
                             });
                             builder.show();
                         } else {
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                            builder.setTitle("Functionality limited");
-                            builder.setMessage("Since background location access has not been granted, this app will not be able to discover beacons in the background.  Please go to Settings -> Applications -> Permissions and grant background location access to this app.");
-                            builder.setPositiveButton(android.R.string.ok, null);
-                            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                                @Override
-                                public void onDismiss(DialogInterface dialog) {
-                                }
-
-                            });
-                            builder.show();
+                            backgroundPermissionNotGrantedDialog();
                         }
                     }
                 }
@@ -184,20 +240,8 @@ public class MainActivity extends AppCompatActivity {
                                     Manifest.permission.ACCESS_BACKGROUND_LOCATION},
                             PERMISSION_REQUEST_FINE_LOCATION);
                 } else {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Functionality limited");
-                    builder.setMessage("Since location access has not been granted, this app will not be able to discover beacons.  Please go to Settings -> Applications -> Permissions and grant location access to this app.");
-                    builder.setPositiveButton(android.R.string.ok, null);
-                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                        }
-
-                    });
-                    builder.show();
+                    locationPermissionNotGrantedDialog();
                 }
-
             }
         }
     }
@@ -210,18 +254,7 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.d(TAG, "fine location permission granted");
                 } else {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Functionality limited");
-                    builder.setMessage("Since location access has not been granted, this app will not be able to discover beacons.");
-                    builder.setPositiveButton(android.R.string.ok, null);
-                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                        }
-
-                    });
-                    builder.show();
+                    locationPermissionNotGrantedDialog();
                 }
                 return;
             }
@@ -229,26 +262,16 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.d(TAG, "background location permission granted");
                 } else {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Functionality limited");
-                    builder.setMessage("Since background location access has not been granted, this app will not be able to discover beacons when in the background.");
-                    builder.setPositiveButton(android.R.string.ok, null);
-                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                        }
-
-                    });
-                    builder.show();
+                    backgroundPermissionNotGrantedDialog();
                 }
                 return;
             }
         }
     }
+    ///////////////////////////////location permission stuff end//////////////////////////////////
 
     public void showDialog() {
-        BluetoothDialog bluetoothDialog = (BluetoothDialog)BluetoothDialog.newInstance(R.string.bluetooth_title);
+        BluetoothDialog bluetoothDialog = (BluetoothDialog) BluetoothDialog.newInstance(R.string.bluetooth_title);
         btDialog = bluetoothDialog;
         btDialog.setBluetoothService(btServiceHandler);
 
@@ -258,8 +281,7 @@ public class MainActivity extends AppCompatActivity {
     BluetoothServiceHandler btServiceHandler;
     boolean bound;
 
-    public void bindService()
-    {
+    public void bindService() {
         Intent intent = new Intent(this, BluetoothServiceHandler.class);
         getApplicationContext().bindService(intent, bluetoothServiceConnection, Context.BIND_AUTO_CREATE);
         Log.d(LOG_TAG, "Dialog bound to service");

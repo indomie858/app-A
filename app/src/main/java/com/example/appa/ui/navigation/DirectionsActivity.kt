@@ -363,7 +363,7 @@ class DirectionsActivity :
     @SuppressLint("MissingPermission")
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
+        mapboxMap.setStyle(Style.OUTDOORS) { style ->
             locationComponent = mapboxMap.locationComponent.apply {
                 activateLocationComponent(
                         LocationComponentActivationOptions.builder(
