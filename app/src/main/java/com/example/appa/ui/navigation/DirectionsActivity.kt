@@ -203,7 +203,7 @@ class DirectionsActivity :
 
         if (beacon.id2 == majorIdentifier) {
             when {
-                distance < 1.0 -> {
+                distance < 1.5 -> {
                     try {
                         //stopping point for ranging. user has arrived at entrance
                         beaconText.text = "YOU HAVE ARRIVED AT THE ENTRANCE. PRESS BACK BUTTON TO EXIT."
@@ -212,22 +212,22 @@ class DirectionsActivity :
                         Log.e(TAG, e.toString())
                     }
                 }
-                distance < 2.0 -> {
+                distance < 2.5 -> {
                     beaconText.text = "YOU ARE WITHIN 5 FEET OF THE ENTRANCE."
                     toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
                     vibrate(1000, 255)
                 }
-                distance < 4.0 -> {
+                distance < 4.5 -> {
                     beaconText.text = "YOU ARE WITHIN 10 FEET OF THE ENTRANCE."
                     toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
                     vibrate(750, 190)
                 }
-                distance < 6 -> {
+                distance < 6.5 -> {
                     beaconText.text = "YOU ARE WITHIN 15 FEET OF THE ENTRANCE."
                     toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 500);
                     vibrate(500, 127)
                 }
-                distance < 9 -> {
+                distance < 9.5 -> {
                     beaconText.text = "ENTRANCE LOCATED. YOU ARE WITHIN 25 FEET OF THE ENTRANCE"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 250);
                     vibrate(250, 63)
@@ -363,7 +363,7 @@ class DirectionsActivity :
     @SuppressLint("MissingPermission")
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
+        mapboxMap.setStyle(Style.OUTDOORS) { style ->
             locationComponent = mapboxMap.locationComponent.apply {
                 activateLocationComponent(
                         LocationComponentActivationOptions.builder(
