@@ -44,8 +44,10 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.navigation.base.internal.extensions.applyDefaultParams
 import com.mapbox.navigation.base.internal.route.RouteUrl
+import com.mapbox.navigation.base.trip.model.RouteLegProgress
 import com.mapbox.navigation.base.trip.model.RouteProgress
 import com.mapbox.navigation.base.trip.model.RouteProgressState
+import com.mapbox.navigation.base.trip.model.RouteStepProgress
 import com.mapbox.navigation.core.MapboxNavigation
 import com.mapbox.navigation.core.directions.session.RoutesRequestCallback
 import com.mapbox.navigation.core.replay.MapboxReplayer
@@ -60,12 +62,13 @@ import com.mapbox.navigation.ui.summary.SummaryBottomSheet
 import com.mapbox.navigation.ui.voice.NavigationSpeechPlayer
 import com.mapbox.navigation.ui.voice.SpeechPlayerProvider
 import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
-import kotlinx.android.synthetic.main.activity_instruction_view_layout.*
+import kotlinx.android.synthetic.main.activity_directions.*
 import okhttp3.Cache
 import org.altbeacon.beacon.*
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.*
+import kotlin.math.roundToInt
 
 /**
  * This activity combines a Mapbox navigation implementation with beacon ranging detection.
@@ -94,6 +97,7 @@ class DirectionsActivity :
     private var mapboxMap: MapboxMap? = null
     private var instructionSoundButton: NavigationButton? = null
     private var directionRoute: DirectionsRoute? = null
+    private var destinationName: String? = null
     private lateinit var summaryBehavior: BottomSheetBehavior<SummaryBottomSheet>
     private lateinit var routeOverviewButton: ImageButton
     private lateinit var cancelBtn: AppCompatImageButton
@@ -105,7 +109,7 @@ class DirectionsActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
-        setContentView(R.layout.activity_instruction_view_layout)
+        setContentView(R.layout.activity_directions)
 
         verifyBluetooth()   //verifies that device has bluetooth capabilities
         initViews()
@@ -398,6 +402,7 @@ class DirectionsActivity :
                 } catch (e: NullPointerException) {
                     Log.e(TAG, e.toString())
                 }
+                destinationName = currentPlace!!.name.toString()
                 val destinationLong = currentPlace!!.longitude.toDouble()
                 val destinationLat = currentPlace!!.latitude.toDouble()
                 val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
@@ -650,6 +655,27 @@ class DirectionsActivity :
             instructionView.updateDistanceWith(routeProgress)
             summaryBottomSheet.update(routeProgress)
 
+            val durationRemaining: Int = (routeProgress.durationRemaining / 60).roundToInt()
+
+            val currentLegProgress : RouteLegProgress? = routeProgress.currentLegProgress
+            val currentStepProgress : RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress
+
+            val currentStep = currentStepProgress?.step
+            val currentName = currentStep?.name()
+            val currentManeuver = currentStep?.maneuver()
+            val currentBearing = currentManeuver?.bearingBefore()
+            val currentInstruction = currentManeuver?.instruction()
+
+            val upcomingStep = currentLegProgress?.upcomingStep
+            val upcomingManeuver = upcomingStep?.maneuver()
+            val upcomingBearing = upcomingManeuver?.bearingBefore()
+            val upcomingManeuverType = upcomingManeuver?.type()
+            val upcomingInstruction = upcomingManeuver?.instruction()
+
+            val outputText = "$destinationName \nArrival time: $durationRemaining minutes \n\nCurrent: $currentInstruction \n\nUpcoming: $upcomingInstruction \n\nBearing: $upcomingBearing"
+            navigationText.text = outputText
+
+
             /**
              * This if block contains actions that execute once the user has arrived at the destination (route is complete).
              */
@@ -660,6 +686,7 @@ class DirectionsActivity :
                     initTextChangeListener()
                     instructionView.visibility = GONE
                     summaryBottomSheet.visibility = GONE
+                    navigationTextContainer.visibility = GONE
                     beaconTextContainer.visibility = VISIBLE
                     val anim: Animation = AnimationUtils.loadAnimation(this@DirectionsActivity, R.anim.slide_in_top)
                     beaconTextContainer.startAnimation(anim)
@@ -699,7 +726,7 @@ class DirectionsActivity :
     // This is used for testing purposes.
     private fun shouldSimulateRoute(): Boolean {
         return PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
-                .getBoolean(this.getString(R.string.simulate_route_key), false);
+                .getBoolean(this.getString(R.string.simulate_route_key), true);
     }
 
     // If shouldSimulateRoute is true a ReplayRouteLocationEngine will be used which is intended
