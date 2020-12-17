@@ -11,13 +11,13 @@
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         app:mapbox_uiAttribution="false"
         app:mapbox_uiCompass="true"
         app:mapbox_uiCompassGravity="bottom|left"
         app:mapbox_uiCompassMarginBottom="110dp"
         app:mapbox_uiCompassMarginLeft="16dp"
-        app:mapbox_uiLogo="false"
-        android:visibility="visible" />
+        app:mapbox_uiLogo="false" />
 
 
     <LinearLayout
@@ -41,27 +41,41 @@
             android:textSize="36sp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/navigationTextContainer"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scroll_directions"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center|center_horizontal"
-        android:orientation="vertical"
-        android:visibility="visible"
-        tools:visibility="visible">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/navigationText"
+        <LinearLayout
+            android:id="@+id/navigationTextContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="CALCULATING ROUTE..."
-            android:textAlignment="center"
-            android:textColor="@color/text_color"
-            android:textSize="36sp" />
-    </LinearLayout>
+            android:layout_gravity="center|center_horizontal"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible">
 
+            <TextView
+                android:id="@+id/navigationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_color"
+                android:gravity="center"
+                android:text="CALCULATING ROUTE..."
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="36sp" />
+
+            <!--<androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/instruction_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                app:layoutManager="LinearLayoutManager">
+
+            </androidx.recyclerview.widget.RecyclerView>-->
+        </LinearLayout>
+    </ScrollView>
 
     <com.mapbox.navigation.ui.summary.SummaryBottomSheet
         android:id="@+id/summaryBottomSheet"

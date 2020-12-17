@@ -655,7 +655,8 @@ class DirectionsActivity :
             instructionView.updateDistanceWith(routeProgress)
             summaryBottomSheet.update(routeProgress)
 
-            val durationRemaining: Int = (routeProgress.durationRemaining / 60).roundToInt()
+            val durationRemaining = (routeProgress.durationRemaining / 60).roundToInt()    //total time remaining to reach destination
+            val distanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination
 
             val currentLegProgress : RouteLegProgress? = routeProgress.currentLegProgress
             val currentStepProgress : RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress
@@ -663,16 +664,16 @@ class DirectionsActivity :
             val currentStep = currentStepProgress?.step
             val currentName = currentStep?.name()
             val currentManeuver = currentStep?.maneuver()
-            val currentBearing = currentManeuver?.bearingBefore()
             val currentInstruction = currentManeuver?.instruction()
 
             val upcomingStep = currentLegProgress?.upcomingStep
             val upcomingManeuver = upcomingStep?.maneuver()
-            val upcomingBearing = upcomingManeuver?.bearingBefore()
             val upcomingManeuverType = upcomingManeuver?.type()
             val upcomingInstruction = upcomingManeuver?.instruction()
 
-            val outputText = "$destinationName \nArrival time: $durationRemaining minutes \n\nCurrent: $currentInstruction \n\nUpcoming: $upcomingInstruction \n\nBearing: $upcomingBearing"
+            val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
+
+            val outputText = "$destinationName \n\nETA: $durationRemaining minutes \n\nTotal Distance Remaining: $distanceRemaining feet. \n\nIn $distanceToNextStep feet, $upcomingInstruction"
             navigationText.text = outputText
 
 
@@ -726,7 +727,7 @@ class DirectionsActivity :
     // This is used for testing purposes.
     private fun shouldSimulateRoute(): Boolean {
         return PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
-                .getBoolean(this.getString(R.string.simulate_route_key), true);
+                .getBoolean(this.getString(R.string.simulate_route_key), false);
     }
 
     // If shouldSimulateRoute is true a ReplayRouteLocationEngine will be used which is intended
