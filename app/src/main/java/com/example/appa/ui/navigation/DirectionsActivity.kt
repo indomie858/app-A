@@ -107,13 +107,10 @@ class DirectionsActivity :
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_instruction_view_layout)
 
-        //verifies that device has bluetooth capabilities
-        verifyBluetooth()
-
+        verifyBluetooth()   //verifies that device has bluetooth capabilities
         initViews()
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
-
         viewModel = ViewModelProvider(this)[MapWithNavViewModel::class.java]
         setPlaceFromIntent()
 
@@ -127,6 +124,7 @@ class DirectionsActivity :
             registerRouteProgressObserver(routeProgressObserver)
             registerBannerInstructionsObserver(bannerInstructionObserver)
             registerVoiceInstructionsObserver(voiceInstructionsObserver)
+            registerOffRouteObserver(offRouteObserver)
         }
 
         initListeners()
@@ -146,7 +144,6 @@ class DirectionsActivity :
         try {
             if (!BeaconManager.getInstanceForApplication(this).checkAvailability()) {
                 val builder = AlertDialog.Builder(this)
-
                 builder.setTitle("Bluetooth not enabled")
                 builder.setMessage("Please enable bluetooth in settings and restart this application.")
                 builder.setPositiveButton(android.R.string.ok, null)
@@ -200,7 +197,6 @@ class DirectionsActivity :
         //ToneGenerator class contains various system sounds...beeps boops and whatnot
         val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
 
-
         if (beacon.id2 == majorIdentifier) {
             when {
                 distance < 1.5 -> {
@@ -235,11 +231,12 @@ class DirectionsActivity :
             }
         }
     }
+
     /////////////////////////////////////end beacon functions//////////////////////////////////////////////////////////////
     private fun vibrate(vibeLength: Long, vibeAmplitude: Int) {
         val vibrator: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createOneShot(vibeLength, vibeAmplitude) )
+            vibrator.vibrate(VibrationEffect.createOneShot(vibeLength, vibeAmplitude))
         } else {
             vibrator.vibrate(longArrayOf(0, 50), -1)    // deprecated function. uses this only if build api is less than 26
         }
@@ -308,6 +305,7 @@ class DirectionsActivity :
             unregisterRouteProgressObserver(routeProgressObserver)
             unregisterBannerInstructionsObserver(bannerInstructionObserver)
             unregisterVoiceInstructionsObserver(voiceInstructionsObserver)
+            unregisterOffRouteObserver(offRouteObserver)
             stopTripSession()
             onDestroy()
         }
@@ -645,6 +643,7 @@ class DirectionsActivity :
 
     private var isRouteComplete = false;    //flag to indicate route is complete
 
+    //////////////////////////MAPBOX OBSERVERS/////////////////////////////////////////////////////////////////
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
     private val routeProgressObserver = object : RouteProgressObserver {
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
@@ -688,6 +687,13 @@ class DirectionsActivity :
             speechPlayer.play(voiceInstructions)
         }
     }
+
+    private val offRouteObserver = object : OffRouteObserver {
+        override fun onOffRouteStateChanged(offRoute: Boolean) {
+
+        }
+    }
+    /////////////////////END MAPBOX OBSERVERS///////////////////////////////////////////////////////
 
     // Used to determine if the ReplayRouteLocationEngine should be used to simulate the routing.
     // This is used for testing purposes.
