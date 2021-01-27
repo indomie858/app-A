@@ -110,10 +110,18 @@ public class NavigationListActivity extends AppCompatActivity {
                     public void onSuccess(Location location) {
                         if (location != null) {
                             currentLocation = location;
+                        } else {
+                            CancellationTokenSource cts = new CancellationTokenSource();
+                            fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, cts.getToken())
+                                    .addOnSuccessListener(currentActivity, new OnSuccessListener<Location>() {
+                                        @Override
+                                        public void onSuccess(Location location) {
+                                            currentLocation = location;
+                                        }
+                                    });
                         }
                     }
                 });
-
         UpdateRVAdapter();
     }
 

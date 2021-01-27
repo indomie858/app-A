@@ -3,6 +3,7 @@ package com.example.appa.ui.navigation
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.location.Location
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.*
@@ -25,6 +26,9 @@ import com.example.appa.R
 import com.example.appa.beacons.BeaconReferenceApplication
 import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.MapWithNavViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
 import com.mapbox.api.directions.v5.models.BannerInstructions
@@ -84,6 +88,7 @@ class DirectionsActivity :
     private var currentPlaceID: Int? = null
     private var majorIdentifier: Identifier? = null
     private var minorIdentifier: Identifier? = null
+    private var fusedLocationClient:FusedLocationProviderClient? = null
 
     //Mapbox member variables
     private var mapboxNavigation: MapboxNavigation? = null
@@ -106,6 +111,9 @@ class DirectionsActivity :
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_instruction_view_layout)
+
+        // Instantiate location client to get user's current location
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         //verifies that device has bluetooth capabilities
         verifyBluetooth()
@@ -406,23 +414,38 @@ class DirectionsActivity :
                 val originLong: Double
                 val originLat: Double
                 val originPoint: Point
+                // Could potentially do with some cleanup here--repeated mapbox code
                 if (shouldSimulateRoute()) { //choose CSUN coordinates for simulation/testing
-                    originLong = -118.527645
-                    originLat = 34.2410366
+                    val originLong = -118.527645
+                    val originLat = 34.2410366
                     originPoint = Point.fromLngLat(originLong, originLat)
+                    mapboxNavigation?.requestRoutes(
+                            RouteOptions.builder()
+                                    .applyDefaultParams()
+                                    .profile(RouteUrl.PROFILE_WALKING)
+                                    .accessToken(getString(R.string.mapbox_access_token))
+                                    .coordinates(listOf(originPoint, destinationPoint))
+                                    .build(), routesReqCallback
+                    )
                 } else {
-                    originLong = locationComponent!!.lastKnownLocation!!.longitude
-                    originLat = locationComponent!!.lastKnownLocation!!.latitude
-                    originPoint = Point.fromLngLat(originLong, originLat);
+                    fusedLocationClient!!.lastLocation
+                            .addOnSuccessListener(this, OnSuccessListener<Location?> { location ->
+                                if (location != null) {
+                                    val originLong = location.longitude
+                                    val originLat = location.latitude
+                                    val originPoint = Point.fromLngLat(originLong, originLat);
+                                    mapboxNavigation?.requestRoutes(
+                                            RouteOptions.builder()
+                                                    .applyDefaultParams()
+                                                    .profile(RouteUrl.PROFILE_WALKING)
+                                                    .accessToken(getString(R.string.mapbox_access_token))
+                                                    .coordinates(listOf(originPoint, destinationPoint))
+                                                    .build(), routesReqCallback
+                                    )
+
+                                }
+                            })
                 }
-                mapboxNavigation?.requestRoutes(
-                        RouteOptions.builder()
-                                .applyDefaultParams()
-                                .profile(RouteUrl.PROFILE_WALKING)
-                                .accessToken(getString(R.string.mapbox_access_token))
-                                .coordinates(listOf(originPoint, destinationPoint))
-                                .build(), routesReqCallback
-                )
             }
         }
     }
