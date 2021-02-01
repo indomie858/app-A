@@ -17,6 +17,7 @@ import android.view.View.VISIBLE
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.lifecycle.Observer
@@ -28,6 +29,7 @@ import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.MapWithNavViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
@@ -408,32 +410,20 @@ class DirectionsActivity :
                 } catch (e: NullPointerException) {
                     Log.e(TAG, e.toString())
                 }
+
+                // Set up destination from current location
                 val destinationLong = currentPlace!!.longitude.toDouble()
                 val destinationLat = currentPlace!!.latitude.toDouble()
                 val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
-                val originLong: Double
-                val originLat: Double
-                val originPoint: Point
-                // Could potentially do with some cleanup here--repeated mapbox code
-                if (shouldSimulateRoute()) { //choose CSUN coordinates for simulation/testing
-                    val originLong = -118.527645
-                    val originLat = 34.2410366
-                    originPoint = Point.fromLngLat(originLong, originLat)
-                    mapboxNavigation?.requestRoutes(
-                            RouteOptions.builder()
-                                    .applyDefaultParams()
-                                    .profile(RouteUrl.PROFILE_WALKING)
-                                    .accessToken(getString(R.string.mapbox_access_token))
-                                    .coordinates(listOf(originPoint, destinationPoint))
-                                    .build(), routesReqCallback
-                    )
-                } else {
+
+                // Use a simulated location if simulate route is enabled,
+                // or use a real route using user's GPS location otherwise.
+                // Call mapboxNaviation.requestRoutes to fetch the appropriate route.
+                if(!shouldSimulateRoute()) {
                     fusedLocationClient!!.lastLocation
                             .addOnSuccessListener(this, OnSuccessListener<Location?> { location ->
                                 if (location != null) {
-                                    val originLong = location.longitude
-                                    val originLat = location.latitude
-                                    val originPoint = Point.fromLngLat(originLong, originLat);
+                                    val originPoint = Point.fromLngLat(location.longitude, location.latitude)
                                     mapboxNavigation?.requestRoutes(
                                             RouteOptions.builder()
                                                     .applyDefaultParams()
@@ -442,14 +432,25 @@ class DirectionsActivity :
                                                     .coordinates(listOf(originPoint, destinationPoint))
                                                     .build(), routesReqCallback
                                     )
-
                                 }
                             })
+                            .addOnFailureListener{ _ ->
+                                Toast.makeText(this, "No Location Found", Toast.LENGTH_SHORT).show()
+                            }
+                } else {
+                    val originPoint = Point.fromLngLat(-118.527645, 34.2410366)
+                    mapboxNavigation?.requestRoutes(
+                            RouteOptions.builder()
+                                    .applyDefaultParams()
+                                    .profile(RouteUrl.PROFILE_WALKING)
+                                    .accessToken(getString(R.string.mapbox_access_token))
+                                    .coordinates(listOf(originPoint, destinationPoint))
+                                    .build(), routesReqCallback
+                        )
+                    }
                 }
             }
         }
-    }
-
     // Call this function to initiate navigation.
     @SuppressLint("MissingPermission")
     private fun beginNavigation() {
