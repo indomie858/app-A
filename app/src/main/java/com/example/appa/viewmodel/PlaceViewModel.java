@@ -18,19 +18,17 @@ import static android.location.Location.distanceBetween;
 
 // Viewmodel for individual locations
 public class PlaceViewModel  {
-    private float distance = 0.0f;
+    private Float distance = null;
     private PlaceEntity placeEntity;
     public PlaceViewModel(PlaceEntity placeEntity) {
         this.placeEntity = placeEntity;
     }
 
-    public LocationManager manager;
-
     public int getId() {
         return placeEntity.getId();
     }
 
-    public float getDistance() {
+    public Float getDistance() {
         return distance;
     }
 
@@ -56,12 +54,13 @@ public class PlaceViewModel  {
     }
 
     @SuppressLint("MissingPermission")
-    public void setLocationAndDistance(LocationManager manager) {
-        // Set a location manager and initial distance.
-        // We need to receive an instance of a locationmanager,
-        // because we need to initialize it with context from a view
-        this.manager = manager;
-        Location currentLocation = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        setDistance(currentLocation);
+    public void setLocationAndDistance(Location location) {
+        // Set initial distance with a given location.
+        // Passed in from an activity, typically.
+        if (location != null) {
+            setDistance(location);
+        } else {
+            distance = null;
+        }
     }
 }
