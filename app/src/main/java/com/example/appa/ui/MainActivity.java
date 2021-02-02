@@ -8,21 +8,19 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -33,9 +31,9 @@ import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
 import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,10 +61,7 @@ public class MainActivity extends AppCompatActivity {
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
         bindService();
 
-
-        //fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "4").hide(tutorialFragment).commit();
-        //fm.beginTransaction().replace(R.id.main_container, settingsFragment, "2").commit();
-        fm.beginTransaction().replace(R.id.main_container, homeFragment, "1").commit();
+        firstLaunchTutorialFrag();
 
         // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -103,6 +98,40 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
         checkLocationPermissions();
+    }
+
+    //This method checks if this is the first time the user has launched the app.
+    //On first launch, this will open the tutorial fragment.
+    private boolean firstLaunchTutorialFrag(){
+        SharedPreferences pref = getPreferences(MODE_PRIVATE);
+        boolean ranBefore = pref.getBoolean("RanBefore",false);
+        if(!ranBefore){
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("RanBefore", true);
+            editor.commit();
+            fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "4").commit();
+            active = tutorialFragment;
+            backButtonFlag = true;
+            firstLaunchMessage();
+        }else{
+            fm.beginTransaction().replace(R.id.main_container, homeFragment, "1").commit();
+        }
+        return ranBefore;
+    }
+
+    //This displays a message when user launches app for the first time.
+    private void firstLaunchMessage(){
+        String text = "Welcome to app-A! Since this is your first time using our app, here is a " +
+                "tutorial on how to use app-A.";
+
+        // Handler which will run after 2 seconds.
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast toast = Toast.makeText(MainActivity.this, text, LENGTH_LONG);
+                toast.show();
+            }
+        }, 2000);
     }
 
     @Override
