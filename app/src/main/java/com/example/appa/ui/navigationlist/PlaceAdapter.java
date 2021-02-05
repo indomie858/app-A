@@ -3,6 +3,7 @@ package com.example.appa.ui.navigationlist;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.speech.tts.TextToSpeech;
@@ -37,6 +38,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     private List<PlaceViewModel> mPlaceViewModels = new ArrayList<>();
     private TextToSpeech mTTSObject;
     private AccessibilityManager am;
+
+    public void setLocations(Location location) {
+        for (PlaceViewModel placeViewModel: mPlaceViewModels) {
+            placeViewModel.setLocationAndDistance(location);
+        }
+    }
 
     public void setPlaces(List<PlaceViewModel> places) {
         this.mPlaceViewModels.clear();
