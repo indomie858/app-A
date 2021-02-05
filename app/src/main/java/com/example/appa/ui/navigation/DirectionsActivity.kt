@@ -3,6 +3,7 @@ package com.example.appa.ui.navigation
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.location.Location
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.*
@@ -16,6 +17,7 @@ import android.view.View.VISIBLE
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.lifecycle.Observer
@@ -25,6 +27,10 @@ import com.example.appa.R
 import com.example.appa.beacons.BeaconReferenceApplication
 import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.MapWithNavViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
 import com.mapbox.api.directions.v5.models.BannerInstructions
@@ -87,6 +93,7 @@ class DirectionsActivity :
     private var currentPlaceID: Int? = null
     private var majorIdentifier: Identifier? = null
     private var minorIdentifier: Identifier? = null
+    private var fusedLocationClient:FusedLocationProviderClient? = null
 
     //Mapbox member variables
     private var mapboxNavigation: MapboxNavigation? = null
@@ -111,7 +118,12 @@ class DirectionsActivity :
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_directions)
 
-        verifyBluetooth()   //verifies that device has bluetooth capabilities
+        // Instantiate location client to get user's current location
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        //verifies that device has bluetooth capabilities
+        verifyBluetooth()
+
         initViews()
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
@@ -402,34 +414,47 @@ class DirectionsActivity :
                 } catch (e: NullPointerException) {
                     Log.e(TAG, e.toString())
                 }
-                destinationName = currentPlace!!.name.toString()
+
+                // Set up destination from current location
                 val destinationLong = currentPlace!!.longitude.toDouble()
                 val destinationLat = currentPlace!!.latitude.toDouble()
                 val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
-                val originLong: Double
-                val originLat: Double
-                val originPoint: Point
-                if (shouldSimulateRoute()) { //choose CSUN coordinates for simulation/testing
-                    originLong = -118.527645
-                    originLat = 34.2410366
-                    originPoint = Point.fromLngLat(originLong, originLat)
+
+                // Use a simulated location if simulate route is enabled,
+                // or use a real route using user's GPS location otherwise.
+                // Call mapboxNaviation.requestRoutes to fetch the appropriate route.
+                if(!shouldSimulateRoute()) {
+                    fusedLocationClient!!.lastLocation
+                            .addOnSuccessListener(this, OnSuccessListener<Location?> { location ->
+                                if (location != null) {
+                                    val originPoint = Point.fromLngLat(location.longitude, location.latitude)
+                                    mapboxNavigation?.requestRoutes(
+                                            RouteOptions.builder()
+                                                    .applyDefaultParams()
+                                                    .profile(RouteUrl.PROFILE_WALKING)
+                                                    .accessToken(getString(R.string.mapbox_access_token))
+                                                    .coordinates(listOf(originPoint, destinationPoint))
+                                                    .build(), routesReqCallback
+                                    )
+                                }
+                            })
+                            .addOnFailureListener{ _ ->
+                                Toast.makeText(this, "No Location Found", Toast.LENGTH_SHORT).show()
+                            }
                 } else {
-                    originLong = locationComponent!!.lastKnownLocation!!.longitude
-                    originLat = locationComponent!!.lastKnownLocation!!.latitude
-                    originPoint = Point.fromLngLat(originLong, originLat);
+                    val originPoint = Point.fromLngLat(-118.527645, 34.2410366)
+                    mapboxNavigation?.requestRoutes(
+                            RouteOptions.builder()
+                                    .applyDefaultParams()
+                                    .profile(RouteUrl.PROFILE_WALKING)
+                                    .accessToken(getString(R.string.mapbox_access_token))
+                                    .coordinates(listOf(originPoint, destinationPoint))
+                                    .build(), routesReqCallback
+                        )
+                    }
                 }
-                mapboxNavigation?.requestRoutes(
-                        RouteOptions.builder()
-                                .applyDefaultParams()
-                                .profile(RouteUrl.PROFILE_WALKING)
-                                .accessToken(getString(R.string.mapbox_access_token))
-                                .coordinates(listOf(originPoint, destinationPoint))
-                                .build(), routesReqCallback
-                )
             }
         }
-    }
-
     // Call this function to initiate navigation.
     @SuppressLint("MissingPermission")
     private fun beginNavigation() {
