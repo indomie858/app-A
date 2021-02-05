@@ -27,6 +27,5 @@ public class PlaceRepository {
 
     public LiveData<List<PlaceEntity>> searchQuery(String searchName, String searchCategory) {
         return placeDao.searchQuery(searchName, searchCategory);
-
     }
 }

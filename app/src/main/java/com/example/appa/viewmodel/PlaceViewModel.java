@@ -56,7 +56,6 @@ public class PlaceViewModel  {
     @SuppressLint("MissingPermission")
     public void setLocationAndDistance(Location location) {
         // Set initial distance with a given location.
-        // Passed in from an activity, typically.
         if (location != null) {
             setDistance(location);
         } else {
