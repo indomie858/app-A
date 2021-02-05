@@ -415,6 +415,8 @@ class DirectionsActivity :
                     Log.e(TAG, e.toString())
                 }
 
+                destinationName = currentPlace!!.name.toString()    //used for UI
+
                 // Set up destination from current location
                 val destinationLong = currentPlace!!.longitude.toDouble()
                 val destinationLat = currentPlace!!.latitude.toDouble()
