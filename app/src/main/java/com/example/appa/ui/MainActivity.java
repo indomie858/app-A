@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.appa.R;
+import com.example.appa.bluetooth.BTConnectionHelper;
 import com.example.appa.bluetooth.BluetoothServiceHandler;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
     BluetoothDialog btDialog = new BluetoothDialog();
+    BTConnectionHelper btConnectionHelper;
 
     Fragment active = homeFragment;
     private int counter = 0;
@@ -59,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
-        bindService();
+
+
 
         firstLaunchTutorialFrag();
 
@@ -84,20 +87,21 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.tutorial_button:
-                    fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "4").commit();
+                    fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "3").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = tutorialFragment;
                     backButtonFlag = true;
                     counter = 0;
                     break;
                 case R.id.hardware_connection_button:
-                    showDialog();
+                    btConnectionHelper.appaConnect();
                     backButtonFlag = true;
                     counter = 0;
             }
             return false;
         });
         checkLocationPermissions();
+        bindService();
     }
 
     //This method checks if this is the first time the user has launched the app.
@@ -249,7 +253,6 @@ public class MainActivity extends AppCompatActivity {
                             builder.setMessage("Please grant location access so this navigation app can function.");
                             builder.setPositiveButton(android.R.string.ok, null);
                             builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
                                 @TargetApi(23)
                                 @Override
                                 public void onDismiss(DialogInterface dialog) {
@@ -298,18 +301,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     ///////////////////////////////location permission stuff end//////////////////////////////////
-
+    /*
     public void showDialog() {
         BluetoothDialog bluetoothDialog = (BluetoothDialog) BluetoothDialog.newInstance(R.string.bluetooth_title);
         btDialog = bluetoothDialog;
         btDialog.setBluetoothService(btServiceHandler);
-
         btDialog.show(getSupportFragmentManager(), "BTDialog");
     }
+    */
 
-    BluetoothServiceHandler btServiceHandler;
+
     boolean bound;
-
+    BluetoothServiceHandler btServiceHandler;
     public void bindService() {
         Intent intent = new Intent(this, BluetoothServiceHandler.class);
         getApplicationContext().bindService(intent, bluetoothServiceConnection, Context.BIND_AUTO_CREATE);
@@ -321,6 +324,8 @@ public class MainActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             BluetoothServiceHandler.LocalBinder binder = (BluetoothServiceHandler.LocalBinder) iBinder;
             btServiceHandler = binder.getService();
+
+            btConnectionHelper = new BTConnectionHelper(btServiceHandler, getApplicationContext());
             Log.e(LOG_TAG, "Successfully binded");
             bound = true;
         }
@@ -330,5 +335,7 @@ public class MainActivity extends AppCompatActivity {
             bound = false;
         }
     };
+
+
 
 }

@@ -36,6 +36,7 @@ public class BluetoothHandler {
         this.messageHandler = messageHandler;
         this.address = address;
     }
+
     //this is a method
     public synchronized  void connect() {
         //these are a bunch of letters
