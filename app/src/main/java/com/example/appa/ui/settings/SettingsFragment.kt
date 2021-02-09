@@ -65,7 +65,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
             val dunitId = dunitPref.getString("dunit", "")
             if(dunit != dunitId){
                 dunitPref.edit().putString("dunit", dunit).apply()
-                reload()
             }
 
             true
