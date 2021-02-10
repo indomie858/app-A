@@ -155,6 +155,7 @@ class DirectionsActivity :
             }
         }
 
+        //TODO remove these animal names lol. it's a place holder for recyclerview
         val animalNames: ArrayList<String> = ArrayList()
         animalNames.add("Horse")
         animalNames.add("Cow")
@@ -170,9 +171,7 @@ class DirectionsActivity :
 
     }//end of onCreate function
 
-    /*fun onItemClick(view: View?, position: Int) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position).toString() + " on row number " + position, Toast.LENGTH_SHORT).show()
-    }*/
+
 
     //////////////////////////////Beacon functions begin//////////////////////////////////////////
     //verifies that device is bluetooth capable and bluetooth is enabled
@@ -540,6 +539,7 @@ class DirectionsActivity :
 
     @SuppressLint("MissingPermission")
     private fun initListeners() {
+        //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
         //summaryBehavior.addBottomSheetCallback(bottomSheetCallback)
 
         /*recenterBtn.addOnClickListener {
@@ -556,6 +556,7 @@ class DirectionsActivity :
     }
 
     private fun initViews() {
+        //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
         //summaryBottomSheet.visibility = GONE
         /*summaryBehavior = BottomSheetBehavior.from(summaryBottomSheet).apply {
             isHideable = false
@@ -641,6 +642,7 @@ class DirectionsActivity :
         }
     }
 
+    //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
     private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             if (summaryBehavior.state == BottomSheetBehavior.STATE_HIDDEN) {
@@ -699,6 +701,7 @@ class DirectionsActivity :
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
     private val routeProgressObserver = object : RouteProgressObserver {
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
+            //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
             //instructionView.updateDistanceWith(routeProgress)
             //summaryBottomSheet.update(routeProgress)
 
@@ -732,6 +735,7 @@ class DirectionsActivity :
                     isRouteComplete = true
                     speechPlayer.isMuted = true
                     initTextChangeListener()
+                    //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
                     //instructionView.visibility = GONE
                     //summaryBottomSheet.visibility = GONE
                     navigationTextContainer.visibility = GONE
@@ -752,6 +756,7 @@ class DirectionsActivity :
 
     private val bannerInstructionObserver = object : BannerInstructionsObserver {
         override fun onNewBannerInstructions(bannerInstructions: BannerInstructions) {
+            //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
             //instructionView.updateBannerInstructionsWith(bannerInstructions)
         }
     }
