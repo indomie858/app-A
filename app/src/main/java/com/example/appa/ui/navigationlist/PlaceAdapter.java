@@ -110,8 +110,11 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
         // Set distance text with unit
         TextView distanceText = holder.binding.getRoot().findViewById(R.id.place_distance);
-        distanceText.setText(currentPlaceViewModel.getDistanceFeet() + " feet");
-
+        if (currentPlaceViewModel.getDistance() != null) {
+            distanceText.setText(currentPlaceViewModel.getDistanceFeet() + " feet");
+        } else {
+            distanceText.setText("");
+        }
 
         // Initially set description to be hidden
         TextView descriptionText = holder.binding.getRoot().findViewById(R.id.description);
