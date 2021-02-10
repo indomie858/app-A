@@ -101,12 +101,12 @@
         </LinearLayout>
     <!--</ScrollView>-->
 
-    <com.mapbox.navigation.ui.summary.SummaryBottomSheet
+    <!--<com.mapbox.navigation.ui.summary.SummaryBottomSheet
         android:id="@+id/summaryBottomSheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />-->
 
     <!--<com.mapbox.navigation.ui.RecenterButton
         android:id="@+id/recenterBtn"

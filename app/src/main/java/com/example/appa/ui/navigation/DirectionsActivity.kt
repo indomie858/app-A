@@ -540,7 +540,7 @@ class DirectionsActivity :
 
     @SuppressLint("MissingPermission")
     private fun initListeners() {
-        summaryBehavior.addBottomSheetCallback(bottomSheetCallback)
+        //summaryBehavior.addBottomSheetCallback(bottomSheetCallback)
 
         /*recenterBtn.addOnClickListener {
             recenterBtn.hide()
@@ -549,21 +549,21 @@ class DirectionsActivity :
                     ?.resetCameraPositionWith(NavigationCamera.NAVIGATION_TRACKING_MODE_GPS)
         }*/
 
-        cancelBtn.setOnClickListener {
+        /*cancelBtn.setOnClickListener {
             mapboxNavigation?.stopTripSession()
             updateCameraOnNavigationStateChange(false)
-        }
+        }*/
     }
 
     private fun initViews() {
-        summaryBottomSheet.visibility = GONE
-        summaryBehavior = BottomSheetBehavior.from(summaryBottomSheet).apply {
+        //summaryBottomSheet.visibility = GONE
+        /*summaryBehavior = BottomSheetBehavior.from(summaryBottomSheet).apply {
             isHideable = false
-        }
+        }*/
         //recenterBtn.hide()
-        routeOverviewButton = findViewById(R.id.routeOverviewBtn)
-        routeOverviewButton.visibility = GONE
-        cancelBtn = findViewById(R.id.cancelBtn)
+        //routeOverviewButton = findViewById(R.id.routeOverviewBtn)
+        //routeOverviewButton.visibility = GONE
+        //cancelBtn = findViewById(R.id.cancelBtn)
 
        /* instructionView .visibility = GONE
 
@@ -584,10 +584,10 @@ class DirectionsActivity :
                 //recenterBtn.hide()
                 //instructionView.visibility = VISIBLE
                 instructionSoundButton?.show()
-                summaryBottomSheet.visibility = VISIBLE
+                //summaryBottomSheet.visibility = VISIBLE
             }
             TripSessionState.STOPPED -> {
-                summaryBottomSheet.visibility = GONE
+                //summaryBottomSheet.visibility = GONE
                 //recenterBtn.hide()
                 //instructionView.visibility = GONE
                 instructionSoundButton?.hide()
@@ -700,7 +700,7 @@ class DirectionsActivity :
     private val routeProgressObserver = object : RouteProgressObserver {
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
             //instructionView.updateDistanceWith(routeProgress)
-            summaryBottomSheet.update(routeProgress)
+            //summaryBottomSheet.update(routeProgress)
 
             val durationRemaining = (routeProgress.durationRemaining / 60).roundToInt()    //total time remaining to reach destination
             val distanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination
@@ -733,7 +733,7 @@ class DirectionsActivity :
                     speechPlayer.isMuted = true
                     initTextChangeListener()
                     //instructionView.visibility = GONE
-                    summaryBottomSheet.visibility = GONE
+                    //summaryBottomSheet.visibility = GONE
                     navigationTextContainer.visibility = GONE
                     beaconTextContainer.visibility = VISIBLE
                     val anim: Animation = AnimationUtils.loadAnimation(this@DirectionsActivity, R.anim.slide_in_top)
