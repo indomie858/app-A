@@ -7,6 +7,27 @@
     android:layout_height="match_parent">
 
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/design_default_color_on_secondary"
+
+            app:menu="@menu/top_app_bar"
+            app:title="@string/navigation"
+            app:titleTextColor="@color/white"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -41,10 +62,12 @@
             android:textSize="36sp" />
     </LinearLayout>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/scroll_directions"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">-->
 
         <LinearLayout
             android:id="@+id/navigationTextContainer"
@@ -75,7 +98,7 @@
 
             </androidx.recyclerview.widget.RecyclerView>-->
         </LinearLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 
     <com.mapbox.navigation.ui.summary.SummaryBottomSheet
         android:id="@+id/summaryBottomSheet"
@@ -84,7 +107,7 @@
         android:visibility="gone"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
 
-    <com.mapbox.navigation.ui.RecenterButton
+    <!--<com.mapbox.navigation.ui.RecenterButton
         android:id="@+id/recenterBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,7 +115,7 @@
         android:layout_margin="16dp"
         android:visibility="invisible"
         app:layout_anchor="@id/summaryBottomSheet"
-        app:layout_anchorGravity="top|right" />
+        app:layout_anchorGravity="top|right" />-->
 
 
     <!--<com.mapbox.navigation.ui.instruction.InstructionView

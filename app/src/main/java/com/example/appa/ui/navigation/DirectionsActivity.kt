@@ -522,12 +522,12 @@ class DirectionsActivity :
     private fun initListeners() {
         summaryBehavior.addBottomSheetCallback(bottomSheetCallback)
 
-        recenterBtn.addOnClickListener {
+        /*recenterBtn.addOnClickListener {
             recenterBtn.hide()
             navigationMapboxMap?.resetPadding()
             navigationMapboxMap
                     ?.resetCameraPositionWith(NavigationCamera.NAVIGATION_TRACKING_MODE_GPS)
-        }
+        }*/
 
         cancelBtn.setOnClickListener {
             mapboxNavigation?.stopTripSession()
@@ -540,7 +540,7 @@ class DirectionsActivity :
         summaryBehavior = BottomSheetBehavior.from(summaryBottomSheet).apply {
             isHideable = false
         }
-        recenterBtn.hide()
+        //recenterBtn.hide()
         routeOverviewButton = findViewById(R.id.routeOverviewBtn)
         routeOverviewButton.visibility = GONE
         cancelBtn = findViewById(R.id.cancelBtn)
@@ -561,14 +561,14 @@ class DirectionsActivity :
     private fun updateViews(tripSessionState: TripSessionState) {
         when (tripSessionState) {
             TripSessionState.STARTED -> {
-                recenterBtn.hide()
+                //recenterBtn.hide()
                 //instructionView.visibility = VISIBLE
                 instructionSoundButton?.show()
                 summaryBottomSheet.visibility = VISIBLE
             }
             TripSessionState.STOPPED -> {
                 summaryBottomSheet.visibility = GONE
-                recenterBtn.hide()
+                //recenterBtn.hide()
                 //instructionView.visibility = GONE
                 instructionSoundButton?.hide()
             }
@@ -624,7 +624,7 @@ class DirectionsActivity :
     private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             if (summaryBehavior.state == BottomSheetBehavior.STATE_HIDDEN) {
-                recenterBtn.show()
+                //recenterBtn.show()
             }
         }
 
