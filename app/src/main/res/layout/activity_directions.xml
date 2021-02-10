@@ -7,8 +7,7 @@
     android:layout_height="match_parent">
 
 
-
-
+    <!-- Top app bar -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -26,10 +25,10 @@
 
             app:menu="@menu/top_app_bar"
             app:title="@string/navigation"
-            app:titleTextColor="@color/white"/>
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
-
+    <!-- Mapbox Mapview. Note: Must be invisible, cannot be set to "gone" -->
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -42,7 +41,7 @@
         app:mapbox_uiCompassMarginLeft="16dp"
         app:mapbox_uiLogo="false" />
 
-
+    <!-- Container for beacon prompts -->
     <LinearLayout
         android:id="@+id/beaconTextContainer"
         android:layout_width="match_parent"
@@ -64,42 +63,35 @@
             android:textSize="36sp" />
     </LinearLayout>
 
-
-
-    <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/scroll_directions"
+    <!-- Container for mapbox navigation information. Maneuver instructions, ETA, distance remaining -->
+    <LinearLayout
+        android:id="@+id/navigationTextContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">-->
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:visibility="visible">
 
-        <LinearLayout
-            android:id="@+id/navigationTextContainer"
+        <TextView
+            android:id="@+id/navigationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:layout_gravity="center|center_horizontal"
-            android:orientation="vertical"
-            android:visibility="visible"
-            tools:visibility="visible">
+            android:background="@color/background_color"
+            android:gravity="center"
+            android:text="CALCULATING ROUTE..."
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="36sp" />
 
-            <TextView
-                android:id="@+id/navigationText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background_color"
-                android:gravity="center"
-                android:text="CALCULATING ROUTE..."
-                android:textAlignment="center"
-                android:textColor="@color/text_color"
-                android:textSize="36sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/directionsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/directionsRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+    </LinearLayout>
 
-        </LinearLayout>
-    <!--</ScrollView>-->
 
     <!--<com.mapbox.navigation.ui.summary.SummaryBottomSheet
         android:id="@+id/summaryBottomSheet"

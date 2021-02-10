@@ -12,6 +12,11 @@ import com.example.appa.R;
 
 import java.util.List;
 
+
+/**
+ * This is an adapter for the recyclerview used in DirectionsActivity. This uses the layout file
+ * called directions_row.xml
+ */
 public class DirectionsAdapter extends RecyclerView.Adapter<DirectionsAdapter.ViewHolder> {
 
     private List<String> mData;
