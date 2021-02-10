@@ -162,6 +162,11 @@ class DirectionsActivity :
         animalNames.add("Camel")
         animalNames.add("Sheep")
         animalNames.add("Goat")
+        animalNames.add("Bunny")
+        animalNames.add("Duck")
+        animalNames.add("Dog")
+        animalNames.add("Cat")
+        animalNames.add("YEET")
 
         val recyclerView: RecyclerView = findViewById(R.id.directionsRecyclerView)
         recyclerView.setLayoutManager(LinearLayoutManager(this))
@@ -723,7 +728,7 @@ class DirectionsActivity :
 
             val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
 
-            val outputText = "$destinationName \n\nETA: $durationRemaining minutes \n\nTotal Distance Remaining: $distanceRemaining feet. \n\nIn $distanceToNextStep feet, $upcomingInstruction"
+            val outputText = "$destinationName \nETA: $durationRemaining minutes \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
             navigationText.text = outputText
 
 
