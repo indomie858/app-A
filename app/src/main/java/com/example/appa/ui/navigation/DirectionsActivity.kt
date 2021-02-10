@@ -545,7 +545,7 @@ class DirectionsActivity :
         routeOverviewButton.visibility = GONE
         cancelBtn = findViewById(R.id.cancelBtn)
 
-        instructionView.visibility = GONE
+       /* instructionView .visibility = GONE
 
         instructionSoundButton = instructionView.retrieveSoundButton().apply {
             hide()
@@ -555,21 +555,21 @@ class DirectionsActivity :
                     speechPlayer.isMuted = soundButton.toggleMute()
                 }
             }
-        }
+        }*/
     }
 
     private fun updateViews(tripSessionState: TripSessionState) {
         when (tripSessionState) {
             TripSessionState.STARTED -> {
                 recenterBtn.hide()
-                instructionView.visibility = VISIBLE
+                //instructionView.visibility = VISIBLE
                 instructionSoundButton?.show()
                 summaryBottomSheet.visibility = VISIBLE
             }
             TripSessionState.STOPPED -> {
                 summaryBottomSheet.visibility = GONE
                 recenterBtn.hide()
-                instructionView.visibility = GONE
+                //instructionView.visibility = GONE
                 instructionSoundButton?.hide()
             }
         }
@@ -679,7 +679,7 @@ class DirectionsActivity :
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
     private val routeProgressObserver = object : RouteProgressObserver {
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
-            instructionView.updateDistanceWith(routeProgress)
+            //instructionView.updateDistanceWith(routeProgress)
             summaryBottomSheet.update(routeProgress)
 
             val durationRemaining = (routeProgress.durationRemaining / 60).roundToInt()    //total time remaining to reach destination
@@ -712,7 +712,7 @@ class DirectionsActivity :
                     isRouteComplete = true
                     speechPlayer.isMuted = true
                     initTextChangeListener()
-                    instructionView.visibility = GONE
+                    //instructionView.visibility = GONE
                     summaryBottomSheet.visibility = GONE
                     navigationTextContainer.visibility = GONE
                     beaconTextContainer.visibility = VISIBLE
@@ -732,7 +732,7 @@ class DirectionsActivity :
 
     private val bannerInstructionObserver = object : BannerInstructionsObserver {
         override fun onNewBannerInstructions(bannerInstructions: BannerInstructions) {
-            instructionView.updateBannerInstructionsWith(bannerInstructions)
+            //instructionView.updateBannerInstructionsWith(bannerInstructions)
         }
     }
 

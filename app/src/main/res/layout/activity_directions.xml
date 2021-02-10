@@ -95,11 +95,11 @@
         app:layout_anchorGravity="top|right" />
 
 
-    <com.mapbox.navigation.ui.instruction.InstructionView
+    <!--<com.mapbox.navigation.ui.instruction.InstructionView
         android:id="@+id/instructionView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="top"
         android:visibility="invisible"
-        tools:visibility="visible" />
+        tools:visibility="visible" />-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
