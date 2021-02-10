@@ -23,13 +23,14 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appa.R
 import com.example.appa.beacons.BeaconReferenceApplication
 import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.MapWithNavViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
@@ -61,7 +62,6 @@ import com.mapbox.navigation.core.replay.ReplayLocationEngine
 import com.mapbox.navigation.core.replay.route.ReplayProgressObserver
 import com.mapbox.navigation.core.trip.session.*
 import com.mapbox.navigation.ui.NavigationButton
-import com.mapbox.navigation.ui.SoundButton
 import com.mapbox.navigation.ui.camera.NavigationCamera
 import com.mapbox.navigation.ui.map.NavigationMapboxMap
 import com.mapbox.navigation.ui.summary.SummaryBottomSheet
@@ -113,6 +113,8 @@ class DirectionsActivity :
     private val beaconManager = BeaconManager.getInstanceForApplication(this)
     private var ttsObject: TextToSpeech? = null
 
+    var adapter: DirectionsAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
@@ -152,7 +154,25 @@ class DirectionsActivity :
                 ttsObject?.setLanguage(Locale.UK)
             }
         }
+
+        val animalNames: ArrayList<String> = ArrayList()
+        animalNames.add("Horse")
+        animalNames.add("Cow")
+        animalNames.add("Camel")
+        animalNames.add("Sheep")
+        animalNames.add("Goat")
+
+        val recyclerView: RecyclerView = findViewById(R.id.directionsRecyclerView)
+        recyclerView.setLayoutManager(LinearLayoutManager(this))
+        adapter = DirectionsAdapter(this, animalNames)
+        //adapter!!.setClickListener(this)
+        recyclerView.setAdapter(adapter)
+
     }//end of onCreate function
+
+    /*fun onItemClick(view: View?, position: Int) {
+        Toast.makeText(this, "You clicked " + adapter.getItem(position).toString() + " on row number " + position, Toast.LENGTH_SHORT).show()
+    }*/
 
     //////////////////////////////Beacon functions begin//////////////////////////////////////////
     //verifies that device is bluetooth capable and bluetooth is enabled
