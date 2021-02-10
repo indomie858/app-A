@@ -7,6 +7,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,8 @@ import com.example.appa.R;
 public class CompassActivity extends AppCompatActivity {
 
     private ImageView imageView;
+    private TextView accelerometerText;
+    private TextView magnoText;
 
     private SensorManager sensorManager;
     private Sensor sensorAccelerometer;
@@ -31,12 +34,16 @@ public class CompassActivity extends AppCompatActivity {
     private float[] floatOrientation = new float[3];
     private float[] floatRotationMatrix = new float[9];
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compass);
 
         imageView = findViewById(R.id.imageViewCompass);
+
+        accelerometerText = findViewById(R.id.accelerometerText);
+        magnoText = findViewById(R.id.magnoText);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
@@ -50,7 +57,8 @@ public class CompassActivity extends AppCompatActivity {
 
                 SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic);
                 SensorManager.getOrientation(floatRotationMatrix, floatOrientation);
-
+                String reading = "z-axis: "+ floatOrientation[0] + "\nx-axis: " + floatOrientation[1] + "\ny-axis: " + floatOrientation[2];
+                accelerometerText.setText(reading);
                 imageView.setRotation((float) (-floatOrientation[0]*180/3.14159));
             }
 
@@ -67,6 +75,8 @@ public class CompassActivity extends AppCompatActivity {
                 SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic);
                 SensorManager.getOrientation(floatRotationMatrix, floatOrientation);
 
+                String reading = "z-axis: "+ floatOrientation[0] + "\nx-axis: " + floatOrientation[1] + "\ny-axis: " + floatOrientation[2];
+                magnoText.setText(reading);
                 imageView.setRotation((float) (-floatOrientation[0]*180/3.14159));
             }
 
