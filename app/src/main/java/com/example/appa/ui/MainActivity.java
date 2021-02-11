@@ -26,7 +26,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.appa.R;
 import com.example.appa.bluetooth.BTConnectionHelper;
-import com.example.appa.bluetooth.BluetoothServiceHandler;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment settingsFragment = new SettingsFragment();
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
-    BluetoothDialog btDialog = new BluetoothDialog();
+    //BluetoothDialog btDialog = new BluetoothDialog();
     BTConnectionHelper btConnectionHelper;
 
     Fragment active = homeFragment;
@@ -57,13 +56,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startService(new Intent(MainActivity.this, BluetoothServiceHandler.class));
+        //startService(new Intent(MainActivity.this, BluetoothServiceHandler.class));
+
+        btConnectionHelper = new BTConnectionHelper(getApplicationContext());
 
         setContentView(R.layout.activity_main);
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
-
-
-
         firstLaunchTutorialFrag();
 
         // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
@@ -101,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
         checkLocationPermissions();
-        bindService();
+        //bindService();
     }
 
     //This method checks if this is the first time the user has launched the app.
@@ -310,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
     }
     */
 
-
+/*
     boolean bound;
     BluetoothServiceHandler btServiceHandler;
     public void bindService() {
@@ -335,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
             bound = false;
         }
     };
-
+*/
 
 
 }

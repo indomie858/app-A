@@ -31,7 +31,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.appa.R;
 import com.example.appa.bluetooth.BluetoothHandler;
-import com.example.appa.bluetooth.BluetoothServiceHandler;
 import com.example.appa.bluetooth.display.BluetoothDisplayAdapter;
 import com.example.appa.bluetooth.message.MessageHandler;
 import com.example.appa.bluetooth.threads.ConnectedDeviceThread;

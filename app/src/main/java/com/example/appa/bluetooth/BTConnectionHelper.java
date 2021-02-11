@@ -1,38 +1,68 @@
 package com.example.appa.bluetooth;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothServerSocket;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-
 import com.example.appa.bluetooth.message.MessageHandler;
-import com.example.appa.ui.BluetoothDialog;
-
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.UUID;
+import java.util.concurrent.Executor;
 
 public class BTConnectionHelper {
     // This class serves as a helper/utility class
     // Which handles the details of querying and conecting to Bluetooth.
+    final String BLUETOOTHTAG = "Bluetooth Connection";
+    final String APPANAME = "APPASERVER";
+    final String APPAUUID = "a54e6084-6be7-11eb-9439-0242ac130002";
+    final UUID mUUID = UUID.fromString(APPAUUID);
+    private Handler handler;
+    private final Executor executor;
 
-    BluetoothServiceHandler mBTServiceHandler;
-    BluetoothHandler mBluetoothHandler;
+    //BluetoothServiceHandler mBTServiceHandler;
+    // BluetoothHandler mBluetoothHandler;
+    BluetoothAdapter mBTAdapter;
+
+    Activity activity;
     public Context mContext; // Should be context from MainActivity
     boolean found = false; // Flagged true as soon as the first discoverable APP-A device is seen
 
-    public BTConnectionHelper(BluetoothServiceHandler bluetoothServiceHandler, Context context) {
-        mBTServiceHandler = bluetoothServiceHandler;
-        mBTServiceHandler.setMessageHandler(new MessageHandler(mMessageHandler));
-        mBluetoothHandler = bluetoothServiceHandler.getBTHandler();
+    public BTConnectionHelper(Context context) {
+        // Simple implementation of executor.
+        // Just run a thread
+        executor = new Executor() {
+            @Override
+            public void execute(Runnable command) {
+            }
+        };
+
+        // Context receiver register
+        // specifically for receiving bluetooth broadcast events.
         mContext = context;
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         mContext.registerReceiver(mReceiver, filter);
-    }
 
+        // Get the device's bluetooth adapter.
+        mBTAdapter = BluetoothAdapter.getDefaultAdapter();
+        // Enabled bluetooth if not enabled.
+        if(!mBTAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            // TODO:
+            // Implement bluetooth dialog when bluetooth is not enabled.
+        }
+    }
 
     // Acts as a listener for device discovery intents
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -47,7 +77,11 @@ public class BTConnectionHelper {
                     // for dev purposes,
                     // though we should get rid of this in production.
                     if(deviceName!= null && deviceAddr != null && (deviceName.equals("APP-A") || deviceName.equals("DSD TECH"))) {
-                        mBTServiceHandler.connectTo(deviceAddr);
+                        // CONNECT TO DEVICE HERE
+                        new AcceptThread().start();
+                        new ConnectThread(device).start();
+                        found = true;
+                        mBTAdapter.cancelDiscovery();
                     }
                 }
             }
@@ -55,42 +89,204 @@ public class BTConnectionHelper {
     };
 
     public void appaConnect() {
-        mBluetoothHandler.startDiscover();
+        found = false;
+        mBTAdapter.startDiscovery();
     }
 
-    private Handler mMessageHandler = new Handler() {
-        String LOG_TAG = BluetoothDialog.class.getSimpleName();
-        String mostRecentRead;
-        @Override
-        public void handleMessage(Message message)
-        {
-            switch (message.what) {
-                case 0: //send bytes to device
-                    break;
-                case 1: //read line from device
-                    String line = (String) message.obj;
-                    mostRecentRead = line;
-                    Log.e(LOG_TAG, mostRecentRead);
-                    break;
-                case 2: //not connected
+    private class ConnectThread extends Thread {
+        private final BluetoothSocket mmSocket;
+        private final BluetoothDevice mmDevice;
 
-                    break;
-                case 3: //connection failed
-                    Log.e(LOG_TAG, "Failed to establish connection to device.");
-                    break;
-                case 4: //connection lost
-                    Log.e(LOG_TAG, "Lost connection to device");
-                    break;
-                case 5: //connecting to device
-                    Log.e(LOG_TAG, "Establishing connection to device.");
-                    //btArrayAdapter.getView(lastconnectedbtindex, null, this);
-                    break;
-                case 6: //connection to device successful
-                    Log.e(LOG_TAG, "Connection to device successful");
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + message.what);
+        public ConnectThread(BluetoothDevice device) {
+            // Use a temporary object that is later assigned to mmSocket
+            // because mmSocket is final.
+            BluetoothSocket tmp = null;
+            mmDevice = device;
+            try {
+                // Get a BluetoothSocket to connect with the given BluetoothDevice.
+                // mmUUID is the app's UUID string, also used in the server code.
+                tmp = device.createRfcommSocketToServiceRecord(mUUID);
+            } catch (IOException e) {
+                Log.e(BLUETOOTHTAG, "Socket's create() method failed", e);
+            }
+            mmSocket = tmp;
+        }
+
+        public void run() {
+            // Cancel discovery because it otherwise slows down the connection.
+            mBTAdapter.cancelDiscovery();
+
+            try {
+                // Connect to the remote device through the socket. This call blocks
+                // until it succeeds or throws an exception.
+                mmSocket.connect();
+            } catch (IOException connectException) {
+                // Unable to connect; close the socket and return.
+                try {
+                    mmSocket.close();
+                } catch (IOException closeException) {
+                    Log.e(BLUETOOTHTAG, "Could not close the client socket", closeException);
+                }
+                return;
+            }
+
+            // The connection attempt succeeded. Perform work associated with
+            // the connection in a separate thread.
+            new ConnectedThread(mmSocket).start();
+        }
+
+        // Closes the client socket and causes the thread to finish.
+        public void cancel() {
+            try {
+                mmSocket.close();
+            } catch (IOException e) {
+                Log.e(BLUETOOTHTAG, "Could not close the client socket", e);
             }
         }
-    };
+    }
+    // Defines several constants used when transmitting messages between the
+    // service and the UI.
+    private interface MessageConstants {
+        public static final int MESSAGE_READ = 0;
+        public static final int MESSAGE_WRITE = 1;
+        public static final int MESSAGE_TOAST = 2;
+
+        // ... (Add other message types here as needed.)
+    }
+
+    private class ConnectedThread extends Thread {
+        private final BluetoothSocket mmSocket;
+        private final InputStream mmInStream;
+        private final OutputStream mmOutStream;
+        private byte[] mmBuffer; // mmBuffer store for the stream
+
+        public ConnectedThread(BluetoothSocket socket) {
+            mmSocket = socket;
+            InputStream tmpIn = null;
+            OutputStream tmpOut = null;
+
+            // Get the input and output streams; using temp objects because
+            // member streams are final.
+            try {
+                tmpIn = socket.getInputStream();
+            } catch (IOException e) {
+                Log.e(BLUETOOTHTAG, "Error occurred when creating input stream", e);
+            }
+            try {
+                tmpOut = socket.getOutputStream();
+            } catch (IOException e) {
+                Log.e(BLUETOOTHTAG, "Error occurred when creating output stream", e);
+            }
+
+            mmInStream = tmpIn;
+            mmOutStream = tmpOut;
+        }
+
+        public void run() {
+            mmBuffer = new byte[1024];
+            int numBytes; // bytes returned from read()
+
+            // Keep listening to the InputStream until an exception occurs.
+            while (true) {
+                try {
+                    // Read from the InputStream.
+                    numBytes = mmInStream.read(mmBuffer);
+                    // Send the obtained bytes to the UI activity.
+                    Message readMsg = handler.obtainMessage(
+                            MessageConstants.MESSAGE_READ, numBytes, -1,
+                            mmBuffer);
+                    readMsg.sendToTarget();
+                } catch (IOException e) {
+                    Log.d(BLUETOOTHTAG, "Input stream was disconnected", e);
+                    break;
+                }
+            }
+        }
+
+        // Call this from the main activity to send data to the remote device.
+        public void write(byte[] bytes) {
+            try {
+                mmOutStream.write(bytes);
+
+                // Share the sent message with the UI activity.
+                Message writtenMsg = handler.obtainMessage(
+                        MessageConstants.MESSAGE_WRITE, -1, -1, bytes);
+                writtenMsg.sendToTarget();
+            } catch (IOException e) {
+                Log.e(BLUETOOTHTAG, "Error occurred when sending data", e);
+
+                // Send a failure message back to the activity.
+                Message writeErrorMsg =
+                        handler.obtainMessage(MessageConstants.MESSAGE_TOAST);
+                Bundle bundle = new Bundle();
+                bundle.putString("toast",
+                        "Couldn't send data to the other device");
+                writeErrorMsg.setData(bundle);
+                handler.sendMessage(writeErrorMsg);
+            }
+        }
+
+        // Call this method from the main activity to shut down the connection.
+        public void cancel() {
+            try {
+                mmSocket.close();
+            } catch (IOException e) {
+                Log.e(BLUETOOTHTAG, "Could not close the connect socket", e);
+            }
+        }
+    }
+
+    private class AcceptThread extends Thread {
+        private final BluetoothServerSocket mmServerSocket;
+
+        public AcceptThread() {
+            // Use a temporary object that is later assigned to mmServerSocket
+            // because mmServerSocket is final.
+            BluetoothServerSocket tmp = null;
+            try {
+                // MY_UUID is the app's UUID string, also used by the client code.
+                tmp = mBTAdapter.listenUsingRfcommWithServiceRecord(APPANAME, mUUID);
+            } catch (IOException e) {
+                Log.e(BLUETOOTHTAG, "Socket's listen() method failed", e);
+            }
+            mmServerSocket = tmp;
+        }
+
+        public void run() {
+            BluetoothSocket socket = null;
+            // Keep listening until exception occurs or a socket is returned.
+            while (true) {
+                try {
+                    socket = mmServerSocket.accept();
+                } catch (IOException e) {
+                    Log.e(BLUETOOTHTAG, "Socket's accept() method failed", e);
+                    break;
+                }
+
+                if (socket != null) {
+                    // A connection was accepted. Perform work associated with
+                    // the connection in a separate thread.
+                    //manageMyConnectedSocket(socket);
+                    try {
+                        mmServerSocket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+            }
+        }
+
+        // Closes the connect socket and causes the thread to finish.
+        public void cancel() {
+            try {
+                mmServerSocket.close();
+            } catch (IOException e) {
+                Log.e(BLUETOOTHTAG, "Could not close the connect socket", e);
+            }
+        }
+    }
+
+
+
 }
