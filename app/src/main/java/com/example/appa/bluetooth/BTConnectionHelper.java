@@ -12,6 +12,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.ParcelUuid;
 import android.util.Log;
 import com.example.appa.bluetooth.message.MessageHandler;
 import java.io.IOException;
@@ -26,10 +27,9 @@ public class BTConnectionHelper {
     // Which handles the details of querying and conecting to Bluetooth.
     final String BLUETOOTHTAG = "Bluetooth Connection";
     final String APPANAME = "APPASERVER";
-    final String APPAUUID = "a54e6084-6be7-11eb-9439-0242ac130002";
+    final String APPAUUID = "00001101-0000-1000-8000-00805F9B34FB";
     final UUID mUUID = UUID.fromString(APPAUUID);
     private Handler handler;
-    private final Executor executor;
 
     //BluetoothServiceHandler mBTServiceHandler;
     // BluetoothHandler mBluetoothHandler;
@@ -40,19 +40,14 @@ public class BTConnectionHelper {
     boolean found = false; // Flagged true as soon as the first discoverable APP-A device is seen
 
     public BTConnectionHelper(Context context) {
-        // Simple implementation of executor.
-        // Just run a thread
-        executor = new Executor() {
-            @Override
-            public void execute(Runnable command) {
-            }
-        };
 
         // Context receiver register
         // specifically for receiving bluetooth broadcast events.
         mContext = context;
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         mContext.registerReceiver(mReceiver, filter);
+
+        handler = new Handler();
 
         // Get the device's bluetooth adapter.
         mBTAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -78,7 +73,6 @@ public class BTConnectionHelper {
                     // though we should get rid of this in production.
                     if(deviceName!= null && deviceAddr != null && (deviceName.equals("APP-A") || deviceName.equals("DSD TECH"))) {
                         // CONNECT TO DEVICE HERE
-                        new AcceptThread().start();
                         new ConnectThread(device).start();
                         found = true;
                         mBTAdapter.cancelDiscovery();
@@ -88,7 +82,8 @@ public class BTConnectionHelper {
         }
     };
 
-    public void appaConnect() {
+    public synchronized void appaConnect() {
+        //new AcceptThread().start();
         found = false;
         mBTAdapter.startDiscovery();
     }
@@ -98,6 +93,7 @@ public class BTConnectionHelper {
         private final BluetoothDevice mmDevice;
 
         public ConnectThread(BluetoothDevice device) {
+            mBTAdapter.cancelDiscovery();
             // Use a temporary object that is later assigned to mmSocket
             // because mmSocket is final.
             BluetoothSocket tmp = null;
@@ -235,7 +231,7 @@ public class BTConnectionHelper {
             }
         }
     }
-
+    /*
     private class AcceptThread extends Thread {
         private final BluetoothServerSocket mmServerSocket;
 
@@ -286,7 +282,5 @@ public class BTConnectionHelper {
             }
         }
     }
-
-
-
+    */
 }
