@@ -126,7 +126,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             if(dunit.equals("mi")) {
                 distanceText.setText(currentPlaceViewModel.getDistanceFeet() + " feet");
             }else{
-                distanceText.setText(currentPlaceViewModel.getDistance() + " meter");
+                distanceText.setText(Math.ceil(currentPlaceViewModel.getDistance() * 10) /10 + " meter");
             }
         } else {
             distanceText.setText("");
