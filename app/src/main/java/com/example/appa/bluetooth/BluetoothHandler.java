@@ -1,8 +1,10 @@
 package com.example.appa.bluetooth;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
 
 
 import com.example.appa.R;
@@ -13,10 +15,8 @@ import com.example.appa.bluetooth.threads.ConnectedDeviceThread;
 import java.util.Set;
 
 
-public class BluetoothHandler {
-
+public class BluetoothHandler extends Activity {
     private int status = 0; // 0 = no actions / 2 = connecting / 3 = connected
-
     //this is the bluetooth adapter
     private BluetoothAdapter btAdapter;
     //this handles messages
@@ -29,13 +29,23 @@ public class BluetoothHandler {
     //this attempts connection to a device in a thread
     AttemptConnectionThread attemptConnectionThread;
 
-    //this is a constructor
-    public BluetoothHandler(MessageHandler messageHandler, String address) {
-        //Bluetooth setup
+
+    // Instantiated with a messagehandler
+    public BluetoothHandler(MessageHandler messageHandler) {
+        // Get bluetoothadapter.
+        // Null means bluetooth is not supported.
         btAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        // Enabled bluetooth if not enabled.
+        if(!btAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            // TODO:
+            // Implement bluetooth dialog when bluetooth is not enabled.
+        }
+
         this.messageHandler = messageHandler;
-        this.address = address;
     }
+
     //this is a method
     public synchronized  void connect() {
         //these are a bunch of letters
