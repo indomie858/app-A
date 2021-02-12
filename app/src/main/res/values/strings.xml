@@ -8,7 +8,7 @@
     <string name="home_nav">Home</string>
     <string name="settings_nav">Settings</string>
     <string name="hardware_connection_nav">Connect</string>
-    <string name="tutorial_nav">Tutorial</string>
+    <string name="guide_nav">Guide</string>
     <string name="connect_appa">Connect app-A</string>
     <string name="directory">Directory</string>
     <string name="navigation">Navigation</string>
