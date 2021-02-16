@@ -14,4 +14,5 @@ public class MessageConstants {
     public static final int MESSAGE_CONNECTED = 3;
     public static final int MESSAGE_DISCONNECTED = 4;
     public static final int MESSAGE_CONNECTING = 5;
+    public static final int MESSAGE_LOST_CONNECTION = 6;
 }

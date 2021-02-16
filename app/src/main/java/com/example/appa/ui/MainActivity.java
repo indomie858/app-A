@@ -222,6 +222,13 @@ public class MainActivity extends AppCompatActivity {
             MainActivity mainActivity = mainActivityWeakReference.get();
             if (mainActivity != null) { // Null check ensures no null exceptions on mainActivity
                 switch (msg.what) {
+                    case (MessageConstants.MESSAGE_LOST_CONNECTION):
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+                        builder.setTitle("Disconnection Warning!").setMessage("Bluetooth device disconnected.");
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Connect");
+                        break;
                     case (MessageConstants.MESSAGE_CONNECTED):
                         Toast.makeText(mainActivity.getApplicationContext(), "Connection success.", LENGTH_LONG).show();
                         mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Disconnect");

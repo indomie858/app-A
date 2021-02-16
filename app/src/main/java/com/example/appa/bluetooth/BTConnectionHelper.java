@@ -161,6 +161,7 @@ public class BTConnectionHelper {
             connectedThread.start();
             Message msg = handler.obtainMessage(MessageConstants.MESSAGE_CONNECTED);
             msg.sendToTarget();
+            // If the run method ends, the thread ends here.
         }
 
         // Closes the client socket and causes the thread to finish.
@@ -205,16 +206,34 @@ public class BTConnectionHelper {
 
         public void run() {
             // Keep listening to the InputStream until an exception occurs.
-            while (true) {
-                try {
-                    // Read from the InputStream.
-                    String readLine = reader.readLine();
-                    // Send the obtained line to the handler.
-                    Message readMsg = handler.obtainMessage(MessageConstants.MESSAGE_TOAST, readLine);
-                    readMsg.sendToTarget();
-                } catch (IOException e) {
-                    Log.d(BLUETOOTHTAG, "Input stream was disconnected", e);
-                    break;
+            while(true) {
+                if (isConnected) {
+                    // Keep the running the thread as long as we want to maintain the connection.
+                    try {
+                        // Read from the InputStream.
+                        String readLine = reader.readLine();
+                        // Send the obtained line to the handler.
+                        Message readMsg = handler.obtainMessage(MessageConstants.MESSAGE_TOAST, readLine);
+                        readMsg.sendToTarget();
+                    } catch (IOException e) {
+                        Log.d(BLUETOOTHTAG, "Input stream was disconnected", e);
+                        Message msg = handler.obtainMessage(MessageConstants.MESSAGE_LOST_CONNECTION);
+                        isConnected = false;
+                        msg.sendToTarget();
+                        return;
+                    }
+                } else {
+                    // isConnected == false, we want to close the connection.
+                    // Close the socket and send a disconnection message.
+                    // End the thread by returning.
+                    try {
+                        mmSocket.close();
+                    } catch (IOException e) {
+                        Log.e(BLUETOOTHTAG, "Could not close the connect socket", e);
+                    }
+                    Message msg = handler.obtainMessage(MessageConstants.MESSAGE_DISCONNECTED);
+                    msg.sendToTarget();
+                    return;
                 }
             }
         }
@@ -243,13 +262,6 @@ public class BTConnectionHelper {
         }
         // Call this method from the main activity to shut down the connection.
         public void cancel() {
-            try {
-                mmSocket.close();
-            } catch (IOException e) {
-                Log.e(BLUETOOTHTAG, "Could not close the connect socket", e);
-            }
-            Message msg = handler.obtainMessage(MessageConstants.MESSAGE_DISCONNECTED);
-            msg.sendToTarget();
             isConnected = false;
         }
     }
