@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     // Initiate the bluetooth discovery
                     // and thready boiz™ that manage the connection
                     if (!btConnectionHelper.isConnected) {
+                        Toast.makeText(getApplicationContext(), "Discovering devices...", LENGTH_SHORT).show();
                         btConnectionHelper.appaConnect();
                     } else {
                         btConnectionHelper.terminateConnection();
@@ -221,17 +222,18 @@ public class MainActivity extends AppCompatActivity {
             MainActivity mainActivity = mainActivityWeakReference.get();
             switch(msg.what) {
                 case (MessageConstants.MESSAGE_CONNECTED):
+                    Toast.makeText(mainActivity.getApplicationContext(), "Connection success.", LENGTH_SHORT).show();
                     mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Disconnect");
                     break;
                 case (MessageConstants.MESSAGE_DISCONNECTED):
+                    Toast.makeText(mainActivity.getApplicationContext(), "Disconnected.", LENGTH_SHORT).show();
                     mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Connect");
-                    break;
-                case (MessageConstants.MESSAGE_READ):
                     break;
                 case (MessageConstants.MESSAGE_TOAST):
                     Toast.makeText(mainActivity.getApplicationContext(), (String) msg.obj, Toast.LENGTH_SHORT).show();
                     break;
-                case (MessageConstants.MESSAGE_WRITE):
+                case (MessageConstants.MESSAGE_CONNECTING):
+                    Toast.makeText(mainActivity.getApplicationContext(), "Connecting to device...", LENGTH_SHORT).show();
                     break;
             }
         }

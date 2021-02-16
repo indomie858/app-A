@@ -141,6 +141,8 @@ public class BTConnectionHelper {
             try {
                 // Connect to the remote device through the socket. This call blocks
                 // until it succeeds or throws an exception.
+                Message msg = handler.obtainMessage(MessageConstants.MESSAGE_CONNECTING);
+                msg.sendToTarget();
                 mmSocket.connect();
             } catch (IOException connectException) {
                 // Unable to connect; close the socket and return.
