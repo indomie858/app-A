@@ -220,21 +220,23 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             MainActivity mainActivity = mainActivityWeakReference.get();
-            switch(msg.what) {
-                case (MessageConstants.MESSAGE_CONNECTED):
-                    Toast.makeText(mainActivity.getApplicationContext(), "Connection success.", LENGTH_LONG).show();
-                    mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Disconnect");
-                    break;
-                case (MessageConstants.MESSAGE_DISCONNECTED):
-                    Toast.makeText(mainActivity.getApplicationContext(), "Disconnected.", LENGTH_LONG).show();
-                    mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Connect");
-                    break;
-                case (MessageConstants.MESSAGE_TOAST):
-                    Toast.makeText(mainActivity.getApplicationContext(), (String) msg.obj, Toast.LENGTH_SHORT).show();
-                    break;
-                case (MessageConstants.MESSAGE_CONNECTING):
-                    Toast.makeText(mainActivity.getApplicationContext(), "Connecting to device...", LENGTH_LONG).show();
-                    break;
+            if (mainActivity != null) { // Null check ensures no null exceptions on mainActivity
+                switch (msg.what) {
+                    case (MessageConstants.MESSAGE_CONNECTED):
+                        Toast.makeText(mainActivity.getApplicationContext(), "Connection success.", LENGTH_LONG).show();
+                        mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Disconnect");
+                        break;
+                    case (MessageConstants.MESSAGE_DISCONNECTED):
+                        Toast.makeText(mainActivity.getApplicationContext(), "Disconnected.", LENGTH_LONG).show();
+                        mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Connect");
+                        break;
+                    case (MessageConstants.MESSAGE_TOAST):
+                        Toast.makeText(mainActivity.getApplicationContext(), (String) msg.obj, Toast.LENGTH_SHORT).show();
+                        break;
+                    case (MessageConstants.MESSAGE_CONNECTING):
+                        Toast.makeText(mainActivity.getApplicationContext(), "Connecting to device...", LENGTH_LONG).show();
+                        break;
+                }
             }
         }
     }
