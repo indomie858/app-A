@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -49,9 +50,10 @@ public class MainActivity extends AppCompatActivity {
     final Fragment settingsFragment = new SettingsFragment();
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
+    BottomNavigationView bottomNavigationView;
 
     private BluetoothHandler bluetoothHandler; // The handler attached to the bluetooth connection
-    BTConnectionHelper btConnectionHelper;
+    private BTConnectionHelper btConnectionHelper;
 
     Fragment active = homeFragment;
     private int counter = 0;
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         firstLaunchTutorialFrag();
 
         // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener((item) -> {
             switch (item.getItemId()) {
                 case R.id.home_button:
@@ -101,9 +103,14 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.hardware_connection_button:
                     // Initiate the bluetooth discovery
                     // and thready boiz™ that manage the connection
-                    btConnectionHelper.appaConnect();
-                    backButtonFlag = true;
-                    counter = 0;
+                    if (!btConnectionHelper.isConnected) {
+                        Toast.makeText(getApplicationContext(), "Discovering devices...", LENGTH_SHORT).show();
+                        btConnectionHelper.appaConnect();
+                    } else {
+                        btConnectionHelper.terminateConnection();
+                    }
+                    //backButtonFlag = true;
+                    //counter = 0;
             }
             return false;
         });
@@ -198,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     public static class BluetoothHandler extends Handler {
         // Using a weak reference means the referenced class instance gets garbage collected
         // I did this because the lint was complaining
@@ -211,14 +220,30 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             MainActivity mainActivity = mainActivityWeakReference.get();
-            switch(msg.what) {
-                case (MessageConstants.MESSAGE_READ):
-                    break;
-                case (MessageConstants.MESSAGE_TOAST):
-                    Toast.makeText(mainActivity.getApplicationContext(), (String) msg.obj, Toast.LENGTH_SHORT).show();
-                    break;
-                case (MessageConstants.MESSAGE_WRITE):
-                    break;
+            if (mainActivity != null) { // Null check ensures no null exceptions on mainActivity
+                switch (msg.what) {
+                    case (MessageConstants.MESSAGE_LOST_CONNECTION):
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+                        builder.setTitle("Disconnection Warning!").setMessage("Bluetooth device disconnected.");
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Connect");
+                        break;
+                    case (MessageConstants.MESSAGE_CONNECTED):
+                        Toast.makeText(mainActivity.getApplicationContext(), "Connection success.", LENGTH_LONG).show();
+                        mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Disconnect");
+                        break;
+                    case (MessageConstants.MESSAGE_DISCONNECTED):
+                        Toast.makeText(mainActivity.getApplicationContext(), "Disconnected.", LENGTH_LONG).show();
+                        mainActivity.bottomNavigationView.getMenu().getItem(2).setTitle("Connect");
+                        break;
+                    case (MessageConstants.MESSAGE_TOAST):
+                        Toast.makeText(mainActivity.getApplicationContext(), (String) msg.obj, Toast.LENGTH_SHORT).show();
+                        break;
+                    case (MessageConstants.MESSAGE_CONNECTING):
+                        Toast.makeText(mainActivity.getApplicationContext(), "Connecting to device...", LENGTH_LONG).show();
+                        break;
+                }
             }
         }
     }
