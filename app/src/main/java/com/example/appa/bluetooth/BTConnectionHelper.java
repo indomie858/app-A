@@ -41,6 +41,9 @@ public class BTConnectionHelper {
     private ConnectedThread connectedThread;
     private ConnectThread connectThread;
 
+    // Check if a connection is active.
+    public boolean isConnected;
+
     // BluetoothServiceHandler mBTServiceHandler;
     // BluetoothHandler mBluetoothHandler;
     BluetoothAdapter mBTAdapter;
@@ -50,6 +53,8 @@ public class BTConnectionHelper {
     boolean found = false; // Flagged true as soon as the first discoverable APP-A device is seen
 
     public BTConnectionHelper(Context context, Handler handler) {
+
+        isConnected = false;
 
         // Context receiver register
         // specifically for receiving bluetooth broadcast events.
@@ -70,6 +75,8 @@ public class BTConnectionHelper {
             // TODO:
             // Implement bluetooth dialog when bluetooth is not enabled.
         }
+
+
     }
 
     // Acts as a listener for device discovery intents
@@ -104,6 +111,10 @@ public class BTConnectionHelper {
         mBTAdapter.startDiscovery();
     }
 
+    public synchronized void terminateConnection() {
+        connectedThread.cancel();
+    }
+
     private class ConnectThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final BluetoothDevice mDevice;
@@ -127,7 +138,6 @@ public class BTConnectionHelper {
         public void run() {
             // Cancel discovery because it otherwise slows down the connection.
             mBTAdapter.cancelDiscovery();
-
             try {
                 // Connect to the remote device through the socket. This call blocks
                 // until it succeeds or throws an exception.
@@ -144,7 +154,11 @@ public class BTConnectionHelper {
 
             // The connection attempt succeeded. Perform work associated with
             // the connection in a separate thread.
-            new ConnectedThread(mmSocket).start();
+            isConnected = true;
+            connectedThread = new ConnectedThread(mmSocket);
+            connectedThread.start();
+            Message msg = handler.obtainMessage(MessageConstants.MESSAGE_CONNECTED);
+            msg.sendToTarget();
         }
 
         // Closes the client socket and causes the thread to finish.
@@ -188,8 +202,6 @@ public class BTConnectionHelper {
         }
 
         public void run() {
-
-
             // Keep listening to the InputStream until an exception occurs.
             while (true) {
                 try {
@@ -234,6 +246,9 @@ public class BTConnectionHelper {
             } catch (IOException e) {
                 Log.e(BLUETOOTHTAG, "Could not close the connect socket", e);
             }
+            Message msg = handler.obtainMessage(MessageConstants.MESSAGE_DISCONNECTED);
+            msg.sendToTarget();
+            isConnected = false;
         }
     }
 }
