@@ -637,32 +637,38 @@ class DirectionsActivity :
             val durationRemaining = (routeProgress.durationRemaining / 60).roundToInt()    //total time remaining to reach destination
             val distanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination
 
-            val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress
-            val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress
+            val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress    //json
+            val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress     //json
 
             val currentStep = currentStepProgress?.step
-            val currentName = currentStep?.name()
-            val currentManeuver = currentStep?.maneuver()
+            val currentName = currentStep?.name()   //name of walkway
+            val currentManeuver = currentStep?.maneuver()   //json
             val currentInstruction = currentManeuver?.instruction()
 
-            val upcomingStep = currentLegProgress?.upcomingStep
-            val upcomingManeuver = upcomingStep?.maneuver()
+            val upcomingStep = currentLegProgress?.upcomingStep     //json
+            val upcomingManeuver = upcomingStep?.maneuver()     //json
             val upcomingManeuverType = upcomingManeuver?.type()
             val upcomingInstruction = upcomingManeuver?.instruction()
 
             val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
 
             val outputText = "$destinationName \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
+
+            Log.e(TAG, currentLegProgress.toString())
+
             navigationText.text = outputText
             //TODO do something about all this shit
             navigationData.add(outputText)
-            navigationData.add("dog1")
-            navigationData.add("dog")
-            navigationData.add("dog")
-            navigationData.add("dog")
-            navigationData.add("dog")
-            navigationData.add("dog")
-            navigationData.add("dog8")
+            navigationData.add("currentLegProgress " + currentLegProgress)
+            navigationData.add("currentStepProgress " + currentStepProgress)
+            navigationData.add("currentStep " +  currentStep)
+            navigationData.add("currentName " + currentName)
+            navigationData.add("currentManeuver " + currentManeuver)
+            navigationData.add("currentInstruction " + currentInstruction)
+            navigationData.add("upcomingStep " + upcomingStep)
+            navigationData.add("upcomingManeuver " + upcomingManeuver)
+            navigationData.add("upcomingManeuverType " + upcomingManeuverType)
+            navigationData.add("upcomingInstruction " + upcomingInstruction)
             navigationData.add("cat")
             navigationData.add("cat")
             navigationData.add("cat")
