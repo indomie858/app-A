@@ -114,6 +114,7 @@ class DirectionsActivity :
     private var ttsObject: TextToSpeech? = null
 
     var adapter: DirectionsAdapter? = null
+    private var navigationData: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,24 +156,13 @@ class DirectionsActivity :
             }
         }
         directionsActivity = this;
-        /*//TODO remove these animal names lol. it's a place holder for recyclerview
-        val animalNames: ArrayList<String> = ArrayList()
-        animalNames.add("Horse")
-        animalNames.add("Cow")
-        animalNames.add("Camel")
-        animalNames.add("Sheep")
-        animalNames.add("Goat")
-        animalNames.add("Bunny")
-        animalNames.add("Duck")
-        animalNames.add("Dog")
-        animalNames.add("Cat")
-        animalNames.add("YEET")
 
+        //TODO remove these animal names lol. it's a place holder for recyclerview
         val recyclerView: RecyclerView = findViewById(R.id.directionsRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = DirectionsAdapter(this, animalNames)
+        recyclerView.layoutManager = LinearLayoutManager(directionsActivity)
+        adapter = DirectionsAdapter(directionsActivity, navigationData)
         //adapter!!.setClickListener(this)
-        recyclerView.adapter = adapter*/
+        recyclerView.adapter = adapter
 
     }//end of onCreate function
 
@@ -711,6 +701,8 @@ class DirectionsActivity :
             //instructionView.updateDistanceWith(routeProgress)
             //summaryBottomSheet.update(routeProgress)
 
+            navigationText.visibility = GONE
+
             val durationRemaining = (routeProgress.durationRemaining / 60).roundToInt()    //total time remaining to reach destination
             val distanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination
 
@@ -732,25 +724,23 @@ class DirectionsActivity :
             val outputText = "$destinationName \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
             navigationText.text = outputText
 
-            //TODO remove these animal names lol. it's a place holder for recyclerview
-            val navigationData: ArrayList<String> = ArrayList()
             navigationData.add(outputText)
-            navigationData.add("Cow")
-            navigationData.add("Camel")
-            navigationData.add("Sheep")
-            navigationData.add("Goat")
-            navigationData.add("Bunny")
-            navigationData.add("Duck")
-            navigationData.add("Dog")
-            navigationData.add("Cat")
-            navigationData.add("YEET")
-
-            val recyclerView: RecyclerView = findViewById(R.id.directionsRecyclerView)
-            recyclerView.layoutManager = LinearLayoutManager(directionsActivity)
-            adapter = DirectionsAdapter(directionsActivity, navigationData)
-            //adapter!!.setClickListener(this)
-            recyclerView.adapter = adapter
-
+            navigationData.add("dog1")
+            navigationData.add("dog")
+            navigationData.add("dog")
+            navigationData.add("dog")
+            navigationData.add("dog")
+            navigationData.add("dog")
+            navigationData.add("dog8")
+            navigationData.add("cat")
+            navigationData.add("cat")
+            navigationData.add("cat")
+            navigationData.add("cat")
+            navigationData.add("wife")
+            navigationData.add("wife")
+            navigationData.add("wife")
+            navigationData.add("wife")
+            adapter?.setData(navigationData)
 
             /**
              * This if block contains actions that execute once the user has arrived at the destination (route is complete).
