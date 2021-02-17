@@ -11,7 +11,6 @@ import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.Animation
@@ -71,7 +70,7 @@ import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_directions.*
 import okhttp3.Cache
 import org.altbeacon.beacon.*
-import java.io.File
+import java.io.*
 import java.lang.ref.WeakReference
 import java.util.*
 import kotlin.math.roundToInt
@@ -142,6 +141,7 @@ class DirectionsActivity :
             registerRouteProgressObserver(routeProgressObserver)
             registerVoiceInstructionsObserver(voiceInstructionsObserver)
             registerOffRouteObserver(offRouteObserver)
+            registerBannerInstructionsObserver(bannerInstructionObserver)
         }
 
         initializeSpeechPlayer()
@@ -327,6 +327,7 @@ class DirectionsActivity :
         mapboxReplayer.finish()
         mapboxNavigation?.apply {
             unregisterTripSessionStateObserver(tripSessionStateObserver)
+            unregisterBannerInstructionsObserver(bannerInstructionObserver)
             unregisterRouteProgressObserver(routeProgressObserver)
             unregisterVoiceInstructionsObserver(voiceInstructionsObserver)
             unregisterOffRouteObserver(offRouteObserver)
@@ -700,6 +701,12 @@ class DirectionsActivity :
                     handler.postDelayed(task, 1000) //set task delay to reduce overlap between mapbox and beacons voice
                 }
             }
+        }
+    }
+
+    private val bannerInstructionObserver = object : BannerInstructionsObserver {
+        override fun onNewBannerInstructions(bannerInstructions: BannerInstructions){
+
         }
     }
 
