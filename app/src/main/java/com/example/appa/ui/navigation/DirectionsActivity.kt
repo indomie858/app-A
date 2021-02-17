@@ -154,8 +154,8 @@ class DirectionsActivity :
                 ttsObject?.setLanguage(Locale.UK)
             }
         }
-
-        //TODO remove these animal names lol. it's a place holder for recyclerview
+        directionsActivity = this;
+        /*//TODO remove these animal names lol. it's a place holder for recyclerview
         val animalNames: ArrayList<String> = ArrayList()
         animalNames.add("Horse")
         animalNames.add("Cow")
@@ -169,10 +169,10 @@ class DirectionsActivity :
         animalNames.add("YEET")
 
         val recyclerView: RecyclerView = findViewById(R.id.directionsRecyclerView)
-        recyclerView.setLayoutManager(LinearLayoutManager(this))
+        recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = DirectionsAdapter(this, animalNames)
         //adapter!!.setClickListener(this)
-        recyclerView.setAdapter(adapter)
+        recyclerView.adapter = adapter*/
 
     }//end of onCreate function
 
@@ -701,6 +701,7 @@ class DirectionsActivity :
     }
 
     private var isRouteComplete = false;    //flag to indicate route is complete
+    var directionsActivity: DirectionsActivity? = null
 
     //////////////////////////MAPBOX OBSERVERS/////////////////////////////////////////////////////////////////
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
@@ -728,8 +729,27 @@ class DirectionsActivity :
 
             val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
 
-            val outputText = "$destinationName \nETA: $durationRemaining minutes \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
+            val outputText = "$destinationName \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
             navigationText.text = outputText
+
+            //TODO remove these animal names lol. it's a place holder for recyclerview
+            val navigationData: ArrayList<String> = ArrayList()
+            navigationData.add(outputText)
+            navigationData.add("Cow")
+            navigationData.add("Camel")
+            navigationData.add("Sheep")
+            navigationData.add("Goat")
+            navigationData.add("Bunny")
+            navigationData.add("Duck")
+            navigationData.add("Dog")
+            navigationData.add("Cat")
+            navigationData.add("YEET")
+
+            val recyclerView: RecyclerView = findViewById(R.id.directionsRecyclerView)
+            recyclerView.layoutManager = LinearLayoutManager(directionsActivity)
+            adapter = DirectionsAdapter(directionsActivity, navigationData)
+            //adapter!!.setClickListener(this)
+            recyclerView.adapter = adapter
 
 
             /**
