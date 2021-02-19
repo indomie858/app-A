@@ -655,16 +655,14 @@ class DirectionsActivity :
             Log.e(TAG, currentLegProgress.toString())
 
             var steps = routeProgress.route.legs()?.get(0)?.steps()
-            var instructions = ArrayList<String?>()
-            if (steps != null) {
-                for (step in steps) {
-                    instructions.add(step.maneuver().instruction())
-                }
-            }
             navigationText.text = outputText
             //TODO do something about all this shit
             navigationData.add(outputText)
-            navigationData.add(instructions.toString())
+            if (steps != null) {
+                for (step in steps) {
+                    navigationData.add(step.maneuver().instruction().toString())
+                }
+            }
             adapter?.setData(navigationData)
 
             /**
