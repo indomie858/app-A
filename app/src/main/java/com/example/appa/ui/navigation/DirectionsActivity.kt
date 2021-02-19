@@ -33,10 +33,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.android.core.location.*
-import com.mapbox.api.directions.v5.models.BannerInstructions
-import com.mapbox.api.directions.v5.models.DirectionsRoute
-import com.mapbox.api.directions.v5.models.RouteOptions
-import com.mapbox.api.directions.v5.models.VoiceInstructions
+import com.mapbox.api.directions.v5.models.*
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
@@ -657,27 +654,17 @@ class DirectionsActivity :
 
             Log.e(TAG, currentLegProgress.toString())
 
+            var steps = routeProgress.route.legs()?.get(0)?.steps()
+            var instructions = ArrayList<String?>()
+            if (steps != null) {
+                for (step in steps) {
+                    instructions.add(step.maneuver().instruction())
+                }
+            }
             navigationText.text = outputText
             //TODO do something about all this shit
             navigationData.add(outputText)
-            navigationData.add("currentLegProgress " + currentLegProgress)
-            navigationData.add("currentStepProgress " + currentStepProgress)
-            navigationData.add("currentStep " +  currentStep)
-            navigationData.add("currentName " + currentName)
-            navigationData.add("currentManeuver " + currentManeuver)
-            navigationData.add("currentInstruction " + currentInstruction)
-            navigationData.add("upcomingStep " + upcomingStep)
-            navigationData.add("upcomingManeuver " + upcomingManeuver)
-            navigationData.add("upcomingManeuverType " + upcomingManeuverType)
-            navigationData.add("upcomingInstruction " + upcomingInstruction)
-            navigationData.add("cat")
-            navigationData.add("cat")
-            navigationData.add("cat")
-            navigationData.add("cat")
-            navigationData.add("wife")
-            navigationData.add("wife")
-            navigationData.add("wife")
-            navigationData.add("wife")
+            navigationData.add(instructions.toString())
             adapter?.setData(navigationData)
 
             /**
