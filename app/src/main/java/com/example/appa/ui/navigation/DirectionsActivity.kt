@@ -66,6 +66,7 @@ import com.mapbox.navigation.ui.voice.SpeechPlayerProvider
 import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_directions.*
 import okhttp3.Cache
+import okhttp3.internal.notify
 import org.altbeacon.beacon.*
 import java.io.*
 import java.lang.ref.WeakReference
@@ -657,6 +658,7 @@ class DirectionsActivity :
             var steps = routeProgress.route.legs()?.get(0)?.steps()
             navigationText.text = outputText
             //TODO do something about all this shit
+            navigationData.clear()
             navigationData.add(outputText)
             if (steps != null) {
                 for (step in steps) {
@@ -664,6 +666,7 @@ class DirectionsActivity :
                 }
             }
             adapter?.setData(navigationData)
+            adapter?.notifyDataSetChanged()
 
             /**
              * This if block contains actions that execute once the user has arrived at the destination (route is complete).
