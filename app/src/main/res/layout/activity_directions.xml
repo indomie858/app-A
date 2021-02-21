@@ -75,10 +75,11 @@
         android:visibility="visible"
         tools:visibility="visible">
 
+        <!-- this textview is hidden as soon as mapbox actually starts the route -->
         <TextView
             android:id="@+id/navigationText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/background_color"
             android:gravity="center"
             android:text="CALCULATING ROUTE..."
@@ -86,6 +87,7 @@
             android:textColor="@color/text_color"
             android:textSize="36sp" />
 
+        <!-- recycker view populates when mapbox starts -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/directionsRecyclerView"
             android:layout_width="match_parent"
@@ -101,6 +103,7 @@
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_app_bar" />
 
+    <!-- floating action button is used to repeat instruction -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_mapbox"
         android:layout_width="wrap_content"

@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 
+import org.w3c.dom.Text;
+
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -38,10 +41,16 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     //viewholder for destinationview
     class DestinationViewHolder extends RecyclerView.ViewHolder {
         TextView destinationTextView;
+        TextView distanceRemainingTextView;
+        TextView upcomingInstructionTextView;
+        TextView compassHeading;
 
         DestinationViewHolder(View itemView) {
             super(itemView);
             destinationTextView = itemView.findViewById(R.id.destination);
+            distanceRemainingTextView = itemView.findViewById(R.id.distanceRemaining);
+            upcomingInstructionTextView = itemView.findViewById(R.id.upcomingInstruction);
+            compassHeading = itemView.findViewById(R.id.compassHeading);
         }
     }
 
@@ -85,8 +94,13 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         //destination row
         if (holder.getItemViewType() == 0) {
             DestinationViewHolder destinationViewHolder = (DestinationViewHolder) holder;
-            String destination = mData.get(position);
-            destinationViewHolder.destinationTextView.setText(destination);
+            String outputText = mData.get(position);
+            //structure of outputText is "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
+            List<String> navigationInfo = Arrays.asList(outputText.split(","));
+            destinationViewHolder.destinationTextView.setText(navigationInfo.get(0));
+            destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " feet remaining");
+            destinationViewHolder.upcomingInstructionTextView.setText("In " + navigationInfo.get(2) + " feet, " + navigationInfo.get(3));
+            destinationViewHolder.compassHeading.setText("placeholder for compass");
         }
         //everything else lol
         else {

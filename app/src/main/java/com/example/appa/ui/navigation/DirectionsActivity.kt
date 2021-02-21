@@ -161,7 +161,6 @@ class DirectionsActivity :
         val recyclerView: RecyclerView = findViewById(R.id.directionsRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(directionsActivity)
         adapter = DirectionsAdapter(directionsActivity, navigationData)
-        //adapter!!.setClickListener(this)
         recyclerView.adapter = adapter
 
         //code for repeating voice instruction on floating action button click
@@ -170,10 +169,11 @@ class DirectionsActivity :
             try {
                 speechPlayer.play(voiceInstruction)
             } catch (e: Exception){
-                Log.e(TAG, "clicked repeat instruction before speech player was initialized")
+                Log.e(TAG, "clicked repeat instruction before speech player had any instructions")
             }
         }
-        
+
+        //put actions for bottom app bar buttons here
         bottomAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.exit -> {
@@ -664,21 +664,20 @@ class DirectionsActivity :
             val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress    //json
             val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress     //json
 
-            val currentStep = currentStepProgress?.step
+            val currentStep = currentStepProgress?.step     //arraylist or json?
             val currentName = currentStep?.name()   //name of walkway
-            val currentManeuver = currentStep?.maneuver()   //json
+            val currentManeuver = currentStep?.maneuver()   //arraylist or json?
             val currentInstruction = currentManeuver?.instruction()
 
-            val upcomingStep = currentLegProgress?.upcomingStep     //json
-            val upcomingManeuver = upcomingStep?.maneuver()     //json
+            val upcomingStep = currentLegProgress?.upcomingStep     //arraylist or json??
+            val upcomingManeuver = upcomingStep?.maneuver()     //arraylist or json?
             val upcomingManeuverType = upcomingManeuver?.type()
             val upcomingInstruction = upcomingManeuver?.instruction()
 
             val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
 
-            val outputText = "$destinationName \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
-
-            //Log.e(TAG, currentLegProgress.toString())
+            //val outputText = "$destinationName \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
+            val outputText = "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
 
             var steps = routeProgress.route.legs()?.get(0)?.steps()
             navigationText.text = outputText
