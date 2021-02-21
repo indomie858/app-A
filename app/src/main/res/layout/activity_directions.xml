@@ -67,7 +67,7 @@
     <LinearLayout
         android:id="@+id/navigationTextContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center|center_horizontal"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginBottom="?attr/actionBarSize"
@@ -75,10 +75,11 @@
         android:visibility="visible"
         tools:visibility="visible">
 
+        <!-- this textview is hidden as soon as mapbox actually starts the route -->
         <TextView
             android:id="@+id/navigationText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/background_color"
             android:gravity="center"
             android:text="CALCULATING ROUTE..."
@@ -86,6 +87,7 @@
             android:textColor="@color/text_color"
             android:textSize="36sp" />
 
+        <!-- recycker view populates when mapbox starts -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/directionsRecyclerView"
             android:layout_width="match_parent"
@@ -95,46 +97,19 @@
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        app:navigationIcon="@drawable/ic_menu_24dp"
-        app:menu="@menu/bottom_app_bar"
-        />
+        app:menu="@menu/bottom_app_bar" />
 
+    <!-- floating action button is used to repeat instruction -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_mapbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_home_24px"
+        android:title="Replay"
+        android:contentDescription="Replay maneuver instruction"
         app:layout_anchor="@id/bottomAppBar"
-        />
-
-
-
-    <!--<com.mapbox.navigation.ui.summary.SummaryBottomSheet
-        android:id="@+id/summaryBottomSheet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />-->
-
-    <!--<com.mapbox.navigation.ui.RecenterButton
-        android:id="@+id/recenterBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_margin="16dp"
-        android:visibility="invisible"
-        app:layout_anchor="@id/summaryBottomSheet"
-        app:layout_anchorGravity="top|right" />-->
-
-
-    <!--<com.mapbox.navigation.ui.instruction.InstructionView
-        android:id="@+id/instructionView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:visibility="invisible"
-        tools:visibility="visible" />-->
+        app:srcCompat="@drawable/ic_baseline_refresh_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

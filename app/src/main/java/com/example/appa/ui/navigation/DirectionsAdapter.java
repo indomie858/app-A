@@ -10,18 +10,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 
+import org.w3c.dom.Text;
+
+import java.util.Arrays;
 import java.util.List;
 
 
 /**
  * This is an adapter for the recyclerview used in DirectionsActivity. This uses the layout file
- * called directions_row.xml
+ * called destination_row.xml and maneuver_row.xml
  */
-public class DirectionsAdapter extends RecyclerView.Adapter<DirectionsAdapter.ViewHolder> {
+public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<String> mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    //private ItemClickListener mClickListener;
+
 
     // data is passed into the constructor
     DirectionsAdapter(Context context, List<String> data) {
@@ -29,55 +33,82 @@ public class DirectionsAdapter extends RecyclerView.Adapter<DirectionsAdapter.Vi
         this.mData = data;
     }
 
-    // inflates the row layout from xml when needed
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.directions_row, parent, false);
-        return new ViewHolder(view);
+    //set navigation data from directionsactivity
+    public void setData(List<String> data) {
+        this.mData = data;
     }
 
-    // binds the data to the TextView in each row
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+    //viewholder for destinationview
+    class DestinationViewHolder extends RecyclerView.ViewHolder {
+        TextView destinationTextView;
+        TextView distanceRemainingTextView;
+        TextView upcomingInstructionTextView;
+        TextView compassHeading;
+
+        DestinationViewHolder(View itemView) {
+            super(itemView);
+            destinationTextView = itemView.findViewById(R.id.destination);
+            distanceRemainingTextView = itemView.findViewById(R.id.distanceRemaining);
+            upcomingInstructionTextView = itemView.findViewById(R.id.upcomingInstruction);
+            compassHeading = itemView.findViewById(R.id.compassHeading);
+        }
     }
 
-    // total number of rows
+    //viewholder for maneverview
+    class ManeuverViewHolder extends RecyclerView.ViewHolder {
+        TextView maneuverTextView;
+
+        ManeuverViewHolder(View itemView) {
+            super(itemView);
+            maneuverTextView = itemView.findViewById(R.id.manueverInstruction);
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        // Just as an example, return 0 or 2 depending on position
+        // Note that unlike in ListView adapters, types don't have to be contiguous
+        return position;
+    }
+
     @Override
     public int getItemCount() {
         return mData.size();
     }
 
-
-    // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            myTextView = itemView.findViewById(R.id.manueverInstruction);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //destination row
+        if (viewType == 0) {
+            View destinationView = mInflater.inflate(R.layout.destination_row, parent, false);
+            return new DestinationViewHolder(destinationView);
+            //everything else lol
+        } else {
+            View maneuverView = mInflater.inflate(R.layout.maneuver_row, parent, false);
+            return new ManeuverViewHolder(maneuverView);
         }
     }
 
-    // convenience method for getting data at click position
-    String getItem(int id) {
-        return mData.get(id);
-    }
+    @Override
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+        //destination row
+        if (holder.getItemViewType() == 0) {
+            DestinationViewHolder destinationViewHolder = (DestinationViewHolder) holder;
+            String outputText = mData.get(position);
+            //NOTE: structure of outputText is "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
+            List<String> navigationInfo = Arrays.asList(outputText.split(","));
+            destinationViewHolder.destinationTextView.setText(navigationInfo.get(0));
+            destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " feet remaining");
+            destinationViewHolder.upcomingInstructionTextView.setText("In " + navigationInfo.get(2) + " feet, " + navigationInfo.get(3));
 
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
+            //TODO: compass heading currently has a placeholder. replace text once compass heading is implemented
+            destinationViewHolder.compassHeading.setText("placeholder for compass");
+        }
+        //everything else lol
+        else {
+            ManeuverViewHolder maneuverViewHolder = (ManeuverViewHolder) holder;
+            String maneuver = mData.get(position);
+            maneuverViewHolder.maneuverTextView.setText(maneuver);
+        }
     }
 }

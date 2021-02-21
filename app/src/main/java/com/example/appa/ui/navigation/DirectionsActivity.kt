@@ -33,6 +33,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.android.core.location.*
 import com.mapbox.api.directions.v5.models.BannerInstructions
 import com.mapbox.api.directions.v5.models.DirectionsRoute
@@ -73,6 +74,7 @@ import okhttp3.Cache
 import org.altbeacon.beacon.*
 import java.io.File
 import java.lang.ref.WeakReference
+import java.lang.reflect.Executable
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -93,7 +95,7 @@ class DirectionsActivity :
     private var currentPlaceID: Int? = null
     private var majorIdentifier: Identifier? = null
     private var minorIdentifier: Identifier? = null
-    private var fusedLocationClient:FusedLocationProviderClient? = null
+    private var fusedLocationClient: FusedLocationProviderClient? = null
 
     //Mapbox member variables
     private var mapboxNavigation: MapboxNavigation? = null
@@ -114,6 +116,7 @@ class DirectionsActivity :
     private var ttsObject: TextToSpeech? = null
 
     var adapter: DirectionsAdapter? = null
+    private var navigationData: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,7 +129,6 @@ class DirectionsActivity :
         //verifies that device has bluetooth capabilities
         verifyBluetooth()
 
-        initViews()
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
         viewModel = ViewModelProvider(this)[MapWithNavViewModel::class.java]
@@ -140,12 +142,11 @@ class DirectionsActivity :
         mapboxNavigation = MapboxNavigation(mapboxNavigationOptions).apply {
             registerTripSessionStateObserver(tripSessionStateObserver)
             registerRouteProgressObserver(routeProgressObserver)
-            registerBannerInstructionsObserver(bannerInstructionObserver)
             registerVoiceInstructionsObserver(voiceInstructionsObserver)
             registerOffRouteObserver(offRouteObserver)
+            registerBannerInstructionsObserver(bannerInstructionObserver)
         }
 
-        initListeners()
         initializeSpeechPlayer()
 
         //initialize TTS object... initTextChangeListener() is where tts.speak is called
@@ -154,29 +155,36 @@ class DirectionsActivity :
                 ttsObject?.setLanguage(Locale.UK)
             }
         }
+        directionsActivity = this;
 
-        //TODO remove these animal names lol. it's a place holder for recyclerview
-        val animalNames: ArrayList<String> = ArrayList()
-        animalNames.add("Horse")
-        animalNames.add("Cow")
-        animalNames.add("Camel")
-        animalNames.add("Sheep")
-        animalNames.add("Goat")
-        animalNames.add("Bunny")
-        animalNames.add("Duck")
-        animalNames.add("Dog")
-        animalNames.add("Cat")
-        animalNames.add("YEET")
-
+        //This recyclerview holds all navigation data in activity_direction.xml
         val recyclerView: RecyclerView = findViewById(R.id.directionsRecyclerView)
-        recyclerView.setLayoutManager(LinearLayoutManager(this))
-        adapter = DirectionsAdapter(this, animalNames)
-        //adapter!!.setClickListener(this)
-        recyclerView.setAdapter(adapter)
+        recyclerView.layoutManager = LinearLayoutManager(directionsActivity)
+        adapter = DirectionsAdapter(directionsActivity, navigationData)
+        recyclerView.adapter = adapter
 
+        //code for repeating voice instruction on floating action button click
+        val myFab: FloatingActionButton = findViewById(R.id.fab_mapbox)
+        myFab.setOnClickListener {
+            try {
+                speechPlayer.play(voiceInstruction)
+            } catch (e: Exception){
+                Log.e(TAG, "clicked repeat instruction before speech player had any instructions")
+            }
+        }
+
+        //put actions for bottom app bar buttons here
+        bottomAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.exit -> {
+                    // Handle search icon press
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
     }//end of onCreate function
-
-
 
     //////////////////////////////Beacon functions begin//////////////////////////////////////////
     //verifies that device is bluetooth capable and bluetooth is enabled
@@ -342,8 +350,8 @@ class DirectionsActivity :
         mapboxReplayer.finish()
         mapboxNavigation?.apply {
             unregisterTripSessionStateObserver(tripSessionStateObserver)
-            unregisterRouteProgressObserver(routeProgressObserver)
             unregisterBannerInstructionsObserver(bannerInstructionObserver)
+            unregisterRouteProgressObserver(routeProgressObserver)
             unregisterVoiceInstructionsObserver(voiceInstructionsObserver)
             unregisterOffRouteObserver(offRouteObserver)
             stopTripSession()
@@ -449,7 +457,7 @@ class DirectionsActivity :
                 // Use a simulated location if simulate route is enabled,
                 // or use a real route using user's GPS location otherwise.
                 // Call mapboxNaviation.requestRoutes to fetch the appropriate route.
-                if(!shouldSimulateRoute()) {
+                if (!shouldSimulateRoute()) {
                     fusedLocationClient!!.lastLocation
                             .addOnSuccessListener(this, OnSuccessListener<Location?> { location ->
                                 if (location != null) {
@@ -464,7 +472,7 @@ class DirectionsActivity :
                                     )
                                 }
                             })
-                            .addOnFailureListener{ _ ->
+                            .addOnFailureListener { _ ->
                                 Toast.makeText(this, "No Location Found", Toast.LENGTH_SHORT).show()
                             }
                 } else {
@@ -476,11 +484,12 @@ class DirectionsActivity :
                                     .accessToken(getString(R.string.mapbox_access_token))
                                     .coordinates(listOf(originPoint, destinationPoint))
                                     .build(), routesReqCallback
-                        )
-                    }
+                    )
                 }
             }
         }
+    }
+
     // Call this function to initiate navigation.
     @SuppressLint("MissingPermission")
     private fun beginNavigation() {
@@ -542,60 +551,12 @@ class DirectionsActivity :
         }
     }
 
-    @SuppressLint("MissingPermission")
-    private fun initListeners() {
-        //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
-        //summaryBehavior.addBottomSheetCallback(bottomSheetCallback)
-
-        /*recenterBtn.addOnClickListener {
-            recenterBtn.hide()
-            navigationMapboxMap?.resetPadding()
-            navigationMapboxMap
-                    ?.resetCameraPositionWith(NavigationCamera.NAVIGATION_TRACKING_MODE_GPS)
-        }*/
-
-        /*cancelBtn.setOnClickListener {
-            mapboxNavigation?.stopTripSession()
-            updateCameraOnNavigationStateChange(false)
-        }*/
-    }
-
-    private fun initViews() {
-        //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
-        //summaryBottomSheet.visibility = GONE
-        /*summaryBehavior = BottomSheetBehavior.from(summaryBottomSheet).apply {
-            isHideable = false
-        }*/
-        //recenterBtn.hide()
-        //routeOverviewButton = findViewById(R.id.routeOverviewBtn)
-        //routeOverviewButton.visibility = GONE
-        //cancelBtn = findViewById(R.id.cancelBtn)
-
-       /* instructionView .visibility = GONE
-
-        instructionSoundButton = instructionView.retrieveSoundButton().apply {
-            hide()
-            addOnClickListener {
-                val soundButton = instructionSoundButton
-                if (soundButton is SoundButton) {
-                    speechPlayer.isMuted = soundButton.toggleMute()
-                }
-            }
-        }*/
-    }
-
     private fun updateViews(tripSessionState: TripSessionState) {
         when (tripSessionState) {
             TripSessionState.STARTED -> {
-                //recenterBtn.hide()
-                //instructionView.visibility = VISIBLE
                 instructionSoundButton?.show()
-                //summaryBottomSheet.visibility = VISIBLE
             }
             TripSessionState.STOPPED -> {
-                //summaryBottomSheet.visibility = GONE
-                //recenterBtn.hide()
-                //instructionView.visibility = GONE
                 instructionSoundButton?.hide()
             }
         }
@@ -647,18 +608,6 @@ class DirectionsActivity :
         }
     }
 
-    //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
-    private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
-        override fun onStateChanged(bottomSheet: View, newState: Int) {
-            if (summaryBehavior.state == BottomSheetBehavior.STATE_HIDDEN) {
-                //recenterBtn.show()
-            }
-        }
-
-        override fun onSlide(bottomSheet: View, slideOffset: Float) {
-        }
-    }
-
     private val cameraTrackingChangedListener = object : OnCameraTrackingChangedListener {
         override fun onCameraTrackingChanged(currentMode: Int) {
             if (isLocationTracking(currentMode)) {
@@ -701,36 +650,46 @@ class DirectionsActivity :
     }
 
     private var isRouteComplete = false;    //flag to indicate route is complete
+    var directionsActivity: DirectionsActivity? = null
 
     //////////////////////////MAPBOX OBSERVERS/////////////////////////////////////////////////////////////////
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
     private val routeProgressObserver = object : RouteProgressObserver {
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
-            //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
-            //instructionView.updateDistanceWith(routeProgress)
-            //summaryBottomSheet.update(routeProgress)
+            navigationText.visibility = GONE
 
             val durationRemaining = (routeProgress.durationRemaining / 60).roundToInt()    //total time remaining to reach destination
             val distanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination
 
-            val currentLegProgress : RouteLegProgress? = routeProgress.currentLegProgress
-            val currentStepProgress : RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress
+            val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress    //json
+            val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress     //json
 
-            val currentStep = currentStepProgress?.step
-            val currentName = currentStep?.name()
-            val currentManeuver = currentStep?.maneuver()
+            val currentStep = currentStepProgress?.step     //arraylist or json?
+            val currentName = currentStep?.name()   //name of walkway
+            val currentManeuver = currentStep?.maneuver()   //arraylist or json?
             val currentInstruction = currentManeuver?.instruction()
 
-            val upcomingStep = currentLegProgress?.upcomingStep
-            val upcomingManeuver = upcomingStep?.maneuver()
+            val upcomingStep = currentLegProgress?.upcomingStep     //arraylist or json??
+            val upcomingManeuver = upcomingStep?.maneuver()     //arraylist or json?
             val upcomingManeuverType = upcomingManeuver?.type()
             val upcomingInstruction = upcomingManeuver?.instruction()
 
             val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
 
-            val outputText = "$destinationName \nETA: $durationRemaining minutes \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
-            navigationText.text = outputText
+            //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText
+            val outputText = "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
 
+            var steps = routeProgress.route.legs()?.get(0)?.steps()
+            navigationText.text = outputText
+            navigationData.clear()
+            navigationData.add(outputText)
+            if (steps != null) {
+                for (step in steps) {
+                    navigationData.add(step.maneuver().instruction().toString())
+                }
+            }
+            adapter?.setData(navigationData)
+            adapter?.notifyDataSetChanged()
 
             /**
              * This if block contains actions that execute once the user has arrived at the destination (route is complete).
@@ -740,9 +699,6 @@ class DirectionsActivity :
                     isRouteComplete = true
                     speechPlayer.isMuted = true
                     initTextChangeListener()
-                    //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
-                    //instructionView.visibility = GONE
-                    //summaryBottomSheet.visibility = GONE
                     navigationTextContainer.visibility = GONE
                     beaconTextContainer.visibility = VISIBLE
                     val anim: Animation = AnimationUtils.loadAnimation(this@DirectionsActivity, R.anim.slide_in_top)
@@ -760,16 +716,18 @@ class DirectionsActivity :
     }
 
     private val bannerInstructionObserver = object : BannerInstructionsObserver {
-        override fun onNewBannerInstructions(bannerInstructions: BannerInstructions) {
-            //TODO delete all unused mapbox ui components. Do it after custom UI is implemented and working correctly
-            //instructionView.updateBannerInstructionsWith(bannerInstructions)
+        override fun onNewBannerInstructions(bannerInstructions: BannerInstructions){
+
         }
     }
+
+    private var voiceInstruction: VoiceInstructions? = null;
 
     private val voiceInstructionsObserver = object : VoiceInstructionsObserver {
         override fun onNewVoiceInstructions(voiceInstructions: VoiceInstructions) {
             //remember to uncomment this for voice instructions during navigation
             speechPlayer.play(voiceInstructions)
+            voiceInstruction = voiceInstructions
         }
     }
 

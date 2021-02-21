@@ -67,14 +67,20 @@ public class BTConnectionHelper {
         // Used to relay information to other parts of the app.
         this.handler = handler;
 
-        // Get the device's bluetooth adapter.
-        mBTAdapter = BluetoothAdapter.getDefaultAdapter();
-        // Enabled bluetooth if not enabled.
-        if(!mBTAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            // TODO:
-            // Implement bluetooth dialog when bluetooth is not enabled.
+
+        try {
+            // Get the device's bluetooth adapter.
+            mBTAdapter = BluetoothAdapter.getDefaultAdapter();
+            // Enabled bluetooth if not enabled.
+            if(!mBTAdapter.isEnabled()) {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                // TODO:
+                // Implement bluetooth dialog when bluetooth is not enabled.
+            }
+        } catch (Exception e){
+            Log.e(BLUETOOTHTAG, "FUCKIN EMULATORS BRUH");
         }
+
 
 
     }
