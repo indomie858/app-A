@@ -676,12 +676,11 @@ class DirectionsActivity :
 
             val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
 
-            //val outputText = "$destinationName \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
+            //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText
             val outputText = "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
 
             var steps = routeProgress.route.legs()?.get(0)?.steps()
             navigationText.text = outputText
-            //TODO do something about all this shit
             navigationData.clear()
             navigationData.add(outputText)
             if (steps != null) {

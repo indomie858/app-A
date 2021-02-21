@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * This is an adapter for the recyclerview used in DirectionsActivity. This uses the layout file
- * called directions_row.xml
+ * called destination_row.xml and maneuver_row.xml
  */
 public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -95,11 +95,13 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if (holder.getItemViewType() == 0) {
             DestinationViewHolder destinationViewHolder = (DestinationViewHolder) holder;
             String outputText = mData.get(position);
-            //structure of outputText is "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
+            //NOTE: structure of outputText is "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
             List<String> navigationInfo = Arrays.asList(outputText.split(","));
             destinationViewHolder.destinationTextView.setText(navigationInfo.get(0));
             destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " feet remaining");
             destinationViewHolder.upcomingInstructionTextView.setText("In " + navigationInfo.get(2) + " feet, " + navigationInfo.get(3));
+
+            //TODO: compass heading currently has a placeholder. replace text once compass heading is implemented
             destinationViewHolder.compassHeading.setText("placeholder for compass");
         }
         //everything else lol
