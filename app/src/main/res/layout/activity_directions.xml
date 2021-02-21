@@ -67,7 +67,7 @@
     <LinearLayout
         android:id="@+id/navigationTextContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center|center_horizontal"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginBottom="?attr/actionBarSize"
@@ -95,18 +95,18 @@
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        app:navigationIcon="@drawable/ic_menu_24dp"
-        app:menu="@menu/bottom_app_bar"
-        />
+        app:menu="@menu/bottom_app_bar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_mapbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_home_24px"
+        android:title="Replay"
+        android:contentDescription="Replay maneuver instruction"
         app:layout_anchor="@id/bottomAppBar"
-        />
+        app:srcCompat="@drawable/ic_baseline_refresh_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

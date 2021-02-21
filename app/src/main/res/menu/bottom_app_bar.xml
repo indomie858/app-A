@@ -7,16 +7,16 @@
 
     <item
         android:id="@+id/exit"
-        android:icon="@drawable/mapbox_ic_exit_arrow_left"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
         android:title="Exit"
-        android:contentDescription="Exit nav"
+        android:contentDescription="End navigation session"
         app:showAsAction="ifRoom"
         />
 
-    <item
+    <!--<item
         android:id="@+id/more"
         android:title="More"
         android:contentDescription="More content"
         app:showAsAction="never"
-        />
+        />-->
 </menu>

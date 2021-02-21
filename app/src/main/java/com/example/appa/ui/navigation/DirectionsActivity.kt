@@ -11,6 +11,7 @@ import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.Animation
@@ -32,8 +33,12 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.android.core.location.*
-import com.mapbox.api.directions.v5.models.*
+import com.mapbox.api.directions.v5.models.BannerInstructions
+import com.mapbox.api.directions.v5.models.DirectionsRoute
+import com.mapbox.api.directions.v5.models.RouteOptions
+import com.mapbox.api.directions.v5.models.VoiceInstructions
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
@@ -66,10 +71,10 @@ import com.mapbox.navigation.ui.voice.SpeechPlayerProvider
 import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_directions.*
 import okhttp3.Cache
-import okhttp3.internal.notify
 import org.altbeacon.beacon.*
-import java.io.*
+import java.io.File
 import java.lang.ref.WeakReference
+import java.lang.reflect.Executable
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -158,8 +163,28 @@ class DirectionsActivity :
         adapter = DirectionsAdapter(directionsActivity, navigationData)
         //adapter!!.setClickListener(this)
         recyclerView.adapter = adapter
-    }//end of onCreate function
 
+        //code for repeating voice instruction on floating action button click
+        val myFab: FloatingActionButton = findViewById(R.id.fab_mapbox)
+        myFab.setOnClickListener {
+            try {
+                speechPlayer.play(voiceInstruction)
+            } catch (e: Exception){
+                Log.e(TAG, "clicked repeat instruction before speech player was initialized")
+            }
+        }
+        
+        bottomAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.exit -> {
+                    // Handle search icon press
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
+    }//end of onCreate function
 
     //////////////////////////////Beacon functions begin//////////////////////////////////////////
     //verifies that device is bluetooth capable and bluetooth is enabled
@@ -653,7 +678,7 @@ class DirectionsActivity :
 
             val outputText = "$destinationName \nTotal Distance Remaining: $distanceRemaining feet. \nIn $distanceToNextStep feet, $upcomingInstruction"
 
-            Log.e(TAG, currentLegProgress.toString())
+            //Log.e(TAG, currentLegProgress.toString())
 
             var steps = routeProgress.route.legs()?.get(0)?.steps()
             navigationText.text = outputText
@@ -698,10 +723,13 @@ class DirectionsActivity :
         }
     }
 
+    private var voiceInstruction: VoiceInstructions? = null;
+
     private val voiceInstructionsObserver = object : VoiceInstructionsObserver {
         override fun onNewVoiceInstructions(voiceInstructions: VoiceInstructions) {
             //remember to uncomment this for voice instructions during navigation
             speechPlayer.play(voiceInstructions)
+            voiceInstruction = voiceInstructions
         }
     }
 
