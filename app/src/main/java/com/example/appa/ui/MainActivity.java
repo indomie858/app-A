@@ -19,6 +19,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.appa.R;
 import com.example.appa.bluetooth.BTConnectionHelper;
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
     BottomNavigationView bottomNavigationView;
-
+    private FragmentTransaction fragmentTransaction;
     private BluetoothHandler bluetoothHandler; // The handler attached to the bluetooth connection
     private BTConnectionHelper btConnectionHelper;
 
@@ -85,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                     counter = 0;
                     break;
                 case R.id.settings_button:
-                    //fm.beginTransaction().hide(active).show(settingsFragment).commit();
                     fm.beginTransaction().replace(R.id.main_container, settingsFragment, "2").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = settingsFragment;
@@ -115,6 +117,18 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
         checkLocationPermissions();
+
+        //The code below is for the step by step tutorial for when TutorialFragment is open
+        Button tutorialNextButton = findViewById(R.id.tutorialNextButton);
+
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        tutorialNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
     }
 
 
