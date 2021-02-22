@@ -699,6 +699,7 @@ class DirectionsActivity :
 
             val cameraPosition = mapboxMap?.cameraPosition;
             Log.e(TAG, "CAMERA BEARING " + cameraPosition?.bearing.toString())
+            Log.e(TAG, "USER BEARING" + getBearingDegrees().toString())
 
 
             /**
@@ -818,12 +819,20 @@ class DirectionsActivity :
                 floatGeoMagnetic = event.values
                 SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic)
                 SensorManager.getOrientation(floatRotationMatrix, floatOrientation)
-                Log.e(TAG, "ORIENTATION: " + floatOrientation.get(0))
             }
 
             override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
         }
         sensorManager!!.registerListener(sensorEventListenerAccelerometer, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL)
         sensorManager!!.registerListener(sensorEventListenerMagneticField, sensorMagneticField, SensorManager.SENSOR_DELAY_NORMAL)
+    }
+
+
+    private fun getBearingDegrees(): Double {
+        var bearingDegrees: Double = floatOrientation.get(0) * 180.0 / Math.PI
+        if (bearingDegrees < 0) {
+            bearingDegrees = 360.0 - Math.abs(bearingDegrees)
+        }
+        return bearingDegrees;
     }
 }
