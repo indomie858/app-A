@@ -3,6 +3,10 @@ package com.example.appa.ui.navigation
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.location.Location
 import android.media.AudioManager
 import android.media.ToneGenerator
@@ -11,7 +15,6 @@ import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.Animation
@@ -74,7 +77,6 @@ import okhttp3.Cache
 import org.altbeacon.beacon.*
 import java.io.File
 import java.lang.ref.WeakReference
-import java.lang.reflect.Executable
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -120,8 +122,11 @@ class DirectionsActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_directions)
+
+        sensorSetup()
 
         // Instantiate location client to get user's current location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -456,7 +461,7 @@ class DirectionsActivity :
 
                 // Use a simulated location if simulate route is enabled,
                 // or use a real route using user's GPS location otherwise.
-                // Call mapboxNaviation.requestRoutes to fetch the appropriate route.
+                // Call mapboxNavigation.requestRoutes to fetch the appropriate route.
                 if (!shouldSimulateRoute()) {
                     fusedLocationClient!!.lastLocation
                             .addOnSuccessListener(this, OnSuccessListener<Location?> { location ->
@@ -655,6 +660,7 @@ class DirectionsActivity :
     //////////////////////////MAPBOX OBSERVERS/////////////////////////////////////////////////////////////////
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
     private val routeProgressObserver = object : RouteProgressObserver {
+        @SuppressLint("MissingPermission")
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
             navigationText.visibility = GONE
 
@@ -690,6 +696,10 @@ class DirectionsActivity :
             }
             adapter?.setData(navigationData)
             adapter?.notifyDataSetChanged()
+
+            val cameraPosition = mapboxMap?.cameraPosition;
+            Log.e(TAG, "CAMERA BEARING " + cameraPosition?.bearing.toString())
+
 
             /**
              * This if block contains actions that execute once the user has arrived at the destination (route is complete).
@@ -782,5 +792,38 @@ class DirectionsActivity :
             updateCameraOnNavigationStateChange(true)
             mapboxNavigation?.startTripSession()
         }
+    }
+
+    private var sensorManager: SensorManager? = null
+    private var sensorAccelerometer: Sensor? = null
+    private var sensorMagneticField: Sensor? = null
+    private var floatOrientation = FloatArray(3)
+    private var floatRotationMatrix = FloatArray(9)
+    private var floatGeoMagnetic = FloatArray(3)
+    private var floatGravity = FloatArray(3)
+    private fun sensorSetup() {
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorMagneticField = sensorManager!!.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+        sensorAccelerometer = sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        val sensorEventListenerAccelerometer: SensorEventListener = object : SensorEventListener {
+            override fun onSensorChanged(event: SensorEvent) {
+                floatGravity = event.values
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+        }
+
+        val sensorEventListenerMagneticField: SensorEventListener = object : SensorEventListener {
+            override fun onSensorChanged(event: SensorEvent) {
+                floatGeoMagnetic = event.values
+                SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic)
+                SensorManager.getOrientation(floatRotationMatrix, floatOrientation)
+                Log.e(TAG, "ORIENTATION: " + floatOrientation.get(0))
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+        }
+        sensorManager!!.registerListener(sensorEventListenerAccelerometer, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager!!.registerListener(sensorEventListenerMagneticField, sensorMagneticField, SensorManager.SENSOR_DELAY_NORMAL)
     }
 }
