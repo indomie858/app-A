@@ -685,10 +685,15 @@ class DirectionsActivity :
             //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText
             val outputText = "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
 
+            val cameraPosition = mapboxMap?.cameraPosition;
+            val cameraBearing = "CAMERA BEARING\n" + cameraPosition?.bearing.toString()
+            val userBearing = "USER BEARING\n" + getBearingDegrees()
             var steps = routeProgress.route.legs()?.get(0)?.steps()
             navigationText.text = outputText
             navigationData.clear()
             navigationData.add(outputText)
+            navigationData.add(cameraBearing)
+            navigationData.add(userBearing)
             if (steps != null) {
                 for (step in steps) {
                     navigationData.add(step.maneuver().instruction().toString())
@@ -696,10 +701,6 @@ class DirectionsActivity :
             }
             adapter?.setData(navigationData)
             adapter?.notifyDataSetChanged()
-
-            val cameraPosition = mapboxMap?.cameraPosition;
-            Log.e(TAG, "CAMERA BEARING " + cameraPosition?.bearing.toString())
-            Log.e(TAG, "USER BEARING" + getBearingDegrees().toString())
 
 
             /**
@@ -826,7 +827,6 @@ class DirectionsActivity :
         sensorManager!!.registerListener(sensorEventListenerAccelerometer, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL)
         sensorManager!!.registerListener(sensorEventListenerMagneticField, sensorMagneticField, SensorManager.SENSOR_DELAY_NORMAL)
     }
-
 
     private fun getBearingDegrees(): Double {
         var bearingDegrees: Double = floatOrientation.get(0) * 180.0 / Math.PI
