@@ -50,7 +50,7 @@ public class CompassActivity extends AppCompatActivity {
         sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorMagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
-        SensorEventListener sensorEventListenerAccelrometer = new SensorEventListener() {
+        SensorEventListener sensorEventListenerAccelerometer = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 floatGravity = event.values;
@@ -84,7 +84,7 @@ public class CompassActivity extends AppCompatActivity {
             public void onAccuracyChanged(Sensor sensor, int accuracy) {
             }
         };
-        sensorManager.registerListener(sensorEventListenerAccelrometer, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(sensorEventListenerAccelerometer, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(sensorEventListenerMagneticField, sensorMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
     }
 

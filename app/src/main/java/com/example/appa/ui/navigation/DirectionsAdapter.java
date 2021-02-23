@@ -50,7 +50,16 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             destinationTextView = itemView.findViewById(R.id.destination);
             distanceRemainingTextView = itemView.findViewById(R.id.distanceRemaining);
             upcomingInstructionTextView = itemView.findViewById(R.id.upcomingInstruction);
-            compassHeading = itemView.findViewById(R.id.compassHeading);
+        }
+    }
+
+    class CompassViewHolder extends RecyclerView.ViewHolder {
+        TextView compassUserView;
+        TextView compassDestinationView;
+        CompassViewHolder(View compassView) {
+            super(compassView);
+            compassUserView = compassView.findViewById(R.id.compass_user);
+            compassDestinationView = compassView.findViewById(R.id.compass_destination);
         }
     }
 
@@ -66,8 +75,7 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemViewType(int position) {
-        // Just as an example, return 0 or 2 depending on position
-        // Note that unlike in ListView adapters, types don't have to be contiguous
+        // Defines what the view should be at item position x.
         return position;
     }
 
@@ -83,6 +91,9 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             View destinationView = mInflater.inflate(R.layout.destination_row, parent, false);
             return new DestinationViewHolder(destinationView);
             //everything else lol
+        } else if (viewType == 1)  {
+            View compassView = mInflater.inflate(R.layout.compass_layout, parent, false);
+            return new CompassViewHolder(compassView);
         } else {
             View maneuverView = mInflater.inflate(R.layout.maneuver_row, parent, false);
             return new ManeuverViewHolder(maneuverView);
@@ -100,12 +111,13 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             destinationViewHolder.destinationTextView.setText(navigationInfo.get(0));
             destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " feet remaining");
             destinationViewHolder.upcomingInstructionTextView.setText("In " + navigationInfo.get(2) + " feet, " + navigationInfo.get(3));
-
-            //TODO: compass heading currently has a placeholder. replace text once compass heading is implemented
-            destinationViewHolder.compassHeading.setText("placeholder for compass");
+        } else if (holder.getItemViewType() == 1) { // Compass view
+            CompassViewHolder compassViewHolder = (CompassViewHolder) holder;
+            List<String> compassInfo = Arrays.asList(mData.get(position).split(","));
+            compassViewHolder.compassUserView.setText(compassInfo.get(0));
+            compassViewHolder.compassDestinationView.setText(compassInfo.get(1));
         }
-        //everything else lol
-        else {
+        else { //everything else lol
             ManeuverViewHolder maneuverViewHolder = (ManeuverViewHolder) holder;
             String maneuver = mData.get(position);
             maneuverViewHolder.maneuverTextView.setText(maneuver);

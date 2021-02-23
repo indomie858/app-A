@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appa.R
 import com.example.appa.beacons.BeaconReferenceApplication
 import com.example.appa.db.PlaceEntity
+import com.example.appa.viewmodel.CompassViewModel
 import com.example.appa.viewmodel.MapWithNavViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -119,6 +120,8 @@ class DirectionsActivity :
 
     var adapter: DirectionsAdapter? = null
     private var navigationData: ArrayList<String> = ArrayList()
+
+    private var compassViewModel: CompassViewModel = CompassViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -682,18 +685,19 @@ class DirectionsActivity :
 
             val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
 
-            //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText
+            //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText\
             val outputText = "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
 
-            val cameraPosition = mapboxMap?.cameraPosition;
-            val cameraBearing = "CAMERA BEARING\n" + cameraPosition?.bearing.toString()
-            val userBearing = "USER BEARING\n" + getBearingDegrees()
-            var steps = routeProgress.route.legs()?.get(0)?.steps()
+            compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
             navigationText.text = outputText
             navigationData.clear()
             navigationData.add(outputText)
-            navigationData.add(cameraBearing)
-            navigationData.add(userBearing)
+
+            val userBearing = compassViewModel.userBearing.toString()
+            val nextStepBearing = compassViewModel.nextStepBearing.toString()
+            navigationData.add("$userBearing,$nextStepBearing")
+
+            var steps = routeProgress.route.legs()?.get(0)?.steps()
             if (steps != null) {
                 for (step in steps) {
                     navigationData.add(step.maneuver().instruction().toString())
@@ -820,6 +824,7 @@ class DirectionsActivity :
                 floatGeoMagnetic = event.values
                 SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic)
                 SensorManager.getOrientation(floatRotationMatrix, floatOrientation)
+                compassViewModel.setUserOrientation(floatOrientation.get(0))
             }
 
             override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
