@@ -693,7 +693,7 @@ class DirectionsActivity :
             navigationData.clear()
             navigationData.add(outputText)
 
-            val userBearing = compassViewModel.userBearing.toString()
+            val userBearing = compassViewModel.userDirectionString
             val nextStepBearing = compassViewModel.nextStepBearing.toString()
             navigationData.add("$userBearing,$nextStepBearing")
 
@@ -825,6 +825,8 @@ class DirectionsActivity :
                 SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic)
                 SensorManager.getOrientation(floatRotationMatrix, floatOrientation)
                 compassViewModel.setUserOrientation(floatOrientation.get(0))
+                adapter?.notifyDataSetChanged()
+
             }
 
             override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
