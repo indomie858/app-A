@@ -34,6 +34,7 @@ import com.example.appa.bluetooth.MessageConstants;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
+import com.example.appa.ui.settings.ThemeEnum;
 import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             active = tutorialFragment;
             backButtonFlag = true;
             firstLaunchMessage();
+            ThemeSetting.Companion.setDefaultNightMode(ThemeEnum.MODE_NIGHT_YES);
         }else{
             fm.beginTransaction().replace(R.id.main_container, homeFragment, "1").commit();
         }
