@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -46,23 +44,23 @@ public class TutorialTextFragment extends Fragment {
         // switch case
         switch(variable3) {
             case 0:
-                return  inflater.inflate(R.layout.fragment_tutorial_text,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
             case 1:
-                return  inflater.inflate(R.layout.fragment_tutorial_text,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
             case 2:
                 return  inflater.inflate(R.layout.maneuver_row,container,false);
             case 3:
-                return  inflater.inflate(R.layout.fragment_tutorial_text,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
             case 4:
-                return  inflater.inflate(R.layout.fragment_tutorial_text,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
             case 5:
-                return  inflater.inflate(R.layout.fragment_tutorial_text,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
             default:
                 return null;
         }
 
         // Inflate the layout for this fragment
-        //  View view = inflater.inflate(R.layout.fragment_tutorial_text,container,false);
+        //  View view = inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
 
 
 
