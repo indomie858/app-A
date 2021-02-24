@@ -39,6 +39,8 @@ import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
 import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
+import com.example.appa.ui.tutorial.TutorialStep1;
+import com.example.appa.ui.tutorial.TutorialStep2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.ref.WeakReference;
@@ -54,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
     BottomNavigationView bottomNavigationView;
-    private FragmentTransaction fragmentTransaction;
     private BluetoothHandler bluetoothHandler; // The handler attached to the bluetooth connection
     private BTConnectionHelper btConnectionHelper;
 
@@ -118,17 +119,6 @@ public class MainActivity extends AppCompatActivity {
         });
         checkLocationPermissions();
 
-        //The code below is for the step by step tutorial for when TutorialFragment is open
-        Button tutorialNextButton = findViewById(R.id.tutorialNextButton);
-
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-
-        tutorialNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-            }
-        });
     }
 
 

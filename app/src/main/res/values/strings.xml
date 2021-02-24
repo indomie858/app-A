@@ -245,5 +245,10 @@ Yes, this app is designed to work at any given time. At night, the Arduino will 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="stepTwo">This is the second step</string>
 
+    <string name="tutorialStep1">Step1</string>
+    <string name="tutorialSteo2">Step2</string>
+    <string name="tutorialStep3">Step3</string>
+    <string name="tutorialStep4">Step4</string>
+
 </resources>
 

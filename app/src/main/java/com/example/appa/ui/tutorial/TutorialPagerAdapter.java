@@ -14,7 +14,7 @@ import com.example.appa.R;
 public class TutorialPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.app_manual, R.string.cane_setup};
+    private static final int[] TAB_TITLES = new int[]{R.string.app_manual, R.string.cane_setup, R.string.tutorialStep1,R.string.tutorialSteo2, R.string.tutorialStep3, R.string.tutorialStep4 };
     private final Context mContext;
 
     // Manages the views in the pager adapter
@@ -29,14 +29,7 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;
-        switch(position) {
-            case 0:
-                return new TutorialTextFragment();
-            case 1:
-                return new TutorialTextFragment2();
-            default:
-                return null;
-        }
+        return TutorialTextFragment.newInstance(position);
 
     }
     @Nullable
@@ -48,7 +41,7 @@ public class TutorialPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Total of 2 tabs.
-        return 2;
+        return TAB_TITLES.length;
     }
 
     @Override
