@@ -29,11 +29,11 @@ public class TutorialTextFragment extends Fragment {
     }
 
     public static TutorialTextFragment newInstance(int position) {
-        TutorialTextFragment variable1 = new TutorialTextFragment();
-        Bundle variable2 = new Bundle();
-        variable2.putInt("position", position);
-        variable1.setArguments(variable2);
-        return variable1;
+        TutorialTextFragment tutorialTextFragment = new TutorialTextFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", position);
+        tutorialTextFragment.setArguments(bundle);
+        return tutorialTextFragment;
     }
 
 
