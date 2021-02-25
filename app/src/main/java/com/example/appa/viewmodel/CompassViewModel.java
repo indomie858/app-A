@@ -8,10 +8,6 @@ public class CompassViewModel {
     private Double nextStepBearing;
     private Double userBearing;
 
-    List<String> directions = Arrays.asList("N", "NE", "E", "SE", "S", "SW", "W", "NW");
-    List<Integer> directionCodes = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7);
-    Integer directionCode;
-
     public void setNextStepBearing(Double nextStepBearing) {
         // This comes from the mapbox camera,
         // which will be given in degrees from 0 to 360.
@@ -52,7 +48,7 @@ public class CompassViewModel {
         String instruction = "";
         Double directionDiff = directionDiff(userBearing, nextStepBearing);
         if (directionDiff >= 5.8904862 || directionDiff <= 0.3926991) {
-             instruction = "Go straight.";
+             instruction = "Go straight. You are facing " + getUserCardinalDirection() + ".";
         } else if (directionDiff >= 5.1050881 && directionDiff < 5.8904862) {
             instruction = "Turn slight clockwise.";
         } else if (directionDiff > 0.3926991 && directionDiff <= 1.265364) {
@@ -67,32 +63,26 @@ public class CompassViewModel {
         return instruction;
     }
 
-    public String getNextStepDirectionString() {
-        return directions.get(getDirectionCode(nextStepBearing));
-    }
-    public String getUserDirectionString() {
-        return directions.get(getDirectionCode(userBearing));
+    public String getUserCardinalDirection() {
+        String direction = "";
+        if (userBearing > 5.8904862 || userBearing <= 0.3926991) {
+            direction = "North";
+        } else if (userBearing >= 5.1050881 && userBearing < 5.8904862) {
+            direction = "Northeast";
+        } else if (userBearing > 0.3926991 && userBearing <= 1.265364) {
+            direction = "Northwest";
+        } else if (userBearing > 1.265364 && userBearing <= 1.9634954) {
+            direction = "West";
+        } else if (userBearing > 4.3196899 && userBearing <= 5.8904862) {
+            direction = "East";
+        } else if (userBearing > 1.9634954 && userBearing <= 2.7488936) {
+            direction = "Southwest";
+        } else if (userBearing >= 2.7488936 && userBearing <= 3.5342917) {
+            direction = "South";
+        } else if (userBearing > 3.5342917 && userBearing <= 4.3196899) {
+            direction = "Southeast";
+        }
+        return direction;
     }
 
-    public Integer getDirectionCode(Double bearing) {
-        Integer directionCode = 0;
-        if (bearing >= 0 && bearing <= 45) {
-            directionCode = 0;
-        } else if (bearing > 45 && bearing <= 90) {
-            directionCode = 1;
-        } else if (bearing > 90 && bearing <= 135) {
-            directionCode = 2;
-        } else if (bearing > 135 && bearing <= 180) {
-            directionCode = 3;
-        } else if (bearing > 180 && bearing <= 225) {
-            directionCode = 4;
-        } else if (bearing > 225 && bearing <= 270) {
-            directionCode = 5;
-        } else if (bearing > 270 && bearing <= 315) {
-            directionCode = 6;
-        } else if (bearing > 315 && bearing <= 360) {
-            directionCode = 7;
-        }
-        return directionCode;
-    }
 }

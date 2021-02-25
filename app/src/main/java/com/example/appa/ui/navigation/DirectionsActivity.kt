@@ -177,7 +177,8 @@ class DirectionsActivity :
         val myFab: FloatingActionButton = findViewById(R.id.fab_mapbox)
         myFab.setOnClickListener {
             try {
-                speechPlayer.play(voiceInstruction)
+                var fullInstruction: String = compassViewModel.bearingInstruction + " " + voiceInstruction?.announcement()
+                ttsObject?.speak(fullInstruction, TextToSpeech.QUEUE_FLUSH, null)
             } catch (e: Exception){
                 Log.e(TAG, "clicked repeat instruction before speech player had any instructions")
             }
@@ -703,10 +704,7 @@ class DirectionsActivity :
             navigationData.add(outputText)
 
             compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
-            val userBearing = compassViewModel.userDirectionString
-            val nextStepBearing = compassViewModel.nextStepDirectionString
-            val bearingInstruction = compassViewModel.bearingInstruction
-            navigationData.add("$userBearing,$nextStepBearing,$bearingInstruction")
+            navigationData.add(compassViewModel.bearingInstruction)
 
             var steps = routeProgress.route.legs()?.get(0)?.steps()
             if (steps != null) {
