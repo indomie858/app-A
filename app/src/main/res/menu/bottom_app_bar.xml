@@ -6,6 +6,13 @@
     <!-- any other buttons? -->
 
     <item
+        android:id="@+id/bearing"
+        android:contentDescription="Get Compass Bearing"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Bearing"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/exit"
         android:icon="@drawable/ic_baseline_exit_to_app_24"
         android:title="Exit"

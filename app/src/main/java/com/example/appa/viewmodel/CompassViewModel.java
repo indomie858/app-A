@@ -52,7 +52,7 @@ public class CompassViewModel {
         String instruction = "";
         Double directionDiff = directionDiff(userBearing, nextStepBearing);
         if (directionDiff >= 5.8904862 || directionDiff <= 0.3926991) {
-             instruction = "Go straight";
+             instruction = "Go straight.";
         } else if (directionDiff >= 5.1050881 && directionDiff < 5.8904862) {
             instruction = "Turn slight clockwise.";
         } else if (directionDiff > 0.3926991 && directionDiff <= 1.265364) {

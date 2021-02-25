@@ -15,6 +15,7 @@ import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Menu
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.Animation
@@ -76,6 +77,7 @@ import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_directions.*
 import okhttp3.Cache
 import org.altbeacon.beacon.*
+import org.w3c.dom.Text
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.*
@@ -182,6 +184,7 @@ class DirectionsActivity :
         }
 
         //put actions for bottom app bar buttons here
+
         bottomAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.exit -> {
@@ -189,10 +192,16 @@ class DirectionsActivity :
                     finish()
                     true
                 }
+                R.id.bearing -> {
+                    // Read bearing instruction
+                    ttsObject?.speak(compassViewModel.bearingInstruction, TextToSpeech.QUEUE_FLUSH, null)
+                    true
+                }
                 else -> false
             }
         }
     }//end of onCreate function
+
 
     //////////////////////////////Beacon functions begin//////////////////////////////////////////
     //verifies that device is bluetooth capable and bluetooth is enabled

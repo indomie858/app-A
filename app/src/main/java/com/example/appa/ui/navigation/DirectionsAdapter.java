@@ -54,13 +54,9 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     class CompassViewHolder extends RecyclerView.ViewHolder {
-        TextView compassUserView;
-        TextView compassDestinationView;
         TextView compassInstructionView;
         CompassViewHolder(View compassView) {
             super(compassView);
-            compassUserView = compassView.findViewById(R.id.compass_user);
-            compassDestinationView = compassView.findViewById(R.id.compass_destination);
             compassInstructionView = compassView.findViewById(R.id.compass_instruction);
         }
     }
@@ -116,8 +112,6 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         } else if (holder.getItemViewType() == 1) { // Compass view
             CompassViewHolder compassViewHolder = (CompassViewHolder) holder;
             List<String> compassInfo = Arrays.asList(mData.get(position).split(","));
-            compassViewHolder.compassUserView.setText(compassInfo.get(0));
-            compassViewHolder.compassDestinationView.setText(compassInfo.get(1));
             compassViewHolder.compassInstructionView.setText(compassInfo.get(2));
         }
         else { //everything else lol
