@@ -16,7 +16,6 @@ public class CompassViewModel {
         // This comes from the mapbox camera,
         // which will be given in degrees from 0 to 360.
         // 0 = north, 90 = west, etc.
-
         // Transform to radians.
         nextStepBearing = nextStepBearing * Math.PI / 180.0;
         this.nextStepBearing = nextStepBearing;
@@ -32,25 +31,35 @@ public class CompassViewModel {
     }
 
     public Double directionDiff(Double bearing, Double target) {
-        // Stupid way of getting the radian angle of the
-        // bearing from the target in the range [0, 2pi]
-        // With the target set to 0.
-        Double retBearing = Math.asin(Math.sin(bearing - target));
+        // This function returns the clockwise angle
+        // from the target to the user's bearing.
+        Double retBearing;
+        if (bearing > target) {
+            // If bearing leads target,
+            // bearing - target gives
+            // clockwise angle from target to bearing.
+            retBearing = bearing - target;
+        } else {
+            // if target leads bearing on the unit circle,
+            // target - bearing gives counterclockwise angle
+            // 2pi - angle gives the clockwise angle from target to bearing.
+            retBearing = Math.PI * 2 - (target - bearing);
+        }
         return retBearing;
     }
 
     public String getBearingInstruction() {
         String instruction = "";
         Double directionDiff = directionDiff(userBearing, nextStepBearing);
-        if (directionDiff >= -0.3926991 && directionDiff <= 0.3926991) {
+        if (directionDiff >= 5.8904862 || directionDiff <= 0.3926991) {
              instruction = "Go straight";
-        } else if (directionDiff >= -1.265364 && directionDiff < -0.3926991) {
+        } else if (directionDiff >= 5.1050881 && directionDiff < 5.8904862) {
             instruction = "Turn slight clockwise.";
         } else if (directionDiff > 0.3926991 && directionDiff <= 1.265364) {
             instruction = "Turn slight counterclockwise.";
         } else if (directionDiff > 1.265364 && directionDiff <= 1.9634954) {
             instruction = "Face left.";
-        } else if (directionDiff >= -1.9634954 && directionDiff < -1.265364) {
+        } else if (directionDiff >= 4.3196899 && directionDiff < 5.8904862) {
             instruction = "Face right.";
         } else {
             instruction = "Turn around.";
@@ -58,20 +67,6 @@ public class CompassViewModel {
         return instruction;
     }
 
-/*
-    public String getBearingInstruction() {
-        int nextStepCode = getDirectionCode(nextStepBearing);
-        int userBearingCode = getDirectionCode(userBearing);
-        int diff = 4 - nextStepCode;
-        if (nextStepCode == userBearingCode) {
-            return "Go straight.";
-        }  else if ((userBearingCode + diff) % 8 > ((nextStepCode + diff) % 8)) {
-            return "Turn counterclockwise.";
-        } else {
-            return "Turn clockwise.";
-        }
-    }
-*/
     public String getNextStepDirectionString() {
         return directions.get(getDirectionCode(nextStepBearing));
     }
