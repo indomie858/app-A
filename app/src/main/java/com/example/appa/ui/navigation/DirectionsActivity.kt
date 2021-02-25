@@ -177,8 +177,12 @@ class DirectionsActivity :
         val myFab: FloatingActionButton = findViewById(R.id.fab_mapbox)
         myFab.setOnClickListener {
             try {
-                var fullInstruction: String = compassViewModel.bearingInstruction + " " + voiceInstruction?.announcement()
-                ttsObject?.speak(fullInstruction, TextToSpeech.QUEUE_FLUSH, null)
+                if(!compassViewModel.isOriented) {
+                    ttsObject?.speak(compassViewModel.bearingInstruction, TextToSpeech.QUEUE_FLUSH, null)
+                } else {
+                    var fullInstruction: String = compassViewModel.bearingInstruction + " " + voiceInstruction?.announcement()
+                    ttsObject?.speak(fullInstruction, TextToSpeech.QUEUE_FLUSH, null)
+                }
             } catch (e: Exception){
                 Log.e(TAG, "clicked repeat instruction before speech player had any instructions")
             }
