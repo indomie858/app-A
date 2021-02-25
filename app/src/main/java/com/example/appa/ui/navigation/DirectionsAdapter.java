@@ -108,7 +108,7 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             List<String> navigationInfo = Arrays.asList(outputText.split(","));
             destinationViewHolder.destinationTextView.setText(navigationInfo.get(0));
             destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " feet remaining");
-            destinationViewHolder.upcomingInstructionTextView.setText("In " + navigationInfo.get(2) + " feet, " + navigationInfo.get(3));
+            destinationViewHolder.upcomingInstructionTextView.setText(navigationInfo.get(2) + " In " + navigationInfo.get(3) + " feet, " + navigationInfo.get(4));
         } else if (holder.getItemViewType() == 1) { // Compass view
             CompassViewHolder compassViewHolder = (CompassViewHolder) holder;
             String compassDirection = mData.get(position);

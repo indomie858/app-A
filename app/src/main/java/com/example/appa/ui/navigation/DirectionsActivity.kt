@@ -695,20 +695,19 @@ class DirectionsActivity :
             val upcomingStep = currentLegProgress?.upcomingStep     //arraylist or json??
             val upcomingManeuver = upcomingStep?.maneuver()     //arraylist or json?
             val upcomingManeuverType = upcomingManeuver?.type()
-            val upcomingInstruction = upcomingManeuver?.instruction()
 
+            compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
+            val bearingInstruction = compassViewModel.bearingInstruction
+            val upcomingInstruction =  upcomingManeuver?.instruction()
             val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
 
             //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText\
-            val outputText = "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
-
+            val outputText = "$destinationName,$distanceRemaining,$bearingInstruction,$distanceToNextStep,$upcomingInstruction"
 
             navigationText.text = outputText
             navigationData.clear()
             navigationData.add(outputText)
-
-            compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
-            navigationData.add(compassViewModel.bearingInstruction)
+            navigationData.add(bearingInstruction)
 
             var steps = routeProgress.route.legs()?.get(0)?.steps()
             if (steps != null) {
