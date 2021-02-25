@@ -693,7 +693,7 @@ class DirectionsActivity :
             navigationData.clear()
             navigationData.add(outputText)
 
-            compassViewModel.nextStepBearing = mapboxMap?.cameraPosition?.bearing
+            compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
             val userBearing = compassViewModel.userDirectionString
             val nextStepBearing = compassViewModel.nextStepDirectionString
             val bearingInstruction = compassViewModel.bearingInstruction
