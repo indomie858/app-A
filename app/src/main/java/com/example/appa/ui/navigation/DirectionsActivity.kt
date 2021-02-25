@@ -688,14 +688,16 @@ class DirectionsActivity :
             //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText\
             val outputText = "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
 
-            compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
+
             navigationText.text = outputText
             navigationData.clear()
             navigationData.add(outputText)
 
+            compassViewModel.nextStepBearing = mapboxMap?.cameraPosition?.bearing
             val userBearing = compassViewModel.userDirectionString
-            val nextStepBearing = compassViewModel.nextStepBearing.toString()
-            navigationData.add("$userBearing,$nextStepBearing")
+            val nextStepBearing = compassViewModel.nextStepDirectionString
+            val bearingInstruction = compassViewModel.bearingInstruction
+            navigationData.add("$userBearing,$nextStepBearing,$bearingInstruction")
 
             var steps = routeProgress.route.legs()?.get(0)?.steps()
             if (steps != null) {
