@@ -8,12 +8,12 @@
         android:id="@+id/tutorialContentHeaderStep2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/tutorialContentHeaderStep2" />
 
     <TextView
         android:id="@+id/tutorialContentBodyStep2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/tutorialContentBodyStep2" />
 
 </LinearLayout>

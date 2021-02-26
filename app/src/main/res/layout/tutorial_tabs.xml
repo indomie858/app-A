@@ -21,18 +21,12 @@
         app:tabMode="scrollable"
         app:tabTextColor="#000">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItemCane"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TAB1" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItemGuide"
+            android:id="@+id/tabItemSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="TAB2" />
-
+            android:text="Tab1" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabItemStep1"
@@ -57,6 +51,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TAB6" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItemStep5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tab6"
+            tools:text="TAB7" />
 
     </com.google.android.material.tabs.TabLayout>
 
