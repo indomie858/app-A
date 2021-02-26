@@ -53,14 +53,6 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
-    class CompassViewHolder extends RecyclerView.ViewHolder {
-        TextView compassInstructionView;
-        CompassViewHolder(View compassView) {
-            super(compassView);
-            compassInstructionView = compassView.findViewById(R.id.compass_instruction);
-        }
-    }
-
     //viewholder for maneverview
     class ManeuverViewHolder extends RecyclerView.ViewHolder {
         TextView maneuverTextView;
@@ -89,10 +81,7 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             View destinationView = mInflater.inflate(R.layout.destination_row, parent, false);
             return new DestinationViewHolder(destinationView);
             //everything else lol
-        } else if (viewType == 1)  {
-            View compassView = mInflater.inflate(R.layout.compass_layout, parent, false);
-            return new CompassViewHolder(compassView);
-        } else {
+        }  else {
             View maneuverView = mInflater.inflate(R.layout.maneuver_row, parent, false);
             return new ManeuverViewHolder(maneuverView);
         }
@@ -109,10 +98,6 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             destinationViewHolder.destinationTextView.setText(navigationInfo.get(0));
             destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " feet remaining");
             destinationViewHolder.upcomingInstructionTextView.setText(navigationInfo.get(2) + " In " + navigationInfo.get(3) + " feet, " + navigationInfo.get(4));
-        } else if (holder.getItemViewType() == 1) { // Compass view
-            CompassViewHolder compassViewHolder = (CompassViewHolder) holder;
-            String compassDirection = mData.get(position);
-            compassViewHolder.compassInstructionView.setText(compassDirection);
         }
         else { //everything else lol
             ManeuverViewHolder maneuverViewHolder = (ManeuverViewHolder) holder;

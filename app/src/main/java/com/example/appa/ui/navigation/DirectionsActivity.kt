@@ -197,11 +197,6 @@ class DirectionsActivity :
                     finish()
                     true
                 }
-                R.id.bearing -> {
-                    // Read bearing instruction
-                    ttsObject?.speak(compassViewModel.bearingInstruction, TextToSpeech.QUEUE_FLUSH, null)
-                    true
-                }
                 else -> false
             }
         }
@@ -707,7 +702,6 @@ class DirectionsActivity :
             navigationText.text = outputText
             navigationData.clear()
             navigationData.add(outputText)
-            navigationData.add(bearingInstruction)
 
             var steps = routeProgress.route.legs()?.get(0)?.steps()
             if (steps != null) {
