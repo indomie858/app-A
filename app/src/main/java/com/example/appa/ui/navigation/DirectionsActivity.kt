@@ -3,6 +3,7 @@ package com.example.appa.ui.navigation
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.SharedPreferences
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -15,7 +16,6 @@ import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.Menu
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.Animation
@@ -40,6 +40,7 @@ import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.android.core.location.*
+import com.mapbox.api.directions.v5.DirectionsCriteria
 import com.mapbox.api.directions.v5.models.*
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
@@ -74,7 +75,6 @@ import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_directions.*
 import okhttp3.Cache
 import org.altbeacon.beacon.*
-import org.w3c.dom.Text
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.*
@@ -468,6 +468,7 @@ class DirectionsActivity :
                 val destinationLat = currentPlace!!.latitude.toDouble()
                 val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
 
+                val distanceUnitSetting = getDistanceUnitSetting()
                 // Use a simulated location if simulate route is enabled,
                 // or use a real route using user's GPS location otherwise.
                 // Call mapboxNavigation.requestRoutes to fetch the appropriate route.
@@ -476,14 +477,31 @@ class DirectionsActivity :
                             .addOnSuccessListener(this, OnSuccessListener<Location?> { location ->
                                 if (location != null) {
                                     val originPoint = Point.fromLngLat(location.longitude, location.latitude)
-                                    mapboxNavigation?.requestRoutes(
-                                            RouteOptions.builder()
-                                                    .applyDefaultParams()
-                                                    .profile(RouteUrl.PROFILE_WALKING)
-                                                    .accessToken(getString(R.string.mapbox_access_token))
-                                                    .coordinates(listOf(originPoint, destinationPoint))
-                                                    .build(), routesReqCallback
-                                    )
+                                    if (distanceUnitSetting.equals("mi")) {
+                                        mapboxNavigation?.requestRoutes(
+                                                RouteOptions.builder()
+                                                        .applyDefaultParams()
+                                                        .profile(RouteUrl.PROFILE_WALKING)
+                                                        .accessToken(getString(R.string.mapbox_access_token))
+                                                        .coordinates(listOf(originPoint, destinationPoint))
+                                                        .steps(true)
+                                                        .voiceInstructions(true)
+                                                        .voiceUnits(DirectionsCriteria.IMPERIAL)
+                                                        .build(), routesReqCallback
+                                        )
+                                    } else {
+                                        mapboxNavigation?.requestRoutes(
+                                                RouteOptions.builder()
+                                                        .applyDefaultParams()
+                                                        .profile(RouteUrl.PROFILE_WALKING)
+                                                        .accessToken(getString(R.string.mapbox_access_token))
+                                                        .coordinates(listOf(originPoint, destinationPoint))
+                                                        .steps(true)
+                                                        .voiceInstructions(true)
+                                                        .voiceUnits(DirectionsCriteria.METRIC)
+                                                        .build(), routesReqCallback
+                                        )
+                                    }
                                 }
                             })
                             .addOnFailureListener { _ ->
@@ -666,6 +684,12 @@ class DirectionsActivity :
     private var isRouteComplete = false;    //flag to indicate route is complete
     var directionsActivity: DirectionsActivity? = null
 
+    private fun getDistanceUnitSetting(): String? {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val dunit: String? = prefs.getString("dunit", "")
+        return dunit
+    }
+
     //////////////////////////MAPBOX OBSERVERS/////////////////////////////////////////////////////////////////
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
     private val routeProgressObserver = object : RouteProgressObserver {
@@ -673,29 +697,29 @@ class DirectionsActivity :
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
             navigationText.visibility = GONE
 
-            val durationRemaining = (routeProgress.durationRemaining / 60).roundToInt()    //total time remaining to reach destination
-            val distanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination
-
             val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress    //json
             val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress     //json
-
-            val currentStep = currentStepProgress?.step     //arraylist or json?
-            val currentName = currentStep?.name()   //name of walkway
-            val currentManeuver = currentStep?.maneuver()   //arraylist or json?
-            val currentInstruction = currentManeuver?.instruction()
             val currentStepIndex = currentStepProgress?.stepIndex
-
             val upcomingStep = currentLegProgress?.upcomingStep     //arraylist or json??
             val upcomingManeuver = upcomingStep?.maneuver()     //arraylist or json?
-            val upcomingManeuverType = upcomingManeuver?.type()
 
             compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
             val bearingInstruction = compassViewModel.bearingInstruction
             val upcomingInstruction =  upcomingManeuver?.instruction()
-            val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
+
+            //this block checks if distance unit setting is set to imperial or metric
+            var distanceToNextStep: Int
+            var totalDistanceRemaining: Int
+            if (getDistanceUnitSetting().equals("mi")) {
+                totalDistanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination in imperial units
+                distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()!!  //distance remaining in current step
+            } else {
+                totalDistanceRemaining = routeProgress.distanceRemaining.roundToInt()
+                distanceToNextStep = currentStepProgress?.distanceRemaining?.roundToInt()!!
+            }
 
             //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText\
-            val outputText = "$destinationName,$distanceRemaining,$bearingInstruction,$distanceToNextStep,$upcomingInstruction"
+            val outputText = "$destinationName,$totalDistanceRemaining,$bearingInstruction,$distanceToNextStep,$upcomingInstruction"
 
             var steps: MutableList<LegStep>? = routeProgress.route.legs()?.get(0)?.steps()
             navigationText.text = outputText
