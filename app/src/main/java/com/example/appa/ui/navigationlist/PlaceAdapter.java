@@ -3,6 +3,8 @@ package com.example.appa.ui.navigationlist;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.speech.tts.TextToSpeech;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
@@ -37,6 +40,13 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     private List<PlaceViewModel> mPlaceViewModels = new ArrayList<>();
     private TextToSpeech mTTSObject;
     private AccessibilityManager am;
+    Context mContext;
+
+    public void setLocations(Location location) {
+        for (PlaceViewModel placeViewModel: mPlaceViewModels) {
+            placeViewModel.setLocationAndDistance(location);
+        }
+    }
 
     public void setPlaces(List<PlaceViewModel> places) {
         this.mPlaceViewModels.clear();
@@ -60,8 +70,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public PlaceAdapter() {
-        super();
+    public PlaceAdapter(Context context) {
+        this.mContext = context;
 
     }
 
@@ -109,9 +119,15 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         });
 
         // Set distance text with unit
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        String dunit = prefs.getString("dunit","");
         TextView distanceText = holder.binding.getRoot().findViewById(R.id.place_distance);
         if (currentPlaceViewModel.getDistance() != null) {
-            distanceText.setText(currentPlaceViewModel.getDistanceFeet() + " feet");
+            if(dunit.equals("mi")) {
+                distanceText.setText(currentPlaceViewModel.getDistanceFeet() + " feet");
+            }else{
+                distanceText.setText(Math.ceil(currentPlaceViewModel.getDistance() * 10) /10 + " meter");
+            }
         } else {
             distanceText.setText("");
         }

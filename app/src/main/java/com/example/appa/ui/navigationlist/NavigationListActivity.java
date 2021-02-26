@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.SearchView;
 
@@ -22,7 +23,9 @@ import com.example.appa.db.PlaceEntity;
 import com.example.appa.viewmodel.NavigationListViewModel;
 import com.example.appa.viewmodel.PlaceViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.CancellationTokenSource;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,6 +45,12 @@ public class NavigationListActivity extends AppCompatActivity {
     private String queryName = "";
     private String queryCategory = "";
     private Context context;
+
+    // Locationrequest is a data object that contains options for fusedlocationclient
+    LocationRequest mLocationRequest;
+    // LocationCallback is used for receiving API notifications
+    LocationCallback mLocationCallback;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +58,7 @@ public class NavigationListActivity extends AppCompatActivity {
         setContentView(R.layout.nav_list_activity);
 
         // Adapter for the RecyclerView UI
-        placeAdapter = new PlaceAdapter();
+        placeAdapter = new PlaceAdapter(context);
 
         // Set the listener for the searchview,
         // to respond to text updates.
@@ -86,22 +95,35 @@ public class NavigationListActivity extends AppCompatActivity {
         // Instantiate location client to get user's current location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        // Use getLastLocation to populate location data before the viewmodel is created.
+        getLastLocation();
+
+        // LocationRequest contains settings regarding location intervals
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(1000);
+        mLocationRequest.setFastestInterval(2000);
+
+        // Instantiate location callback.
+        // The location provider invokes LocationCallback.onLocationResult().
+        // This is where we define the location update logic.
+        mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                currentLocation = locationResult.getLastLocation();
+                placeAdapter.setLocations(currentLocation);
+                placeAdapter.notifyDataSetChanged();
+            }
+        };
+        // Begin location updates (on create and on resume)
+        startLocationUpdates();
         // Update list from intent
         setViewModelFromIntent();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setViewModelFromIntent();
-    }
-
     @SuppressLint("MissingPermission")
-    private void setViewModelFromIntent() {
-        // Sets data from a given intent
-        Intent intent  = getIntent();
-        queryCategory = intent.getStringExtra("QueryCategory");
-
+    private void getLastLocation() {
         // Update the location on resume
         Activity currentActivity = this;
         fusedLocationClient.getLastLocation()
@@ -110,18 +132,43 @@ public class NavigationListActivity extends AppCompatActivity {
                     public void onSuccess(Location location) {
                         if (location != null) {
                             currentLocation = location;
-                        } else {
-                            CancellationTokenSource cts = new CancellationTokenSource();
-                            fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, cts.getToken())
-                                    .addOnSuccessListener(currentActivity, new OnSuccessListener<Location>() {
-                                        @Override
-                                        public void onSuccess(Location location) {
-                                            currentLocation = location;
-                                        }
-                                    });
                         }
                     }
                 });
+    }
+
+    @SuppressLint("MissingPermission")
+    private void startLocationUpdates() {
+        fusedLocationClient.requestLocationUpdates(
+                mLocationRequest,
+                mLocationCallback,
+                Looper.getMainLooper());
+    }
+    private void stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(mLocationCallback);
+    }
+
+    // Stop location updates when the activity is no longer in view
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopLocationUpdates();
+    }
+
+
+    @SuppressLint("MissingPermission")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Update the location on resume
+        startLocationUpdates();
+        setViewModelFromIntent();
+    }
+
+    private void setViewModelFromIntent() {
+        // Sets data from a given intent
+        Intent intent  = getIntent();
+        queryCategory = intent.getStringExtra("QueryCategory");
         UpdateRVAdapter();
     }
 

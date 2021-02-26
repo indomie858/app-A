@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:mapbox="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <com.mapbox.mapboxsdk.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        mapbox:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        mapbox:layout_constraintEnd_toEndOf="parent"
-        mapbox:layout_constraintStart_toStartOf="parent"
-        mapbox:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        mapbox:mapbox_cameraTargetLat="34.239994"
-        mapbox:mapbox_cameraTargetLng="-118.526618"
-        mapbox:mapbox_cameraZoom="14" />
 
+    <!-- Top app bar -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -32,26 +22,94 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/design_default_color_on_secondary"
+
             app:menu="@menu/top_app_bar"
             app:title="@string/navigation"
-            app:titleTextColor="@color/white"/>
-
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+    <!-- Mapbox Mapview. Note: Must be invisible, cannot be set to "gone" -->
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        app:mapbox_uiAttribution="false"
+        app:mapbox_uiCompass="true"
+        app:mapbox_uiCompassGravity="bottom|left"
+        app:mapbox_uiCompassMarginBottom="110dp"
+        app:mapbox_uiCompassMarginLeft="16dp"
+        app:mapbox_uiLogo="false" />
+
+    <!-- Container for beacon prompts -->
+    <LinearLayout
+        android:id="@+id/beaconTextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center|center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/beaconText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/background_color"
+            android:gravity="center"
+            android:text="LOCATING ENTRANCE."
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="36sp" />
+    </LinearLayout>
+
+    <!-- Container for mapbox navigation information. Maneuver instructions, ETA, distance remaining -->
+    <LinearLayout
+        android:id="@+id/navigationTextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|center_horizontal"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:visibility="visible">
+
+        <!-- this textview is hidden as soon as mapbox actually starts the route -->
+        <TextView
+            android:id="@+id/navigationText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_color"
+            android:gravity="center"
+            android:text="CALCULATING ROUTE..."
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="36sp" />
+
+        <!-- recycker view populates when mapbox starts -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/directionsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_app_bar" />
 
-        app:itemIconTint="@drawable/nav_item_color_state"
-        app:itemRippleColor="@android:color/primary_text_dark"
-        app:itemTextColor="@drawable/nav_item_color_state"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- floating action button is used to repeat instruction -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_mapbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Replay"
+        android:contentDescription="Replay maneuver instruction"
+        app:layout_anchor="@id/bottomAppBar"
+        app:srcCompat="@drawable/ic_baseline_refresh_24" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

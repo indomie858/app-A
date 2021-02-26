@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">appa</string>
     <string name="action_settings">Settings</string>
-    <string name="mapbox_access_token">pk.eyJ1IjoiaW5kb21pZTg1OCIsImEiOiJja2lyeWwyN2owMWRjMnVudnFvb3Q1NnZpIn0.mdJ9iG6cS5hzcf3FwXTt_A</string>
+    <string name="mapbox_access_token">sk.eyJ1IjoiaW5kb21pZTg1OCIsImEiOiJja2lyeW4xaDkwNjFzMnFybzltYzRtdzN2In0.SBQy500J1D7HLmM_VJjayg</string>
     <string name="location_list">List of locations</string>
 
     <!-- Navigation-->
     <string name="home_nav">Home</string>
     <string name="settings_nav">Settings</string>
     <string name="hardware_connection_nav">Connect</string>
-    <string name="tutorial_nav">Tutorial</string>
+    <string name="guide_nav">Guide</string>
     <string name="connect_appa">Connect app-A</string>
     <string name="directory">Directory</string>
     <string name="navigation">Navigation</string>
