@@ -44,17 +44,17 @@ public class TutorialTextFragment extends Fragment {
         // switch case
         switch(variable3) {
             case 0:
-                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_overview,container,false);
             case 1:
-                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_step1,container,false);
             case 2:
-                return  inflater.inflate(R.layout.maneuver_row,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_step2,container,false);
             case 3:
-                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_step3,container,false);
             case 4:
-                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_step4,container,false);
             case 5:
-                return  inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
+                return  inflater.inflate(R.layout.tutorial_content_step5,container,false);
             default:
                 return null;
         }
