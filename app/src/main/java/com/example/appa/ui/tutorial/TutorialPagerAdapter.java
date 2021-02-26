@@ -14,7 +14,7 @@ import com.example.appa.R;
 public class TutorialPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{ R.string.tutorialTabNameCaneSetup, R.string.tutorialTabNameAppManual, R.string.tutorialTabNameStep1,R.string.tutorialTabNameStep2, R.string.tutorialTabNameStep3, R.string.tutorialTabNameStep4};
+    private static final int[] TAB_TITLES = new int[]{ R.string.tutorialTabNameOverview, R.string.tutorialTabNameStep1,R.string.tutorialTabNameStep2, R.string.tutorialTabNameStep3, R.string.tutorialTabNameStep4,R.string.tutorialTabNameStep5};
     private final Context mContext;
 
     // Manages the views in the pager adapter
