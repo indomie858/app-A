@@ -59,14 +59,6 @@ public class TutorialTextFragment extends Fragment {
                 return null;
         }
 
-        // Inflate the layout for this fragment
-        //  View view = inflater.inflate(R.layout.tutorial_content_app_manual,container,false);
-
-
-
-        // return view;
     }
-
-
 
 }

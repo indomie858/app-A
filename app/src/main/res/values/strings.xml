@@ -228,10 +228,10 @@
         <!-- Tutorial Content HEADER -->
     <string name="tutorialContentHeaderOverview">Overview</string>
     <string name="tutorialContentHeaderStep1">Step 1: Turn on bluetooth</string>
-    <string name="tutorialContentHeaderStep2">Step 2: Choose a category</string>
-    <string name="tutorialContentHeaderStep3">Step 3: Choose a location</string>
-    <string name="tutorialContentHeaderStep4">Step 4: Follow the navigation</string>
-    <string name="tutorialContentHeaderStep5">Step 5: Reach the destination</string>
+    <string name="tutorialContentHeaderStep2">Step 2: Choose Category</string>
+    <string name="tutorialContentHeaderStep3">Step 3: Choose Location</string>
+    <string name="tutorialContentHeaderStep4">Step 4: Follow Navigation</string>
+    <string name="tutorialContentHeaderStep5">Step 5: Destination</string>
         <!-- Tutorial Content BODY -->
     <string name="tutorialContentBodyOverview">This user manual has been specifically designed to guide you
 through the functions and features of our mobile application.\n\n
