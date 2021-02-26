@@ -58,7 +58,7 @@ public class NavigationListActivity extends AppCompatActivity {
         setContentView(R.layout.nav_list_activity);
 
         // Adapter for the RecyclerView UI
-        placeAdapter = new PlaceAdapter();
+        placeAdapter = new PlaceAdapter(context);
 
         // Set the listener for the searchview,
         // to respond to text updates.
