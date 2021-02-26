@@ -215,27 +215,32 @@
 
     <string name="row_item_xml_icon_description">Home categories icon</string>
 
-    <!-- Tutorial -->
+    <!-- Tutorial Section -->
     <string name="resource_links">Resource Links</string>
     <string name="tutorial_header">APP-A MANUAL</string>
-    <string name="tutorialTabNameAppManual">App Manual</string>
-    <string name="tutorialTabNameCaneSetup">Cane Setup</string>
+        <!-- Tutorial Tab names -->
+    <string name="tutorialTabNameOverview">Overview</string>
     <string name="tutorialTabNameStep1">Step1</string>
     <string name="tutorialTabNameStep2">Step2</string>
     <string name="tutorialTabNameStep3">Step3</string>
     <string name="tutorialTabNameStep4">Step4</string>
-    <string name="tutorial_body">This user manual has been specifically designed to guide you
+    <string name="tutorialTabNameStep5">Step5</string>
+        <!-- Tutorial Content HEADER -->
+    <string name="tutorialContentHeaderOverview">Overview</string>
+    <string name="tutorialContentHeaderStep1">Step 1: Turn on bluetooth</string>
+    <string name="tutorialContentHeaderStep2">Step 2: Choose a category</string>
+    <string name="tutorialContentHeaderStep3">Step 3: Choose a location</string>
+    <string name="tutorialContentHeaderStep4">Step 4: Follow the navigation</string>
+    <string name="tutorialContentHeaderStep5">Step 5: Reach the destination</string>
+        <!-- Tutorial Content BODY -->
+    <string name="tutorialContentBodyOverview">This user manual has been specifically designed to guide you
 through the functions and features of our mobile application.\n\n
 Home button = opens the home page.\n
 Settings button = opens the settings page.\n
 Connect button = lets the user know if the Arduino is connected to the app.\n
 Tutorial button = opens the tutorial page.\n\n
 How to use the app?\n
-Step 1: Turn on the Arduino and GPS locator. The app will not work without the GPS locator.\n
-Step 2: Choose one of the following categories on the home screen page.\n
-Step 3: Pick a destination that is listed.\n
-Step 4: Once a destination has been picked, wait for the app to calculate the destination.\n
-Step 5: Follow the directions to get to the destination.\n\n
+Please follow the step-by-step procedure by clicking on the tabs.\n\n
 How will I know when I have arrived at my destination?\n
 This app is designed to alert the user known when they are near the destination. When the user is within proximity, the app will notify the user by vibrating and beeping.\n\n
 How will I know if the Arduino is connected?\n
@@ -244,7 +249,11 @@ Is the app accessible?\n
 Yes, this app is designed to adhere to accessibility guidelines.\n\n
 Can this app be use anytime during the day?\n
 Yes, this app is designed to work at any given time. At night, the Arduino will flash a light to notify anyone around of your presence.</string>
-
+    <string name="tutorialContentBodyStep1">Step 1 body</string>
+    <string name="tutorialContentBodyStep2">Step 2 body</string>
+    <string name="tutorialContentBodyStep3">Step 3 body</string>
+    <string name="tutorialContentBodyStep4">Step 4 body</string>
+    <string name="tutorialContentBodyStep5">Step 5 body</string>
 
 </resources>
 
