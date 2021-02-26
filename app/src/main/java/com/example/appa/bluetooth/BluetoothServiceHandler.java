@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import com.example.appa.bluetooth.message.MessageHandler;
 
 import java.util.Set;
-
+/*
 public class BluetoothServiceHandler extends Service {
     public static final String LOG_TAG = BluetoothServiceHandler.class.getName();
 
@@ -63,3 +63,4 @@ public class BluetoothServiceHandler extends Service {
         bluetoothHandler.getConnectedDeviceThread().writeToDevice(bytes);
     }
 }
+*/
