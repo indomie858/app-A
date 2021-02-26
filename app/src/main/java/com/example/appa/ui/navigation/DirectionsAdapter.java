@@ -1,11 +1,13 @@
 package com.example.appa.ui.navigation;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
@@ -24,12 +26,14 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private List<String> mData;
     private LayoutInflater mInflater;
+    private Context mContext;
     //private ItemClickListener mClickListener;
 
 
     // data is passed into the constructor
     DirectionsAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
+        this.mContext = context;
         this.mData = data;
     }
 
@@ -96,13 +100,27 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             //NOTE: structure of outputText is "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
             List<String> navigationInfo = Arrays.asList(outputText.split(","));
             destinationViewHolder.destinationTextView.setText(navigationInfo.get(0));
-            destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " feet remaining");
-            destinationViewHolder.upcomingInstructionTextView.setText(navigationInfo.get(2) + " In " + navigationInfo.get(3) + " feet, " + navigationInfo.get(4));
+
+            //this checks if distance setting is set to imperial or metric
+            if (getDistanceUnitSetting().equals("mi")){
+                destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " feet remaining");
+                destinationViewHolder.upcomingInstructionTextView.setText(navigationInfo.get(2) + " In " + navigationInfo.get(3) + " feet, " + navigationInfo.get(4));
+            } else {
+                destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " meters remaining");
+                destinationViewHolder.upcomingInstructionTextView.setText(navigationInfo.get(2) + " In " + navigationInfo.get(3) + " meters, " + navigationInfo.get(4));
+            }
         }
         else { //everything else lol
             ManeuverViewHolder maneuverViewHolder = (ManeuverViewHolder) holder;
             String maneuver = mData.get(position);
             maneuverViewHolder.maneuverTextView.setText(maneuver);
         }
+    }
+
+    private String getDistanceUnitSetting(){
+        // Set distance text with unit
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        String dunit = prefs.getString("dunit","");
+        return dunit;
     }
 }
