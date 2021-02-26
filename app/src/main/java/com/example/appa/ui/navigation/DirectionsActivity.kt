@@ -681,15 +681,12 @@ class DirectionsActivity :
             navigationText.text = outputText
             navigationData.clear()
             navigationData.add(outputText)
+
             if (steps != null) {
                 val endStepIndex = steps.size - 1;
                 for (i in currentStepIndex!!..endStepIndex) {
                     navigationData.add(steps[i].maneuver().instruction().toString())
                 }
-
-//                for (step in steps) {
-//                    navigationData.add(step.maneuver().instruction().toString())
-//                }
             }
             adapter?.setData(navigationData)
             adapter?.notifyDataSetChanged()
