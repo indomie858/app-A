@@ -40,10 +40,7 @@ import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.android.core.location.*
-import com.mapbox.api.directions.v5.models.BannerInstructions
-import com.mapbox.api.directions.v5.models.DirectionsRoute
-import com.mapbox.api.directions.v5.models.RouteOptions
-import com.mapbox.api.directions.v5.models.VoiceInstructions
+import com.mapbox.api.directions.v5.models.*
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
@@ -686,6 +683,7 @@ class DirectionsActivity :
             val currentName = currentStep?.name()   //name of walkway
             val currentManeuver = currentStep?.maneuver()   //arraylist or json?
             val currentInstruction = currentManeuver?.instruction()
+            val currentStepIndex = currentStepProgress?.stepIndex
 
             val upcomingStep = currentLegProgress?.upcomingStep     //arraylist or json??
             val upcomingManeuver = upcomingStep?.maneuver()     //arraylist or json?
@@ -699,14 +697,14 @@ class DirectionsActivity :
             //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText\
             val outputText = "$destinationName,$distanceRemaining,$bearingInstruction,$distanceToNextStep,$upcomingInstruction"
 
+            var steps: MutableList<LegStep>? = routeProgress.route.legs()?.get(0)?.steps()
             navigationText.text = outputText
             navigationData.clear()
             navigationData.add(outputText)
-
-            var steps = routeProgress.route.legs()?.get(0)?.steps()
             if (steps != null) {
-                for (step in steps) {
-                    navigationData.add(step.maneuver().instruction().toString())
+                val endStepIndex = steps.size - 1;
+                for (i in currentStepIndex!!..endStepIndex) {
+                    navigationData.add(steps[i].maneuver().instruction().toString())
                 }
             }
             adapter?.setData(navigationData)
@@ -739,7 +737,6 @@ class DirectionsActivity :
 
     private val bannerInstructionObserver = object : BannerInstructionsObserver {
         override fun onNewBannerInstructions(bannerInstructions: BannerInstructions){
-
         }
     }
 
