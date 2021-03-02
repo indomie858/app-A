@@ -6,10 +6,10 @@
 
     <TextView
         android:id="@+id/tutorialContentHeaderStep4"
-        android:layout_width="wrap_content"
-        android:layout_height="156dp"
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
         android:text="@string/tutorialContentHeaderStep4"
-        android:textColor="#000000"
+        android:textColor="@color/text_color"
         android:textSize="35sp"
         android:textStyle="bold" />
 
@@ -18,6 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textColor="#000000"
+        android:textColor="@color/text_color"
         android:text="@string/tutorialContentBodyStep4" />
 </LinearLayout>

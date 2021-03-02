@@ -7,18 +7,18 @@
     <TextView
         android:id="@+id/tutorialContentHeaderOverview"
         android:layout_width="match_parent"
-        android:layout_height="156dp"
+        android:layout_height="102dp"
         android:text="@string/tutorialContentHeaderOverview"
+        android:textColor="@color/text_color"
         android:textSize="35sp"
-        android:textColor="#000000"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tutorialContentBodyOverview"
         android:layout_width="match_parent"
-        android:layout_height="385dp"
+        android:layout_height="504dp"
         android:scrollbars="vertical"
         android:text="@string/tutorialContentBodyOverview"
-        android:textColor="#000000"
+        android:textColor="@color/text_color"
         android:textSize="15sp" />
 </LinearLayout>

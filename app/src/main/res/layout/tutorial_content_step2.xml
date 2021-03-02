@@ -7,18 +7,18 @@
     <TextView
         android:id="@+id/tutorialContentHeaderStep2"
         android:layout_width="match_parent"
-        android:layout_height="156dp"
+        android:layout_height="102dp"
         android:text="@string/tutorialContentHeaderStep2"
         android:textSize="35sp"
-        android:textColor="#000000"
+        android:textColor="@color/text_color"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tutorialContentBodyStep2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="#000000"
-        android:text="@string/tutorialContentBodyStep2" />
+        android:layout_height="505dp"
+        android:text="@string/tutorialContentBodyStep2"
+        android:textColor="@color/text_color"
+        android:textSize="15sp" />
 
 </LinearLayout>
