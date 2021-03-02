@@ -220,40 +220,60 @@
     <string name="tutorial_header">APP-A MANUAL</string>
         <!-- Tutorial Tab names -->
     <string name="tutorialTabNameOverview">Overview</string>
-    <string name="tutorialTabNameStep1">Step1</string>
-    <string name="tutorialTabNameStep2">Step2</string>
-    <string name="tutorialTabNameStep3">Step3</string>
-    <string name="tutorialTabNameStep4">Step4</string>
-    <string name="tutorialTabNameStep5">Step5</string>
+    <string name="tutorialTabNameStep1">Step 1</string>
+    <string name="tutorialTabNameStep2">Step 2</string>
+    <string name="tutorialTabNameStep3">Step 3</string>
+    <string name="tutorialTabNameStep4">Step 4</string>
+    <string name="tutorialTabNameStep5">Step 5</string>
         <!-- Tutorial Content HEADER -->
     <string name="tutorialContentHeaderOverview">Overview</string>
-    <string name="tutorialContentHeaderStep1">Step 1: Turn on bluetooth</string>
-    <string name="tutorialContentHeaderStep2">Step 2: Choose Category</string>
-    <string name="tutorialContentHeaderStep3">Step 3: Choose Location</string>
-    <string name="tutorialContentHeaderStep4">Step 4: Follow Navigation</string>
-    <string name="tutorialContentHeaderStep5">Step 5: Destination</string>
+    <string name="tutorialContentHeaderStep1">Step 1: \nEnable Bluetooth, GPS</string>
+    <string name="tutorialContentHeaderStep2">Step 2: \nChoose Category</string>
+    <string name="tutorialContentHeaderStep3">Step 3: \nChoose Location</string>
+    <string name="tutorialContentHeaderStep4">Step 4: \nFollow Navigation</string>
+    <string name="tutorialContentHeaderStep5">Step 5: \nDestination</string>
         <!-- Tutorial Content BODY -->
-    <string name="tutorialContentBodyOverview">This user manual has been specifically designed to guide you
-through the functions and features of our mobile application.\n\n
-Home button = opens the home page.\n
-Settings button = opens the settings page.\n
-Connect button = lets the user know if the Arduino is connected to the app.\n
-Tutorial button = opens the tutorial page.\n\n
-How to use the app?\n
-Please follow the step-by-step procedure by clicking on the tabs.\n\n
-How will I know when I have arrived at my destination?\n
-This app is designed to alert the user known when they are near the destination. When the user is within proximity, the app will notify the user by vibrating and beeping.\n\n
-How will I know if the Arduino is connected?\n
-To check if the Arduino is connected, simply go to the home page of the app and click on "Connect". A message will pop up that lets the user know if it\'s connected or not.\n\n
-Is the app accessible?\n
-Yes, this app is designed to adhere to accessibility guidelines.\n\n
-Can this app be use anytime during the day?\n
-Yes, this app is designed to work at any given time. At night, the Arduino will flash a light to notify anyone around of your presence.</string>
-    <string name="tutorialContentBodyStep1">Step 1 body</string>
-    <string name="tutorialContentBodyStep2">Step 2 body</string>
-    <string name="tutorialContentBodyStep3">Step 3 body</string>
-    <string name="tutorialContentBodyStep4">Step 4 body</string>
-    <string name="tutorialContentBodyStep5">Step 5 body</string>
+    <string name="tutorialContentBodyOverview">This user manual has been specifically designed to guide you through the functions and features of our mobile application.
+        \n\nHome = opens the home page.
+        \n\nSettings = opens the settings page.
+        \n\nConnect = lets the user know if the Arduino is connected to the app.
+        \n\nGuide = opens the tutorial page.
+        \n\nHow to use the app?
+        \nPlease follow the step-by-step procedure by clicking on the tabs or swiping to the right.
+        \n\nHow will I know when I have arrived at my destination?
+        \nThis app is designed to alert the user known when they are near the destination. When the user is within proximity, the app will notify the user by vibrating and beeping.
+        \n\nHow will I know if the Arduino is connected?
+        \nTo check if the Arduino is connected, simply go to the home page of the app and click on "Connect". A message will pop up that lets the user know if it\'s connected or not.
+        \n\nIs the app accessible?
+        \nYes, this app is designed to adhere to accessibility guidelines.
+        \n\nCan this app be use anytime during the day?
+        \nYes, this app is designed to work at any given time. At night, the Arduino will flash a light to notify anyone around of your presence.</string>
+    <string name="tutorialContentBodyStep1">Bluetooth must be turned on at all times in order for the app to communicate with the Arduino.
+        \n\nThe Arduino is designed to detect objects and will relay the proximity of the object to the app.
+        \n\nThe GPS tracker on the phone must also be on at all times in order for the app to accurately determine your distance from the destination.
+        \nFurthermore, the app will require the user to turn on their GPS tracker in order to see the listed the available locations provided by the app.
+        \n\nWhat happens if my GPS gets disconnected mid-way through the route?
+        \nOnce the GPS tracker is re-connected, the app will re-calibrate your location and route.</string>
+    <string name="tutorialContentBodyStep2">Choose one of the following categories listed in the screen.
+        \n\nThe available categories are:
+        \n\nClassrooms: this category will list the buildings were lectures are conducted.
+        \n\nStudy: this category will list the buildings and places for you to study and do homework.
+        \n\nRestaurants: this category will list all available areas were you can eat or buy food.
+        \n\nServices:this category will list the buildings with special services such as security or disability services.
+        \n\nStudent Stores: this category will list the buildings where students can buy school supplies or university merchandise.
+        \n\nFitness: this category will will list the buildings and areas were students can exercise.
+        \n\nAll Locations: this category will list all of available buildings and destinations listed.</string>
+    <string name="tutorialContentBodyStep3">Choose one of the available locations listed by simpling tapping on the tiles.
+        \nYou can scroll-down or type the name of the building in the search bar.
+        \n\nThe distance between you and the building is also provided in feet.
+        \n\nIf you would like to call the buildings main phone number, simply tap the phone icon.
+        \n\nIf you would like to know more information about the building, turn on your volume and click on the information icon. An audio will be played.
+        \n\n</string>
+    <string name="tutorialContentBodyStep4">Follow the directions provided or simply listen to the audio guide.
+        \n\nThe app will starting making a beaping sound once you are within a close proximity of the door.
+        \nFurthermore, the app will also relay back the distance between the user and the door.</string>
+    <string name="tutorialContentBodyStep5">You have arrived at your destination.
+        \n\nOnce you are within a close proximity of the door, the beacon will be turned off and the navigation will terminate.</string>
 
 </resources>
 
