@@ -239,7 +239,7 @@
         \n\nConnect = lets the user know if the Arduino is connected to the app.
         \n\nGuide = opens the tutorial page.
         \n\nHow to use the app?
-        \nPlease follow the step-by-step procedure by clicking on the tabs or swiping to the right.
+        \nPlease follow the step-by-step procedure by clicking on the tabs or by swiping to the right.
         \n\nHow will I know when I have arrived at my destination?
         \nThis app is designed to alert the user known when they are near the destination. When the user is within proximity, the app will notify the user by vibrating and beeping.
         \n\nHow will I know if the Arduino is connected?
