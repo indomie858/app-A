@@ -9,10 +9,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -22,9 +27,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 
 import com.example.appa.R;
 import com.example.appa.bluetooth.BTConnectionHelper;
+import com.example.appa.bluetooth.BluetoothHandler;
 import com.example.appa.bluetooth.MessageConstants;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
@@ -33,7 +40,10 @@ import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
+import java.util.Locale;
+import java.util.Queue;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
@@ -56,10 +66,21 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int PERMISSION_REQUEST_BACKGROUND_LOCATION = 2;
 
+    TextToSpeech ttsObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+
+        ttsObject = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    ttsObject.setLanguage(Locale.US);
+                }
+            }});
+
 
         bluetoothHandler = new BluetoothHandler(this);
         btConnectionHelper = new BTConnectionHelper(getApplicationContext(), bluetoothHandler);
@@ -199,8 +220,21 @@ public class MainActivity extends AppCompatActivity {
             builder.show();
         }
     }
+    // Plays a chime sound when bluetooth sensor reading is below 30
+    public void handleObjectDistance(Integer objectDistance) {
 
-
+        if(objectDistance < 35) {
+            MediaPlayer mp = new MediaPlayer();
+            try {
+                mp.setVolume(1, 1);
+                mp.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/raw/chime_bell_ding"));
+                mp.prepare();
+                mp.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static class BluetoothHandler extends Handler {
         // Using a weak reference means the referenced class instance gets garbage collected
@@ -237,6 +271,14 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case (MessageConstants.MESSAGE_CONNECTING):
                         Toast.makeText(mainActivity.getApplicationContext(), "Connecting to device...", LENGTH_LONG).show();
+                        break;
+                    case (MessageConstants.MESSAGE_DATA_SENT):
+                        // Use a shared preference to determine if the directions activity is active.
+                        if (PreferenceManager.getDefaultSharedPreferences(mainActivity
+                                .getApplicationContext())
+                                .getBoolean("isNavigating", true)) {
+                                    mainActivity.handleObjectDistance((Integer) msg.obj);
+                        }
                         break;
                 }
             }
