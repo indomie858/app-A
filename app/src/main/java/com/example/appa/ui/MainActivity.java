@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,6 +40,8 @@ import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.ref.WeakReference;
+import java.util.Locale;
+import java.util.Queue;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
@@ -62,9 +65,20 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int PERMISSION_REQUEST_BACKGROUND_LOCATION = 2;
 
+    TextToSpeech ttsObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ttsObject = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    ttsObject.setLanguage(Locale.US);
+                }
+            }});
+
 
         bluetoothHandler = new BluetoothHandler(this);
         btConnectionHelper = new BTConnectionHelper(getApplicationContext(), bluetoothHandler);
@@ -205,7 +219,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    public void handleObjectDistance(Integer objectDistance) {
+        if(objectDistance < 100) {
+            ttsObject.speak("Warning.", TextToSpeech.QUEUE_FLUSH, null);
+        }
+    }
 
     public static class BluetoothHandler extends Handler {
         // Using a weak reference means the referenced class instance gets garbage collected
@@ -242,6 +260,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case (MessageConstants.MESSAGE_CONNECTING):
                         Toast.makeText(mainActivity.getApplicationContext(), "Connecting to device...", LENGTH_LONG).show();
+                        break;
+                    case (MessageConstants.MESSAGE_DATA_SENT):
+                        mainActivity.handleObjectDistance((Integer) msg.obj);
                         break;
                 }
             }

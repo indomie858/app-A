@@ -214,12 +214,16 @@ public class BTConnectionHelper {
             // Keep listening to the InputStream until an exception occurs.
             while(true) {
                 if (isConnected) {
-                    // Keep the running the thread as long as we want to maintain the connection.
+                    // Keep running the thread as long as we want to maintain the connection.
                     try {
                         // Read from the InputStream.
-                        String readLine = reader.readLine();
+                        int readVal = Integer.valueOf(reader.readLine());
+                        String readString = reader.readLine();
                         // Send the obtained line to the handler.
-                        Message readMsg = handler.obtainMessage(MessageConstants.MESSAGE_TOAST, readLine);
+                        Message readMsg = handler.obtainMessage(MessageConstants.MESSAGE_DATA_SENT, readVal);
+                        readMsg.sendToTarget();
+
+                        readMsg = handler.obtainMessage(MessageConstants.MESSAGE_TOAST, readString);
                         readMsg.sendToTarget();
                     } catch (IOException e) {
                         Log.d(BLUETOOTHTAG, "Input stream was disconnected", e);
@@ -258,12 +262,11 @@ public class BTConnectionHelper {
 
                 // Send a failure message back to the activity.
                 Message writeErrorMsg =
-                        handler.obtainMessage(MessageConstants.MESSAGE_TOAST);
+                        handler.obtainMessage(MessageConstants.MESSAGE_LOST_CONNECTION);
                 Bundle bundle = new Bundle();
-                bundle.putString("toast",
+                        bundle.putString("toast",
                         "Couldn't send data to the other device");
-                writeErrorMsg.setData(bundle);
-                handler.sendMessage(writeErrorMsg);
+                writeErrorMsg.sendToTarget();
             }
         }
         // Call this method from the main activity to shut down the connection.
