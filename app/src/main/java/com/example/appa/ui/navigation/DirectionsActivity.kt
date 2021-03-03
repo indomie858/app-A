@@ -3,6 +3,11 @@ package com.example.appa.ui.navigation
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.SharedPreferences
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.location.Location
 import android.media.AudioManager
 import android.media.ToneGenerator
@@ -11,7 +16,6 @@ import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.Animation
@@ -28,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appa.R
 import com.example.appa.beacons.BeaconReferenceApplication
 import com.example.appa.db.PlaceEntity
+import com.example.appa.viewmodel.CompassViewModel
 import com.example.appa.viewmodel.MapWithNavViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -35,10 +40,8 @@ import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.android.core.location.*
-import com.mapbox.api.directions.v5.models.BannerInstructions
-import com.mapbox.api.directions.v5.models.DirectionsRoute
-import com.mapbox.api.directions.v5.models.RouteOptions
-import com.mapbox.api.directions.v5.models.VoiceInstructions
+import com.mapbox.api.directions.v5.DirectionsCriteria
+import com.mapbox.api.directions.v5.models.*
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
@@ -74,7 +77,6 @@ import okhttp3.Cache
 import org.altbeacon.beacon.*
 import java.io.File
 import java.lang.ref.WeakReference
-import java.lang.reflect.Executable
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -118,10 +120,15 @@ class DirectionsActivity :
     var adapter: DirectionsAdapter? = null
     private var navigationData: ArrayList<String> = ArrayList()
 
+    private var compassViewModel: CompassViewModel = CompassViewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_directions)
+
+        sensorSetup()
 
         // Instantiate location client to get user's current location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -167,13 +174,19 @@ class DirectionsActivity :
         val myFab: FloatingActionButton = findViewById(R.id.fab_mapbox)
         myFab.setOnClickListener {
             try {
-                speechPlayer.play(voiceInstruction)
+                if(!compassViewModel.isOriented) {
+                    ttsObject?.speak(compassViewModel.bearingInstruction, TextToSpeech.QUEUE_FLUSH, null)
+                } else {
+                    var fullInstruction: String = compassViewModel.bearingInstruction + " " + voiceInstruction?.announcement()
+                    ttsObject?.speak(fullInstruction, TextToSpeech.QUEUE_FLUSH, null)
+                }
             } catch (e: Exception){
                 Log.e(TAG, "clicked repeat instruction before speech player had any instructions")
             }
         }
 
         //put actions for bottom app bar buttons here
+
         bottomAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.exit -> {
@@ -185,6 +198,7 @@ class DirectionsActivity :
             }
         }
     }//end of onCreate function
+
 
     //////////////////////////////Beacon functions begin//////////////////////////////////////////
     //verifies that device is bluetooth capable and bluetooth is enabled
@@ -454,22 +468,40 @@ class DirectionsActivity :
                 val destinationLat = currentPlace!!.latitude.toDouble()
                 val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
 
+                val distanceUnitSetting = getDistanceUnitSetting()
                 // Use a simulated location if simulate route is enabled,
                 // or use a real route using user's GPS location otherwise.
-                // Call mapboxNaviation.requestRoutes to fetch the appropriate route.
+                // Call mapboxNavigation.requestRoutes to fetch the appropriate route.
                 if (!shouldSimulateRoute()) {
                     fusedLocationClient!!.lastLocation
                             .addOnSuccessListener(this, OnSuccessListener<Location?> { location ->
                                 if (location != null) {
                                     val originPoint = Point.fromLngLat(location.longitude, location.latitude)
-                                    mapboxNavigation?.requestRoutes(
-                                            RouteOptions.builder()
-                                                    .applyDefaultParams()
-                                                    .profile(RouteUrl.PROFILE_WALKING)
-                                                    .accessToken(getString(R.string.mapbox_access_token))
-                                                    .coordinates(listOf(originPoint, destinationPoint))
-                                                    .build(), routesReqCallback
-                                    )
+                                    if (distanceUnitSetting.equals("mi")) {
+                                        mapboxNavigation?.requestRoutes(
+                                                RouteOptions.builder()
+                                                        .applyDefaultParams()
+                                                        .profile(RouteUrl.PROFILE_WALKING)
+                                                        .accessToken(getString(R.string.mapbox_access_token))
+                                                        .coordinates(listOf(originPoint, destinationPoint))
+                                                        .steps(true)
+                                                        .voiceInstructions(true)
+                                                        .voiceUnits(DirectionsCriteria.IMPERIAL)
+                                                        .build(), routesReqCallback
+                                        )
+                                    } else {
+                                        mapboxNavigation?.requestRoutes(
+                                                RouteOptions.builder()
+                                                        .applyDefaultParams()
+                                                        .profile(RouteUrl.PROFILE_WALKING)
+                                                        .accessToken(getString(R.string.mapbox_access_token))
+                                                        .coordinates(listOf(originPoint, destinationPoint))
+                                                        .steps(true)
+                                                        .voiceInstructions(true)
+                                                        .voiceUnits(DirectionsCriteria.METRIC)
+                                                        .build(), routesReqCallback
+                                        )
+                                    }
                                 }
                             })
                             .addOnFailureListener { _ ->
@@ -652,44 +684,56 @@ class DirectionsActivity :
     private var isRouteComplete = false;    //flag to indicate route is complete
     var directionsActivity: DirectionsActivity? = null
 
+    private fun getDistanceUnitSetting(): String? {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val dunit: String? = prefs.getString("dunit", "")
+        return dunit
+    }
+
     //////////////////////////MAPBOX OBSERVERS/////////////////////////////////////////////////////////////////
     /* These should be the methods that allow us to retrieve instructions and insert them into an activity */
     private val routeProgressObserver = object : RouteProgressObserver {
+        @SuppressLint("MissingPermission")
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
             navigationText.visibility = GONE
 
-            val durationRemaining = (routeProgress.durationRemaining / 60).roundToInt()    //total time remaining to reach destination
-            val distanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination
-
             val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress    //json
             val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress     //json
-
-            val currentStep = currentStepProgress?.step     //arraylist or json?
-            val currentName = currentStep?.name()   //name of walkway
-            val currentManeuver = currentStep?.maneuver()   //arraylist or json?
-            val currentInstruction = currentManeuver?.instruction()
-
+            val currentStepIndex = currentStepProgress?.stepIndex
             val upcomingStep = currentLegProgress?.upcomingStep     //arraylist or json??
             val upcomingManeuver = upcomingStep?.maneuver()     //arraylist or json?
-            val upcomingManeuverType = upcomingManeuver?.type()
-            val upcomingInstruction = upcomingManeuver?.instruction()
 
-            val distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()  //distance remaining in current step
+            compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
+            val bearingInstruction = compassViewModel.bearingInstruction
+            val upcomingInstruction =  upcomingManeuver?.instruction()
 
-            //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText
-            val outputText = "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
+            //this block checks if distance unit setting is set to imperial or metric
+            var distanceToNextStep: Int
+            var totalDistanceRemaining: Int
+            if (getDistanceUnitSetting().equals("mi")) {
+                totalDistanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination in imperial units
+                distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()!!  //distance remaining in current step
+            } else {
+                totalDistanceRemaining = routeProgress.distanceRemaining.roundToInt()
+                distanceToNextStep = currentStepProgress?.distanceRemaining?.roundToInt()!!
+            }
 
-            var steps = routeProgress.route.legs()?.get(0)?.steps()
+            //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText\
+            val outputText = "$destinationName,$totalDistanceRemaining,$bearingInstruction,$distanceToNextStep,$upcomingInstruction"
+
+            var steps: MutableList<LegStep>? = routeProgress.route.legs()?.get(0)?.steps()
             navigationText.text = outputText
             navigationData.clear()
             navigationData.add(outputText)
             if (steps != null) {
-                for (step in steps) {
-                    navigationData.add(step.maneuver().instruction().toString())
+                val endStepIndex = steps.size - 1;
+                for (i in currentStepIndex!!..endStepIndex) {
+                    navigationData.add(steps[i].maneuver().instruction().toString())
                 }
             }
             adapter?.setData(navigationData)
             adapter?.notifyDataSetChanged()
+
 
             /**
              * This if block contains actions that execute once the user has arrived at the destination (route is complete).
@@ -717,7 +761,6 @@ class DirectionsActivity :
 
     private val bannerInstructionObserver = object : BannerInstructionsObserver {
         override fun onNewBannerInstructions(bannerInstructions: BannerInstructions){
-
         }
     }
 
@@ -782,5 +825,48 @@ class DirectionsActivity :
             updateCameraOnNavigationStateChange(true)
             mapboxNavigation?.startTripSession()
         }
+    }
+
+    private var sensorManager: SensorManager? = null
+    private var sensorAccelerometer: Sensor? = null
+    private var sensorMagneticField: Sensor? = null
+    private var floatOrientation = FloatArray(3)
+    private var floatRotationMatrix = FloatArray(9)
+    private var floatGeoMagnetic = FloatArray(3)
+    private var floatGravity = FloatArray(3)
+    private fun sensorSetup() {
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorMagneticField = sensorManager!!.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+        sensorAccelerometer = sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        val sensorEventListenerAccelerometer: SensorEventListener = object : SensorEventListener {
+            override fun onSensorChanged(event: SensorEvent) {
+                floatGravity = event.values
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+        }
+
+        val sensorEventListenerMagneticField: SensorEventListener = object : SensorEventListener {
+            override fun onSensorChanged(event: SensorEvent) {
+                floatGeoMagnetic = event.values
+                SensorManager.getRotationMatrix(floatRotationMatrix, null, floatGravity, floatGeoMagnetic)
+                SensorManager.getOrientation(floatRotationMatrix, floatOrientation)
+                compassViewModel.setUserOrientation(floatOrientation.get(0))
+                adapter?.notifyDataSetChanged()
+
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+        }
+        sensorManager!!.registerListener(sensorEventListenerAccelerometer, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager!!.registerListener(sensorEventListenerMagneticField, sensorMagneticField, SensorManager.SENSOR_DELAY_NORMAL)
+    }
+
+    private fun getBearingDegrees(): Double {
+        var bearingDegrees: Double = floatOrientation.get(0) * 180.0 / Math.PI
+        if (bearingDegrees < 0) {
+            bearingDegrees = 360.0 - Math.abs(bearingDegrees)
+        }
+        return bearingDegrees;
     }
 }
