@@ -218,13 +218,16 @@ public class BTConnectionHelper {
                     try {
                         // Read from the InputStream.
                         int readVal = Integer.valueOf(reader.readLine());
-                        String readString = reader.readLine();
-                        // Send the obtained line to the handler.
+
+                        // Send the obtained value to the handler, which will react to the reading.
                         Message readMsg = handler.obtainMessage(MessageConstants.MESSAGE_DATA_SENT, readVal);
                         readMsg.sendToTarget();
 
+                        /** CODE THAT SENDS TOASTS WITH SENSOR READING VALUES FOR DEBUGGING
+                        String readString = reader.readLine();
                         readMsg = handler.obtainMessage(MessageConstants.MESSAGE_TOAST, readString);
                         readMsg.sendToTarget();
+                         */
                     } catch (IOException e) {
                         Log.d(BLUETOOTHTAG, "Input stream was disconnected", e);
                         Message msg = handler.obtainMessage(MessageConstants.MESSAGE_LOST_CONNECTION);

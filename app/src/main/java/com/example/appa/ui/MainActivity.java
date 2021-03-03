@@ -31,6 +31,7 @@ import androidx.preference.PreferenceManager;
 
 import com.example.appa.R;
 import com.example.appa.bluetooth.BTConnectionHelper;
+import com.example.appa.bluetooth.BluetoothHandler;
 import com.example.appa.bluetooth.MessageConstants;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
@@ -219,10 +220,10 @@ public class MainActivity extends AppCompatActivity {
             builder.show();
         }
     }
-
     // Plays a chime sound when bluetooth sensor reading is below 30
     public void handleObjectDistance(Integer objectDistance) {
-        if(objectDistance < 30) {
+
+        if(objectDistance < 35) {
             MediaPlayer mp = new MediaPlayer();
             try {
                 mp.setVolume(1, 1);
@@ -275,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                         // Use a shared preference to determine if the directions activity is active.
                         if (PreferenceManager.getDefaultSharedPreferences(mainActivity
                                 .getApplicationContext())
-                                .getBoolean("directionsIsActive", true)) {
+                                .getBoolean("isNavigating", true)) {
                                     mainActivity.handleObjectDistance((Integer) msg.obj);
                         }
                         break;

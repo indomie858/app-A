@@ -212,6 +212,7 @@ class DirectionsActivity :
                 R.id.exit -> {
                     // Handle search icon press
                     finish()
+                    PreferenceManager.getDefaultSharedPreferences(this@DirectionsActivity).edit().putBoolean("isNavigating", false).commit();
                     true
                 }
                 else -> false
@@ -375,6 +376,7 @@ class DirectionsActivity :
         super.onStop()
         stopLocationUpdates()
         mapView.onStop()
+
     }
 
     override fun onLowMemory() {
@@ -558,6 +560,7 @@ class DirectionsActivity :
                 navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
             }
             mapboxNavigation?.startTripSession()
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("isNavigating", true).commit();
         }
 
         val handler = Handler()
@@ -764,6 +767,9 @@ class DirectionsActivity :
              */
             if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {     //executes when user has reached destination
                 if (!isRouteComplete) { //this check is necessary because routeProgressObserver is constantly repeating
+
+                    PreferenceManager.getDefaultSharedPreferences(this@DirectionsActivity).edit().putBoolean("isNavigating", false).commit();
+
                     isRouteComplete = true
                     speechPlayer.isMuted = true
                     initTextChangeListener()
@@ -779,6 +785,7 @@ class DirectionsActivity :
                     }
                     val handler = Handler()
                     handler.postDelayed(task, 1000) //set task delay to reduce overlap between mapbox and beacons voice
+
                 }
             }
         }
