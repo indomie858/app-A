@@ -9,6 +9,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +27,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 
 import com.example.appa.R;
 import com.example.appa.bluetooth.BTConnectionHelper;
@@ -34,6 +39,7 @@ import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.Locale;
 import java.util.Queue;
@@ -214,9 +220,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Plays a chime sound when bluetooth sensor reading is below 30
     public void handleObjectDistance(Integer objectDistance) {
-        if(objectDistance < 100) {
-            ttsObject.speak("Warning.", TextToSpeech.QUEUE_FLUSH, null);
+        if(objectDistance < 30) {
+            MediaPlayer mp = new MediaPlayer();
+            try {
+                mp.setVolume(1, 1);
+                mp.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/raw/chime_bell_ding"));
+                mp.prepare();
+                mp.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -257,7 +272,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(mainActivity.getApplicationContext(), "Connecting to device...", LENGTH_LONG).show();
                         break;
                     case (MessageConstants.MESSAGE_DATA_SENT):
-                        mainActivity.handleObjectDistance((Integer) msg.obj);
+                        // Use a shared preference to determine if the directions activity is active.
+                        if (PreferenceManager.getDefaultSharedPreferences(mainActivity
+                                .getApplicationContext())
+                                .getBoolean("directionsIsActive", true)) {
+                                    mainActivity.handleObjectDistance((Integer) msg.obj);
+                        }
                         break;
                 }
             }

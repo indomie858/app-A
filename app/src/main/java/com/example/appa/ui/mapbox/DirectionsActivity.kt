@@ -344,10 +344,13 @@ class DirectionsActivity :
         (this.applicationContext as BeaconReferenceApplication).setMonitoringActivity(null)
         beaconManager.unbind(this)
         mapView.onPause()
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("directionsIsActive", false).commit();
     }
 
     public override fun onResume() {
         super.onResume()
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("directionsIsActive", true).commit();
+
         //for beacons
         val application = this.applicationContext as BeaconReferenceApplication
         application.setMonitoringActivity(this)
@@ -381,6 +384,7 @@ class DirectionsActivity :
 
     override fun onDestroy() {
         super.onDestroy()
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("directionsIsActive", false).commit();
         mapboxReplayer.finish()
         mapboxNavigation?.apply {
             unregisterTripSessionStateObserver(tripSessionStateObserver)
