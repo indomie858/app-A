@@ -1,4 +1,4 @@
-package com.example.appa.ui.navigation;
+package com.example.appa.ui.mapbox;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,8 +11,6 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
-
-import org.w3c.dom.Text;
 
 import java.util.Arrays;
 import java.util.List;
