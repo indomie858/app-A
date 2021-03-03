@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mapButton"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="Toggle Map"
+        android:contentDescription="Open/Close Map"
+        app:showAsAction="ifRoom"
+        />
+</menu>

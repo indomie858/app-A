@@ -16,8 +16,7 @@ import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
@@ -185,8 +184,29 @@ class DirectionsActivity :
             }
         }
 
-        //put actions for bottom app bar buttons here
+        //onclicklistener for map button
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.mapButton -> {
+                    if (beaconTextContainer.visibility != GONE) {
+                        navigationTextContainer.visibility = GONE
+                        mapView.visibility = INVISIBLE
+                    } else {
+                        if (mapView.visibility == INVISIBLE) {
+                            navigationTextContainer.visibility = INVISIBLE
+                            mapView.visibility = VISIBLE
+                        } else {
+                            navigationTextContainer.visibility = VISIBLE
+                            mapView.visibility = INVISIBLE
+                        }
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
 
+        //put actions for bottom app bar buttons here
         bottomAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.exit -> {
@@ -744,6 +764,7 @@ class DirectionsActivity :
                     speechPlayer.isMuted = true
                     initTextChangeListener()
                     navigationTextContainer.visibility = GONE
+                    mapView.visibility = INVISIBLE
                     beaconTextContainer.visibility = VISIBLE
                     val anim: Animation = AnimationUtils.loadAnimation(this@DirectionsActivity, R.anim.slide_in_top)
                     beaconTextContainer.startAnimation(anim)
@@ -785,7 +806,7 @@ class DirectionsActivity :
     // This is used for testing purposes.
     private fun shouldSimulateRoute(): Boolean {
         return PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
-                .getBoolean(this.getString(R.string.simulate_route_key), false);
+                .getBoolean(this.getString(R.string.simulate_route_key), true);
     }
 
     // If shouldSimulateRoute is true a ReplayRouteLocationEngine will be used which is intended
