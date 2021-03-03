@@ -188,12 +188,17 @@ class DirectionsActivity :
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.mapButton -> {
-                    if (mapView.visibility == INVISIBLE && beaconTextContainer.visibility == GONE) {
-                        navigationTextContainer.visibility = INVISIBLE
-                        mapView.visibility = VISIBLE
-                    } else {
-                        navigationTextContainer.visibility = VISIBLE
+                    if (beaconTextContainer.visibility != GONE) {
+                        navigationTextContainer.visibility = GONE
                         mapView.visibility = INVISIBLE
+                    } else {
+                        if (mapView.visibility == INVISIBLE) {
+                            navigationTextContainer.visibility = INVISIBLE
+                            mapView.visibility = VISIBLE
+                        } else {
+                            navigationTextContainer.visibility = VISIBLE
+                            mapView.visibility = INVISIBLE
+                        }
                     }
                     true
                 }
@@ -801,7 +806,7 @@ class DirectionsActivity :
     // This is used for testing purposes.
     private fun shouldSimulateRoute(): Boolean {
         return PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
-                .getBoolean(this.getString(R.string.simulate_route_key), false);
+                .getBoolean(this.getString(R.string.simulate_route_key), true);
     }
 
     // If shouldSimulateRoute is true a ReplayRouteLocationEngine will be used which is intended
