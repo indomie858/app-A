@@ -1,4 +1,4 @@
-package com.example.appa.ui.navigation
+package com.example.appa.ui.mapbox
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -806,7 +806,7 @@ class DirectionsActivity :
     // This is used for testing purposes.
     private fun shouldSimulateRoute(): Boolean {
         return PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
-                .getBoolean(this.getString(R.string.simulate_route_key), true);
+                .getBoolean(this.getString(R.string.simulate_route_key), false);
     }
 
     // If shouldSimulateRoute is true a ReplayRouteLocationEngine will be used which is intended
