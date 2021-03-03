@@ -1,4 +1,4 @@
-package com.example.appa.ui.navigation
+package com.example.appa.ui.mapbox
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -16,8 +16,7 @@ import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
@@ -185,8 +184,29 @@ class DirectionsActivity :
             }
         }
 
-        //put actions for bottom app bar buttons here
+        //onclicklistener for map button
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.mapButton -> {
+                    if (beaconTextContainer.visibility != GONE) {
+                        navigationTextContainer.visibility = GONE
+                        mapView.visibility = INVISIBLE
+                    } else {
+                        if (mapView.visibility == INVISIBLE) {
+                            navigationTextContainer.visibility = INVISIBLE
+                            mapView.visibility = VISIBLE
+                        } else {
+                            navigationTextContainer.visibility = VISIBLE
+                            mapView.visibility = INVISIBLE
+                        }
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
 
+        //put actions for bottom app bar buttons here
         bottomAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.exit -> {
@@ -271,22 +291,22 @@ class DirectionsActivity :
                     }
                 }
                 distance < 2.5 -> {
-                    beaconText.text = "YOU ARE WITHIN 5 FEET OF THE ENTRANCE."
+                    beaconText.text = "BEACON DETECTED. FOLLOW THE BEEPS"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
                     vibrate(1000, 255)
                 }
                 distance < 4.5 -> {
-                    beaconText.text = "YOU ARE WITHIN 10 FEET OF THE ENTRANCE."
+                    beaconText.text = "BEACON DETECTED. FOLLOW THE BEEPS"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
                     vibrate(750, 190)
                 }
-                distance < 6.5 -> {
-                    beaconText.text = "YOU ARE WITHIN 15 FEET OF THE ENTRANCE."
+                distance < 7 -> {
+                    beaconText.text = "BEACON DETECTED. FOLLOW THE BEEPS"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 500);
                     vibrate(500, 127)
                 }
-                distance < 9.5 -> {
-                    beaconText.text = "ENTRANCE LOCATED. YOU ARE WITHIN 25 FEET OF THE ENTRANCE"
+                distance < 10 -> {
+                    beaconText.text = "BEACON DETECTED. FOLLOW THE BEEPS"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 250);
                     vibrate(250, 63)
                 }
@@ -744,6 +764,7 @@ class DirectionsActivity :
                     speechPlayer.isMuted = true
                     initTextChangeListener()
                     navigationTextContainer.visibility = GONE
+                    mapView.visibility = INVISIBLE
                     beaconTextContainer.visibility = VISIBLE
                     val anim: Animation = AnimationUtils.loadAnimation(this@DirectionsActivity, R.anim.slide_in_top)
                     beaconTextContainer.startAnimation(anim)

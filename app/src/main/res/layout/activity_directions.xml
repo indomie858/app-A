@@ -23,7 +23,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/design_default_color_on_secondary"
 
-            app:menu="@menu/top_app_bar"
+            app:menu="@menu/top_app_bar_mapbox"
             app:title="@string/navigation"
             app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>

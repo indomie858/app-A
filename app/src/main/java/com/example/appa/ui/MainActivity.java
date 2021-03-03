@@ -3,22 +3,18 @@ package com.example.appa.ui;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Message;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,7 +26,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.appa.R;
 import com.example.appa.bluetooth.BTConnectionHelper;
-import com.example.appa.bluetooth.BluetoothHandler;
 import com.example.appa.bluetooth.MessageConstants;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
@@ -54,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
     BottomNavigationView bottomNavigationView;
-
     private BluetoothHandler bluetoothHandler; // The handler attached to the bluetooth connection
     private BTConnectionHelper btConnectionHelper;
 
@@ -69,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
         ttsObject = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
@@ -99,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                     counter = 0;
                     break;
                 case R.id.settings_button:
-                    //fm.beginTransaction().hide(active).show(settingsFragment).commit();
                     fm.beginTransaction().replace(R.id.main_container, settingsFragment, "2").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = settingsFragment;
@@ -129,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
         checkLocationPermissions();
+
     }
 
 
