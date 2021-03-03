@@ -223,18 +223,24 @@ public class MainActivity extends AppCompatActivity {
     // Plays a chime sound when bluetooth sensor reading is below 30
     public void handleObjectDistance(Integer objectDistance) {
 
-        if(objectDistance < 35) {
-            MediaPlayer mp = new MediaPlayer();
-            try {
-                mp.setVolume(1, 1);
-                mp.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/raw/chime_bell_ding"));
-                mp.prepare();
-                mp.start();
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (PreferenceManager.getDefaultSharedPreferences(this
+                .getApplicationContext())
+                .getBoolean("isNavigating", true)) {
+            if (objectDistance < 35) {
+                MediaPlayer mp = new MediaPlayer();
+                try {
+                    mp.setVolume(1, 1);
+                    mp.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/raw/chime_bell_ding"));
+                    mp.prepare();
+                    mp.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
+
+
 
     public static class BluetoothHandler extends Handler {
         // Using a weak reference means the referenced class instance gets garbage collected
@@ -274,11 +280,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case (MessageConstants.MESSAGE_DATA_SENT):
                         // Use a shared preference to determine if the directions activity is active.
-                        if (PreferenceManager.getDefaultSharedPreferences(mainActivity
-                                .getApplicationContext())
-                                .getBoolean("isNavigating", true)) {
-                                    mainActivity.handleObjectDistance((Integer) msg.obj);
-                        }
+                        mainActivity.handleObjectDistance((Integer) msg.obj);
                         break;
                 }
             }
