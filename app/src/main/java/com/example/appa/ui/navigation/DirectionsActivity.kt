@@ -291,22 +291,22 @@ class DirectionsActivity :
                     }
                 }
                 distance < 2.5 -> {
-                    beaconText.text = "YOU ARE WITHIN 5 FEET OF THE ENTRANCE."
+                    beaconText.text = "BEACON DETECTED. FOLLOW THE BEEPS"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
                     vibrate(1000, 255)
                 }
                 distance < 4.5 -> {
-                    beaconText.text = "YOU ARE WITHIN 10 FEET OF THE ENTRANCE."
+                    beaconText.text = "BEACON DETECTED. FOLLOW THE BEEPS"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
                     vibrate(750, 190)
                 }
-                distance < 6.5 -> {
-                    beaconText.text = "YOU ARE WITHIN 15 FEET OF THE ENTRANCE."
+                distance < 7 -> {
+                    beaconText.text = "BEACON DETECTED. FOLLOW THE BEEPS"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP2, 500);
                     vibrate(500, 127)
                 }
-                distance < 9.5 -> {
-                    beaconText.text = "ENTRANCE LOCATED. YOU ARE WITHIN 25 FEET OF THE ENTRANCE"
+                distance < 10 -> {
+                    beaconText.text = "BEACON DETECTED. FOLLOW THE BEEPS"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 250);
                     vibrate(250, 63)
                 }
