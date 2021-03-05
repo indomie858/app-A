@@ -10,15 +10,11 @@ import com.example.appa.R
 /*import com.example.appa.ui.navigationlist.NavigationListActivity*/
 class HomeFragment : Fragment(), View.OnClickListener {
 
-    var numWord = arrayOf("Classrooms", "Study", "Services", "Food & Drink", "Fitness", "Shopping")
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.home_layout, container, false)
         return view
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     }

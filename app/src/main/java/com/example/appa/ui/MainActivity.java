@@ -124,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         btConnectionHelper.terminateConnection();
                     }
-                    //backButtonFlag = true;
-                    //counter = 0;
             }
             return false;
         });
@@ -397,41 +395,5 @@ public class MainActivity extends AppCompatActivity {
     }
     ///////////////////////////////location permission stuff end//////////////////////////////////
 
-    /*  OLD BLUETOOTH DIALOG STUFF
-    *****************
-
-    public void showDialog() {
-        BluetoothDialog bluetoothDialog = (BluetoothDialog) BluetoothDialog.newInstance(R.string.bluetooth_title);
-        btDialog = bluetoothDialog;
-        btDialog.setBluetoothService(btServiceHandler);
-        btDialog.show(getSupportFragmentManager(), "BTDialog");
-    }
-
-    boolean bound;
-    BluetoothServiceHandler btServiceHandler;
-    public void bindService() {
-        Intent intent = new Intent(this, BluetoothServiceHandler.class);
-        getApplicationContext().bindService(intent, bluetoothServiceConnection, Context.BIND_AUTO_CREATE);
-        Log.d(LOG_TAG, "Dialog bound to service");
-    }
-
-    private ServiceConnection bluetoothServiceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            BluetoothServiceHandler.LocalBinder binder = (BluetoothServiceHandler.LocalBinder) iBinder;
-            btServiceHandler = binder.getService();
-
-            btConnectionHelper = new BTConnectionHelper(btServiceHandler, getApplicationContext());
-            Log.e(LOG_TAG, "Successfully binded");
-            bound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            bound = false;
-        }
-    };
-
-    *******************/
 
 }
