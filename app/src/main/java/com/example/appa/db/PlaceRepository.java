@@ -1,6 +1,7 @@
 package com.example.appa.db;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
@@ -13,8 +14,8 @@ public class PlaceRepository {
     private PlaceDao placeDao;
     private LiveData<List<PlaceEntity>> allPlaces;
     private LiveData<PlaceEntity> singlePlace;
-    public PlaceRepository(Application application) {
-        PlaceDatabase database = PlaceDatabase.getInstance(application);
+    public PlaceRepository(Context context) {
+        PlaceDatabase database = PlaceDatabase.getInstance(context);
         placeDao = database.placeListDao();
         allPlaces = placeDao.getAllPlaces();
     }

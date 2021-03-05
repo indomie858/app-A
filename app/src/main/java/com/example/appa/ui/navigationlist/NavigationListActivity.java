@@ -2,6 +2,7 @@ package com.example.appa.ui.navigationlist;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -189,7 +190,7 @@ public class NavigationListActivity extends AppCompatActivity {
                 List<PlaceViewModel> placeViewModels = new ArrayList<PlaceViewModel>();
 
                 for (PlaceEntity placeEntity : placeEntities) {
-                    PlaceViewModel placeViewModel = new PlaceViewModel(placeEntity);
+                    PlaceViewModel placeViewModel = new PlaceViewModel(placeEntity, context);
                     placeViewModel.setLocationAndDistance(currentLocation);
                     placeViewModels.add(placeViewModel);
                 }

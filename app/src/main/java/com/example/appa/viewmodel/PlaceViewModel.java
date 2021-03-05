@@ -24,8 +24,10 @@ import static android.location.Location.distanceBetween;
 public class PlaceViewModel  {
     private Float distance = null;
     private PlaceEntity placeEntity;
-    public PlaceViewModel(PlaceEntity placeEntity) {
+    private Context mContext;
+    public PlaceViewModel(PlaceEntity placeEntity, Context context) {
         this.placeEntity = placeEntity;
+        this.mContext = context;
     }
 
     public int getId() {
@@ -47,8 +49,8 @@ public class PlaceViewModel  {
         return placeEntity.getName();
     }
 
-    public LiveData<List<EntranceEntity>> getEntrancesFromID(Application application) {
-        EntranceRepository entranceRepository = new EntranceRepository(application);
+    public List<EntranceEntity> getEntrancesFromID() {
+        EntranceRepository entranceRepository = new EntranceRepository(mContext.getApplicationContext());
         return entranceRepository.getEntrancesFromID(placeEntity.getId());
     }
 
