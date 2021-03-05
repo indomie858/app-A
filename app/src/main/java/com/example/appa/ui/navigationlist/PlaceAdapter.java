@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
-import com.example.appa.ui.navigation.DirectionsActivity;
+import com.example.appa.ui.mapbox.DirectionsActivity;
 import com.example.appa.viewmodel.PlaceViewModel;
 
 import java.util.ArrayList;

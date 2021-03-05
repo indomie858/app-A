@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.appa.R;
 
@@ -16,26 +17,48 @@ import com.example.appa.R;
  */
 public class TutorialTextFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    FragmentTransaction fragmentTransaction;
+    int position = 0;
+
 
     public TutorialTextFragment() {
         // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment TutorialTextFragment.
-     */
-    public static TutorialTextFragment newInstance() {
-        return new TutorialTextFragment();
+    public static TutorialTextFragment newInstance(int position) {
+        TutorialTextFragment tutorialTextFragment = new TutorialTextFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", position);
+        tutorialTextFragment.setArguments(bundle);
+        return tutorialTextFragment;
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tutorial_text, container, false);
+
+        //some variable
+           int variable3 = getArguments().getInt("position", 0);
+        // switch case
+        switch(variable3) {
+            case 0:
+                return  inflater.inflate(R.layout.tutorial_content_overview,container,false);
+            case 1:
+                return  inflater.inflate(R.layout.tutorial_content_step1,container,false);
+            case 2:
+                return  inflater.inflate(R.layout.tutorial_content_step2,container,false);
+            case 3:
+                return  inflater.inflate(R.layout.tutorial_content_step3,container,false);
+            case 4:
+                return  inflater.inflate(R.layout.tutorial_content_step4,container,false);
+            case 5:
+                return  inflater.inflate(R.layout.tutorial_content_step5,container,false);
+            default:
+                return null;
+        }
+
     }
+
 }
