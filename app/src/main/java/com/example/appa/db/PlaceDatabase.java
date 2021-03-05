@@ -8,12 +8,13 @@ import androidx.room.RoomDatabase;
 
 
 // Database table using the PlaceEntity
-@Database(entities = PlaceEntity.class, version = 1, exportSchema = false)
+@Database(entities = {PlaceEntity.class, EntranceEntity.class}, version = 1, exportSchema = false)
 public abstract class PlaceDatabase extends RoomDatabase {
     // Singleton: one instance of this class can exist
     private static PlaceDatabase instance;
 
     public abstract PlaceDao placeListDao();
+    public abstract EntranceDao entranceDao();
 
     public static synchronized PlaceDatabase getInstance(Context context) {
         if (instance == null) {
