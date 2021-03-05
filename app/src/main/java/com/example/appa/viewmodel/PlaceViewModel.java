@@ -12,7 +12,11 @@ import android.os.Looper;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.appa.db.EntranceEntity;
+import com.example.appa.db.EntranceRepository;
 import com.example.appa.db.PlaceEntity;
+
+import java.util.List;
 
 import static android.location.Location.distanceBetween;
 
@@ -41,6 +45,11 @@ public class PlaceViewModel  {
 
     public String getName() {
         return placeEntity.getName();
+    }
+
+    public LiveData<List<EntranceEntity>> getEntrancesFromID(Application application) {
+        EntranceRepository entranceRepository = new EntranceRepository(application);
+        return entranceRepository.getEntrancesFromID(placeEntity.getId());
     }
 
     public String getDescription() {

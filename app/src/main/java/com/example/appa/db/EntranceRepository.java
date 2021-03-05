@@ -8,9 +8,6 @@ import java.util.List;
 
 public class EntranceRepository {
     private EntranceDao entranceDao;
-    //public List<LiveData> getPlacesFromID(int id) {
-    //}
-
 
     public EntranceRepository(Application application) {
         PlaceDatabase database = PlaceDatabase.getInstance(application);
