@@ -212,6 +212,7 @@ class DirectionsActivity :
                 R.id.exit -> {
                     // Handle search icon press
                     finish()
+                    PreferenceManager.getDefaultSharedPreferences(this@DirectionsActivity).edit().putBoolean("isNavigating", false).commit();
                     true
                 }
                 else -> false
@@ -344,10 +345,13 @@ class DirectionsActivity :
         (this.applicationContext as BeaconReferenceApplication).setMonitoringActivity(null)
         beaconManager.unbind(this)
         mapView.onPause()
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("directionsIsActive", false).commit();
     }
 
     public override fun onResume() {
         super.onResume()
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("directionsIsActive", true).commit();
+
         //for beacons
         val application = this.applicationContext as BeaconReferenceApplication
         application.setMonitoringActivity(this)
@@ -372,6 +376,7 @@ class DirectionsActivity :
         super.onStop()
         stopLocationUpdates()
         mapView.onStop()
+
     }
 
     override fun onLowMemory() {
@@ -381,6 +386,7 @@ class DirectionsActivity :
 
     override fun onDestroy() {
         super.onDestroy()
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("directionsIsActive", false).commit();
         mapboxReplayer.finish()
         mapboxNavigation?.apply {
             unregisterTripSessionStateObserver(tripSessionStateObserver)
@@ -554,6 +560,7 @@ class DirectionsActivity :
                 navigationMapboxMap?.startCamera(mapboxNavigation?.getRoutes()!![0])
             }
             mapboxNavigation?.startTripSession()
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("isNavigating", true).commit();
         }
 
         val handler = Handler()
@@ -760,6 +767,9 @@ class DirectionsActivity :
              */
             if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {     //executes when user has reached destination
                 if (!isRouteComplete) { //this check is necessary because routeProgressObserver is constantly repeating
+
+                    PreferenceManager.getDefaultSharedPreferences(this@DirectionsActivity).edit().putBoolean("isNavigating", false).commit();
+
                     isRouteComplete = true
                     speechPlayer.isMuted = true
                     initTextChangeListener()
@@ -775,6 +785,7 @@ class DirectionsActivity :
                     }
                     val handler = Handler()
                     handler.postDelayed(task, 1000) //set task delay to reduce overlap between mapbox and beacons voice
+
                 }
             }
         }
