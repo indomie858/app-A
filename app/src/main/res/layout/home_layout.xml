@@ -25,62 +25,6 @@
       android:textStyle="bold"
       tools:ignore="RtlCompat" />
 
-  <!--<RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
-
-  </RelativeLayout>-->
-  <GridLayout
-      android:id="@+id/view_all_grid"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight=".25"
-      android:alignmentMode="alignMargins"
-      android:columnCount="1"
-
-      android:columnOrderPreserved="false"
-      android:rowCount="3">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/view_all_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="12dp"
-        android:contentDescription="@string/all"
-        android:onClick="onClickCardView"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp">
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:background="@color/card_background_color"
-          android:gravity="center"
-          android:padding="1dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Locations"
-            android:textColor="@color/button_text_color"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:contentDescription="@string/all" />
-
-      </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-  </GridLayout>
 
   <GridLayout
       android:id="@+id/grid_layout"
@@ -304,7 +248,7 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight=".5"
         android:layout_margin="12dp"
-        android:contentDescription="@string/Fitness"
+        android:contentDescription="@string/fitness"
         android:onClick="onClickCardView"
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp">
@@ -314,7 +258,6 @@
           android:layout_height="match_parent"
           android:background="@color/card_background_color"
           android:gravity="center"
-          android:onClick="onClickCardView"
           android:orientation="vertical"
           android:padding="1dp">
 
@@ -322,20 +265,68 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_baseline_fitness_center_24"
-            android:visibility="visible"
-            android:contentDescription="@string/Fitness" />
+            android:contentDescription="@string/fitness" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
-            android:text="@string/Fitness"
+            android:text="Fitness"
             android:textColor="@color/button_text_color"
             android:textSize="15sp"
             android:textStyle="bold" />
 
       </LinearLayout>
     </androidx.cardview.widget.CardView>
+  </GridLayout>
+
+  <GridLayout
+      android:id="@+id/view_all_grid"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight=".25"
+      android:alignmentMode="alignMargins"
+      android:columnCount="1"
+
+      android:columnOrderPreserved="false"
+      android:rowCount="3">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/view_all_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="12dp"
+        android:contentDescription="@string/all"
+        android:onClick="onClickCardView"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@color/card_background_color"
+          android:gravity="center"
+          android:padding="1dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All Locations"
+            android:textColor="@color/button_text_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/all"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+
+      </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
   </GridLayout>
 
 </LinearLayout>
