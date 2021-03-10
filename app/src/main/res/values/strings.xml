@@ -50,8 +50,6 @@
     <string name="btn_loc_more_info">More Information Button</string>
 
 
-
-
     <!-- Category Names For Search Queries-->
     <string name="all"></string>
     <string name="restaurants">Restaurants</string>
@@ -218,21 +216,21 @@
     <!-- Tutorial Section -->
     <string name="resource_links">Resource Links</string>
     <string name="tutorial_header">APP-A MANUAL</string>
-        <!-- Tutorial Tab names -->
+    <!-- Tutorial Tab names -->
     <string name="tutorialTabNameOverview">Overview</string>
     <string name="tutorialTabNameStep1">Step 1</string>
     <string name="tutorialTabNameStep2">Step 2</string>
     <string name="tutorialTabNameStep3">Step 3</string>
     <string name="tutorialTabNameStep4">Step 4</string>
     <string name="tutorialTabNameStep5">Step 5</string>
-        <!-- Tutorial Content HEADER -->
+    <!-- Tutorial Content HEADER -->
     <string name="tutorialContentHeaderOverview">Overview</string>
     <string name="tutorialContentHeaderStep1">Step 1: \nEnable Bluetooth, GPS</string>
     <string name="tutorialContentHeaderStep2">Step 2: \nChoose Category</string>
     <string name="tutorialContentHeaderStep3">Step 3: \nChoose Location</string>
     <string name="tutorialContentHeaderStep4">Step 4: \nFollow Navigation</string>
     <string name="tutorialContentHeaderStep5">Step 5: \nDestination</string>
-        <!-- Tutorial Content BODY -->
+    <!-- Tutorial Content BODY -->
     <string name="tutorialContentBodyOverview">This user manual has been specifically designed to guide you through the functions and features of our mobile application.
         \n\nHome = opens the home page.
         \n\nSettings = opens the settings page.

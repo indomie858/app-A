@@ -98,8 +98,6 @@
                         android:focusable="true"
                         android:src="@drawable/ic_baseline_info_24"
                         android:text="Call" />
-                        android:textSize="12sp"
-                        android:textSize="12sp" />
 
                     <Button
                         android:id="@+id/about_btn"
