@@ -78,6 +78,7 @@ public class DirectoryInformationActivity extends AppCompatActivity {
 
     private void callPhone(){
         if (currentPlace != null) {
+            phoneButton.setContentDescription("Call " + currentPlace.getName());
             String placePhoneNumber = currentPlace.getPhone_number();
             String formattedNumber = PhoneNumberUtils.formatNumber(placePhoneNumber);
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
