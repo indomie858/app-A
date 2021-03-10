@@ -10,8 +10,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.speech.tts.TextToSpeech;
 import android.telephony.PhoneNumberUtils;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,6 +21,8 @@ import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
 import com.example.appa.ui.mapbox.DirectionsActivity;
 import com.example.appa.viewmodel.MapWithNavViewModel;
+
+import java.util.Locale;
 
 public class DirectoryInformationActivity extends AppCompatActivity {
 
@@ -30,6 +34,9 @@ public class DirectoryInformationActivity extends AppCompatActivity {
     private TextView descriptionText;
     private Button launchNavigationButton;
     private Button phoneButton;
+
+    private TextToSpeech mTTSObject;
+    private AccessibilityManager am;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,16 @@ public class DirectoryInformationActivity extends AppCompatActivity {
                 populateViewsWithPlaceData();
             }
         }, 1000);
+
+        // Set a member variable using viewgroup context
+        mTTSObject = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                mTTSObject.setLanguage(Locale.US);
+            }
+        });
+
+        am = (AccessibilityManager) this.getSystemService(ACCESSIBILITY_SERVICE);
     }
 
     private void launchNavigation() {
@@ -92,6 +109,9 @@ public class DirectoryInformationActivity extends AppCompatActivity {
         if (currentPlace != null) {
             nameText.setText(currentPlace.getName());
             descriptionText.setText(currentPlace.getDescription());
+            if (am.isEnabled()) { // Read back the text if accessibility is enabled
+                    mTTSObject.speak(currentPlace.getDescription(), TextToSpeech.QUEUE_FLUSH, null);
+            }
         }
     }
 
