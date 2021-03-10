@@ -4,16 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.appa.R;
 import com.example.appa.db.PlaceEntity;
+import com.example.appa.ui.mapbox.DirectionsActivity;
 import com.example.appa.viewmodel.MapWithNavViewModel;
 
 public class DirectoryInformationActivity extends AppCompatActivity {
@@ -24,6 +28,8 @@ public class DirectoryInformationActivity extends AppCompatActivity {
 
     private TextView nameText;
     private TextView descriptionText;
+    private Button launchNavigationButton;
+    private Button phoneButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +43,19 @@ public class DirectoryInformationActivity extends AppCompatActivity {
 
         setPlaceFromIntent();
 
-        Button button= (Button)findViewById(R.id.testButton);
-        button.setOnClickListener(new View.OnClickListener(){
+        launchNavigationButton = (Button)findViewById(R.id.launchNavigationButton);
+        launchNavigationButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if (currentPlace != null) {
-                    nameText.setText(currentPlace.getName());
-                    descriptionText.setText(currentPlace.getDescription());
-                }
+                launchNavigation();
+            }
+        });
+
+        phoneButton = (Button)findViewById(R.id.phone_btn);
+        phoneButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                callPhone();
             }
         });
 
@@ -55,6 +66,25 @@ public class DirectoryInformationActivity extends AppCompatActivity {
                 populateViewsWithPlaceData();
             }
         }, 1000);
+    }
+
+    private void launchNavigation() {
+        if (currentPlace != null) {
+            Intent intent = new Intent(DirectoryInformationActivity.this, DirectionsActivity.class);
+            intent.putExtra("NewPlace", currentPlaceID);
+            DirectoryInformationActivity.this.startActivity(intent);
+        }
+    }
+
+    private void callPhone(){
+        if (currentPlace != null) {
+            String placePhoneNumber = currentPlace.getPhone_number();
+            String formattedNumber = PhoneNumberUtils.formatNumber(placePhoneNumber);
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + formattedNumber));
+            Context context = phoneButton.getContext();
+            context.startActivity(callIntent);
+        }
     }
 
     private void populateViewsWithPlaceData() {

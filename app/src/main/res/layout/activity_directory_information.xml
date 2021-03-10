@@ -57,12 +57,12 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/testButton"
+            android:id="@+id/launchNavigationButton"
             style="@style/directoryInfoSpacing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#F06292"
-            android:text="Test Button"
+            android:backgroundTint="#B6B6B6"
+            android:text="Launch Navigation"
             android:textColor="@color/black" />
 
         <Button

@@ -170,21 +170,23 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         Button phoneBtn = holder.binding.getRoot().findViewById(R.id.phone_btn);
         phoneBtn.setContentDescription("Call " + currentPlaceViewModel.getName());
         String placePhoneNumber = currentPlaceViewModel.getPhoneNumber();
-        if(placePhoneNumber  == null) {
-            phoneBtn.setVisibility(View.GONE);
-        } else {
-            phoneBtn.setVisibility(View.VISIBLE);
-            phoneBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String formattedNumber = PhoneNumberUtils.formatNumber(placePhoneNumber);
-                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                    callIntent.setData(Uri.parse("tel:" + formattedNumber));
-                    Context context = phoneBtn.getContext();
-                    context.startActivity(callIntent);
-                }
-            });
-        }
+
+        phoneBtn.setVisibility(View.GONE);
+//        if(placePhoneNumber  == null) {
+//            phoneBtn.setVisibility(View.GONE);
+//        } else {
+//            phoneBtn.setVisibility(View.VISIBLE);
+//            phoneBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    String formattedNumber = PhoneNumberUtils.formatNumber(placePhoneNumber);
+//                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+//                    callIntent.setData(Uri.parse("tel:" + formattedNumber));
+//                    Context context = phoneBtn.getContext();
+//                    context.startActivity(callIntent);
+//                }
+//            });
+//        }
         holder.binding.executePendingBindings();
     }
 
