@@ -96,7 +96,7 @@ public class NavigationListActivity extends AppCompatActivity {
         // Instantiate location client to get user's current location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Use getLastLocation to populate location data before the viewmodel is created.
+        // Use getLastLocation to populate location data before the first location update.
         getLastLocation();
 
         // LocationRequest contains settings regarding location intervals
@@ -133,9 +133,13 @@ public class NavigationListActivity extends AppCompatActivity {
                     public void onSuccess(Location location) {
                         if (location != null) {
                             currentLocation = location;
+                            placeAdapter.setLocations(currentLocation);
+                            placeAdapter.notifyDataSetChanged();
+                            
                         }
                     }
                 });
+
     }
 
     @SuppressLint("MissingPermission")

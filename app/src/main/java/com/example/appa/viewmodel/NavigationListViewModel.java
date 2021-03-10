@@ -17,12 +17,9 @@ public class NavigationListViewModel extends AndroidViewModel {
     public NavigationListViewModel(Application application, SavedStateHandle savedStateHandle) {
         super(application);
         repository = new PlaceRepository(application);
-        allPlaces = repository.getAllPlaces();
     }
 
-    public LiveData<List<PlaceEntity>> getAllPlaces() {
-        return allPlaces;
-    }
+
     public LiveData<List<PlaceEntity>> getPlacesFromString(String query) { return repository.getPlacesFromString(query); }
 
     // Forward search name and category to DAO

@@ -15,7 +15,6 @@ public class EntranceRepository {
         entranceDao = database.entranceDao();
 
     }
-
     public List<EntranceEntity> getEntrancesFromID(int ID) {
         return entranceDao.getEntrancesFromID(ID);
     }

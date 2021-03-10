@@ -51,6 +51,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     public void setLocations(Location location) {
         for (PlaceViewModel placeViewModel: mPlaceViewModels) {
             placeViewModel.setLocationAndDistance(location);
+            placeViewModel.setNearestEntrance(location);
         }
     }
 
@@ -119,12 +120,13 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
                 Context viewContext = v.getContext();
                 Intent intent = new Intent(viewContext, DirectionsActivity.class);
 
-                // GET ENTRANCELIST HERE AND SHOW A TOAST TO SHOW IT'S WORKING
-                List<EntranceEntity> entranceList = currentPlaceViewModel.getEntrancesFromID();
-                Toast.makeText(viewContext, entranceList.get(0).getLongitude().toString(), Toast.LENGTH_LONG).show();
-                // TODO: SEND COORDINATES TO DIRECTIONS ACTIVITY
-                ///intent.putExtra("NewPlace", currentPlaceViewModel.getId());
-                //viewContext.startActivity(intent);
+                // Gather entrance information in intent to pass to the directions activity.
+                intent.putExtra("NewPlace", currentPlaceViewModel.getId());
+                intent.putExtra("destinationLongitude", currentPlaceViewModel.getNearestEntranceLongitude());
+                intent.putExtra("destinationLatitude", currentPlaceViewModel.getNearestEntranceLatitude());
+                intent.putExtra("destinationMinor", currentPlaceViewModel.getNearestEntranceMinor());
+                intent.putExtra("destinationMajor", currentPlaceViewModel.getPlaceMajor());
+                viewContext.startActivity(intent);
             }
         });
 
