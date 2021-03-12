@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,14 +49,24 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     private AccessibilityManager am;
     Context mContext;
 
+    // Keeps track of whether locations have been set yet
+    private boolean locationsSet = false;
+
+    public boolean getLocationsSet() {
+        return locationsSet;
+    }
+
     public void setLocations(Location location) {
         for (PlaceViewModel placeViewModel: mPlaceViewModels) {
             placeViewModel.setLocationAndDistance(location);
             placeViewModel.setNearestEntrance(location);
         }
+        locationsSet = true;
     }
 
+
     public void setPlaces(List<PlaceViewModel> places) {
+        locationsSet = false;
         this.mPlaceViewModels.clear();
         this.mPlaceViewModels.addAll(places);
         // Recyclerview thing to let it know our data has changed

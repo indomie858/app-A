@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
@@ -42,6 +43,7 @@ public class NavigationListActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private Location currentLocation;
     private PlaceAdapter placeAdapter;
+    private LinearLayout loadingLayout;
     private NavigationListViewModel viewModel;
     private String queryName = "";
     private String queryCategory = "";
@@ -90,6 +92,10 @@ public class NavigationListActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.place_list);
         recyclerView.setAdapter(placeAdapter);
 
+        // Loading overlay wrapper
+        loadingLayout = (LinearLayout) findViewById(R.id.loading_wrapper);
+
+
         // Viewmodel. Handles all data interactions between the UI and DB.
         viewModel = new ViewModelProvider(this).get(NavigationListViewModel.class);
 
@@ -115,6 +121,11 @@ public class NavigationListActivity extends AppCompatActivity {
                 currentLocation = locationResult.getLastLocation();
                 placeAdapter.setLocations(currentLocation);
                 placeAdapter.notifyDataSetChanged();
+                 // Disable the loading layout as soon as the first
+                // nearest entrances have been set in the adapter.
+                if (placeAdapter.getLocationsSet()) {
+                    loadingLayout.setVisibility(View.GONE);
+                }
             }
         };
         // Begin location updates (on create and on resume)
@@ -135,7 +146,6 @@ public class NavigationListActivity extends AppCompatActivity {
                             currentLocation = location;
                             placeAdapter.setLocations(currentLocation);
                             placeAdapter.notifyDataSetChanged();
-                            
                         }
                     }
                 });
@@ -213,6 +223,7 @@ public class NavigationListActivity extends AppCompatActivity {
                     });
                 }
                 placeAdapter.setPlaces(placeViewModels);
+                placeAdapter.setLocations(currentLocation);
                 placeAdapter.notifyDataSetChanged();
             }
         });
