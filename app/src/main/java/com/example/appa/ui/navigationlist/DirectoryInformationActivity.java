@@ -26,17 +26,23 @@ import java.util.Locale;
 
 public class DirectoryInformationActivity extends AppCompatActivity {
 
+    //viewmodel and place entity members
     private MapWithNavViewModel viewModel = null;
     private PlaceEntity currentPlace = null;
     private int currentPlaceID;
 
+    //ui members
     private TextView nameText;
     private TextView descriptionText;
     private Button launchNavigationButton;
     private Button phoneButton;
 
+    //accessibility members
     private TextToSpeech mTTSObject;
     private AccessibilityManager am;
+
+    //handler thread is used to delay query from placeentity
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +72,8 @@ public class DirectoryInformationActivity extends AppCompatActivity {
             }
         });
 
-        final Handler handler = new Handler(Looper.getMainLooper());
+        //delay pulling data from PlaceEntity object
+        handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -141,6 +148,7 @@ public class DirectoryInformationActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mTTSObject.stop();
+        handler.removeCallbacksAndMessages(null);
     }
 
     @Override

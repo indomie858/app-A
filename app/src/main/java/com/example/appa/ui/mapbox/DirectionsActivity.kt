@@ -386,6 +386,8 @@ class DirectionsActivity :
 
     override fun onDestroy() {
         super.onDestroy()
+        navHandler.removeCallbacksAndMessages(null)
+
         PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("directionsIsActive", false).commit();
         mapboxReplayer.finish()
         mapboxNavigation?.apply {
@@ -563,10 +565,12 @@ class DirectionsActivity :
             PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("isNavigating", true).commit();
         }
 
-        val handler = Handler()
-        handler.postDelayed(task, 3000) //set task delay duration
+        navHandler = Handler()
+        navHandler.postDelayed(task, 2000) //set task delay duration
     }
 
+    //member variable for handler thread.... using this in onDestroy to kill thread
+    private lateinit var navHandler: Handler
 
     private fun isLocationTracking(cameraMode: Int): Boolean {
         return cameraMode == CameraMode.TRACKING ||
