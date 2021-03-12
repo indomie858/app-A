@@ -123,6 +123,7 @@ public class NavigationListActivity extends AppCompatActivity {
                 placeAdapter.notifyDataSetChanged();
                  // Disable the loading layout as soon as the first
                 // nearest entrances have been set in the adapter.
+                // Might be better to do this in an asynctask.
                 if (placeAdapter.getLocationsSet()) {
                     loadingLayout.setVisibility(View.GONE);
                 }
