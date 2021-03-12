@@ -386,6 +386,9 @@ class DirectionsActivity :
 
     override fun onDestroy() {
         super.onDestroy()
+        navHandler.removeCallbacksAndMessages(null)
+        beaconHandler.removeCallbacksAndMessages(null)
+
         PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("directionsIsActive", false).commit();
         mapboxReplayer.finish()
         mapboxNavigation?.apply {
@@ -563,10 +566,11 @@ class DirectionsActivity :
             PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("isNavigating", true).commit();
         }
 
-        val handler = Handler()
-        handler.postDelayed(task, 3000) //set task delay duration
+        navHandler.postDelayed(task, 2000) //set task delay duration
     }
 
+    //member variable for handler thread.... using this in onDestroy to kill thread
+    private val navHandler: Handler = Handler()
 
     private fun isLocationTracking(cameraMode: Int): Boolean {
         return cameraMode == CameraMode.TRACKING ||
@@ -783,13 +787,13 @@ class DirectionsActivity :
                     val task = Runnable {
                         beaconManager.bind(this@DirectionsActivity)    //binds to BeaconService and starts beacon ranging
                     }
-                    val handler = Handler()
-                    handler.postDelayed(task, 1000) //set task delay to reduce overlap between mapbox and beacons voice
-
+                    beaconHandler.postDelayed(task, 1000) //set task delay to reduce overlap between mapbox and beacons voice
                 }
             }
         }
     }
+
+    private val beaconHandler: Handler = Handler()
 
     private val bannerInstructionObserver = object : BannerInstructionsObserver {
         override fun onNewBannerInstructions(bannerInstructions: BannerInstructions){
