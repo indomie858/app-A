@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -47,7 +48,7 @@ public class NavigationListActivity extends AppCompatActivity {
     private String queryName = "";
     private String queryCategory = "";
     private Context context;
-    private List<String> categoryList = new ArrayList<String>();
+    private List<String> categoryList = Arrays.asList("Classrooms","Study","Restaurants","Services","Student Stores", "Fitness");
 
     // Locationrequest is a data object that contains options for fusedlocationclient
     LocationRequest mLocationRequest;
@@ -59,13 +60,6 @@ public class NavigationListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = this.getApplicationContext();
         setContentView(R.layout.nav_list_activity);
-
-        categoryList.add("Classrooms");
-        categoryList.add("Study");
-        categoryList.add("Restaurants");
-        categoryList.add("Services");
-        categoryList.add("Student Stores");
-        categoryList.add("Fitness");
 
         Intent intent  = getIntent();
         queryCategory = intent.getStringExtra("QueryCategory");
