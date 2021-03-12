@@ -18,9 +18,10 @@ public abstract class PlaceDatabase extends RoomDatabase {
 
     public static synchronized PlaceDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(), PlaceDatabase.class, "place_database")
+            instance = Room.databaseBuilder(context, PlaceDatabase.class, "place_database")
                     .fallbackToDestructiveMigration()
                     .createFromAsset("locations.db")
+                    .allowMainThreadQueries() // BAD PRACTICE!! FIND A WAY TO FIX THIS!
                     .build();
         }
         return instance;

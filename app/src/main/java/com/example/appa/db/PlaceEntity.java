@@ -24,7 +24,6 @@ public class PlaceEntity implements Place {
     private Float longitude = 0.0f;
     private String categories = "";
     private Integer major_id;
-    private Integer minor_id;
     private String phone_number;
 
     // Fields should match database fields.
@@ -35,7 +34,6 @@ public class PlaceEntity implements Place {
                        Float longitude,
                        String categories,
                        Integer major_id,
-                       Integer minor_id,
                        String phone_number
     ) {
         this.id = id;
@@ -45,7 +43,6 @@ public class PlaceEntity implements Place {
         this.longitude = longitude;
         this.categories =  categories;
         this.major_id = major_id;
-        this.minor_id = minor_id;
         this.phone_number = phone_number;
     }
 
@@ -79,8 +76,6 @@ public class PlaceEntity implements Place {
     public String getCategories() { return categories; }
 
     public Integer getMajor_id() { return major_id; }
-
-    public Integer getMinor_id() { return minor_id; }
 
     public String getPhone_number() { return phone_number; }
 }

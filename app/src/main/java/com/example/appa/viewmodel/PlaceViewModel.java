@@ -24,8 +24,13 @@ import static android.location.Location.distanceBetween;
 public class PlaceViewModel  {
     private Float distance = null;
     private PlaceEntity placeEntity;
-    public PlaceViewModel(PlaceEntity placeEntity) {
+    private EntranceEntity nearestEntrance;
+    private EntranceRepository entranceRepository;
+    private Context mContext;
+    public PlaceViewModel(PlaceEntity placeEntity, Context context) {
         this.placeEntity = placeEntity;
+        this.mContext = context;
+        this.entranceRepository = new EntranceRepository(mContext.getApplicationContext());
     }
 
     public int getId() {
@@ -47,8 +52,7 @@ public class PlaceViewModel  {
         return placeEntity.getName();
     }
 
-    public LiveData<List<EntranceEntity>> getEntrancesFromID(Application application) {
-        EntranceRepository entranceRepository = new EntranceRepository(application);
+    public List<EntranceEntity> getEntrancesFromID() {
         return entranceRepository.getEntrancesFromID(placeEntity.getId());
     }
 
@@ -60,6 +64,28 @@ public class PlaceViewModel  {
         float[] results = new float[1];
         distanceBetween(location.getLatitude(), location.getLongitude(), placeEntity.getLatitude(), placeEntity.getLongitude(), results);
         this.distance = results[0];
+    }
+
+    public void setNearestEntrance(Location location) {
+        // ADD LOGIC FOR NEAREST ENTRANCE HERE
+        // FOR NOW JUST RETURN THE FIRST ENTRANCE IN THE ENTRANCE LIST
+        nearestEntrance = entranceRepository.getEntrancesFromID(placeEntity.getId()).get(0);
+    }
+
+    public int getPlaceMajor() {
+        return placeEntity.getMajor_id();
+    }
+
+    public int getNearestEntranceMinor() {
+        return nearestEntrance.getMinor_id();
+    }
+
+    public Float getNearestEntranceLatitude() {
+        return nearestEntrance.getLatitude();
+    }
+
+    public Float getNearestEntranceLongitude() {
+        return nearestEntrance.getLongitude();
     }
 
     @SuppressLint("MissingPermission")

@@ -1,6 +1,7 @@
 package com.example.appa.ui.navigationlist;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,14 +16,19 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
+import com.example.appa.db.EntranceEntity;
 import com.example.appa.ui.mapbox.DirectionsActivity;
 import com.example.appa.viewmodel.PlaceViewModel;
 
@@ -45,6 +51,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     public void setLocations(Location location) {
         for (PlaceViewModel placeViewModel: mPlaceViewModels) {
             placeViewModel.setLocationAndDistance(location);
+            placeViewModel.setNearestEntrance(location);
         }
     }
 
@@ -72,7 +79,6 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     // Provide a suitable constructor (depends on the kind of dataset)
     public PlaceAdapter(Context context) {
         this.mContext = context;
-
     }
 
     // this method is responsible
@@ -113,7 +119,13 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             public void onClick(View v) {
                 Context viewContext = v.getContext();
                 Intent intent = new Intent(viewContext, DirectionsActivity.class);
+
+                // Gather entrance information in intent to pass to the directions activity.
                 intent.putExtra("NewPlace", currentPlaceViewModel.getId());
+                intent.putExtra("destinationLongitude", currentPlaceViewModel.getNearestEntranceLongitude());
+                intent.putExtra("destinationLatitude", currentPlaceViewModel.getNearestEntranceLatitude());
+                intent.putExtra("destinationMinor", currentPlaceViewModel.getNearestEntranceMinor());
+                intent.putExtra("destinationMajor", currentPlaceViewModel.getPlaceMajor());
                 viewContext.startActivity(intent);
             }
         });

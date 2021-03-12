@@ -33,6 +33,7 @@ import com.example.appa.beacons.BeaconReferenceApplication
 import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.CompassViewModel
 import com.example.appa.viewmodel.MapWithNavViewModel
+import com.example.appa.viewmodel.PlaceViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
@@ -72,6 +73,7 @@ import com.mapbox.navigation.ui.voice.NavigationSpeechPlayer
 import com.mapbox.navigation.ui.voice.SpeechPlayerProvider
 import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_directions.*
+import kotlinx.android.synthetic.main.destination_row.*
 import okhttp3.Cache
 import org.altbeacon.beacon.*
 import java.io.File
@@ -92,6 +94,10 @@ class DirectionsActivity :
 
     //members for database access
     private lateinit var viewModel: MapWithNavViewModel
+    private var destinationMajor: Int? = null
+    private var destinationMinor: Int? = null
+    private var destinationLatitude: Float? = null
+    private var destinationLongitude: Float? = null
     private var currentPlace: PlaceEntity? = null
     private var currentPlaceID: Int? = null
     private var majorIdentifier: Identifier? = null
@@ -328,6 +334,10 @@ class DirectionsActivity :
     private fun setPlaceFromIntent() {
         // Get the intent, apply it to the current place ID,
         val intent = intent
+        destinationLongitude = intent.getFloatExtra("destinationLongitude", 0f)
+        destinationLatitude = intent.getFloatExtra("destinationLatitude", 0f)
+        destinationMajor = intent.getIntExtra("destinationMajor", 0)
+        destinationMinor = intent.getIntExtra("destinationMinor", 0)
         currentPlaceID = intent.getIntExtra("NewPlace", 1)
         val placeEntityObserver = Observer<PlaceEntity> { placeEntity ->
             currentPlace = placeEntity
@@ -481,8 +491,8 @@ class DirectionsActivity :
 
             if (currentPlace != null) { //this is where we get values from the database
                 try {
-                    majorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.major_id).toString())
-                    minorIdentifier = Identifier.parse(Integer.valueOf(currentPlace!!.minor_id).toString())
+                    majorIdentifier = Identifier.parse(destinationMajor.toString())
+                    minorIdentifier = Identifier.parse(destinationMinor.toString())
                 } catch (e: NullPointerException) {
                     Log.e(TAG, e.toString())
                 }
@@ -490,9 +500,7 @@ class DirectionsActivity :
                 destinationName = currentPlace!!.name.toString()    //used for UI
 
                 // Set up destination from current location
-                val destinationLong = currentPlace!!.longitude.toDouble()
-                val destinationLat = currentPlace!!.latitude.toDouble()
-                val destinationPoint = Point.fromLngLat(destinationLong, destinationLat)
+                val destinationPoint = Point.fromLngLat(destinationLongitude!!.toDouble(), destinationLatitude!!.toDouble())
 
                 val distanceUnitSetting = getDistanceUnitSetting()
                 // Use a simulated location if simulate route is enabled,
