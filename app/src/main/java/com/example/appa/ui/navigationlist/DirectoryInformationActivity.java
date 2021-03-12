@@ -130,6 +130,23 @@ public class DirectoryInformationActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (currentPlace != null) {
+            if (am.isEnabled()) { // Read back the text if accessibility is enabled
+                mTTSObject.speak(currentPlace.getDescription(), TextToSpeech.QUEUE_FLUSH, null);
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mTTSObject.stop();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mTTSObject.stop();
     }
 
 }
