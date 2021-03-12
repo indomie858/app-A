@@ -66,9 +66,22 @@ public class PlaceViewModel  {
         this.distance = results[0];
     }
 
+    //what entrance to get the information from
     public void setNearestEntrance(Location location) {
         // ADD LOGIC FOR NEAREST ENTRANCE HERE
+        //call distance between the two entrance and then it should return turn the distance between the two location
+        //iterate between the entrance, if statement
+
+        //for(i=0; i<=lengthoftheentrancesindatabase; i++){
+        //distanceBetween()
+        //if(entrance1>entrance2){
+        //    nearestEntrance = entrance1; update nearest entrance everytime
+        //   }
+        //}
+
+
         // FOR NOW JUST RETURN THE FIRST ENTRANCE IN THE ENTRANCE LIST
+        // getting the first element in the database
         nearestEntrance = entranceRepository.getEntrancesFromID(placeEntity.getId()).get(0);
     }
 
