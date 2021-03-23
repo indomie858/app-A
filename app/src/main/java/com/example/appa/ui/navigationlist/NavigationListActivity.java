@@ -40,6 +40,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 public class NavigationListActivity extends AppCompatActivity {
     public static final String TAG = "NavigationListFragment";
@@ -128,6 +129,7 @@ public class NavigationListActivity extends AppCompatActivity {
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(2000);
 
+
         // Instantiate location callback.
         // The location provider invokes LocationCallback.onLocationResult().
         // This is where we define the location update logic.
@@ -138,18 +140,30 @@ public class NavigationListActivity extends AppCompatActivity {
                 currentLocation = locationResult.getLastLocation();
                 placeAdapter.setLocations(currentLocation);
                 placeAdapter.notifyDataSetChanged();
-                 // Disable the loading layout as soon as the first
-                // nearest entrances have been set in the adapter.
-                // Might be better to do this in an asynctask.
-                if (placeAdapter.getLocationsSet()) {
-                    loadingLayout.setVisibility(View.GONE);
-                }
+
             }
         };
+
         // Begin location updates (on create and on resume)
         startLocationUpdates();
         // Update list from intent
         setViewModelFromIntent();
+
+        final Observer<Boolean> locationsSetObserver = new Observer<Boolean>() {
+            // Disable the loading layout as soon as the first
+            // nearest entrances have been set in the adapter.
+            @Override
+            public void onChanged(Boolean locationsSet) {
+                if (locationsSet) {
+                    loadingLayout.setVisibility(View.GONE);
+
+                } else {
+                    loadingLayout.setVisibility(View.VISIBLE);
+                }
+            }
+        };
+
+        placeAdapter.getLocationsSet().observe(this, locationsSetObserver);
 
     }
 
@@ -168,7 +182,6 @@ public class NavigationListActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
     @SuppressLint("MissingPermission")

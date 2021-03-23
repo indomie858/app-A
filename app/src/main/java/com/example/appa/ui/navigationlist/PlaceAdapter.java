@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,13 +47,14 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     // Our list of places
     private List<PlaceViewModel> mPlaceViewModels = new ArrayList<>();
     private TextToSpeech mTTSObject;
-    private AccessibilityManager am;
     Context mContext;
+    AccessibilityManager am;
 
     // Keeps track of whether locations have been set yet
-    private boolean locationsSet = false;
+    private MutableLiveData<Boolean> locationsSet;
 
-    public boolean getLocationsSet() {
+    public MutableLiveData<Boolean> getLocationsSet() {
+        // Return this livedata object for an observer
         return locationsSet;
     }
 
@@ -61,12 +63,14 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             placeViewModel.setLocationAndDistance(location);
             placeViewModel.setNearestEntrance(location);
         }
-        locationsSet = true;
+        // When location values are set, inform the activity
+        // that they are set.
+        locationsSet.setValue(true);
     }
 
 
     public void setPlaces(List<PlaceViewModel> places) {
-        locationsSet = false;
+        locationsSet.setValue(false);
         this.mPlaceViewModels.clear();
         this.mPlaceViewModels.addAll(places);
         // Recyclerview thing to let it know our data has changed
@@ -89,6 +93,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public PlaceAdapter(Context context) {
+        locationsSet = new MutableLiveData<Boolean>();
+        locationsSet.setValue(false);
         this.mContext = context;
     }
 
