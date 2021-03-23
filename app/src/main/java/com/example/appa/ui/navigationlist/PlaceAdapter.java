@@ -167,41 +167,15 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         aboutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (am.isEnabled()) { // Read back the text if accessibility is enabled
-                    mTTSObject.speak(currentPlaceViewModel.getDescription(), TextToSpeech.QUEUE_FLUSH, null);
-                } else { // otherwise expand/collapse the text
-                    if (descriptionText.getVisibility() == View.VISIBLE) {
-                        descriptionText.setVisibility(View.GONE);
-                    } else {
-                        descriptionText.setVisibility(View.VISIBLE);
-                    }
-                }
+
+                Context viewContext = v.getContext();
+                Intent intent = new Intent(viewContext, DirectoryInformationActivity.class);
+                intent.putExtra("NewPlace", currentPlaceViewModel.getId());
+                viewContext.startActivity(intent);
+
             }
         });
 
-
-        // Set accessibility descriptions for buttons
-        // Then set phone visibility
-        // null --> show button
-        // not null --> don't show button
-        Button phoneBtn = holder.binding.getRoot().findViewById(R.id.phone_btn);
-        phoneBtn.setContentDescription("Call " + currentPlaceViewModel.getName());
-        String placePhoneNumber = currentPlaceViewModel.getPhoneNumber();
-        if(placePhoneNumber  == null) {
-            phoneBtn.setVisibility(View.GONE);
-        } else {
-            phoneBtn.setVisibility(View.VISIBLE);
-            phoneBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String formattedNumber = PhoneNumberUtils.formatNumber(placePhoneNumber);
-                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                    callIntent.setData(Uri.parse("tel:" + formattedNumber));
-                    Context context = phoneBtn.getContext();
-                    context.startActivity(callIntent);
-                }
-            });
-        }
         holder.binding.executePendingBindings();
     }
 

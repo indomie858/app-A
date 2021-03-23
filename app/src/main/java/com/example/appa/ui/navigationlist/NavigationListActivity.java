@@ -9,11 +9,13 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.lifecycle.Observer;
@@ -34,6 +36,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -48,6 +51,7 @@ public class NavigationListActivity extends AppCompatActivity {
     private String queryName = "";
     private String queryCategory = "";
     private Context context;
+    private List<String> categoryList = Arrays.asList("Classrooms","Study","Restaurants","Services","Student Stores", "Fitness");
 
     // Locationrequest is a data object that contains options for fusedlocationclient
     LocationRequest mLocationRequest;
@@ -59,6 +63,19 @@ public class NavigationListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = this.getApplicationContext();
         setContentView(R.layout.nav_list_activity);
+
+        Intent intent  = getIntent();
+        queryCategory = intent.getStringExtra("QueryCategory");
+        MaterialToolbar materialToolbar = findViewById(R.id.topAppBar);
+
+        // Changes the Appbar Title based on the category name
+        if (categoryList.contains(queryCategory)) {
+            Log.e("QUERY", queryCategory);
+            materialToolbar.setTitle(queryCategory);
+        }else {
+            materialToolbar.setTitle("Directory");
+        }
+
 
         // Adapter for the RecyclerView UI
         placeAdapter = new PlaceAdapter(context);
@@ -133,6 +150,7 @@ public class NavigationListActivity extends AppCompatActivity {
         startLocationUpdates();
         // Update list from intent
         setViewModelFromIntent();
+
     }
 
     @SuppressLint("MissingPermission")
@@ -182,9 +200,6 @@ public class NavigationListActivity extends AppCompatActivity {
     }
 
     private void setViewModelFromIntent() {
-        // Sets data from a given intent
-        Intent intent  = getIntent();
-        queryCategory = intent.getStringExtra("QueryCategory");
         UpdateRVAdapter();
     }
 
