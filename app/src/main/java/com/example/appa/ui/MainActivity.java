@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener((item) -> {
             switch (item.getItemId()) {
                 case R.id.home_button:
+                    setChecked(0);
                     fm.beginTransaction().replace(R.id.main_container, homeFragment, "1").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = homeFragment;
@@ -123,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     counter = 0;
                     break;
                 case R.id.settings_button:
+                    setChecked(1);
                     fm.beginTransaction().replace(R.id.main_container, settingsFragment, "2").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = settingsFragment;
@@ -131,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.tutorial_button:
+                    setChecked(3);
                     fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "3").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = tutorialFragment;
@@ -138,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     counter = 0;
                     break;
                 case R.id.hardware_connection_button:
+                    setChecked(2);
                     // Initiate the bluetooth discovery
                     // and thready boiz™ that manage the connection
                     if (!btConnectionHelper.isConnected) {
@@ -150,9 +155,18 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
         checkLocationPermissions();
-
     }
 
+    //set menu item checked
+    private void setChecked(int id) {
+        MenuItem menuItem = bottomNavigationView.getMenu().getItem(id);
+        for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
+            if (menuItem.isChecked()){
+                menuItem.setChecked(false);
+            }
+        }
+        menuItem.setChecked(true);
+    }
 
     //This method checks if this is the first time the user has launched the app.
     //On first launch, this will open the tutorial fragment.
