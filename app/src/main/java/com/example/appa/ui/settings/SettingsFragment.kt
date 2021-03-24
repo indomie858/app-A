@@ -1,5 +1,8 @@
 package com.example.appa.ui.settings
 
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -47,6 +50,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
+        // Theme preference
         val theme = findPreference<ListPreference>("theme") as ListPreference
         theme.onPreferenceChangeListener = Preference.OnPreferenceChangeListener{preference, newValue ->
             val id = newValue as String
@@ -71,6 +75,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 }
             }
             reload()
+            true
+        }
+
+        // Distance unit
+        val dunit = findPreference<ListPreference>("dunit") as ListPreference
+        dunit.onPreferenceChangeListener = Preference.OnPreferenceChangeListener{preference, newValue ->
+            val dunit = newValue as String
+            val dunitPref = PreferenceManager.getDefaultSharedPreferences(context)
+            val dunitId = dunitPref.getString("dunit", "")
+            if(dunit != dunitId){
+                dunitPref.edit().putString("dunit", dunit).apply()
+            }
+
             true
         }
 

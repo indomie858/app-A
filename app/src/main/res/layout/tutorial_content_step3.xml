@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tutorialContentHeaderStep3"
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:text="@string/tutorialContentHeaderStep3"
+        android:textSize="35sp"
+        android:textColor="@color/text_color"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tutorialContentBodyStep3"
+        android:layout_width="match_parent"
+        android:layout_height="504dp"
+        android:text="@string/tutorialContentBodyStep3"
+        android:textColor="@color/text_color" />
+</LinearLayout>

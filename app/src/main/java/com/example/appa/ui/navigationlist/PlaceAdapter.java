@@ -1,8 +1,10 @@
 package com.example.appa.ui.navigationlist;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -13,15 +15,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appa.R;
 import com.example.appa.databinding.PlaceTileBinding;
-import com.example.appa.ui.navigation.DirectionsActivity;
+import com.example.appa.db.EntranceEntity;
+import com.example.appa.ui.mapbox.DirectionsActivity;
 import com.example.appa.viewmodel.PlaceViewModel;
 
 import java.util.ArrayList;
@@ -37,15 +47,30 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     // Our list of places
     private List<PlaceViewModel> mPlaceViewModels = new ArrayList<>();
     private TextToSpeech mTTSObject;
-    private AccessibilityManager am;
+    Context mContext;
+    AccessibilityManager am;
+
+    // Keeps track of whether locations have been set yet
+    private MutableLiveData<Boolean> locationsSet;
+
+    public MutableLiveData<Boolean> getLocationsSet() {
+        // Return this livedata object for an observer
+        return locationsSet;
+    }
 
     public void setLocations(Location location) {
         for (PlaceViewModel placeViewModel: mPlaceViewModels) {
             placeViewModel.setLocationAndDistance(location);
+            placeViewModel.setNearestEntrance(location);
         }
+        // When location values are set, inform the activity
+        // that they are set.
+        locationsSet.setValue(true);
     }
 
+
     public void setPlaces(List<PlaceViewModel> places) {
+        locationsSet.setValue(false);
         this.mPlaceViewModels.clear();
         this.mPlaceViewModels.addAll(places);
         // Recyclerview thing to let it know our data has changed
@@ -67,9 +92,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public PlaceAdapter() {
-        super();
-
+    public PlaceAdapter(Context context) {
+        locationsSet = new MutableLiveData<Boolean>();
+        locationsSet.setValue(false);
+        this.mContext = context;
     }
 
     // this method is responsible
@@ -110,15 +136,27 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             public void onClick(View v) {
                 Context viewContext = v.getContext();
                 Intent intent = new Intent(viewContext, DirectionsActivity.class);
+
+                // Gather entrance information in intent to pass to the directions activity.
                 intent.putExtra("NewPlace", currentPlaceViewModel.getId());
+                intent.putExtra("destinationLongitude", currentPlaceViewModel.getNearestEntranceLongitude());
+                intent.putExtra("destinationLatitude", currentPlaceViewModel.getNearestEntranceLatitude());
+                intent.putExtra("destinationMinor", currentPlaceViewModel.getNearestEntranceMinor());
+                intent.putExtra("destinationMajor", currentPlaceViewModel.getPlaceMajor());
                 viewContext.startActivity(intent);
             }
         });
 
         // Set distance text with unit
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        String dunit = prefs.getString("dunit","");
         TextView distanceText = holder.binding.getRoot().findViewById(R.id.place_distance);
         if (currentPlaceViewModel.getDistance() != null) {
-            distanceText.setText(currentPlaceViewModel.getDistanceFeet() + " feet");
+            if(dunit.equals("mi")) {
+                distanceText.setText(currentPlaceViewModel.getDistanceFeet() + " feet");
+            }else{
+                distanceText.setText(Math.ceil(currentPlaceViewModel.getDistance() * 10) /10 + " meter");
+            }
         } else {
             distanceText.setText("");
         }
@@ -135,41 +173,15 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         aboutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (am.isEnabled()) { // Read back the text if accessibility is enabled
-                    mTTSObject.speak(currentPlaceViewModel.getDescription(), TextToSpeech.QUEUE_FLUSH, null);
-                } else { // otherwise expand/collapse the text
-                    if (descriptionText.getVisibility() == View.VISIBLE) {
-                        descriptionText.setVisibility(View.GONE);
-                    } else {
-                        descriptionText.setVisibility(View.VISIBLE);
-                    }
-                }
+
+                Context viewContext = v.getContext();
+                Intent intent = new Intent(viewContext, DirectoryInformationActivity.class);
+                intent.putExtra("NewPlace", currentPlaceViewModel.getId());
+                viewContext.startActivity(intent);
+
             }
         });
 
-
-        // Set accessibility descriptions for buttons
-        // Then set phone visibility
-        // null --> show button
-        // not null --> don't show button
-        Button phoneBtn = holder.binding.getRoot().findViewById(R.id.phone_btn);
-        phoneBtn.setContentDescription("Call " + currentPlaceViewModel.getName());
-        String placePhoneNumber = currentPlaceViewModel.getPhoneNumber();
-        if(placePhoneNumber  == null) {
-            phoneBtn.setVisibility(View.GONE);
-        } else {
-            phoneBtn.setVisibility(View.VISIBLE);
-            phoneBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String formattedNumber = PhoneNumberUtils.formatNumber(placePhoneNumber);
-                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                    callIntent.setData(Uri.parse("tel:" + formattedNumber));
-                    Context context = phoneBtn.getContext();
-                    context.startActivity(callIntent);
-                }
-            });
-        }
         holder.binding.executePendingBindings();
     }
 

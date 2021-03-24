@@ -21,15 +21,44 @@
         app:tabMode="scrollable"
         app:tabTextColor="#000">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItem"
+            android:id="@+id/tabItemSummary"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Tab1" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItemStep1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAB3" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItemStep2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAB4" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItemStep3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAB5" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItemStep4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAB6" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItemStep5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tab6"
+            tools:text="TAB7" />
+
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
