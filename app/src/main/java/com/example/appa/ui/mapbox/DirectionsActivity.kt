@@ -108,9 +108,6 @@ class DirectionsActivity :
     private var instructionSoundButton: NavigationButton? = null
     private var directionRoute: DirectionsRoute? = null
     private var destinationName: String? = null
-    private lateinit var summaryBehavior: BottomSheetBehavior<SummaryBottomSheet>
-    private lateinit var routeOverviewButton: ImageButton
-    private lateinit var cancelBtn: AppCompatImageButton
 
     //Beacon and text to speech members
     private val beaconManager = BeaconManager.getInstanceForApplication(this)
