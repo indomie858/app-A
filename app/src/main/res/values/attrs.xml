@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyCustomTheme">
+        <attr name="customTextColor" format="color" />
+        <attr name="customBackground" format="color"/>
+        <attr name="customButtonTextColor" format="color"/>
+        <attr name="customCardBackground" format="color"/>
+        <attr name="colorPrimary" format="color" />
+        <attr name="colorPrimaryDark" format="color" />
+        <attr name="colorAccent" format="color" />
+    </declare-styleable>
+</resources>

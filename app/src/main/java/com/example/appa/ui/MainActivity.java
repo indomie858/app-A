@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import com.example.appa.bluetooth.MessageConstants;
 import com.example.appa.ui.home.HomeFragment;
 import com.example.appa.ui.navigationlist.NavigationListActivity;
 import com.example.appa.ui.settings.SettingsFragment;
+import com.example.appa.ui.settings.ThemeEnum;
 import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -87,13 +89,35 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
+        SharedPreferences stylePref;
+        stylePref = PreferenceManager.getDefaultSharedPreferences(this);
+        String style = stylePref.getString("style", "");
+        String tos = style;
+        if(style.equals("AppTheme_Dark")){
+            setTheme(R.style.AppTheme_Dark);
+        }
+        else if(style.equals("AppTheme_Dark_HC")){
+            setTheme(R.style.AppTheme_Dark_HC);
+        }
+        else if(style.equals("AppTheme_Light")){
+            setTheme(R.style.AppTheme_Light);
+        }
+        else if(style.equals("AppTheme_Light_HC")){
+            setTheme(R.style.AppTheme_Light_HC);
+        }
+        //else setTheme(R.style.AppTheme_Dark_HC);
         firstLaunchTutorialFrag();
+        Toast toast = Toast.makeText(this, tos, LENGTH_SHORT);
+        toast.show();
+        String tag = "MainActivity";
+
 
         // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener((item) -> {
             switch (item.getItemId()) {
                 case R.id.home_button:
+                    setChecked(0);
                     fm.beginTransaction().replace(R.id.main_container, homeFragment, "1").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = homeFragment;
@@ -101,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     counter = 0;
                     break;
                 case R.id.settings_button:
+                    setChecked(1);
                     fm.beginTransaction().replace(R.id.main_container, settingsFragment, "2").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = settingsFragment;
@@ -109,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.tutorial_button:
+                    setChecked(3);
                     fm.beginTransaction().replace(R.id.main_container, tutorialFragment, "3").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = tutorialFragment;
@@ -116,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     counter = 0;
                     break;
                 case R.id.hardware_connection_button:
+                    setChecked(2);
                     // Initiate the bluetooth discovery
                     // and thready boiz™ that manage the connection
                     if (!btConnectionHelper.isConnected) {
@@ -128,9 +155,18 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
         checkLocationPermissions();
-
     }
 
+    //set menu item checked
+    private void setChecked(int id) {
+        MenuItem menuItem = bottomNavigationView.getMenu().getItem(id);
+        for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
+            if (menuItem.isChecked()){
+                menuItem.setChecked(false);
+            }
+        }
+        menuItem.setChecked(true);
+    }
 
     //This method checks if this is the first time the user has launched the app.
     //On first launch, this will open the tutorial fragment.
@@ -145,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
             active = tutorialFragment;
             backButtonFlag = true;
             firstLaunchMessage();
+            //ThemeSetting.Companion.setDefaultNightMode(ThemeEnum.MODE_NIGHT_YES);
         }else{
             fm.beginTransaction().replace(R.id.main_container, homeFragment, "1").commit();
         }

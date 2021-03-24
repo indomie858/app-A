@@ -22,8 +22,16 @@
             android:entryValues="@array/distance_unit_values"
             android:key="dunit"
             android:title="Distance Unit"
+            android:summary="%s"/>
             android:textColor="@color/text_color"/>
 
+
+        <SwitchPreference
+            android:key="contrast"
+            android:title="High Contrast Mode"
+            android:summaryOn="High Contrast Mode"
+            android:summaryOff="Off"
+            android:defaultValue="false"/>
 
     </PreferenceCategory>
 
