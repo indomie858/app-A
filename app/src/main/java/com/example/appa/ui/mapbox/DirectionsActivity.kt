@@ -674,15 +674,11 @@ class DirectionsActivity :
     private val cameraTrackingChangedListener = object : OnCameraTrackingChangedListener {
         override fun onCameraTrackingChanged(currentMode: Int) {
             if (isLocationTracking(currentMode)) {
-                summaryBehavior.isHideable = false
-                summaryBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             }
         }
 
         override fun onCameraTrackingDismissed() {
             if (mapboxNavigation?.getTripSessionState() == TripSessionState.STARTED) {
-                summaryBehavior.isHideable = true
-                summaryBehavior.state = BottomSheetBehavior.STATE_HIDDEN
             }
         }
     }
