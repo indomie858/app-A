@@ -3,7 +3,7 @@ package com.example.appa.beacons;
 import android.app.Application;
 import android.util.Log;
 
-import com.example.appa.ui.navigation.DirectionsActivity;
+import com.example.appa.ui.mapbox.DirectionsActivity;
 
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;

@@ -1,4 +1,4 @@
-package com.example.appa.ui.navigation;
+package com.example.appa.ui.mapbox;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
