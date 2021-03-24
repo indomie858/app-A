@@ -68,6 +68,51 @@ public class PlaceViewModel  {
 
     //what entrance to get the information from
     public void setNearestEntrance(Location location) {
+        float[] distanceBetweenResults;
+        float minimumDistance ;
+        int nearestEntranceIndex;
+
+        // Gets the list of available entrances
+        List<EntranceEntity> totalEntrancesAvailable = entranceRepository.getEntrancesFromID(placeEntity.getId());
+
+        // Gets the size of the list
+        int entranceListAmount = totalEntrancesAvailable.size();
+
+        // Sets the size of the float array
+        distanceBetweenResults = new float[entranceListAmount];
+
+        // Calculates the first location
+        distanceBetween(location.getLatitude(),location.getLongitude(),
+                entranceRepository.getEntrancesFromID(placeEntity.getId()).get(0).getLatitude(),
+                entranceRepository.getEntrancesFromID(placeEntity.getId()).get(0).getLongitude(),
+                distanceBetweenResults);
+
+        //Sets the first minimum distance
+        minimumDistance = distanceBetweenResults[0];
+        nearestEntranceIndex = 0;
+
+        // Checks the nearest entrance
+        for (int i = 1; i < entranceListAmount; i++){
+
+           distanceBetween(location.getLatitude(),location.getLongitude(),
+                   entranceRepository.getEntrancesFromID(placeEntity.getId()).get(i).getLatitude(),
+                   entranceRepository.getEntrancesFromID(placeEntity.getId()).get(i).getLongitude(),
+                   distanceBetweenResults);
+
+            // Updates minimum distance and keeps track of index location
+            if (distanceBetweenResults[0]< minimumDistance){
+                minimumDistance = distanceBetweenResults[0];
+                nearestEntranceIndex = i;
+
+            }
+        }
+        
+        nearestEntrance = entranceRepository.getEntrancesFromID(placeEntity.getId()).get(nearestEntranceIndex);
+
+
+
+        // Chooses which entrance is the closest
+
         // ADD LOGIC FOR NEAREST ENTRANCE HERE
         //call distance between the two entrance and then it should return turn the distance between the two location
         //iterate between the entrance, if statement
@@ -82,7 +127,8 @@ public class PlaceViewModel  {
 
         // FOR NOW JUST RETURN THE FIRST ENTRANCE IN THE ENTRANCE LIST
         // getting the first element in the database
-        nearestEntrance = entranceRepository.getEntrancesFromID(placeEntity.getId()).get(0);
+
+
     }
 
     public int getPlaceMajor() {
