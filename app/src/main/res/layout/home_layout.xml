@@ -248,7 +248,7 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight=".5"
         android:layout_margin="12dp"
-        android:contentDescription="@string/fitness"
+        android:contentDescription="@string/Fitness"
         android:onClick="onClickCardView"
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp">
@@ -265,7 +265,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_baseline_fitness_center_24"
-            android:contentDescription="@string/fitness" />
+            android:contentDescription="@string/Fitness" />
 
         <TextView
             android:layout_width="wrap_content"
