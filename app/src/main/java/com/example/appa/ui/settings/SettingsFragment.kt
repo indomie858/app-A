@@ -47,6 +47,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
+        // Theme preference
         val theme = findPreference<ListPreference>("theme") as ListPreference
         theme.onPreferenceChangeListener = Preference.OnPreferenceChangeListener{preference, newValue ->
             val id = newValue as String

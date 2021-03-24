@@ -45,31 +45,6 @@ public class HomeAdapter extends BaseAdapter {
         if (inflater == null){
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
-/*
-        if (view == null){
-            view = inflater.inflate(R.layout.row_item,null);
-
-            // Sets the onclick listener
-            // for the individual grid items
-            // that launches the directory
-            // and passes it the selected category name
-            view.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Context context = v.getContext();
-                            Intent intent = new Intent(context, NavigationListActivity.class);
-                            intent.putExtra("QueryCategory", numWord[position]);
-                            context.startActivity(intent);
-                        }
-                    }
-            );
-        }
-*/
-        //ImageView imageView = view.findViewById(R.id.image_view);
-        //TextView textView = view.findViewById(R.id.text_view);
-        //imageView.setImageResource(numImages[position]);
-        //textView.setText(numWord[position]);
 
         return view;
     }

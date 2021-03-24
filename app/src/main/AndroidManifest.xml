@@ -17,16 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".ui.navigation.CompassActivity"
-            android:exported="true">
-        </activity>
+            android:name=".ui.navigationlist.DirectoryInformationActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".ui.mapbox.CompassActivity"
+            android:exported="true"></activity>
 
         <service
             android:name=".bluetooth.BluetoothServiceHandler"
             android:enabled="true" />
 
         <activity
-            android:name=".ui.navigation.DirectionsActivity"
+            android:name=".ui.mapbox.DirectionsActivity"
             android:exported="true"
             android:parentActivityName=".ui.navigationlist.NavigationListActivity"
             android:screenOrientation="portrait">

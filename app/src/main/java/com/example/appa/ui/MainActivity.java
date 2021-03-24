@@ -3,21 +3,22 @@ package com.example.appa.ui;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Message;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -40,7 +41,10 @@ import com.example.appa.ui.settings.ThemeSetting;
 import com.example.appa.ui.tutorial.TutorialFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
+import java.util.Locale;
+import java.util.Queue;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
@@ -53,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     final Fragment homeFragment = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
     BottomNavigationView bottomNavigationView;
-
     private BluetoothHandler bluetoothHandler; // The handler attached to the bluetooth connection
     private BTConnectionHelper btConnectionHelper;
 
@@ -64,9 +67,21 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int PERMISSION_REQUEST_BACKGROUND_LOCATION = 2;
 
+    TextToSpeech ttsObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+
+        ttsObject = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    ttsObject.setLanguage(Locale.US);
+                }
+            }});
+
 
         bluetoothHandler = new BluetoothHandler(this);
         btConnectionHelper = new BTConnectionHelper(getApplicationContext(), bluetoothHandler);
@@ -108,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                     counter = 0;
                     break;
                 case R.id.settings_button:
-                    //fm.beginTransaction().hide(active).show(settingsFragment).commit();
                     fm.beginTransaction().replace(R.id.main_container, settingsFragment, "2").commit();
                     fm.beginTransaction().addToBackStack(null);
                     active = settingsFragment;
@@ -132,12 +146,11 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         btConnectionHelper.terminateConnection();
                     }
-                    //backButtonFlag = true;
-                    //counter = 0;
             }
             return false;
         });
         checkLocationPermissions();
+
     }
 
 
@@ -228,6 +241,25 @@ public class MainActivity extends AppCompatActivity {
             builder.show();
         }
     }
+    // Plays a chime sound when bluetooth sensor reading is below 30
+    public void handleObjectDistance(Integer objectDistance) {
+
+        if (PreferenceManager.getDefaultSharedPreferences(this
+                .getApplicationContext())
+                .getBoolean("isNavigating", true)) {
+            if (objectDistance < 35) {
+                MediaPlayer mp = new MediaPlayer();
+                try {
+                    mp.setVolume(1, 1);
+                    mp.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/raw/chime_bell_ding"));
+                    mp.prepare();
+                    mp.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
 
 
@@ -266,6 +298,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case (MessageConstants.MESSAGE_CONNECTING):
                         Toast.makeText(mainActivity.getApplicationContext(), "Connecting to device...", LENGTH_LONG).show();
+                        break;
+                    case (MessageConstants.MESSAGE_DATA_SENT):
+                        // Use a shared preference to determine if the directions activity is active.
+                        mainActivity.handleObjectDistance((Integer) msg.obj);
                         break;
                 }
             }
@@ -382,41 +418,5 @@ public class MainActivity extends AppCompatActivity {
     }
     ///////////////////////////////location permission stuff end//////////////////////////////////
 
-    /*  OLD BLUETOOTH DIALOG STUFF
-    *****************
-
-    public void showDialog() {
-        BluetoothDialog bluetoothDialog = (BluetoothDialog) BluetoothDialog.newInstance(R.string.bluetooth_title);
-        btDialog = bluetoothDialog;
-        btDialog.setBluetoothService(btServiceHandler);
-        btDialog.show(getSupportFragmentManager(), "BTDialog");
-    }
-
-    boolean bound;
-    BluetoothServiceHandler btServiceHandler;
-    public void bindService() {
-        Intent intent = new Intent(this, BluetoothServiceHandler.class);
-        getApplicationContext().bindService(intent, bluetoothServiceConnection, Context.BIND_AUTO_CREATE);
-        Log.d(LOG_TAG, "Dialog bound to service");
-    }
-
-    private ServiceConnection bluetoothServiceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            BluetoothServiceHandler.LocalBinder binder = (BluetoothServiceHandler.LocalBinder) iBinder;
-            btServiceHandler = binder.getService();
-
-            btConnectionHelper = new BTConnectionHelper(btServiceHandler, getApplicationContext());
-            Log.e(LOG_TAG, "Successfully binded");
-            bound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            bound = false;
-        }
-    };
-
-    *******************/
 
 }
