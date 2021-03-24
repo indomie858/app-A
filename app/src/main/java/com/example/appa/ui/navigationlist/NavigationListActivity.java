@@ -2,6 +2,7 @@ package com.example.appa.ui.navigationlist;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
@@ -38,12 +40,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 public class NavigationListActivity extends AppCompatActivity {
     public static final String TAG = "NavigationListFragment";
     private FusedLocationProviderClient fusedLocationClient;
     private Location currentLocation;
     private PlaceAdapter placeAdapter;
+    private LinearLayout loadingLayout;
     private NavigationListViewModel viewModel;
     private String queryName = "";
     private String queryCategory = "";
@@ -106,13 +110,17 @@ public class NavigationListActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.place_list);
         recyclerView.setAdapter(placeAdapter);
 
+        // Loading overlay wrapper
+        loadingLayout = (LinearLayout) findViewById(R.id.loading_wrapper);
+
+
         // Viewmodel. Handles all data interactions between the UI and DB.
         viewModel = new ViewModelProvider(this).get(NavigationListViewModel.class);
 
         // Instantiate location client to get user's current location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Use getLastLocation to populate location data before the viewmodel is created.
+        // Use getLastLocation to populate location data before the first location update.
         getLastLocation();
 
         // LocationRequest contains settings regarding location intervals
@@ -120,6 +128,7 @@ public class NavigationListActivity extends AppCompatActivity {
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(2000);
+
 
         // Instantiate location callback.
         // The location provider invokes LocationCallback.onLocationResult().
@@ -131,12 +140,30 @@ public class NavigationListActivity extends AppCompatActivity {
                 currentLocation = locationResult.getLastLocation();
                 placeAdapter.setLocations(currentLocation);
                 placeAdapter.notifyDataSetChanged();
+
             }
         };
+
         // Begin location updates (on create and on resume)
         startLocationUpdates();
         // Update list from intent
         setViewModelFromIntent();
+
+        final Observer<Boolean> locationsSetObserver = new Observer<Boolean>() {
+            // Disable the loading layout as soon as the first
+            // nearest entrances have been set in the adapter.
+            @Override
+            public void onChanged(Boolean locationsSet) {
+                if (locationsSet) {
+                    loadingLayout.setVisibility(View.GONE);
+
+                } else {
+                    loadingLayout.setVisibility(View.VISIBLE);
+                }
+            }
+        };
+
+        placeAdapter.getLocationsSet().observe(this, locationsSetObserver);
 
     }
 
@@ -150,6 +177,8 @@ public class NavigationListActivity extends AppCompatActivity {
                     public void onSuccess(Location location) {
                         if (location != null) {
                             currentLocation = location;
+                            placeAdapter.setLocations(currentLocation);
+                            placeAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -204,7 +233,7 @@ public class NavigationListActivity extends AppCompatActivity {
                 List<PlaceViewModel> placeViewModels = new ArrayList<PlaceViewModel>();
 
                 for (PlaceEntity placeEntity : placeEntities) {
-                    PlaceViewModel placeViewModel = new PlaceViewModel(placeEntity);
+                    PlaceViewModel placeViewModel = new PlaceViewModel(placeEntity, context);
                     placeViewModel.setLocationAndDistance(currentLocation);
                     placeViewModels.add(placeViewModel);
                 }
@@ -223,6 +252,7 @@ public class NavigationListActivity extends AppCompatActivity {
                     });
                 }
                 placeAdapter.setPlaces(placeViewModels);
+                placeAdapter.setLocations(currentLocation);
                 placeAdapter.notifyDataSetChanged();
             }
         });

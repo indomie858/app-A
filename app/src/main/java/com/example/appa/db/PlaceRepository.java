@@ -1,6 +1,7 @@
 package com.example.appa.db;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
@@ -11,17 +12,11 @@ public class PlaceRepository {
     // as an abstraction layer
     // between the ViewModel and the DAO.
     private PlaceDao placeDao;
-    private LiveData<List<PlaceEntity>> allPlaces;
-    private LiveData<PlaceEntity> singlePlace;
-    public PlaceRepository(Application application) {
-        PlaceDatabase database = PlaceDatabase.getInstance(application);
+    public PlaceRepository(Context context) {
+        PlaceDatabase database = PlaceDatabase.getInstance(context);
         placeDao = database.placeListDao();
-        allPlaces = placeDao.getAllPlaces();
     }
 
-    public LiveData<List<PlaceEntity>> getAllPlaces() {
-        return allPlaces;
-    }
     public LiveData<PlaceEntity> getPlaceFromID(int id) { return placeDao.getPlaceFromID(id);}
     public LiveData<List<PlaceEntity>> getPlacesFromString(String searchName) { return placeDao.getPlacesFromString(searchName); }
 
