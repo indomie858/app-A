@@ -9,6 +9,5 @@ public interface Place {
     public Float getLongitude() ;
     public String getCategories();
     public Integer getMajor_id();
-    public Integer getMinor_id();
     public String getPhone_number();
 }
