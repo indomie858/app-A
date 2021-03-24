@@ -16,9 +16,19 @@
     <color name="card_background_color">#EEEEEE</color>
     <color name="ic_settings_color">#FFFFFF</color>
     <color name="ic_attachment_color">#FFFFFFFF</color>
-    <color name="background_color">#FFFFFFFF</color>
+    <color name="background_color">#F0FFFF</color>
     <color name="ic_color_lens_color">#FFFFFFFF</color>
     <color name="card_text_color">#ffffff</color>
-    <color name="button_text_color">#000000</color>
+    <color name="button_text_color">#111111</color>
     <color name="text_color">#000000</color>
+    <color name="gray">#696969</color>
+    <color name="aliceblue">#F0F8FF</color>
+
+    <color name="night_black">#15202B</color>
+    <color name="night_text">#FEFFFE</color>
+    <color name="pure_black">#000000</color>
+    <color name="pure_white">#FFFFFF</color>
+
+    <color name="light_white">#F0F8F0</color>
+    <color name="light_text">#111111</color>
 </resources>

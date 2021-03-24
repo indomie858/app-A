@@ -26,6 +26,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 
 import com.example.appa.R;
 import com.example.appa.bluetooth.BTConnectionHelper;
@@ -72,7 +73,28 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         ThemeSetting.Companion.setDefaultNightModeByPreference(this);
+        SharedPreferences stylePref;
+        stylePref = PreferenceManager.getDefaultSharedPreferences(this);
+        String style = stylePref.getString("style", "");
+        String tos = style;
+        if(style.equals("AppTheme_Dark")){
+            setTheme(R.style.AppTheme_Dark);
+        }
+        else if(style.equals("AppTheme_Dark_HC")){
+            setTheme(R.style.AppTheme_Dark_HC);
+        }
+        else if(style.equals("AppTheme_Light")){
+            setTheme(R.style.AppTheme_Light);
+        }
+        else if(style.equals("AppTheme_Light_HC")){
+            setTheme(R.style.AppTheme_Light_HC);
+        }
+        //else setTheme(R.style.AppTheme_Dark_HC);
         firstLaunchTutorialFrag();
+        Toast toast = Toast.makeText(this, tos, LENGTH_SHORT);
+        toast.show();
+        String tag = "MainActivity";
+
 
         // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -132,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             active = tutorialFragment;
             backButtonFlag = true;
             firstLaunchMessage();
-            ThemeSetting.Companion.setDefaultNightMode(ThemeEnum.MODE_NIGHT_YES);
+            //ThemeSetting.Companion.setDefaultNightMode(ThemeEnum.MODE_NIGHT_YES);
         }else{
             fm.beginTransaction().replace(R.id.main_container, homeFragment, "1").commit();
         }

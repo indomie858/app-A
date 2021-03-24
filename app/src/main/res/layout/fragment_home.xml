@@ -5,7 +5,7 @@
     android:id="@+id/home_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="?attr/customBackground"
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
@@ -20,7 +20,7 @@
       android:gravity="center_vertical"
       android:text="Welcome to CSUN! Choose a category to list nearby locations."
       android:textAlignment="center"
-      android:textColor="@color/text_color"
+      android:textColor="?attr/customTextColor"
       android:textSize="24sp"
       android:textStyle="bold"
       tools:ignore="RtlCompat" />
@@ -59,7 +59,7 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:background="@color/card_background_color"
+          android:background="?attr/customCardBackground"
           android:gravity="center"
           android:padding="1dp">
 
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="All Locations"
-            android:textColor="@color/button_text_color"
+            android:textColor="?attr/customButtonTextColor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -108,7 +108,7 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:background="@color/card_background_color"
+          android:background="?attr/customCardBackground"
           android:gravity="center"
           android:orientation="vertical"
           android:padding="1dp">
@@ -123,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Classrooms"
-            android:textColor="@color/button_text_color"
+            android:textColor="?attr/customButtonTextColor"
             android:textSize="15sp"
             android:textStyle="bold" />
       </LinearLayout>
@@ -144,7 +144,7 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:background="@color/card_background_color"
+          android:background="?attr/customCardBackground"
           android:gravity="center"
           android:orientation="vertical"
           android:padding="1dp">
@@ -159,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Study"
-            android:textColor="@color/button_text_color"
+            android:textColor="?attr/customButtonTextColor"
             android:textSize="15sp"
             android:textStyle="bold" />
       </LinearLayout>
@@ -185,14 +185,14 @@
         android:layout_margin="12dp"
         android:contentDescription="@string/restaurants"
         android:onClick="onClickCardView"
-        app:cardBackgroundColor="@color/card_background_color"
+        app:cardBackgroundColor="?attr/customCardBackground"
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:background="@color/card_background_color"
+          android:background="?attr/customCardBackground"
           android:gravity="center"
           android:orientation="vertical"
           android:padding="1dp">
@@ -207,7 +207,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Restaurants"
-            android:textColor="@color/button_text_color"
+            android:textColor="?attr/customButtonTextColor"
             android:textSize="15sp"
             android:textStyle="bold" />
       </LinearLayout>
@@ -222,14 +222,14 @@
         android:layout_margin="12dp"
         android:contentDescription="@string/Services"
         android:onClick="onClickCardView"
-        app:cardBackgroundColor="@color/card_background_color"
+        app:cardBackgroundColor="?attr/customCardBackground"
         app:cardCornerRadius="12dp"
         app:cardElevation="10dp">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:background="@color/card_background_color"
+          android:background="?attr/customCardBackground"
           android:gravity="center"
           android:orientation="vertical"
           android:padding="1dp">
@@ -244,7 +244,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Services"
-            android:textColor="@color/button_text_color"
+            android:textColor="?attr/customButtonTextColor"
             android:textSize="15sp"
             android:textStyle="bold" />
       </LinearLayout>
@@ -275,7 +275,7 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:background="@color/card_background_color"
+          android:background="?attr/customCardBackground"
           android:gravity="center"
           android:orientation="vertical"
           android:padding="1dp">
@@ -290,7 +290,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Student Stores"
-            android:textColor="@color/button_text_color"
+            android:textColor="?attr/customButtonTextColor"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -312,7 +312,7 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:background="@color/card_background_color"
+          android:background="?attr/customCardBackground"
           android:gravity="center"
           android:onClick="onClickCardView"
           android:orientation="vertical"
@@ -330,7 +330,7 @@
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:text="@string/Fitness"
-            android:textColor="@color/button_text_color"
+            android:textColor="?attr/customButtonTextColor"
             android:textSize="15sp"
             android:textStyle="bold" />
 

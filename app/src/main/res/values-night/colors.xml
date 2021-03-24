@@ -3,9 +3,14 @@
     <color name="ic_settings_color">#FFFFFFFF</color>
     <color name="ic_attachment_color">#FFFFFFFF</color>
     <color name="background_color">#000000</color>
-    <color name="card_background_color">#ffffff</color>
+    <color name="card_background_color">#EEEEEE</color>
     <color name="card_text_color">#000000</color>
     <color name="ic_color_lens_color">#FFFFFFFF</color>
-    <color name="button_text_color">#000000</color>
+    <color name="button_text_color">#111111</color>
     <color name="text_color">#FFFFFF</color>
+
+    <color name="night_black">#15202B</color>
+    <color name="night_text">#FEFFFE</color>
+    <color name="pure_black">#000000</color>
+    <color name="pure_white">#FFFFFF</color>
 </resources>

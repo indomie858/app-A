@@ -13,7 +13,14 @@
             android:icon="@drawable/ic_color_lens"
             android:key="theme"
             android:title="@string/preference_theme_title"
-            android:textColor="@color/text_color"/>
+            android:textColor="?attr/colorPrimaryDark"/>
+
+        <SwitchPreference
+            android:key="contrast"
+            android:title="High Contrast Mode"
+            android:summaryOn="High Contrast Mode"
+            android:summaryOff="Off"
+            android:defaultValue="false"/>
 
     </PreferenceCategory>
 

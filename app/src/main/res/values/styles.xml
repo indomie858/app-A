@@ -8,6 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Light Theme-->
+    <style name="AppTheme.Light" parent="AppTheme">
+        <item name="customTextColor">@color/light_text</item>
+        <item name="customBackground">@color/light_white</item>
+        <item name="customButtonTextColor">@color/button_text_color</item>
+        <item name="customCardBackground">@color/card_background_color</item>
+    </style>
+    <!-- Light High Contrast-->
+    <style name="AppTheme.Light_HC" parent="AppTheme">
+        <item name="customTextColor">@color/pure_black</item>
+        <item name="customBackground">@color/pure_white</item>
+        <item name="customButtonTextColor">@color/pure_black</item>
+        <item name="customCardBackground">@color/pure_white</item>
+    </style>
+    <!-- Dark Theme-->
+    <style name="AppTheme.Dark" parent="AppTheme">
+        <item name="customTextColor">@color/night_text</item>
+        <item name="customBackground">@color/night_black</item>
+        <item name="customButtonTextColor">@color/button_text_color</item>
+        <item name="customCardBackground">@color/card_background_color</item>
+    </style>
+    <!-- Dark High Contrast-->
+    <style name="AppTheme.Dark_HC" parent="AppTheme">
+        <item name="customTextColor">@color/pure_white</item>
+        <item name="customBackground">@color/pure_black</item>
+        <item name="customButtonTextColor">@color/pure_black</item>
+        <item name="customCardBackground">@color/pure_white</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
