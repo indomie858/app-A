@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences stylePref;
         stylePref = PreferenceManager.getDefaultSharedPreferences(this);
         String style = stylePref.getString("style", "");
-        String tos = style;
+
         if(style.equals("AppTheme_Dark")){
             setTheme(R.style.AppTheme_Dark);
         }
@@ -107,9 +107,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //else setTheme(R.style.AppTheme_Dark_HC);
         firstLaunchTutorialFrag();
-        Toast toast = Toast.makeText(this, tos, LENGTH_SHORT);
-        toast.show();
-        String tag = "MainActivity";
+
 
 
         // The switch case below is for adding the actions for when you click on the bottom menu -- create a case for the other buttons
