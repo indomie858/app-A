@@ -23,7 +23,6 @@
             android:key="dunit"
             android:title="Distance Unit"
             android:summary="%s"/>
-            android:textColor="@color/text_color"/>
 
 
         <SwitchPreference
