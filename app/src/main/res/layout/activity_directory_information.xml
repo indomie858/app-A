@@ -43,7 +43,10 @@
             android:layout_height="wrap_content"
             android:text="Loading information..."
             android:textColor="@color/text_color"
+            android:fontFamily="sans-serif-black"
             android:textSize="36sp"
+            android:layout_marginBottom="50sp"
+            android:gravity="center"
             android:textStyle="bold" />
 
         <TextView
@@ -54,30 +57,32 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:textColor="@color/text_color"
-            android:textSize="18sp" />
+            android:layout_marginBottom="50sp"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/launchNavigationButton"
             style="@style/directoryInfoSpacing"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="63dp"
             android:backgroundTint="#FFFFFF"
+            android:text="Launch Navigation"
             android:textColor="@color/black"
-            android:text="Launch Navigation" />
+            android:textSize="21sp" />
 
         <Button
             android:id="@+id/phone_btn"
             style="@style/directoryInfoSpacing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="235dp"
+            android:layout_height="65dp"
             android:backgroundTint="#FFFFFF"
             android:clickable="true"
             android:contentDescription=""
-            android:drawableRight="@drawable/ic_baseline_local_phone_24"
             android:focusable="true"
             android:src="@drawable/ic_baseline_local_phone_24"
             android:text="Call"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
