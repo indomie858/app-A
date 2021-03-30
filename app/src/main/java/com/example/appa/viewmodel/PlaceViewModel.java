@@ -59,13 +59,7 @@ public class PlaceViewModel  {
     public String getDescription() {
         return placeEntity.getDescription();
     }
-
-    private void setDistance(Location location) {
-        float[] results = new float[1];
-        distanceBetween(location.getLatitude(), location.getLongitude(), placeEntity.getLatitude(), placeEntity.getLongitude(), results);
-        this.distance = results[0];
-    }
-
+    
     //what entrance to get the information from
     public void setNearestEntrance(Location location) {
         float[] distanceBetweenResults;
