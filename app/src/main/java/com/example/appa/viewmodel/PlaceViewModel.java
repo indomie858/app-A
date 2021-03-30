@@ -59,7 +59,7 @@ public class PlaceViewModel  {
     public String getDescription() {
         return placeEntity.getDescription();
     }
-    
+
     //what entrance to get the information from
     public void setNearestEntrance(Location location) {
         float[] distanceBetweenResults;
