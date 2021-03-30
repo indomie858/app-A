@@ -22,7 +22,7 @@ import static android.location.Location.distanceBetween;
 
 // Viewmodel for individual locations
 public class PlaceViewModel  {
-    private Float distance = null;
+    private Float distance = 0f;
     private PlaceEntity placeEntity;
     private EntranceEntity nearestEntrance;
     private EntranceRepository entranceRepository;
@@ -91,6 +91,8 @@ public class PlaceViewModel  {
         minimumDistance = distanceBetweenResults[0];
         nearestEntranceIndex = 0;
 
+
+
         // Checks the nearest entrance
         for (int i = 1; i < entranceListAmount; i++){
 
@@ -108,8 +110,8 @@ public class PlaceViewModel  {
         }
         
         nearestEntrance = entranceRepository.getEntrancesFromID(placeEntity.getId()).get(nearestEntranceIndex);
-
-
+        //assign to the "distance" member variable
+        distance = Float.valueOf(minimumDistance);
 
         // Chooses which entrance is the closest
 
@@ -151,7 +153,7 @@ public class PlaceViewModel  {
     public void setLocationAndDistance(Location location) {
         // Set initial distance with a given location.
         if (location != null) {
-            setDistance(location);
+            setNearestEntrance(location);
         } else {
             distance = null;
         }
