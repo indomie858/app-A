@@ -243,7 +243,10 @@ public class NavigationListActivity extends AppCompatActivity {
                     Collections.sort(placeViewModels, new Comparator<PlaceViewModel>() {
                         @Override
                         public int compare(PlaceViewModel o1, PlaceViewModel o2) {
-                            if (o1.getDistance() < o2.getDistance()) {
+                            if (o1.getDistance().equals(o2.getDistance())) {
+                                return 0;
+                            }
+                            else if (o1.getDistance() < o2.getDistance()) {
                                 return -1;
                             } else {
                                 return 1;
