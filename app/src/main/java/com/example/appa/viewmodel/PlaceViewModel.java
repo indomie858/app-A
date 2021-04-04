@@ -3,11 +3,14 @@ package com.example.appa.viewmodel;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -15,6 +18,7 @@ import androidx.lifecycle.LiveData;
 import com.example.appa.db.EntranceEntity;
 import com.example.appa.db.EntranceRepository;
 import com.example.appa.db.PlaceEntity;
+import com.example.appa.ui.MainActivity;
 
 import java.util.List;
 
@@ -61,16 +65,26 @@ public class PlaceViewModel  {
     }
 
     //what entrance to get the information from
+    @SuppressLint("MissingPermission")
     public void setNearestEntrance(Location location) {
         float[] distanceBetweenResults;
         float minimumDistance ;
         int nearestEntranceIndex;
+        int entranceListAmount;
+
+        //This check is necessary to prevent crashing due to null exception when clicking a category
+        if (location == null) {
+            LocationManager locationManager = (LocationManager)  mContext.getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String bestProvider = String.valueOf(locationManager.getBestProvider(criteria, true));
+            location = locationManager.getLastKnownLocation(bestProvider);
+        }
 
         // Gets the list of available entrances
         List<EntranceEntity> totalEntrancesAvailable = entranceRepository.getEntrancesFromID(placeEntity.getId());
 
         // Gets the size of the list
-        int entranceListAmount = totalEntrancesAvailable.size();
+        entranceListAmount = totalEntrancesAvailable.size();
 
         // Sets the size of the float array
         distanceBetweenResults = new float[entranceListAmount];
@@ -102,7 +116,7 @@ public class PlaceViewModel  {
 
             }
         }
-        
+
         nearestEntrance = entranceRepository.getEntrancesFromID(placeEntity.getId()).get(nearestEntranceIndex);
         //assign to the "distance" member variable
         distance = Float.valueOf(minimumDistance);
