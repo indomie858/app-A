@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         if (PreferenceManager.getDefaultSharedPreferences(this
                 .getApplicationContext())
                 .getBoolean("isNavigating", true)) {
-            if (objectDistance < 35) {
+            if (objectDistance < 100) {
                 MediaPlayer mp = new MediaPlayer();
                 try {
                     mp.setVolume(1, 1);
