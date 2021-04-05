@@ -290,6 +290,8 @@ class DirectionsActivity :
                         //stopping point for ranging. user has arrived at entrance
                         beaconText.text = "YOU HAVE ARRIVED AT THE ENTRANCE. PRESS BACK BUTTON TO EXIT."
                         beaconManager.stopRangingBeaconsInRegion(region)
+                        toneGen1.stopTone()
+                        toneGen1.release()
                     } catch (e: RemoteException) {
                         Log.e(TAG, e.toString())
                     }
