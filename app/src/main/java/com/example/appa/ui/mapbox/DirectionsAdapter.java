@@ -98,6 +98,8 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             //NOTE: structure of outputText is "$destinationName,$distanceRemaining,$distanceToNextStep,$upcomingInstruction"
             List<String> navigationInfo = Arrays.asList(outputText.split(","));
             destinationViewHolder.destinationTextView.setText(navigationInfo.get(0));
+            destinationViewHolder.destinationTextView.setContentDescription("\u00A0");
+            destinationViewHolder.upcomingInstructionTextView.setContentDescription("\u00A0");
 
             //this checks if distance setting is set to imperial or metric
             if (getDistanceUnitSetting().equals("mi")){
@@ -112,6 +114,7 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ManeuverViewHolder maneuverViewHolder = (ManeuverViewHolder) holder;
             String maneuver = mData.get(position);
             maneuverViewHolder.maneuverTextView.setText(maneuver);
+            maneuverViewHolder.maneuverTextView.setContentDescription("\u00A0");
         }
     }
 
