@@ -97,7 +97,7 @@ public class BTConnectionHelper {
                     // Keeping the default HC-05 name here for now,
                     // for dev purposes,
                     // though we should get rid of this in production.
-                    if(deviceName!= null && deviceAddr != null && (deviceName.equals("APP-A") || deviceName.equals("DSD TECH"))) {
+                    if(deviceName!= null && deviceAddr != null && (deviceName.equals("APP-A") || deviceName.equals("DSD TECH") || deviceName.equals("DSD TECH HC-05"))) {
                         // CONNECT TO DEVICE HERE
                         connectThread = new ConnectThread(device);
                         connectThread.start();
