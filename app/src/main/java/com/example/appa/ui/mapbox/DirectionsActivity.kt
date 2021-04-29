@@ -751,8 +751,8 @@ class DirectionsActivity :
                 }
             } else {
                 // I put this code in here
-                // to ensure that we don't do stuff to NaN routeProgress objects.
-                
+                // to ensure that we don't do stuff to null routeProgress objects.
+
                 navigationText.visibility = GONE
                 val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress    //json
                 val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress     //json
