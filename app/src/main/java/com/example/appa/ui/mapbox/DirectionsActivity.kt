@@ -750,6 +750,9 @@ class DirectionsActivity :
                     beaconHandler.postDelayed(task, 1000) //set task delay to reduce overlap between mapbox and beacons voice
                 }
             } else {
+                // I put this code in here
+                // to ensure that we don't do stuff to NaN routeProgress objects.
+                
                 navigationText.visibility = GONE
                 val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress    //json
                 val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress     //json
