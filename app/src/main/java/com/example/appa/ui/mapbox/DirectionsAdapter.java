@@ -114,7 +114,7 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ManeuverViewHolder maneuverViewHolder = (ManeuverViewHolder) holder;
             String maneuver = mData.get(position);
             maneuverViewHolder.maneuverTextView.setText(maneuver);
-            maneuverViewHolder.maneuverTextView.setContentDescription("\u00A0");
+            //maneuverViewHolder.maneuverTextView.setContentDescription("\u00A0");
         }
     }
 

@@ -19,10 +19,8 @@ import android.util.Log
 import android.view.View.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -33,11 +31,9 @@ import com.example.appa.beacons.BeaconReferenceApplication
 import com.example.appa.db.PlaceEntity
 import com.example.appa.viewmodel.CompassViewModel
 import com.example.appa.viewmodel.MapWithNavViewModel
-import com.example.appa.viewmodel.PlaceViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.android.core.location.*
 import com.mapbox.api.directions.v5.DirectionsCriteria
@@ -68,12 +64,10 @@ import com.mapbox.navigation.core.trip.session.*
 import com.mapbox.navigation.ui.NavigationButton
 import com.mapbox.navigation.ui.camera.NavigationCamera
 import com.mapbox.navigation.ui.map.NavigationMapboxMap
-import com.mapbox.navigation.ui.summary.SummaryBottomSheet
 import com.mapbox.navigation.ui.voice.NavigationSpeechPlayer
 import com.mapbox.navigation.ui.voice.SpeechPlayerProvider
 import com.mapbox.navigation.ui.voice.VoiceInstructionLoader
 import kotlinx.android.synthetic.main.activity_directions.*
-import kotlinx.android.synthetic.main.destination_row.*
 import okhttp3.Cache
 import org.altbeacon.beacon.*
 import java.io.File
@@ -259,7 +253,11 @@ class DirectionsActivity :
                 val firstBeacon = beacons.first()   //first detected beacon
 
                 //updated distances are constantly being passed to atDistance()
-                atDistance(firstBeacon.distance, firstBeacon, region)
+
+                // Run this on the UI thread to avoid crashes.
+                runOnUiThread {
+                    atDistance(firstBeacon.distance, firstBeacon, region)
+                }
             }
         }
 
@@ -304,6 +302,7 @@ class DirectionsActivity :
                 distance < 4.5 -> {
                     beaconText.text = "BEACON DETECTED. FOLLOW THE BEEPS"
                     toneGen1.startTone(ToneGenerator.TONE_PROP_PROMPT, 1000);
+
                     vibrate(750, 190)
                 }
                 distance < 7 -> {
@@ -729,54 +728,12 @@ class DirectionsActivity :
     private val routeProgressObserver = object : RouteProgressObserver {
         @SuppressLint("MissingPermission")
         override fun onRouteProgressChanged(routeProgress: RouteProgress) {
-            navigationText.visibility = GONE
-
-            val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress    //json
-            val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress     //json
-            val currentStepIndex = currentStepProgress?.stepIndex
-            val upcomingStep = currentLegProgress?.upcomingStep     //arraylist or json??
-            val upcomingManeuver = upcomingStep?.maneuver()     //arraylist or json?
-
-            compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
-            val bearingInstruction = compassViewModel.bearingInstruction
-            val upcomingInstruction =  upcomingManeuver?.instruction()
-
-            //this block checks if distance unit setting is set to imperial or metric
-            var distanceToNextStep: Int
-            var totalDistanceRemaining: Int
-            if (getDistanceUnitSetting().equals("mi")) {
-                totalDistanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination in imperial units
-                distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()!!  //distance remaining in current step
-            } else {
-                totalDistanceRemaining = routeProgress.distanceRemaining.roundToInt()
-                distanceToNextStep = currentStepProgress?.distanceRemaining?.roundToInt()!!
-            }
-
-            //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText\
-            val outputText = "$destinationName,$totalDistanceRemaining,$bearingInstruction,$distanceToNextStep,$upcomingInstruction"
-
-            var steps: MutableList<LegStep>? = routeProgress.route.legs()?.get(0)?.steps()
-            navigationText.text = outputText
-            navigationData.clear()
-            navigationData.add(outputText)
-            if (steps != null) {
-                val endStepIndex = steps.size - 1;
-                for (i in currentStepIndex!!..endStepIndex) {
-                    navigationData.add(steps[i].maneuver().instruction().toString())
-                }
-            }
-            adapter?.setData(navigationData)
-            adapter?.notifyDataSetChanged()
-
-
             /**
              * This if block contains actions that execute once the user has arrived at the destination (route is complete).
              */
             if (routeProgress.currentState.equals(RouteProgressState.ROUTE_COMPLETE)) {     //executes when user has reached destination
                 if (!isRouteComplete) { //this check is necessary because routeProgressObserver is constantly repeating
-
                     PreferenceManager.getDefaultSharedPreferences(this@DirectionsActivity).edit().putBoolean("isNavigating", false).commit();
-
                     isRouteComplete = true
                     speechPlayer.isMuted = true
                     initTextChangeListener()
@@ -792,6 +749,44 @@ class DirectionsActivity :
                     }
                     beaconHandler.postDelayed(task, 1000) //set task delay to reduce overlap between mapbox and beacons voice
                 }
+            } else {
+                navigationText.visibility = GONE
+                val currentLegProgress: RouteLegProgress? = routeProgress.currentLegProgress    //json
+                val currentStepProgress: RouteStepProgress? = routeProgress.currentLegProgress?.currentStepProgress     //json
+                val currentStepIndex = currentStepProgress?.stepIndex
+                val upcomingStep = currentLegProgress?.upcomingStep     //arraylist or json??
+                val upcomingManeuver = upcomingStep?.maneuver()     //arraylist or json?
+
+                compassViewModel.setNextStepBearing(mapboxMap?.cameraPosition?.bearing)
+                val bearingInstruction = compassViewModel.bearingInstruction
+                val upcomingInstruction =  upcomingManeuver?.instruction()
+
+                //this block checks if distance unit setting is set to imperial or metric
+                var distanceToNextStep: Int
+                var totalDistanceRemaining: Int
+                if (getDistanceUnitSetting().equals("mi")) {
+                    totalDistanceRemaining = (routeProgress.distanceRemaining * 3.281).roundToInt()  //total distance remaining to reach destination in imperial units
+                    distanceToNextStep = (currentStepProgress?.distanceRemaining?.times(3.281))?.roundToInt()!!  //distance remaining in current step
+                } else {
+                    totalDistanceRemaining = routeProgress.distanceRemaining.roundToInt()
+                    distanceToNextStep = currentStepProgress?.distanceRemaining?.roundToInt()!!
+                }
+
+                //NOTE: make sure to update directionsadapter if there is any changes to the structure of outputText\
+                val outputText = "$destinationName,$totalDistanceRemaining,$bearingInstruction,$distanceToNextStep,$upcomingInstruction"
+
+                var steps: MutableList<LegStep>? = routeProgress.route.legs()?.get(0)?.steps()
+                navigationText.text = outputText
+                navigationData.clear()
+                navigationData.add(outputText)
+                if (steps != null) {
+                    val endStepIndex = steps.size - 1;
+                    for (i in currentStepIndex!!..endStepIndex) {
+                        navigationData.add(steps[i].maneuver().instruction().toString())
+                    }
+                }
+                adapter?.setData(navigationData)
+                adapter?.notifyDataSetChanged()
             }
         }
     }
