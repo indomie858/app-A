@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     // Plays a chime sound when bluetooth sensor reading is below 30
-    public void handleObjectDistance(Integer objectDistance) {
+    public void handleObjectDistance(Double objectDistance) {
 
         if (PreferenceManager.getDefaultSharedPreferences(this
                 .getApplicationContext())
@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case (MessageConstants.MESSAGE_DATA_SENT):
                         // Use a shared preference to determine if the directions activity is active.
-                        mainActivity.handleObjectDistance((Integer) msg.obj);
+                        mainActivity.handleObjectDistance((Double) msg.obj);
                         break;
                 }
             }

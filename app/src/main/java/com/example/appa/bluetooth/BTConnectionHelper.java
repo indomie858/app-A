@@ -217,7 +217,7 @@ public class BTConnectionHelper {
                     // Keep running the thread as long as we want to maintain the connection.
                     try {
                         // Read from the InputStream.
-                        int readVal = Integer.valueOf(reader.readLine());
+                        double readVal = Double.parseDouble(reader.readLine());
 
                         // Send the obtained value to the handler, which will react to the reading.
                         Message readMsg = handler.obtainMessage(MessageConstants.MESSAGE_DATA_SENT, readVal);
