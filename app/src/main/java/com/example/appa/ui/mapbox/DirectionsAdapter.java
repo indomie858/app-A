@@ -103,7 +103,7 @@ public class DirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             //this checks if distance setting is set to imperial or metric
             if (getDistanceUnitSetting().equals("mi")){
-                destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " feet remaining");
+                destinationViewHolder.distanceRemainingTextView.setText("Total distance remaining: " + navigationInfo.get(1) + " feet.");
                 destinationViewHolder.upcomingInstructionTextView.setText(navigationInfo.get(2) + " In " + navigationInfo.get(3) + " feet, " + navigationInfo.get(4));
             } else {
                 destinationViewHolder.distanceRemainingTextView.setText(navigationInfo.get(1) + " meters remaining");
